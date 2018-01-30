@@ -17,6 +17,7 @@ public class InfoScreenController : MonoBehaviour
         StartCoroutine(InstantiateScreen());
 	}
 
+    // Instantiates the screen
     private IEnumerator InstantiateScreen()
     {
         yield return new WaitForSeconds(1);
