@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SanitationController : MonoBehaviour {
+public class SanitationController : MonoBehaviour
+{
 
     private Image SanitationProgressBar;
-    private float SanitationLevel;
+    public float CurrentSanitationLevel;
+    public float MaxSanitationLevel;
 
     public GameObject SanitationBarPrefab;
 
@@ -19,6 +21,6 @@ public class SanitationController : MonoBehaviour {
 	// Update is called once per frame
 	private void Update() 
 	{
-		
+        SanitationProgressBar.fillAmount = CurrentSanitationLevel / MaxSanitationLevel;
 	}
 }
