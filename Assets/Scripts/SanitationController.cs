@@ -12,6 +12,7 @@ public class SanitationController : MonoBehaviour
     public float MaxSanitationLevel;
 
     public GameObject SanitationBarPrefab;
+    public PatientStatusColorConfig SanitationStatusColorConfig; // Use same color config as for the patient status
     public Transform ProgressBarWorldPosition;
     public float UIOffset;
 
@@ -31,6 +32,19 @@ public class SanitationController : MonoBehaviour
         if (CurrentSanitationLevel >= MaxSanitationLevel)
         {
             CurrentSanitationLevel = MaxSanitationLevel;
+        }
+
+        if (SanitationProgressBar.fillAmount >= 0.75)
+        {
+            SanitationProgressBar.color = SanitationStatusColorConfig.StatusRed;
+        }
+        else if (SanitationProgressBar.fillAmount >= 0.45)
+        {
+            SanitationProgressBar.color = SanitationStatusColorConfig.StatusYellow;
+        }
+        else
+        {
+            SanitationProgressBar.color = SanitationStatusColorConfig.StatusGreen;
         }
     }
 

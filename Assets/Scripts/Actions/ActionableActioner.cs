@@ -83,7 +83,7 @@ public class ActionableActioner : MonoBehaviour
         PlayActionSound();
         PlayAnimation();
 
-        pAction.OnStartAction();
+        pAction.OnStartAction(gameObject);
         var progressBar = Instantiate(ProgressBarPrefab);
         progressBar.transform.SetParent(Canvas.transform);
         ProgressBar = progressBar.transform.GetChild(0).GetComponent<Image>();

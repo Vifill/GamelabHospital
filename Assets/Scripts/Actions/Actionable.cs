@@ -21,7 +21,7 @@ public abstract class Actionable : MonoBehaviour
     
     public abstract bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning);
     public virtual void OnFinishedAction(GameObject pObjectActioning) { }
-    public virtual void OnStartAction() { }
+    public virtual void OnStartAction(GameObject pObjectActioning) { }
     protected virtual void Initialize() { }
     public virtual void OnStopAction() { }
 
