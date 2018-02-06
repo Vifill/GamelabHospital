@@ -1,31 +1,128 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+
+
+class Square
+{
+	public float minX = float.MaxValue;
+	public float maxX = float.MinValue;
+	public float minZ = float.MaxValue;
+	public float maxZ = float.MinValue;
+
+	public Vector3 center;
+}
 
 public class CameraFollow : MonoBehaviour {
 	[SerializeField]
 	private Vector2 CameraCage = new Vector2();
 	[SerializeField]
-	private float Speed;
+	private Vector2 Offset = new Vector2 ();
+	[SerializeField]
+	private float Speed = 1;
+	[SerializeField]
+	private float MaxTraveldistance = 1;
 
-	private GameObject[] Players;
+	private ActionableActioner[] Players;
+	private Vector3 LevelCenter;
 
-	void Start () {
-		Players = FindObjectsOfType ("ActionableActioner");
+	private void Start ()
+	{
+		Players = FindObjectsOfType <ActionableActioner>();
+
 	}
 
 	void LateUpdate () {
-		
+		Move ();
+//		LookAt ();
 	}
 
-	void Move(Vector3 direction){
-		
+	void Move(){
+		LevelCenter = new Vector3 (Offset.x, 1, Offset.y);
+		Vector3 targetPosition = GetGroupCenter () - LevelCenter;
+		if (targetPosition.sqrMagnitude > MaxTraveldistance * MaxTraveldistance) {
+			targetPosition = targetPosition.normalized * MaxTraveldistance;
+		}
+		targetPosition += LevelCenter;
+
+		targetPosition.y = transform.position.y;
+		targetPosition.z -= 9;
+
+		transform.position = Vector3.Lerp (transform.position, targetPosition, Speed * Time.deltaTime);
 	}
 
-	void FindMove(){
-		var PlayerSquare = new List <Vector2> (2); //left corner 0, right corner 1
+	void LookAt(){
+		Vector3 lookDirection = LevelCenter - transform.position;
+		Quaternion lookRotation = Quaternion.LookRotation (lookDirection);
+		transform.rotation = Quaternion.Slerp (transform.rotation, lookRotation, Speed * Time.deltaTime);
+	}
+
+	Vector3 GetGroupCenter(){
+		Square square = GetGroupSquare ();
+		Vector3 center = Vector3.zero;
+
+		if (Players.Length > 1) {
+			Vector2 leftTopCorner = new Vector2 (square.minX,square.maxZ);
+			Vector2 rightBottomCorner = new Vector2 (square.maxX, square.minZ);
+			Vector2 diaCenter = (rightBottomCorner - leftTopCorner) / 2 + leftTopCorner;
+
+			center = new Vector3(diaCenter.x , 1 ,diaCenter.y);
+		} else if (Players.Length == 1){
+			center = Players[0].transform.position;
+			center.y = 1f;
+		}
+		return center;
+	}
+
+	Vector3 GetGroupRectangleSize(){
+		
+		Square square = GetGroupSquare ();
+		Vector3 size;
+
+		if (Players.Length > 1) {
+			float sizeX =  Mathf.Abs(square.maxX - square.minX);
+			float sizeZ =  Mathf.Abs(square.maxZ - square.minZ);
+			size = new Vector3 (sizeX, 1 ,sizeZ);
+		} else {
+			size = new Vector3 (2,1,2);
+		}
+
+		return size;
+	}
+
+	Square GetGroupSquare(){
+		Square square = new Square();
+
+
+		//make rectangle out of extremes
 		for (int i = 0; i < Players.Length; i++) {
-			
+			Vector3 playerpos = Players [i].transform.position;
+
+			if (playerpos.x <= square.minX)
+				square.minX = playerpos.x;
+
+			if (playerpos.x > square.maxX)
+				square.maxX = playerpos.x;
+
+			if (playerpos.z <= square.minZ)
+				square.minZ = playerpos.z;
+
+			if (playerpos.z > square.maxZ) 
+				square.maxZ = playerpos.z;
+		}
+		return square;
+	}
+
+	void OnDrawGizmos(){
+
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireCube(new Vector3(Offset.x, 1 , Offset.y), new Vector3(CameraCage.x, 1,CameraCage.y));
+
+		Gizmos.color = Color.green;
+		if (EditorApplication.isPlaying) {
+			Gizmos.DrawWireCube(GetGroupCenter(),GetGroupRectangleSize());
+			Gizmos.DrawWireSphere (GetGroupCenter(), 0.5f);
 		}
 	}
 }
