@@ -17,5 +17,4 @@ public class BedManager : ScriptableObject
     {
         return Beds.Where(a => !a.IsReserved).ToList();
     }
-	
 }
