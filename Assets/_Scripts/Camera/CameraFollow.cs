@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-
-class Square
+public class CameraFollow : MonoBehaviour 
 {
-	public float minX = float.MaxValue;
-	public float maxX = float.MinValue;
-	public float minZ = float.MaxValue;
-	public float maxZ = float.MinValue;
+	private class Square
+	{
+		public float minX = float.MaxValue;
+		public float maxX = float.MinValue;
+		public float minZ = float.MaxValue;
+		public float maxZ = float.MinValue;
 
-	public Vector3 center;
-}
+		public Vector3 center;
+	}
 
-public class CameraFollow : MonoBehaviour {
 	[SerializeField]
 	private Vector2 CameraCage = new Vector2();
 	[SerializeField]
@@ -23,6 +23,9 @@ public class CameraFollow : MonoBehaviour {
 	private float Speed = 1;
 	[SerializeField]
 	private float MaxTraveldistance = 1;
+	[SerializeField]
+	private float CameraOffset = 9;
+
 
 	private ActionableActioner[] Players;
 	private Vector3 LevelCenter;
@@ -33,70 +36,75 @@ public class CameraFollow : MonoBehaviour {
 
 	}
 
-	void LateUpdate () {
-		Move ();
-//		LookAt ();
+	private void LateUpdate ()
+	{
+		Move();
 	}
 
-	void Move(){
+	private void Move()
+	{
 		LevelCenter = new Vector3 (Offset.x, 1, Offset.y);
-		Vector3 targetPosition = GetGroupCenter () - LevelCenter;
-		if (targetPosition.sqrMagnitude > MaxTraveldistance * MaxTraveldistance) {
+		Vector3 targetPosition = GetGroupCenter() - LevelCenter;
+
+		if(targetPosition.sqrMagnitude > MaxTraveldistance * MaxTraveldistance)
+		{
 			targetPosition = targetPosition.normalized * MaxTraveldistance;
 		}
 		targetPosition += LevelCenter;
 
 		targetPosition.y = transform.position.y;
-		targetPosition.z -= 9;
+		targetPosition.z -= CameraOffset;
 
-		transform.position = Vector3.Lerp (transform.position, targetPosition, Speed * Time.deltaTime);
+		transform.position = Vector3.Lerp(transform.position, targetPosition, Speed * Time.deltaTime);
 	}
 
-	void LookAt(){
-		Vector3 lookDirection = LevelCenter - transform.position;
-		Quaternion lookRotation = Quaternion.LookRotation (lookDirection);
-		transform.rotation = Quaternion.Slerp (transform.rotation, lookRotation, Speed * Time.deltaTime);
-	}
-
-	Vector3 GetGroupCenter(){
-		Square square = GetGroupSquare ();
+	private Vector3 GetGroupCenter()
+	{
+		Square square = GetGroupSquare();
 		Vector3 center = Vector3.zero;
 
-		if (Players.Length > 1) {
-			Vector2 leftTopCorner = new Vector2 (square.minX,square.maxZ);
-			Vector2 rightBottomCorner = new Vector2 (square.maxX, square.minZ);
+		if (Players.Length > 1) 
+		{
+			Vector2 leftTopCorner = new Vector2(square.minX,square.maxZ);
+			Vector2 rightBottomCorner = new Vector2(square.maxX, square.minZ);
 			Vector2 diaCenter = (rightBottomCorner - leftTopCorner) / 2 + leftTopCorner;
 
 			center = new Vector3(diaCenter.x , 1 ,diaCenter.y);
-		} else if (Players.Length == 1){
+		}
+		else if (Players.Length == 1)
+		{
 			center = Players[0].transform.position;
 			center.y = 1f;
 		}
 		return center;
 	}
 
-	Vector3 GetGroupRectangleSize(){
-		
+	private Vector3 GetGroupRectangleSize()
+	{
 		Square square = GetGroupSquare ();
 		Vector3 size;
 
-		if (Players.Length > 1) {
+		if (Players.Length > 1) 
+		{
 			float sizeX =  Mathf.Abs(square.maxX - square.minX);
 			float sizeZ =  Mathf.Abs(square.maxZ - square.minZ);
 			size = new Vector3 (sizeX, 1 ,sizeZ);
-		} else {
+		} 
+		else 
+		{
 			size = new Vector3 (2,1,2);
 		}
 
 		return size;
 	}
 
-	Square GetGroupSquare(){
+	private Square GetGroupSquare()
+	{
 		Square square = new Square();
 
-
 		//make rectangle out of extremes
-		for (int i = 0; i < Players.Length; i++) {
+		for (int i = 0; i < Players.Length; i++) 
+		{
 			Vector3 playerpos = Players [i].transform.position;
 
 			if (playerpos.x <= square.minX)
@@ -114,13 +122,15 @@ public class CameraFollow : MonoBehaviour {
 		return square;
 	}
 
-	void OnDrawGizmos(){
+	private void OnDrawGizmos()
+	{
 
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireCube(new Vector3(Offset.x, 1 , Offset.y), new Vector3(CameraCage.x, 1,CameraCage.y));
 
 		Gizmos.color = Color.green;
-		if (EditorApplication.isPlaying) {
+		if (EditorApplication.isPlaying) 
+		{
 			Gizmos.DrawWireCube(GetGroupCenter(),GetGroupRectangleSize());
 			Gizmos.DrawWireSphere (GetGroupCenter(), 0.5f);
 		}
