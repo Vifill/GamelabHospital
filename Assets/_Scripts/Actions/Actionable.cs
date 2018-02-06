@@ -17,7 +17,7 @@ public abstract class Actionable : MonoBehaviour
     public AudioClip ActionFinishedSoundEvent;
     public string AnimatorParameter;
     public bool IsPickupable;
-    public bool IsActionActive = true;
+    public bool IsActionActive;
     
     public abstract bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning);
     public virtual void OnFinishedAction(GameObject pObjectActioning) { }

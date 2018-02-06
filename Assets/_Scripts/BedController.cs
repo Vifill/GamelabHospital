@@ -13,6 +13,24 @@ public class BedController : MonoBehaviour
             return PatientInBed != null;
         }
     }
-    
-    public GameObject PatientInBed;
+
+    private GameObject mPatientInBed;
+    public GameObject PatientInBed
+    {
+        get
+        {
+            return mPatientInBed;
+        }
+        set
+        {
+            mPatientInBed = value;
+            BedStation.IsActionActive = value == null;
+        }
+    }
+    private BedStation BedStation;
+
+    private void Start()
+    {
+        BedStation = GetComponent<BedStation>();
+    }
 }
