@@ -4,36 +4,26 @@ using UnityEngine;
 
 public class BedStation : Actionable 
 {
-    //public bool IsDirty { private set; get; }
-    public bool IsDirty;
+    public float DirtyMeter;
     private BedController BedController;
+
+    public ToolName RequiredTool;
 
     protected override void Initialize()
     {
         BedController = GetComponent<BedController>();
-        IsDirty = false;
-    }
-
-    private void Update()
-    {
-        if (BedController.HasPatient)
-        {
-            IsActionActive = false;
-        }
     }
 
     public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
     {
-        if (IsDirty && !BedController.IsReserved)
+        if (DirtyMeter > 0 && pCurrentTool == RequiredTool)
         {
             return true;
         }
-        else if (!IsDirty)
+        else
         {
             return false;
         }
-
-        return false;
     }
 
     public override void OnFinishedAction(GameObject pObjectActioning)
@@ -41,13 +31,14 @@ public class BedStation : Actionable
         SetClean();
     }
 
-    public void SetDirty()
+    public void IncreaseDirtyMeter(float pValue)
     {
-        IsDirty = true;
+        DirtyMeter += pValue;
+        Mathf.Clamp(DirtyMeter, 0, 100);
     }
 
     public void SetClean()
     {
-        IsDirty = false;
+        DirtyMeter = 0;
     }
 }
