@@ -171,4 +171,5 @@ public class ActionableParameters
     public AudioClip ActionFinishedSoundClip;
     public string AnimationParameter; 
     public bool IsPickupable;
+    public float MakePlayerDirty;
 }

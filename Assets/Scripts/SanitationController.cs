@@ -28,5 +28,15 @@ public class SanitationController : MonoBehaviour
 	{
         SanitationProgressBar.fillAmount = CurrentSanitationLevel / MaxSanitationLevel;
         SanitationBar.transform.position = Camera.main.WorldToScreenPoint(ProgressBarWorldPosition.position) + new Vector3(0, UIOffset, 0);
+        if (CurrentSanitationLevel >= MaxSanitationLevel)
+        {
+            CurrentSanitationLevel = MaxSanitationLevel;
+        }
     }
+
+    public void MakePlayerDirty(float pDirt)
+    {
+        CurrentSanitationLevel += pDirt;
+    }
+
 }

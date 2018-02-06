@@ -81,6 +81,7 @@ public class AilmentController : Actionable
         CalculatePointsGained();
         currentCondition.Healed = true;
         ConditionTimer = 0;
+        pObjectActioning.GetComponent<SanitationController>().MakePlayerDirty(currentCondition.MakePlayerDirtyValue);
         GetComponent<AilmentUIController>().UpdateConditionUI();
         var toolController = pObjectActioning.GetComponent<ToolController>();
         if (currentCondition.ToolNeedsToBeSanitized)
