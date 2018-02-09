@@ -11,7 +11,11 @@ public class SanitationController : MonoBehaviour
     public float CurrentSanitationLevel;
     public float MaxSanitationLevel;
 
-    public GameObject SanitationBarPrefab;
+    public GameObject SanitationBarUIPrefab;
+    public Image Player1Picture;
+    public Image Player2Picture;
+    public Color Player1Color;
+    public Color Player2Color;
     public PatientStatusColorConfig SanitationStatusColorConfig; // Use same color config as for the patient status
     public Transform ProgressBarWorldPosition;
     public float UIOffset;
@@ -20,7 +24,6 @@ public class SanitationController : MonoBehaviour
 	private void Start() 
 	{
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
-        SanitationBar = Instantiate(SanitationBarPrefab, MainCanvas);
         SanitationProgressBar = SanitationBar.transform.GetChild(0).GetComponent<Image>();
 	}
 	
@@ -46,6 +49,14 @@ public class SanitationController : MonoBehaviour
         {
             SanitationProgressBar.color = SanitationStatusColorConfig.StatusGreen;
         }
+    }
+
+    private void InitializeSanitationUI()
+    {
+        SanitationBar = Instantiate(SanitationBarUIPrefab, MainCanvas);
+        // initialize the prefab skeleton, set correct player picture and color code
+        // then connect the sanitation bar to sanitation controller
+        
     }
 
     public void MakePlayerDirty(float pDirt)
