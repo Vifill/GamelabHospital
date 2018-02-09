@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Configs/Patient/CholeraThresholdOddsConfig")]
 public class CholeraThresholdOddsConfig : ScriptableObject
 {
     public List<CholeraThresholdOddModel> ListOfThresholds;
