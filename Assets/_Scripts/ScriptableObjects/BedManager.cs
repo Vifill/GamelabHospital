@@ -13,9 +13,16 @@ public class BedManager : ScriptableObject
         Beds = FindObjectsOfType<BedController>().ToList();
     }
 
-    public List<BedController> GetAvailableBeds()
+    public List<BedStation> GetAvailableBeds()
     {
-        return Beds.Where(a => !a.IsReserved).ToList();
+        //return Beds.Where(a => !a.IsReserved).ToList();
+        List<BedStation> bedStations = new List<BedStation>();
+        foreach (var bed in Beds.Where(a => !a.IsReserved))
+        {
+            bedStations.Add(bed.GetComponent<BedStation>());
+        }
+        return bedStations.OrderBy(x=>x.DirtyMeter).ToList();
+        //return bedStations.Sort((x, y) => x.DirtyMeter.CompareTo(y.DirtyMeter));
     }
 	
 }

@@ -28,7 +28,7 @@ public class PatientMovementController : MonoBehaviour
         if (BedManager.GetAvailableBeds().Any())
         {
             var bedScript = BedManager.GetAvailableBeds()[0];
-            bedScript.IsReserved = true;
+            bedScript.GetComponent<BedController>().IsReserved = true;
             TargetBed = bedScript.gameObject;
             NavMeshAgent.SetDestination(TargetBed.transform.position);
         }
