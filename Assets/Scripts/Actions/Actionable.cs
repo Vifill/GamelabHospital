@@ -28,7 +28,7 @@ public abstract class Actionable : MonoBehaviour
     [Header("Other stuff")]
     public float ActionProgress;
 
-    public virtual ActionableParameters GetActionableParameters()
+    public virtual ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
     {
         return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
     }

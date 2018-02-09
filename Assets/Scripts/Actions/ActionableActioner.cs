@@ -72,7 +72,7 @@ public class ActionableActioner : MonoBehaviour
         ExternalActionWhenFailed = pExternalActionWhenFailed;
         ActionAfterFinishing = pAction.OnFinishedAction;
         CurrentAction = pAction;
-        var parameters = pAction.GetActionableParameters();
+        var parameters = pAction.GetActionableParameters(gameObject);
 
         if (parameters.ActionParticles != null)
         {

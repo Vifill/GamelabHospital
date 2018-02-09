@@ -12,23 +12,22 @@ public class WashingStation : Actionable
         OriginalStartingTime = ActionTime;
     }
 
+    public override ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
+    {
+        ActionTime += pObjectActioning?.GetComponent<SanitationController>().CurrentSanitationLevel / 100 ?? 0;
+        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
+    }
+
     public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         var toolbase = pObjectActioning.GetComponent<ToolController>().GetToolBase();
 
-        if (toolbase == null && IsActionActive)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return toolbase == null && IsActionActive;
     }
 
     public override void OnStartAction(GameObject pObjectActioning)
     {
-        ActionTime += pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel / 100;
+        //ActionTime += pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel / 100;
         ObjectActioning = pObjectActioning;
     }
 

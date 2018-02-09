@@ -52,7 +52,7 @@ public class AilmentController : Actionable
         AilmentConfig.Conditions = AilmentConfig.Conditions.Select(a => Instantiate(a)).ToList();
     }
 
-    public override ActionableParameters GetActionableParameters()
+    public override ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
     {
         return GetCurrentCondition()?.GetActionableParameters();
     }
