@@ -6,8 +6,9 @@ public abstract class HydrationTool : ScriptableObject
 {
     public float HydrationReplenished;
     public float TimeItTakes;
+    public float ActionTime;
 
     protected float Counter;
 
-    public abstract void UpdateTool(HealthController pHealthCtrl) { }
+    public abstract void UpdateTool(HealthController pHealthCtrl);
 }
