@@ -41,6 +41,7 @@ public enum ToolName
     Saw,
     AnaestheticSyringe,
     VaccinationSyringe,
+	Bucket,
 
     NoTool = -1,
 }
