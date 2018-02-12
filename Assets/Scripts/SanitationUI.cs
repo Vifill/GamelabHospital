@@ -50,8 +50,8 @@ public class SanitationUI : MonoBehaviour
     public void Initialize(Sprite pPlayerPortrait, Color pColorCode, SanitationController pSanitationController, Transform pUIpos)
     {
         SanitationProgressBar = transform.GetChild(2).GetComponent<Image>();
-        Portrait = transform.GetChild(3).GetComponent<Image>();
-        ColorCode = transform.GetChild(4).GetComponent<Image>();
+        Portrait = transform.GetChild(4).GetComponent<Image>();
+        ColorCode = transform.GetChild(5).GetComponent<Image>();
 
         SanitationController = pSanitationController;
         Portrait.sprite = pPlayerPortrait;
