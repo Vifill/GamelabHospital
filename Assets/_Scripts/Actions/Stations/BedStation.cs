@@ -70,4 +70,9 @@ public class BedStation : Actionable
     {
         BarFill.rectTransform.sizeDelta = new Vector2(((BarMaxWidth / 100) * DirtyMeter), BarHeight);
     }
+
+    private void OnGUI()
+    {
+        DirtyBarInstance.transform.position = Cam.WorldToScreenPoint(transform.position);
+    }
 }
