@@ -42,7 +42,6 @@ public class EndScreenUIManager : MonoBehaviour
 
         if (pPassed)
         {
-
             if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings - 1)
             {
                 NextLvlBtnObj.gameObject.SetActive(true);
@@ -101,8 +100,6 @@ public class EndScreenUIManager : MonoBehaviour
                 break;
             }
 
-
-
             yield return null;
         }
     }
@@ -140,7 +137,7 @@ public class EndScreenUIManager : MonoBehaviour
         LvlCtrl.RestartCurrentScene();
         GameController.InMenuScreen = false;
     }
-    //rass 
+
     public void NextLevelButton()
     {
         FindObjectOfType<MusicController>().PlayButtonSound();

@@ -9,6 +9,7 @@ public class LevelConfig : ScriptableObject
     public StarConfig StarConfig;
     public float LevelTimeSecs;
 }
+
 [System.Serializable]
 public class StarConfig
 {
