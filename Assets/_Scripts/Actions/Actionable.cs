@@ -21,14 +21,14 @@ public abstract class Actionable : MonoBehaviour
     
     public abstract bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning);
     public virtual void OnFinishedAction(GameObject pObjectActioning) { }
-    public virtual void OnStartAction() { }
+    public virtual void OnStartAction(GameObject pObjectActioning) { }
     protected virtual void Initialize() { }
     public virtual void OnStopAction() { }
 
     [Header("Other stuff")]
     public float ActionProgress;
 
-    public virtual ActionableParameters GetActionableParameters()
+    public virtual ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
     {
         return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
     }
@@ -171,4 +171,5 @@ public class ActionableParameters
     public AudioClip ActionFinishedSoundClip;
     public string AnimationParameter; 
     public bool IsPickupable;
+    public float MakePlayerDirty;
 }

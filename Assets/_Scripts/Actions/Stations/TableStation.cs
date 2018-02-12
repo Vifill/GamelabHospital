@@ -81,9 +81,5 @@ public class TableStation : Actionable
             }
         }
     }
-
-    public override void OnStartAction()
-    {
-        //GetComponent<Animator>().StartPlayback();
-    }
+    
 }

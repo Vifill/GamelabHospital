@@ -51,7 +51,7 @@ public class PickupStationController : Actionable
         
     }
 
-    public override void OnStartAction()
+    public override void OnStartAction(GameObject pObjectActioning)
     {
         if (ActionProgress == 0)
         {
