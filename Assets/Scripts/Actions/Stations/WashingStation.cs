@@ -33,7 +33,7 @@ public class WashingStation : Actionable
 
     public override void OnStopAction()
     {
-        ObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel = 0;
+        ObjectActioning.GetComponent<SanitationController>().ClearSanitation();
         ActionTime = OriginalStartingTime;
     }
 }

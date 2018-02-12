@@ -6,62 +6,47 @@ using UnityEngine.UI;
 public class SanitationController : MonoBehaviour
 {
     private GameObject SanitationBar;
-    private Image SanitationProgressBar;
+    private SanitationUI SanitationUI;
     private Transform MainCanvas;
+
     public float CurrentSanitationLevel;
     public float MaxSanitationLevel;
 
     public GameObject SanitationBarUIPrefab;
-    public Image Player1Picture;
-    public Image Player2Picture;
-    public Color Player1Color;
-    public Color Player2Color;
-    public PatientStatusColorConfig SanitationStatusColorConfig; // Use same color config as for the patient status
-    public Transform ProgressBarWorldPosition;
-    public float UIOffset;
+    public Transform UIPosition;
+    public Sprite SanitationUIPicture;
+    public Color SanitationUIColor;
 
 	// Use this for initialization
 	private void Start() 
 	{
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
-        SanitationProgressBar = SanitationBar.transform.GetChild(0).GetComponent<Image>();
+        InitializeSanitationUI();
 	}
 	
 	// Update is called once per frame
 	private void Update() 
 	{
-        SanitationProgressBar.fillAmount = CurrentSanitationLevel / MaxSanitationLevel;
-        SanitationBar.transform.position = Camera.main.WorldToScreenPoint(ProgressBarWorldPosition.position) + new Vector3(0, UIOffset, 0);
-        if (CurrentSanitationLevel >= MaxSanitationLevel)
-        {
-            CurrentSanitationLevel = MaxSanitationLevel;
-        }
 
-        if (SanitationProgressBar.fillAmount >= 0.75)
-        {
-            SanitationProgressBar.color = SanitationStatusColorConfig.StatusRed;
-        }
-        else if (SanitationProgressBar.fillAmount >= 0.45)
-        {
-            SanitationProgressBar.color = SanitationStatusColorConfig.StatusYellow;
-        }
-        else
-        {
-            SanitationProgressBar.color = SanitationStatusColorConfig.StatusGreen;
-        }
     }
 
     private void InitializeSanitationUI()
     {
         SanitationBar = Instantiate(SanitationBarUIPrefab, MainCanvas);
-        // initialize the prefab skeleton, set correct player picture and color code
-        // then connect the sanitation bar to sanitation controller
-        
+        SanitationUI = SanitationBar.GetComponent<SanitationUI>();
+        SanitationUI.Initialize(SanitationUIPicture, SanitationUIColor, this, UIPosition);
     }
 
     public void MakePlayerDirty(float pDirt)
     {
         CurrentSanitationLevel += pDirt;
+        SanitationUI.UpdateSanitationUI();
+    }
+
+    public void ClearSanitation()
+    {
+        CurrentSanitationLevel = 0;
+        SanitationUI.UpdateSanitationUI();
     }
 
 }

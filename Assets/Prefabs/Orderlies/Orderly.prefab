@@ -2608,12 +2608,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentSanitationLevel: 25
   MaxSanitationLevel: 100
-  SanitationBarPrefab: {fileID: 1357174388970128, guid: 4a890ed7aa135cf489ff04c98b9eec55,
+  SanitationBarUIPrefab: {fileID: 1979533752814144, guid: d612a684194c25f4a8f54fb4a299f5df,
     type: 2}
-  SanitationStatusColorConfig: {fileID: 11400000, guid: 3e919c07e8e75fb45b49ddcaa6512ece,
-    type: 2}
-  ProgressBarWorldPosition: {fileID: 4444496042118294}
-  UIOffset: 2
+  UIPosition: {fileID: 0}
+  SanitationUIPicture: {fileID: 21300000, guid: fefd1f96a44f0764f9f78c709787f94f,
+    type: 3}
+  SanitationUIColor: {r: 0, g: 0, b: 1, a: 0}
 --- !u!136 &136091011974408364
 CapsuleCollider:
   m_ObjectHideFlags: 1
