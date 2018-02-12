@@ -22,7 +22,6 @@ public class AilmentUIController : MonoBehaviour
     public float UIOffset = 2;
     public PatientStatusColorConfig PatientColorConfig;
 
-
     // Use this for initialization
     private void Start () 
 	{
@@ -48,7 +47,7 @@ public class AilmentUIController : MonoBehaviour
         ConditionUI.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, UIOffset, UIOffset));
         //UpdateConditionTimer();
 	}
-
+    
     public void UpdateConditionTimerUI(float pCurrentTime)
     {
 
