@@ -6,23 +6,10 @@ using UnityEngine.UI;
 public class SanitationUI : MonoBehaviour 
 {
     public PatientStatusColorConfig SanitationStatusColorConfig; // Use same color config as for the patient status
-    private Image SanitationProgressBar;
-    private Image Portrait;
-    private Image ColorCode;
+    public Image SanitationProgressBar;
+    public Image Portrait;
+    public Image ColorCode;
     private SanitationController SanitationController;
-
-
-    // Use this for initialization
-    private void Start() 
-	{
-        
-    }
-	
-	// Update is called once per frame
-	private void Update() 
-	{
-        
-    }
 
     public void UpdateSanitationUI()
     {
@@ -49,10 +36,6 @@ public class SanitationUI : MonoBehaviour
 
     public void Initialize(Sprite pPlayerPortrait, Color pColorCode, SanitationController pSanitationController, Transform pUIpos)
     {
-        SanitationProgressBar = transform.GetChild(2).GetComponent<Image>();
-        Portrait = transform.GetChild(4).GetComponent<Image>();
-        ColorCode = transform.GetChild(5).GetComponent<Image>();
-
         SanitationController = pSanitationController;
         Portrait.sprite = pPlayerPortrait;
         ColorCode.color = pColorCode;
