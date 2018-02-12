@@ -14,6 +14,7 @@ public class HealthController : MonoBehaviour
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
 
     public float ConstantDehydrationSpeed;
+    public float ConstantHealing;
 
     private PatientStatusController PatientStatusController;
 
@@ -43,7 +44,8 @@ public class HealthController : MonoBehaviour
     private void Excrete()
     {
         float randomVariance = UnityEngine.Random.Range(-CholeraConfig.ExcreteHydrationLossVariance, CholeraConfig.ExcreteHydrationLossVariance);
-        HydrationMeter -= CholeraConfig.ExcreteHydrationLoss + randomVariance;
+        float hydrationLossModifier = HydrationConfig.HydrationLowerThreshold >= HydrationMeter ? HydrationConfig.HydrationLowerThresholdModifier : 1;
+        HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier;
 
         Debug.Log($"I'M PUKING!");
     }
@@ -53,6 +55,7 @@ public class HealthController : MonoBehaviour
         if(!PatientStatusController.IsDead)
         {
             HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime;
+            CholeraSeverity -= ConstantHealing * Time.deltaTime;
 
             if (!PatientStatusController.IsDead && HydrationMeter <= 0)
             {
