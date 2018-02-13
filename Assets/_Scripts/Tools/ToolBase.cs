@@ -42,6 +42,8 @@ public enum ToolName
     AnaestheticSyringe,
     VaccinationSyringe,
 	Bucket,
+    Water,
+    IVBag,
 
     NoTool = -1,
 }
