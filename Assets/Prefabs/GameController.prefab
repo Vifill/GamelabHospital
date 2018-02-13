@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 82534212683227708}
   - component: {fileID: 114050342040409120}
   - component: {fileID: 114065370836835360}
+  - component: {fileID: 114715137660505864}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeOutTexture: {fileID: 2800000, guid: 2383c40c6d5493c439914b0bda480971, type: 3}
-  FadeSpeed: 0.5
+  FadeSpeed: 5
 --- !u!114 &114065370836835360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,7 +175,7 @@ MonoBehaviour:
   EndScreenPrefab: {fileID: 1610231225011098, guid: 5cd54265060eaec498d8ca9b81abd728,
     type: 2}
   SunPrefab: {fileID: 1159113201939540, guid: ad352ea09b6da52429f156c65d1462b7, type: 2}
-  LevelConfig: {fileID: 11400000, guid: 209141554f3c57b4c8513c83975c70d7, type: 2}
+  LevelConfig: {fileID: 11400000, guid: 91290c834f4aa5d4c92b7319bffffbb2, type: 2}
 --- !u!114 &114163115634664054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,9 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4724a60f38e9a9d429ac2b2c31dd7c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnConfig: {fileID: 11400000, guid: 48eff117812206b429f66eea58fa42cd, type: 2}
+  SpawnConfig: {fileID: 11400000, guid: 71f3913406daf1c45820a3921de762a5, type: 2}
   SpawnPoint: {fileID: 0}
-  BedManager: {fileID: 11400000, guid: eadca704ef71c10429d65feb925fbede, type: 2}
+  BedManager: {fileID: 11400000, guid: 3cdab872e83598c4dbb8dc4fced5a6e5, type: 2}
 --- !u!114 &114527165294818196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989d03400f5396646a9ba3668842f89c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BedManager: {fileID: 11400000, guid: eadca704ef71c10429d65feb925fbede, type: 2}
+  BedManager: {fileID: 11400000, guid: 3cdab872e83598c4dbb8dc4fced5a6e5, type: 2}
   PauseMenuPrefab: {fileID: 1914914731958650, guid: 192e0c2f7db78b049a8e196931c71d28,
     type: 2}
 --- !u!114 &114532227978550538
@@ -231,3 +232,14 @@ MonoBehaviour:
   MouseClickAudioSource: {fileID: 82534212683227708}
   MouseClickDownSound: {fileID: 8300000, guid: 02eb9d46cc7f74f418eefdf6e3464f10, type: 3}
   MouseClickUpSound: {fileID: 8300000, guid: 55680db20b7fd454e88b66755c1c723d, type: 3}
+--- !u!114 &114715137660505864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809543526668006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd482ea99d53dc348ba45ccf93406f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
