@@ -52,7 +52,7 @@ public class AilmentController : Actionable
         AilmentConfig.Conditions = AilmentConfig.Conditions.Select(a => Instantiate(a)).ToList();
     }
 
-    public override ActionableParameters GetActionableParameters()
+    public override ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
     {
         return GetCurrentCondition()?.GetActionableParameters();
     }
@@ -81,6 +81,7 @@ public class AilmentController : Actionable
         CalculatePointsGained();
         currentCondition.Healed = true;
         ConditionTimer = 0;
+        pObjectActioning.GetComponent<SanitationController>().MakePlayerDirty(currentCondition.MakePlayerDirtyValue);
         GetComponent<AilmentUIController>().UpdateConditionUI();
         var toolController = pObjectActioning.GetComponent<ToolController>();
         if (currentCondition.ToolNeedsToBeSanitized)

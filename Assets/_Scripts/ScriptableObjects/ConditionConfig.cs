@@ -27,11 +27,12 @@ public class ConditionConfig : ScriptableObject
     public float ActioningTime;
     public float RadiusOfActivation = 2;
     public float TimeToHeal;
+    public float MakePlayerDirtyValue;
 
     public bool Healed = false;
 
     internal ActionableParameters GetActionableParameters()
     {
-        return new ActionableParameters() { TimeToTakeAction = ActioningTime, RadiusOfActivation = RadiusOfActivation, ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, AnimationParameter = AnimatorParameter, ActionSuccessParticles = SuccessParticles };
+        return new ActionableParameters() { TimeToTakeAction = ActioningTime, RadiusOfActivation = RadiusOfActivation, ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, AnimationParameter = AnimatorParameter, ActionSuccessParticles = SuccessParticles, MakePlayerDirty = MakePlayerDirtyValue };
     }
 }

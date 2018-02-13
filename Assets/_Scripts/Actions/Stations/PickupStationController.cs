@@ -33,11 +33,11 @@ public class PickupStationController : Actionable
     {
         if (ActionProgress == 0)
         {
-            Animator.SetBool("Actioning", false);
+            Animator?.SetBool("Actioning", false);
         }
         else
         {
-            Animator.SetFloat("Speed", 0);
+            Animator?.SetFloat("Speed", 0);
         }
         //var progressRatio = ActionProgress / ActionTime;
         //if (progressRatio < 1 && progressRatio > 0)
@@ -51,16 +51,16 @@ public class PickupStationController : Actionable
         
     }
 
-    public override void OnStartAction()
+    public override void OnStartAction(GameObject pObjectActioning)
     {
         if (ActionProgress == 0)
         {
-            Animator.SetBool("Actioning", true);
-            Animator.SetFloat("Speed", 1);
+            Animator?.SetBool("Actioning", true);
+            Animator?.SetFloat("Speed", 1);
         }
         else
         {
-            Animator.SetFloat("Speed", 1);
+            Animator?.SetFloat("Speed", 1);
         }
         //var progressRatio = ActionProgress / ActionTime;
         //if (progressRatio == 0)

@@ -72,7 +72,7 @@ public class ActionableActioner : MonoBehaviour
         ExternalActionWhenFailed = pExternalActionWhenFailed;
         ActionAfterFinishing = pAction.OnFinishedAction;
         CurrentAction = pAction;
-        var parameters = pAction.GetActionableParameters();
+        var parameters = pAction.GetActionableParameters(gameObject);
 
         if (parameters.ActionParticles != null)
         {
@@ -83,7 +83,7 @@ public class ActionableActioner : MonoBehaviour
         PlayActionSound();
         PlayAnimation();
 
-        pAction.OnStartAction();
+        pAction.OnStartAction(gameObject);
         var progressBar = Instantiate(ProgressBarPrefab);
         progressBar.transform.SetParent(Canvas.transform);
         ProgressBar = progressBar.transform.GetChild(0).GetComponent<Image>();
