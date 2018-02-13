@@ -8,7 +8,7 @@ public class HydrationUIManager : MonoBehaviour
     public Image HydrationMeterUI;
     public Image SeveretyMeterUI;
     public PatientStatusColorConfig StatusColorConfig; // Use same color config as for the patient status
-    public float UIOffset = 2;
+    public float UIOffset = 1;
 
     private HealthController HealthController;
     private Transform Patient;
@@ -21,22 +21,25 @@ public class HydrationUIManager : MonoBehaviour
 
     private void Update()
     {
-        HydrationMeterUI.fillAmount = HealthController.HydrationMeter;
-        SeveretyMeterUI.fillAmount = HealthController.CholeraSeverity;
+        if (HealthController != null)
+        {
+            HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
+            SeveretyMeterUI.fillAmount = HealthController.CholeraSeverity / 100;
 
-        if (HydrationMeterUI.fillAmount >= 0.75)
-        {
-            HydrationMeterUI.color = StatusColorConfig.StatusRed;
-        }
-        else if (HydrationMeterUI.fillAmount >= 0.45)
-        {
-            HydrationMeterUI.color = StatusColorConfig.StatusYellow;
-        }
-        else
-        {
-            HydrationMeterUI.color = StatusColorConfig.StatusGreen;
-        }
+            if (SeveretyMeterUI.fillAmount >= 0.75)
+            {
+                SeveretyMeterUI.color = StatusColorConfig.StatusRed;
+            }
+            else if (SeveretyMeterUI.fillAmount >= 0.45)
+            {
+                SeveretyMeterUI.color = StatusColorConfig.StatusYellow;
+            }
+            else
+            {
+                SeveretyMeterUI.color = StatusColorConfig.StatusGreen;
+            }
 
-        HydrationMeterUI.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, UIOffset, UIOffset));
+            transform.position = Camera.main.WorldToScreenPoint(HealthController.transform.position + new Vector3(0, UIOffset, UIOffset));
+        }
     }
 }

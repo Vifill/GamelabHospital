@@ -19,7 +19,7 @@ public class AilmentUIController : MonoBehaviour
     public Text ScorePopUpTextPrefab;
     public Sprite HealedImg;
     public Sprite DeathImg;
-    public float UIOffset = 2;
+    public float UIOffset = 1;
     public PatientStatusColorConfig PatientColorConfig;
 
     // Use this for initialization
