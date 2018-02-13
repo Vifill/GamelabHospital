@@ -19,12 +19,11 @@ public class HealthController : MonoBehaviour
 
     private PatientStatusController PatientStatusController;
     private GameObject HydrationUI;
-    private Transform MainCanvas;
 
     private void Start()
     {
-        MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
-        HydrationUI = Instantiate(HydrationUIPrefab, MainCanvas);
+        var canvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
+        HydrationUI = Instantiate(HydrationUIPrefab, canvas);
         HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
         PatientStatusController = GetComponent<PatientStatusController>();
         StartCoroutine(SickCoroutine());
