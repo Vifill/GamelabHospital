@@ -12,14 +12,20 @@ public class HealthController : MonoBehaviour
     public HydrationConfig HydrationConfig;
     public CholeraConfig CholeraConfig;
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
+    public GameObject HydrationUIPrefab;
 
     public float ConstantDehydrationSpeed;
     public float ConstantHealing;
 
     private PatientStatusController PatientStatusController;
+    private GameObject HydrationUI;
+    private Transform MainCanvas;
 
     private void Start()
     {
+        MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
+        HydrationUI = Instantiate(HydrationUIPrefab, MainCanvas);
+        HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
         PatientStatusController = GetComponent<PatientStatusController>();
         StartCoroutine(SickCoroutine());
     }

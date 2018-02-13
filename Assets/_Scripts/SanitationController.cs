@@ -13,7 +13,7 @@ public class SanitationController : MonoBehaviour
     public float MaxSanitationLevel;
 
     public GameObject SanitationBarUIPrefab;
-    public Transform UIPosition;
+    public string UIPosition;
     public Sprite SanitationUIPicture;
     public Color SanitationUIColor;
 

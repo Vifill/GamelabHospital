@@ -3479,11 +3479,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 114680177855136460, guid: 0a2be9f32b61c8747bfdc88a1fb5d55e,
-        type: 2}
-      propertyPath: UIPosition
-      value: 
-      objectReference: {fileID: 1616179165}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a2be9f32b61c8747bfdc88a1fb5d55e, type: 2}
   m_IsPrefabParent: 0
@@ -4866,21 +4861,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114889469762981332, guid: c55c6fc6151f2434d989209369886cfd,
-        type: 2}
-      propertyPath: UIPosition
-      value: 
-      objectReference: {fileID: 1134381853}
     - target: {fileID: 23078213165059838, guid: c55c6fc6151f2434d989209369886cfd,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8a03a5511fcc0634eb77b61fcc0cbb58, type: 2}
-    - target: {fileID: 114889469762981332, guid: c55c6fc6151f2434d989209369886cfd,
-        type: 2}
-      propertyPath: SanitationUIColor.a
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c55c6fc6151f2434d989209369886cfd, type: 2}
   m_IsPrefabParent: 0
@@ -7343,6 +7328,16 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 91290c834f4aa5d4c92b7319bffffbb2,
         type: 2}
+    - target: {fileID: 114527165294818196, guid: 5c4315246dbe1b24f8c57968b3b99056,
+        type: 2}
+      propertyPath: BedManager
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114163115634664054, guid: 5c4315246dbe1b24f8c57968b3b99056,
+        type: 2}
+      propertyPath: BedManager
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c4315246dbe1b24f8c57968b3b99056, type: 2}
   m_IsPrefabParent: 0
@@ -7362,11 +7357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd482ea99d53dc348ba45ccf93406f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1134381853 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224934170092984542, guid: 915b1972dd4b9c14681b4504557aad0c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1958440086}
 --- !u!1001 &1153099103
 Prefab:
   m_ObjectHideFlags: 0
@@ -10119,11 +10109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PatientWaiting: {fileID: 0}
---- !u!224 &1616179165 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224998263200618918, guid: 915b1972dd4b9c14681b4504557aad0c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1958440086}
 --- !u!4 &1625124318 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d0990481c38938749ac69c169419c57c, type: 3}
