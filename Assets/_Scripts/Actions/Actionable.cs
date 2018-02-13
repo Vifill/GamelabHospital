@@ -159,8 +159,6 @@ public abstract class Actionable : MonoBehaviour
     }
 }
 
-
-
 public class ActionableParameters
 {
     public float RadiusOfActivation;
