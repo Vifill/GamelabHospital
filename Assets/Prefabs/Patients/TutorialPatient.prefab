@@ -2249,8 +2249,6 @@ GameObject:
   - component: {fileID: 114167547869232802}
   - component: {fileID: 114842480938854366}
   - component: {fileID: 54898771245809458}
-  - component: {fileID: 114980728345504342}
-  - component: {fileID: 114112584716681446}
   - component: {fileID: 82929273122270710}
   - component: {fileID: 114758304142834004}
   - component: {fileID: 114593288677621378}
@@ -5981,25 +5979,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114112584716681446
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1976841698954826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07fe49f16bd9e29488feb5a0fddd1331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PatientStatusUIPrefab: {fileID: 114703664585664556, guid: f2133eee3d9b694468d17253fa8d1af5,
-    type: 2}
-  ScorePopUpTextPrefab: {fileID: 114324320961869780, guid: 8ba2366353a4c4946a4977c683fc5f8e,
-    type: 2}
-  HealedImg: {fileID: 21300000, guid: fefd1f96a44f0764f9f78c709787f94f, type: 3}
-  DeathImg: {fileID: 21300000, guid: cbae879c3896c664bad0642a1318809e, type: 3}
-  UIOffset: 1
-  PatientColorConfig: {fileID: 11400000, guid: 3e919c07e8e75fb45b49ddcaa6512ece, type: 2}
 --- !u!114 &114167547869232802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6047,7 +6026,7 @@ MonoBehaviour:
   CholeraConfig: {fileID: 11400000, guid: 1a29015937cb12d4e890d61c0b4ed1bd, type: 2}
   ThresholdOddsConfig: {fileID: 11400000, guid: a9a967e65765b9d4891827c2ea524fe3,
     type: 2}
-  HydrationUIPrefab: {fileID: 1149620341329518, guid: 89608c2ff69c4ed458250912c9f0cd6b,
+  HydrationUIPrefab: {fileID: 1149620341329518, guid: 81a4b3d17fff8f345b03efedb06d434a,
     type: 2}
   ConstantDehydrationSpeed: 0
   ConstantHealing: 0
@@ -6089,31 +6068,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnStretchers: 0
   IsDead: 0
---- !u!114 &114980728345504342
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1976841698954826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79dbb5a0101f11748981d07fb89a26e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RadiusOfActivation: 0
-  ActionTime: 0
-  ActionParticles: {fileID: 0}
-  ActionSuccessParticles: {fileID: 0}
-  ActionSoundEvent: {fileID: 0}
-  ActionFinishedSoundEvent: {fileID: 0}
-  AnimatorParameter: 
-  IsPickupable: 0
-  IsActionActive: 1
-  ActionProgress: 0
-  AilmentConfig: {fileID: 11400000, guid: 050414b3541fff743a68d0ce1648f7d9, type: 2}
-  PatientHealedSuccessSound: {fileID: 8300000, guid: 8edd76273988cc54bae774fec6017a85,
-    type: 3}
-  PatientDeathClothSound: {fileID: 0}
 --- !u!136 &136088267323064392
 CapsuleCollider:
   m_ObjectHideFlags: 1
