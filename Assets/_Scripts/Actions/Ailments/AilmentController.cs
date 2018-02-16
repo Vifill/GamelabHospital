@@ -173,8 +173,6 @@ public class AilmentController : Actionable
     {
         if (PatientHealedSuccessSound != null)
         {
-            //AudioSource aSource = GetComponent<AudioSource>();
-            //aSource.PlayOneShot(PatientHealedSuccessSound);
             AudioSrc.PlayOneShot(PatientHealedSuccessSound, 0.1f);
         }
     }
