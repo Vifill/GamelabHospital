@@ -70,11 +70,28 @@ public class HealthController : MonoBehaviour
 
     private void Excrete()
     {
+        ReduceHydration();
+        ReduceCholeraSeverity();
+
+        StartPukingAnimation();
+        Debug.Log($"I'M PUKING!");
+    }
+
+    private void StartPukingAnimation()
+    {
+        
+    }
+
+    private void ReduceCholeraSeverity()
+    {
+        CholeraSeverity -= CholeraConfig.ExcreteCholeraSeverityLoss;
+    }
+
+    private void ReduceHydration()
+    {
         float randomVariance = UnityEngine.Random.Range(-CholeraConfig.ExcreteHydrationLossVariance, CholeraConfig.ExcreteHydrationLossVariance);
         float hydrationLossModifier = HydrationConfig.HydrationLowerThreshold >= HydrationMeter ? HydrationConfig.HydrationLowerThresholdModifier : 1;
         HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier;
-
-        Debug.Log($"I'M PUKING!");
     }
 
     private void Update()
@@ -95,4 +112,5 @@ public class HealthController : MonoBehaviour
         //    CurrentHydrationTool?.UpdateTool(this);
         //}
     }
+
 }
