@@ -65,7 +65,7 @@ public class HealthController : MonoBehaviour
 
     private void ReduceCholeraSeverity()
     {
-
+        CholeraSeverity -= CholeraConfig.ExcreteCholeraSeverityLoss;
     }
 
     private void ReduceHydration()

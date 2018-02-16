@@ -5127,6 +5127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathParticles: {fileID: 1092951528231844, guid: 30474d91d3a83334b9e100f55d66a418,
     type: 2}
+  PatientDeathClothSound: {fileID: 0}
   IsInBed: 0
   MaxHealth: 0
   CurHealth: 0
@@ -5189,7 +5190,7 @@ MonoBehaviour:
     type: 2}
   HydrationUIPrefab: {fileID: 1149620341329518, guid: 81a4b3d17fff8f345b03efedb06d434a,
     type: 2}
-  ConstantDehydrationSpeed: 0
+  ConstantDehydrationSpeed: 0.5
   ConstantHealing: 0
 --- !u!136 &136088267323064392
 CapsuleCollider:
