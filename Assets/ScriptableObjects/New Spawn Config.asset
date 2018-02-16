@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: New Spawn Config
   m_EditorClassIdentifier: 
   SpawnRate: 9
+  RandomVariance: 0
   ListOfPatientPrefabs:
-  - {fileID: 1976841698954826, guid: fac5642152ea58440ad2a425bc07ac0c, type: 2}
-  RandomOffset: 5
+  - PatientPrefab: {fileID: 1976841698954826, guid: fac5642152ea58440ad2a425bc07ac0c,
+      type: 2}
+    ChanceOfSpawn: 100

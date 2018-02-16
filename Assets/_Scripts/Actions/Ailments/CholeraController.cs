@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CholeraController : Actionable
 {
-    public ConditionConfig CurrentCondition { private set; get; }
     public List<ToolName> UsableTools;
 
     public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
