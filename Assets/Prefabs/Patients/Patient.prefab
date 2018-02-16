@@ -2453,6 +2453,7 @@ GameObject:
   - component: {fileID: 114178381946047798}
   - component: {fileID: 82596395373070156}
   - component: {fileID: 114213634877675612}
+  - component: {fileID: 114881950544257098}
   m_Layer: 0
   m_Name: Patient
   m_TagString: Untagged
@@ -6711,6 +6712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathParticles: {fileID: 1092951528231844, guid: 30474d91d3a83334b9e100f55d66a418,
     type: 2}
+  PatientDeathClothSound: {fileID: 0}
   IsInBed: 0
   MaxHealth: 0
   CurHealth: 0
@@ -6739,16 +6741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5478d1b215af014ea2a5961b88510b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RadiusOfActivation: 0
-  ActionTime: 0
-  ActionParticles: {fileID: 0}
-  ActionSuccessParticles: {fileID: 0}
-  ActionSoundEvent: {fileID: 0}
-  ActionFinishedSoundEvent: {fileID: 0}
-  AnimatorParameter: 
-  IsPickupable: 0
-  IsActionActive: 0
-  ActionProgress: 0
   HydrationMeter: 100
   CholeraSeverity: 60
   HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
@@ -6757,10 +6749,8 @@ MonoBehaviour:
     type: 2}
   HydrationUIPrefab: {fileID: 1149620341329518, guid: 81a4b3d17fff8f345b03efedb06d434a,
     type: 2}
-  ConstantDehydrationSpeed: 0
+  ConstantDehydrationSpeed: 2
   ConstantHealing: 0
-  HydrationTools: 
-  IsHydrating: 0
 --- !u!114 &114639249190641622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6787,6 +6777,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnStretchers: 0
   IsDead: 0
+--- !u!114 &114881950544257098
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976841698954826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df05a81255153043a0908e6a957e6fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadiusOfActivation: 3
+  ActionTime: 0
+  ActionParticles: {fileID: 0}
+  ActionSuccessParticles: {fileID: 0}
+  ActionSoundEvent: {fileID: 0}
+  ActionFinishedSoundEvent: {fileID: 0}
+  AnimatorParameter: 
+  IsPickupable: 0
+  IsActionActive: 0
+  ActionProgress: 0
 --- !u!136 &136088267323064392
 CapsuleCollider:
   m_ObjectHideFlags: 1

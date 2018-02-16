@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class HealthController : Actionable
+public class HealthController : MonoBehaviour
 {
     public float HydrationMeter;
     public float CholeraSeverity;
@@ -17,14 +17,10 @@ public class HealthController : Actionable
     public float ConstantDehydrationSpeed;
     public float ConstantHealing;
 
-    public List<ToolName> HydrationTools;
-
     private PatientStatusController PatientStatusController;
     private GameObject HydrationUI;
-    public bool IsHydrating;
-    private HydrationTool CurrentHydrationTool;
 
-    protected override void Initialize()
+    private void Start()
     {
         var canvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         HydrationUI = Instantiate(HydrationUIPrefab, canvas);
@@ -33,26 +29,27 @@ public class HealthController : Actionable
         StartCoroutine(SickCoroutine());
     }
 
-    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
-    {
-        if (HydrationTools.Contains(pCurrentTool))
-        {
-            CurrentHydrationTool = pObjectActioning.GetComponent<ToolController>().GetToolBase().GetComponent<HydrationTool>();
-            ActionTime = CurrentHydrationTool.ActionTime;
-            return true;
-        }
-        else
-        {
-            CurrentHydrationTool = null;
-            ActionTime = 0;
-            return false;
-        }
-    }
+    //public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    //{
+    //    if (HydrationTools.Contains(pCurrentTool))
+    //    {
+    //        CurrentHydrationTool = pObjectActioning.GetComponent<ToolController>().GetToolBase().GetComponent<HydrationTool>();
+    //        ActionTime = CurrentHydrationTool.ActionTime;
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        CurrentHydrationTool = null;
+    //        ActionTime = 0;
+    //        return false;
+    //    }
+    //}
 
-    public override void OnFinishedAction(GameObject pObjectActioning)
-    {
-        IsHydrating = true;
-    }
+    //public override void OnFinishedAction(GameObject pObjectActioning)
+    //{
+    //    IsHydrating = true;
+
+    //}
 
     private IEnumerator SickCoroutine()
     {
@@ -93,9 +90,9 @@ public class HealthController : Actionable
             }
         }
 
-        if (IsHydrating)
-        {
-            CurrentHydrationTool?.UpdateTool(this);
-        }
+        //if (IsHydrating)
+        //{
+        //    CurrentHydrationTool?.UpdateTool(this);
+        //}
     }
 }
