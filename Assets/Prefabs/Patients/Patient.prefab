@@ -6739,6 +6739,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5478d1b215af014ea2a5961b88510b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RadiusOfActivation: 3
+  ActionTime: 0
+  ActionParticles: {fileID: 0}
+  ActionSuccessParticles: {fileID: 0}
+  ActionSoundEvent: {fileID: 0}
+  ActionFinishedSoundEvent: {fileID: 0}
+  AnimatorParameter: 
+  IsPickupable: 0
+  IsActionActive: 0
+  ActionProgress: 0
   HydrationMeter: 100
   CholeraSeverity: 60
   HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
@@ -6747,8 +6757,10 @@ MonoBehaviour:
     type: 2}
   HydrationUIPrefab: {fileID: 1149620341329518, guid: 81a4b3d17fff8f345b03efedb06d434a,
     type: 2}
-  ConstantDehydrationSpeed: 0
+  ConstantDehydrationSpeed: 2
   ConstantHealing: 0
+  HydrationTools: 0500000006000000
+  IsHydrating: 0
 --- !u!114 &114639249190641622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6760,7 +6772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53648674e2bb09947abbfd7931ec3ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BedManager: {fileID: 11400000, guid: 3cdab872e83598c4dbb8dc4fced5a6e5, type: 2}
+  BedManager: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
   SlotManager: {fileID: 0}
 --- !u!114 &114842480938854366
 MonoBehaviour:
