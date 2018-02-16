@@ -19,5 +19,9 @@ public class HydrationTool : ToolBase
         {
             pHealthCtrl.HydrationMeter += (HydrationReplenished / TimeItTakes) * Time.deltaTime;
         }
+        else
+        {
+            pHealthCtrl.IsHydrating = false;
+        }
     }
 }

@@ -21,7 +21,7 @@ public class HealthController : Actionable
 
     private PatientStatusController PatientStatusController;
     private GameObject HydrationUI;
-    private bool IsHydrating;
+    public bool IsHydrating;
     private HydrationTool CurrentHydrationTool;
 
     protected override void Initialize()
@@ -49,14 +49,9 @@ public class HealthController : Actionable
         }
     }
 
-    public override void OnStartAction(GameObject pObjectActioning)
-    {
-        IsHydrating = true;
-    }
-
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
-        IsHydrating = false;
+        IsHydrating = true;
     }
 
     private IEnumerator SickCoroutine()
