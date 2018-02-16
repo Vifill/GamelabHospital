@@ -13,6 +13,8 @@ public class HealthController : MonoBehaviour
     public CholeraConfig CholeraConfig;
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
     public GameObject HydrationUIPrefab;
+    public GameObject PukeParticleEffect;
+    public Transform PukePosition;
 
     public float ConstantDehydrationSpeed;
     public float ConstantHealing;
@@ -57,7 +59,8 @@ public class HealthController : MonoBehaviour
 
     private void StartPukingAnimation()
     {
-        
+        var puke = Instantiate(PukeParticleEffect, PukePosition.position, PukePosition.rotation, PukePosition);
+        Destroy(puke, 3f);
     }
 
     private void ReduceCholeraSeverity()
