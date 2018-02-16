@@ -34,12 +34,13 @@ public class SanitationUI : MonoBehaviour
         }
     }
 
-    public void Initialize(Sprite pPlayerPortrait, Color pColorCode, SanitationController pSanitationController, Transform pUIpos)
+    public void Initialize(Sprite pPlayerPortrait, Color pColorCode, SanitationController pSanitationController, string pUIpos)
     {
         SanitationController = pSanitationController;
         Portrait.sprite = pPlayerPortrait;
         ColorCode.color = pColorCode;
-        transform.localPosition = pUIpos.localPosition;
+        var UIpos = transform.parent.Find(pUIpos).transform;
+        transform.localPosition = UIpos.localPosition;
         UpdateSanitationUI();
     }
 }
