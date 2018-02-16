@@ -1,28 +1,34 @@
 fileFormatVersion: 2
-guid: 832640bc714fbbd41a2c7090d8a1928d
-timeCreated: 1507297237
+guid: ae005c1857293054baea0a225bfcaa31
+timeCreated: 1518712038
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
+    2100000: 07 - Default
+    2100002: 03 - Default
+    2100004: 02 - Default
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Bed_Frame1
-    4300002: Bed
-    9500000: //RootNode
+    4300000: Bucket
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 02 - Default
-    second: {fileID: 2100000, guid: 1baf366ec62a9d74da7f036a2c729103, type: 2}
+      name: Bucket_Handle_Knob_mat
+    second: {fileID: 2100000, guid: 8e9dccbccf7f0194a873063677bbb52f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 03 - Default
-    second: {fileID: 2100000, guid: 3c6749db585d35943a4e0765a043ef80, type: 2}
+      name: Bucket_Handle_mat
+    second: {fileID: 2100000, guid: d25adca13e9af1b48865ad9d6cd01691, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bucket_mat
+    second: {fileID: 2100000, guid: 40cf9a6b07253c148809afa4fc0f3518, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -52,7 +58,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.04
+    globalScale: 0.03
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -66,7 +72,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    indexFormat: 1
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -96,7 +102,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
