@@ -44,7 +44,7 @@ public class HydrationController : Actionable
     {
 
         IsHydrating = true;
-        pObjectActioning.GetComponent<ToolController>().RemoveTool();
+        pObjectActioning.GetComponent<ToolController>().DestroyTool();
     }
 
     private void Hydrate()
