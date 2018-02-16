@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HydrationTool : ToolBase
 {
+    [Header("Hydration Tool Parameters")]
     public float HydrationReplenished;
     public float TimeItTakes;
     public float ActionTime;

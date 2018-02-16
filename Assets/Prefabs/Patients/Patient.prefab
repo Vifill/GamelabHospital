@@ -6760,16 +6760,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5478d1b215af014ea2a5961b88510b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RadiusOfActivation: 3
+  ActionTime: 0
+  ActionParticles: {fileID: 0}
+  ActionSuccessParticles: {fileID: 0}
+  ActionSoundEvent: {fileID: 0}
+  ActionFinishedSoundEvent: {fileID: 0}
+  AnimatorParameter: 
+  IsPickupable: 0
+  IsActionActive: 1
+  ActionProgress: 0
   HydrationMeter: 100
   CholeraSeverity: 60
   HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
   CholeraConfig: {fileID: 11400000, guid: 1a29015937cb12d4e890d61c0b4ed1bd, type: 2}
   ThresholdOddsConfig: {fileID: 11400000, guid: a9a967e65765b9d4891827c2ea524fe3,
     type: 2}
-  HydrationUIPrefab: {fileID: 1149620341329518, guid: 89608c2ff69c4ed458250912c9f0cd6b,
+  HydrationUIPrefab: {fileID: 1149620341329518, guid: 81a4b3d17fff8f345b03efedb06d434a,
     type: 2}
-  ConstantDehydrationSpeed: 0
+  ConstantDehydrationSpeed: 10
   ConstantHealing: 0
+  HydrationTools: 0500000006000000
 --- !u!114 &114639249190641622
 MonoBehaviour:
   m_ObjectHideFlags: 1

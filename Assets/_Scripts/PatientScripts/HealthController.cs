@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class HealthController : MonoBehaviour
+public class HealthController : Actionable
 {
     public float HydrationMeter;
     public float CholeraSeverity;
@@ -17,16 +17,46 @@ public class HealthController : MonoBehaviour
     public float ConstantDehydrationSpeed;
     public float ConstantHealing;
 
+    public List<ToolName> HydrationTools;
+
     private PatientStatusController PatientStatusController;
     private GameObject HydrationUI;
+    private bool IsHydrating;
+    private HydrationTool CurrentHydrationTool;
 
-    private void Start()
+    protected override void Initialize()
     {
         var canvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         HydrationUI = Instantiate(HydrationUIPrefab, canvas);
         HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
         PatientStatusController = GetComponent<PatientStatusController>();
         StartCoroutine(SickCoroutine());
+    }
+
+    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    {
+        if (HydrationTools.Contains(pCurrentTool))
+        {
+            CurrentHydrationTool = pObjectActioning.GetComponent<ToolController>().GetToolBase().GetComponent<HydrationTool>();
+            ActionTime = CurrentHydrationTool.ActionTime;
+            return true;
+        }
+        else
+        {
+            CurrentHydrationTool = null;
+            ActionTime = 0;
+            return false;
+        }
+    }
+
+    public override void OnStartAction(GameObject pObjectActioning)
+    {
+        IsHydrating = true;
+    }
+
+    public override void OnFinishedAction(GameObject pObjectActioning)
+    {
+        IsHydrating = false;
     }
 
     private IEnumerator SickCoroutine()
@@ -66,6 +96,11 @@ public class HealthController : MonoBehaviour
             {
                 PatientStatusController.Death();
             }
+        }
+
+        if (IsHydrating)
+        {
+            CurrentHydrationTool?.UpdateTool(this);
         }
     }
 }
