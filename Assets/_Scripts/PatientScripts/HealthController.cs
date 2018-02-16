@@ -29,28 +29,6 @@ public class HealthController : MonoBehaviour
         StartCoroutine(SickCoroutine());
     }
 
-    //public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
-    //{
-    //    if (HydrationTools.Contains(pCurrentTool))
-    //    {
-    //        CurrentHydrationTool = pObjectActioning.GetComponent<ToolController>().GetToolBase().GetComponent<HydrationTool>();
-    //        ActionTime = CurrentHydrationTool.ActionTime;
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        CurrentHydrationTool = null;
-    //        ActionTime = 0;
-    //        return false;
-    //    }
-    //}
-
-    //public override void OnFinishedAction(GameObject pObjectActioning)
-    //{
-    //    IsHydrating = true;
-
-    //}
-
     private IEnumerator SickCoroutine()
     {
         while(true)
@@ -106,11 +84,6 @@ public class HealthController : MonoBehaviour
                 PatientStatusController.Death();
             }
         }
-
-        //if (IsHydrating)
-        //{
-        //    CurrentHydrationTool?.UpdateTool(this);
-        //}
     }
 
 }
