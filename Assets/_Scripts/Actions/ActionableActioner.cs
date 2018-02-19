@@ -26,7 +26,6 @@ public class ActionableActioner : MonoBehaviour
     private Action ExternalActionWhenFailed;
     private bool IsActioning;
     private MovementController MovementController;
-    private int PreviousAnimation;
 
     // Use this for initialization
     private void Start () 
@@ -54,14 +53,33 @@ public class ActionableActioner : MonoBehaviour
 
             if (CurrentTime >= TotalTime)
             {
-                PlayParticleEffects(CurrentAction.GetActionableParameters().ActionSuccessParticles, CurrentAction.transform);
-                
-                CurrentTime = 0;
-                StopAction();
-                ActionAfterFinishing?.Invoke(gameObject);
-                ExternalActionWhenSuccessful?.Invoke();
-                CurrentAction.PlayFinishedActionSFX();
+                OnSuccess();
             }
+        }
+    }
+
+    private void OnSuccess()
+    {
+        PlayParticleEffects(CurrentAction.GetActionableParameters().ActionSuccessParticles, CurrentAction.transform);
+
+        CurrentTime = 0;
+        StopAction();
+        ProcessToolAfterSuccess();
+        ActionAfterFinishing?.Invoke(gameObject);
+        ExternalActionWhenSuccessful?.Invoke();
+        CurrentAction.PlayFinishedActionSFX();
+    }
+
+    private void ProcessToolAfterSuccess()
+    {
+        var toolController = GetComponent<ToolController>();
+        if (toolController.GetToolBase()?.IsUsedUpAfterUse ?? false)
+        {
+            toolController.DestroyTool();
+        }
+        if (CurrentAction.DirtiesTool && toolController.GetToolBase().NeedsToBeSanitized)
+        {
+            toolController.GetToolBase().ToolUsed();
         }
     }
 

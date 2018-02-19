@@ -8,24 +8,27 @@ public class ToolBase : MonoBehaviour
     public bool NeedsToBeSanitized;
     public bool CanBeDropped = true;
     public GameObject DirtyMesh;
+    public bool IsUsedUpAfterUse;
     [Header("Only if it needs to be sanitized")]
     public int UsesBeforeDirty;
-
     public bool IsDirty { get; private set; }
 
-    private int CurrentUses;
+    private int CurrentUsesBeforeDirty;
 
     public void ToolUsed()
     {
         if(NeedsToBeSanitized)
         {
-            CurrentUses++;
-            if (CurrentUses >= UsesBeforeDirty)
+            CurrentUsesBeforeDirty++;
+            if (CurrentUsesBeforeDirty >= UsesBeforeDirty)
             {
                 IsDirty = true;
-                DirtyMesh?.SetActive(true);
+                if(DirtyMesh != null)
+                {
+                    DirtyMesh?.SetActive(true);
+                }
             }
-        }        
+        }
     }
 
     public void CleanTool()

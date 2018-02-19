@@ -18,7 +18,9 @@ public abstract class Actionable : MonoBehaviour
     public string AnimatorParameter;
     public bool IsPickupable;
     public bool IsActionActive;
-    
+    public bool DirtiesTool;
+    public bool NeedsSanitizedTool;
+
     public abstract bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning);
     public virtual void OnFinishedAction(GameObject pObjectActioning) { }
     public virtual void OnStartAction(GameObject pObjectActioning) { }

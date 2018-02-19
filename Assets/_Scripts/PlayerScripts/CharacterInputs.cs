@@ -52,7 +52,6 @@ public class CharacterInputs : MonoBehaviour
         if(Input.GetButtonUp("Action"))
         {
             ActionController.StopAction();
-            
         }
 
         if (Input.GetButtonDown("Drop"))
