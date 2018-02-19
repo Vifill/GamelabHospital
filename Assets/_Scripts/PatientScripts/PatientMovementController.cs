@@ -10,7 +10,7 @@ public class PatientMovementController : MonoBehaviour
     public BedManager BedManager;
     public WaitingRoomSlotManager SlotManager;
     private GameObject ExitPoint;
-    private GameObject TargetBed;
+    public GameObject TargetBed;
     private NavMeshAgent NavMeshAgent;
     private PatientStatusController PatientStatus;
     private StretchersController StretchersController;

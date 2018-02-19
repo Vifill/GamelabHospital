@@ -8,10 +8,13 @@ public class HydrationController : Actionable
     private HydrationModel CurrentHydrationModel;
     private bool IsHydrating;
     private float Counter;
+    private GameObject DisplayedObject;
+    private PatientMovementController MovementController;
 
     protected override void Initialize()
     {
         HealthCtrl = GetComponent<HealthController>();
+        MovementController = GetComponent<PatientMovementController>();
     }
 
     private void Update()
@@ -42,8 +45,8 @@ public class HydrationController : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
-
         IsHydrating = true;
+        OnStartHydrating();
     }
 
     private void Hydrate()
@@ -56,8 +59,27 @@ public class HydrationController : Actionable
         }
         else
         {
-            IsHydrating = false;
-            Counter = 0;
+            OnFinishedHydrating();
+        }
+    }
+
+    private void OnStartHydrating()
+    {
+        if (CurrentHydrationModel.DisplayPrefab != null)
+        {
+            var posObj = MovementController.TargetBed.transform.Find("IVPos");
+            DisplayedObject = Instantiate(CurrentHydrationModel.DisplayPrefab,posObj.position,posObj.rotation,posObj);
+        }
+    }
+
+    private void OnFinishedHydrating()
+    {
+        IsHydrating = false;
+        Counter = 0;
+
+        if (DisplayedObject != null)
+        {
+            Destroy(DisplayedObject);
         }
     }
 }
