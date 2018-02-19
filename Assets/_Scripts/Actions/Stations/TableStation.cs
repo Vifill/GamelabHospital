@@ -28,7 +28,7 @@ public class TableStation : Actionable
         TableObject.GetComponent<Pickupable>().IsActionActive = false;
     }
 
-    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         //Can only be actioned if player is holding a tool and table empty or player empty handed and tool on table
         return (pCurrentTool == ToolName.NoTool && TableObject != null) || (pCurrentTool != ToolName.NoTool && TableObject == null);

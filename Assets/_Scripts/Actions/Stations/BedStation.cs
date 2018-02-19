@@ -34,7 +34,7 @@ public class BedStation : Actionable
         UpdateDirtyUI();
     }
 
-    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         if (DirtyMeter > 0 && pCurrentTool == RequiredTool)
         {

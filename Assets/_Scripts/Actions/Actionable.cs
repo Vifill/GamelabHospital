@@ -22,7 +22,7 @@ public abstract class Actionable : MonoBehaviour
     public bool NeedsSanitizedTool;
     public float PlayerDesanitationAmount;
 
-    public abstract bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning);
+    public abstract bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning);
     public virtual void OnFinishedAction(GameObject pObjectActioning) { }
     public virtual void OnStartAction(GameObject pObjectActioning) { }
     protected virtual void Initialize() { }
@@ -34,6 +34,12 @@ public abstract class Actionable : MonoBehaviour
     public virtual ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
     {
         return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
+    }
+
+    public bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    {
+        bool canUseTool = pCurrentTool == ToolName.NoTool || !NeedsSanitizedTool || (NeedsSanitizedTool && !pObjectActioning.GetComponent<ToolController>().GetToolBase().IsDirty);
+        return canUseTool && CanBeActionedExtended(pCurrentTool, pObjectActioning);
     }
 
     private void Start()

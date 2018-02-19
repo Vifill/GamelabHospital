@@ -15,7 +15,7 @@ public class PickupStationController : Actionable
         Animator = GetComponentInChildren<Animator>();
     }
 
-    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         return pCurrentTool == ToolName.NoTool && IsActionActive; //Can only be actioned if player doesnt hold anything(tool).
     }    

@@ -34,7 +34,10 @@ public class ToolBase : MonoBehaviour
     public void CleanTool()
     {
         IsDirty = false;
-        DirtyMesh?.SetActive(false);
+        if(DirtyMesh != null)
+        {
+            DirtyMesh?.SetActive(false);
+        }
     }
 }
 
