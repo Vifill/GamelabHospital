@@ -6,7 +6,7 @@ public class CleaningStation : Actionable
 {
     public List<ToolName> CleanableTools;
 
-    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         //return CleanableTools.Contains(pCurrentTool);
         var toolbase = pObjectActioning.GetComponent<ToolController>().GetToolBase();

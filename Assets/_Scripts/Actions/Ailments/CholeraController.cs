@@ -7,7 +7,7 @@ public class CholeraController : Actionable
 {
     public List<ToolName> UsableTools;
 
-    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         if (UsableTools.Contains(pCurrentTool))
         {

@@ -38,7 +38,7 @@ public class HydrationController : Actionable
 
     }
 
-    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         return pObjectActioning?.GetComponent<ToolController>().GetToolBase() is HydrationTool;
     }
