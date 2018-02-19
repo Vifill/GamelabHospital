@@ -26,12 +26,14 @@ public class ActionableActioner : MonoBehaviour
     private Action ExternalActionWhenFailed;
     private bool IsActioning;
     private MovementController MovementController;
+    private SanitationController SanitationController;
 
     // Use this for initialization
     private void Start () 
 	{
         Asource = GetComponent<AudioSource>();
         Canvas = FindObjectOfType<Canvas>();
+        SanitationController = GetComponent<SanitationController>();
     }
 
     // Update is called once per frame
@@ -65,6 +67,7 @@ public class ActionableActioner : MonoBehaviour
         CurrentTime = 0;
         StopAction();
         ProcessToolAfterSuccess();
+        ProcessPlayerSanitation();
         ActionAfterFinishing?.Invoke(gameObject);
         ExternalActionWhenSuccessful?.Invoke();
         CurrentAction.PlayFinishedActionSFX();
@@ -81,6 +84,11 @@ public class ActionableActioner : MonoBehaviour
         {
             toolController.GetToolBase().ToolUsed();
         }
+    }
+
+    private void ProcessPlayerSanitation()
+    {
+        SanitationController.MakePlayerDirty(CurrentAction.PlayerDesanitationAmount);
     }
 
     internal void AttemptAction(Actionable pAction, MovementController pMovementController = null, Action pExternalActionWhenSuccessful = null, Action pExternalActionWhenFailed = null)

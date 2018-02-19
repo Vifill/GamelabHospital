@@ -20,6 +20,7 @@ public abstract class Actionable : MonoBehaviour
     public bool IsActionActive;
     public bool DirtiesTool;
     public bool NeedsSanitizedTool;
+    public float PlayerDesanitationAmount;
 
     public abstract bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning);
     public virtual void OnFinishedAction(GameObject pObjectActioning) { }

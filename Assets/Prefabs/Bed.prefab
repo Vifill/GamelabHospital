@@ -147,7 +147,7 @@ Transform:
   - {fileID: 4949133931597938}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.002, y: 0, z: -0.25300002}
+  m_LocalEulerAnglesHint: {x: 0.002, y: 180, z: -0.25300002}
 --- !u!4 &4949133931597938
 Transform:
   m_ObjectHideFlags: 1
@@ -247,11 +247,12 @@ MonoBehaviour:
   AnimatorParameter: 
   IsPickupable: 0
   IsActionActive: 1
-  DirtiesTool: 1
-  NeedsSanitizedTool: 1
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 20
   ActionProgress: 0
   DirtyMeter: 75
-  RequiredTool: 4
+  RequiredTool: -1
   DirtyBarPrefab: {fileID: 1584299532339696, guid: 3bb17afc9f730a94d801c7bebfd439a0,
     type: 2}
 --- !u!114 &114788812090140734
