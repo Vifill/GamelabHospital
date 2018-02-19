@@ -61,7 +61,10 @@ public class PatientSpawner : MonoBehaviour
     {
         //Pick random patient in the list to spawn.
         int index = UnityEngine.Random.Range(0, PatientsToSpawn.Count-1);
-        Instantiate(PatientsToSpawn[index], SpawnPoint.position, SpawnPoint.rotation);
+        GameObject patient = (GameObject)Instantiate(PatientsToSpawn[index], SpawnPoint.position, SpawnPoint.rotation);
+
+        patient.GetComponent<HealthController>().CholeraSeverity = UnityEngine.Random.Range(SpawnConfig.CholeraSeverityRange.x, SpawnConfig.CholeraSeverityRange.y);
+
         //Remove that patient
         PatientsToSpawn.RemoveAt(index);
     }

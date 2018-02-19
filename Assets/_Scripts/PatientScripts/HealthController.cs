@@ -15,6 +15,7 @@ public class HealthController : MonoBehaviour
     public GameObject HydrationUIPrefab;
     public GameObject PukeParticleEffect;
     public Transform PukePosition;
+    public BedManager BedManagerInstance;
 
     public float ConstantDehydrationSpeed;
     public float ConstantHealing;
@@ -52,7 +53,7 @@ public class HealthController : MonoBehaviour
     {
         ReduceHydration();
         ReduceCholeraSeverity();
-
+        MakeBedDirty();
         StartPukingAnimation();
         Debug.Log($"I'M PUKING!");
     }
@@ -88,5 +89,27 @@ public class HealthController : MonoBehaviour
             }
         }
     }
+    private void MakeBedDirty()
+    {
+        var beds = BedManagerInstance?.Beds;
+        BedController patientBed = null;
 
+        int size = beds?.Count ?? 0;
+        for (int i = 0; i < size; i++)
+        {
+            if (beds[i].PatientInBed == gameObject)
+            {
+                patientBed = beds[i];
+            }
+        }
+
+        if (patientBed != null)
+        {
+            patientBed.BedStation.IncreaseDirtyMeter(20);
+        }
+        else
+        {
+            print("<color=magenta> puked but was not in bed </color>");
+        }
+    }
 }
