@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class StretchersController : MonoBehaviour 
 {
-    private GameObject Stretchers;
-    private GameObject StandingPatient;
-    private GameObject DeathCloth;
-    private Transform LyingPosition;
+    public GameObject Stretchers;
+    public GameObject StandingPatient;
+    public GameObject DeathCloth;
+    public Transform LyingPosition;
 
     public bool OnStretchers;
     public bool IsDead;
 
     private void Start()
     {
-        Stretchers = transform.GetChild(0).gameObject;
-        StandingPatient = transform.GetChild(1).gameObject;
-        LyingPosition = Stretchers.transform.GetChild(0);
-        DeathCloth = Stretchers.transform.GetChild(1).gameObject;
         OnStretchers = true;
         IsDead = false;
     }

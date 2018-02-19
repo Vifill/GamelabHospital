@@ -6,7 +6,6 @@ public class TutorialPatientManager : MonoBehaviour
 {
     private PatientStatusController StatusCtrl;
     private TutorialUIController TutorialUI;
-    private AilmentController AilmentCtrl;
     private ToolController ToolCtrl;
     private GameObject SpaceBarImg;
     public Vector3 UIOffset = new Vector3();
@@ -17,7 +16,6 @@ public class TutorialPatientManager : MonoBehaviour
         StatusCtrl = GetComponent<PatientStatusController>();
         TutorialUI = FindObjectOfType<TutorialUIController>();
         ToolCtrl = FindObjectOfType<ToolController>();
-        AilmentCtrl = GetComponent<AilmentController>();
         SpaceBarImg = Instantiate(TutorialUI.HoldSpaceImg, FindObjectOfType<Canvas>().transform);
         SpaceBarImg.SetActive(false);
 	}
@@ -25,7 +23,7 @@ public class TutorialPatientManager : MonoBehaviour
 	// Update is called once per frame
 	private void Update () 
 	{
-        if (StatusCtrl.IsInBed && AilmentCtrl.GetCurrentCondition().ToolNeeded == ToolCtrl.GetCurrentToolName())
+        if (StatusCtrl.IsInBed /*&& AilmentCtrl.GetCurrentCondition().ToolNeeded == ToolCtrl.GetCurrentToolName()*/)
         {
             SpaceBarImg.transform.position = Camera.main.WorldToScreenPoint(transform.position + UIOffset);
             SpaceBarImg.SetActive(true);

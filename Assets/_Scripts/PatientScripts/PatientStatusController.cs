@@ -6,6 +6,9 @@ using UnityEngine;
 public class PatientStatusController : MonoBehaviour
 {
     public GameObject DeathParticles;
+    public AudioClip PatientDeathClothSound;
+
+    private AudioSource AudioSource;
     private bool mIsHealed;
     public bool IsHealed
     {
@@ -35,7 +38,6 @@ public class PatientStatusController : MonoBehaviour
     private PatientMovementController MovementController;
     private StretchersController StretchersController;
     private LevelManager LevelManager;
-    private AilmentUIController AilmentUIController;
     private float DPS;
 
     // Use this for initialization
@@ -45,7 +47,7 @@ public class PatientStatusController : MonoBehaviour
         MovementController = GetComponent<PatientMovementController>();
         StretchersController = GetComponent<StretchersController>();
         LevelManager = FindObjectOfType<LevelManager>();
-        AilmentUIController = GetComponent<AilmentUIController>();
+        AudioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -86,15 +88,11 @@ public class PatientStatusController : MonoBehaviour
     public void Death()
     {
         PlayDeathParticles();
-        FindObjectOfType<PlayerActionController>().StopAction(GetComponent<AilmentController>());
-        var ailmentController = GetComponent<AilmentController>();
-        ailmentController.StopEmmittingOngoing();
-        ailmentController.IsActionActive = false;
         IsDead = true;
         LevelManager?.AddDeath();
         //LevelManager?.AddPoints(-(ailmentConfig.PointsWhenHealed));
         //AilmentUIController.CreateScorePopUpText(-(ailmentConfig.PointsWhenHealed));
-        ailmentController.PlayDeathClothSound();
+        PlayDeathClothSound();
         MovementController.GetOutOfBed();
         StretchersController.IsDead = true;
         StretchersController.OnStretchers = true;
@@ -102,6 +100,14 @@ public class PatientStatusController : MonoBehaviour
         if (LevelManager.TimeOver)
         {
             LevelManager.CheckIfAllPatientsAreDone();
+        }
+    }
+
+    public void PlayDeathClothSound()
+    {
+        if (PatientDeathClothSound != null)
+        {
+            AudioSource.PlayOneShot(PatientDeathClothSound, 0.1f);
         }
     }
 
