@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class TableStation : Actionable
 {
-    public GameObject TableObject;
     public GameObject StartingTableObjectPrefab;
 
     [Header("Table Sounds")]
     public AudioClip PickUpSound;
     public AudioClip DropSound;
+
+    public GameObject TableObject { get; private set; }
 
     protected override void Initialize()
     {
