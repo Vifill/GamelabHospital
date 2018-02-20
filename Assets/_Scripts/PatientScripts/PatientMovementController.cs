@@ -65,8 +65,9 @@ public class PatientMovementController : MonoBehaviour
 
         StretchersController.OnStretchers = false;
 
-        var patientPlacement = TargetBed.transform.GetChild(0);
+        var patientPlacement = TargetBed.transform.Find("PatientPlacement");
         transform.SetPositionAndRotation(patientPlacement.position, patientPlacement.rotation);
+        transform.SetParent(TargetBed.transform.Find("Highlightable"));
 
         PatientStatus.IsInBed = true;
         TargetBed.GetComponent<BedController>().PatientInBed = gameObject;
