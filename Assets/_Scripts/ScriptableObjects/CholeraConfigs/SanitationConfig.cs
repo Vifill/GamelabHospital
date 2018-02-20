@@ -14,3 +14,4 @@ public class SanitationThresholdModel
     public float ThresholdOfActivation;
     public float CholeraSeverityIncreasePerSecond;
 }
+
