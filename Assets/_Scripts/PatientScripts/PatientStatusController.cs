@@ -18,10 +18,6 @@ public class PatientStatusController : MonoBehaviour
         }
         set
         {
-            if (value)
-            {
-                MovementController.GetOutOfBed();
-            }
             mIsHealed = value;
             if (LevelManager?.TimeOver ?? false)
             {
@@ -30,15 +26,12 @@ public class PatientStatusController : MonoBehaviour
         }
     }
     public bool IsInBed = false;
-    public float MaxHealth;
-    public float CurHealth;
-    public bool IsWounded;
     public bool IsDead = false;
 
     private PatientMovementController MovementController;
     private StretchersController StretchersController;
     private LevelManager LevelManager;
-    private float DPS;
+
 
     // Use this for initialization
     private void Start()
@@ -49,40 +42,16 @@ public class PatientStatusController : MonoBehaviour
         LevelManager = FindObjectOfType<LevelManager>();
         AudioSource = GetComponent<AudioSource>();
     }
-
-    private void Update()
+    
+    
+    public void CheckOut()
     {
-        if (IsWounded)
+        LevelManager.AddHealed();
+        MovementController.GetOutOfBed();
+        if (LevelManager.TimeOver)
         {
-            CurHealth -= DPS * Time.deltaTime;
-            Mathf.Clamp(CurHealth, 0, MaxHealth);
+            LevelManager.CheckIfAllPatientsAreDone();
         }
-
-        //if (CurHealth <= 0)
-        //{
-        //    Death();
-        //}
-    }
-
-    public void AddDPS(float pDPS)
-    {
-        DPS += pDPS;
-        IsWounded = true;
-    }
-
-    public void RemoveDPS(float pDPS)
-    {
-        DPS -= pDPS;
-
-        if (DPS <= 0)
-        {
-            IsWounded = false;
-        }
-    }
-
-    public void Heal (float pAmount)
-    {
-        CurHealth += pAmount;
     }
 
     public void Death()
