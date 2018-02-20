@@ -44,6 +44,7 @@ public class TableStation : Actionable
         {
             ToolBase pToolOnTable = TableObject.GetComponent<ToolBase>();
             pToolOnTable.gameObject.GetComponent<Pickupable>().IsActionActive = true;
+            pToolOnTable.gameObject.GetComponent<Pickupable>().RemoveHighlight();
             toolController.SetTool(TableObject);
             ChangeObjectLayer(TableObject.transform, "Default");
             TableObject = null;
@@ -64,7 +65,7 @@ public class TableStation : Actionable
 
     private void PlaceTool()
     {
-        TableObject.transform.SetParent(transform.GetChild(0).transform);
+        TableObject.transform.SetParent(transform.Find("Highlightable"));
         TableObject.transform.localRotation = Quaternion.Euler(TableObject.GetComponent<Pickupable>().StationaryRotation);
         TableObject.transform.localPosition = TableObject.GetComponent<Pickupable>().StationaryOffsetPosition;
         ChangeObjectLayer(TableObject.transform, "Ignore Raycast");

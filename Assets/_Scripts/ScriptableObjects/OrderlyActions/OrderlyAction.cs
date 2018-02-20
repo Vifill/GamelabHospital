@@ -28,6 +28,4 @@ public abstract class OrderlyAction
         OrderlyObject = pOrderlyObject;
         OnStartAction();
     }
-
-
 }
