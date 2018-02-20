@@ -78,6 +78,7 @@ public class PatientMovementController : MonoBehaviour
         NavMeshAgent.enabled = true;
         PatientStatus.IsInBed = false;
 
+        transform.SetParent(null);
         var patientPlacement = new Vector3(TargetBed.transform.position.x, TargetBed.transform.position.y, TargetBed.transform.position.z + 2f);
         transform.SetPositionAndRotation(patientPlacement, TargetBed.transform.rotation);
 
