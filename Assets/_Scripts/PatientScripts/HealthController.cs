@@ -38,7 +38,7 @@ public class HealthController : MonoBehaviour
     {
         while(true)
         {
-            float odds = ThresholdOddsConfig.ListOfThresholds.Last(a => a.ThresholdOfActivation <= CholeraSeverity).OddsOfExcretion;
+            float odds = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= CholeraSeverity)?.OddsOfExcretion ?? 0.0f;
             if(UnityEngine.Random.Range(0,100) < odds)
             {
                 Excrete();
