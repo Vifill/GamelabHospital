@@ -17,7 +17,7 @@ public abstract class Actionable : MonoBehaviour
     {
         var actionables = GetComponentsInChildren<Actionable>().ToList();
         var actionablesThatCanBeActioned = actionables.Where(a => a.CanBeActioned(pCurrentTool, pObjectActioning));
-        return actionablesThatCanBeActioned.FirstOrDefault() ?? this;
+        return actionablesThatCanBeActioned.FirstOrDefault() ?? transform.root.GetComponent<Actionable>();
     }
 
     public float ActionTime;
@@ -153,7 +153,7 @@ public abstract class Actionable : MonoBehaviour
     {
         if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
         {
-            SetHighlight(FindObjectOfType<HighlightController>().HighlightShader);
+            transform.root.GetComponent<Actionable>().SetHighlight(FindObjectOfType<HighlightController>().HighlightShader);
             MouseCursorController.SetCursorToClickable();
         }
     }
@@ -162,7 +162,7 @@ public abstract class Actionable : MonoBehaviour
     {
         if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
         {
-            RemoveHighlight();
+            transform.root.GetComponent<Actionable>().RemoveHighlight();
             MouseCursorController.SetCursorToIdle();
         }
     }
