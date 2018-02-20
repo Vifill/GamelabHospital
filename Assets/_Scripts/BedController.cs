@@ -24,7 +24,7 @@ public class BedController : MonoBehaviour
         set
         {
             mPatientInBed = value;
-            mBedStation.IsActionActive = value == null;
+           // mBedStation.IsActionActive = value == null;
         }
     }
 

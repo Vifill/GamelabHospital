@@ -186,6 +186,7 @@ MonoBehaviour:
   NeedsToBeSanitized: 0
   CanBeDropped: 1
   DirtyMesh: {fileID: 0}
+  IsUsedUpAfterUse: 1
   UsesBeforeDirty: 0
   HydrationModel:
     HydrationReplenished: 100
@@ -213,6 +214,9 @@ MonoBehaviour:
   AnimatorParameter: 
   IsPickupable: 0
   IsActionActive: 0
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 0
   ActionProgress: 0
   PickupRotation: {x: 0, y: 0, z: 0}
   StationaryRotation: {x: 0, y: 0, z: 0}
