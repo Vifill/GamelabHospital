@@ -6796,6 +6796,7 @@ MonoBehaviour:
   PukeParticleEffect: {fileID: 1532283546104660, guid: 3e962117722c1bb4793a51bab55c24ed,
     type: 2}
   PukePosition: {fileID: 4928286199856396}
+  BedManagerInstance: {fileID: 0}
   ConstantDehydrationSpeed: 0.5
   ConstantHealing: 0
 --- !u!114 &114639249190641622
@@ -6811,6 +6812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BedManager: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
   SlotManager: {fileID: 0}
+  TargetBed: {fileID: 0}
 --- !u!114 &114842480938854366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6848,6 +6850,9 @@ MonoBehaviour:
   AnimatorParameter: 
   IsPickupable: 0
   IsActionActive: 0
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 5
   ActionProgress: 0
 --- !u!136 &136088267323064392
 CapsuleCollider:

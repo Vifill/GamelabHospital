@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114050342040409120}
   - component: {fileID: 114065370836835360}
   - component: {fileID: 114715137660505864}
+  - component: {fileID: 114473966216598148}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -175,7 +176,7 @@ MonoBehaviour:
   EndScreenPrefab: {fileID: 1610231225011098, guid: 5cd54265060eaec498d8ca9b81abd728,
     type: 2}
   SunPrefab: {fileID: 1159113201939540, guid: ad352ea09b6da52429f156c65d1462b7, type: 2}
-  LevelConfig: {fileID: 11400000, guid: 91290c834f4aa5d4c92b7319bffffbb2, type: 2}
+  LevelConfig: {fileID: 11400000, guid: ab9c5a50bed823b4facf5b0b0889a757, type: 2}
 --- !u!114 &114163115634664054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,9 +188,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4724a60f38e9a9d429ac2b2c31dd7c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnConfig: {fileID: 11400000, guid: 71f3913406daf1c45820a3921de762a5, type: 2}
+  SpawnConfig: {fileID: 11400000, guid: 160c1f91d6343d442a66dab8e88d3344, type: 2}
   SpawnPoint: {fileID: 0}
   BedManager: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
+--- !u!114 &114473966216598148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809543526668006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd482ea99d53dc348ba45ccf93406f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114527165294818196
 MonoBehaviour:
   m_ObjectHideFlags: 1
