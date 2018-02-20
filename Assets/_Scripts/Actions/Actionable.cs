@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Actionable : MonoBehaviour 
@@ -10,6 +12,14 @@ public abstract class Actionable : MonoBehaviour
 
     [Header("Actionable Parameters")]
     public float RadiusOfActivation;
+
+    public Actionable GetMostRelevantAction(ToolName pCurrentTool, GameObject pObjectActioning)
+    {
+        var actionables = GetComponentsInChildren<Actionable>().ToList();
+        var actionablesThatCanBeActioned = actionables.Where(a => a.CanBeActioned(pCurrentTool, pObjectActioning));
+        return actionablesThatCanBeActioned.FirstOrDefault() ?? this;
+    }
+
     public float ActionTime;
     public GameObject ActionParticles;
     public GameObject ActionSuccessParticles;
