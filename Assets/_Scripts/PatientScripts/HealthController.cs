@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
+    public bool TEST_HPS;
+
     public float HydrationMeter;
     public float CholeraSeverity;
 
@@ -78,7 +80,17 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        if(!PatientStatusController.IsDead)
+        if (TEST_HPS && CholeraSeverity > 0)
+        {
+            CholeraSeverity -= .5f * Time.deltaTime;
+        }
+
+        if (!PatientStatusController.IsHealed && CholeraSeverity <= 0)
+        {
+            PatientStatusController.IsHealed = true;
+        }
+
+        if(!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
         {
             HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime;
             CholeraSeverity -= ConstantHealing * Time.deltaTime;

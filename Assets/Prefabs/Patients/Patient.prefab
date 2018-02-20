@@ -2461,6 +2461,7 @@ GameObject:
   - component: {fileID: 4428063834294384}
   - component: {fileID: 136088267323064392}
   - component: {fileID: 195766594866677406}
+  - component: {fileID: 114501508067448934}
   - component: {fileID: 114639249190641622}
   - component: {fileID: 114167547869232802}
   - component: {fileID: 114842480938854366}
@@ -6758,9 +6759,6 @@ MonoBehaviour:
     type: 2}
   PatientDeathClothSound: {fileID: 0}
   IsInBed: 0
-  MaxHealth: 0
-  CurHealth: 0
-  IsWounded: 0
   IsDead: 0
 --- !u!114 &114178381946047798
 MonoBehaviour:
@@ -6785,6 +6783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5478d1b215af014ea2a5961b88510b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TEST_HPS: 1
   HydrationMeter: 100
   CholeraSeverity: 60
   HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
@@ -6799,6 +6798,35 @@ MonoBehaviour:
   BedManagerInstance: {fileID: 0}
   ConstantDehydrationSpeed: 0.5
   ConstantHealing: 0
+--- !u!114 &114501508067448934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976841698954826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 670d2a5988225664a9eeecfa112245d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadiusOfActivation: 3
+  ActionTime: 1
+  ActionParticles: {fileID: 1762786678015178, guid: 0a66df2cd90f82540aa0bacb83e22e3a,
+    type: 2}
+  ActionSuccessParticles: {fileID: 1092865637220726, guid: d4298922edc05e64eb184212faaea7af,
+    type: 2}
+  ActionSoundEvent: {fileID: 0}
+  ActionFinishedSoundEvent: {fileID: 8300000, guid: 8edd76273988cc54bae774fec6017a85,
+    type: 3}
+  AnimatorParameter: 
+  IsPickupable: 0
+  IsActionActive: 0
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 0
+  ActionProgress: 0
+  CanBeCheckedOutParticle: {fileID: 1595240440422196, guid: 0ebd6da55a04b9445a8ca1f9e274206d,
+    type: 2}
 --- !u!114 &114639249190641622
 MonoBehaviour:
   m_ObjectHideFlags: 1
