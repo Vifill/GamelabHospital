@@ -8,7 +8,7 @@ public class Pickupable : Actionable
     public Vector3 StationaryRotation = new Vector3(0, 0, 0);
     public Vector3 StationaryOffsetPosition = new Vector3(0, 0, 0);
 
-    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         return pCurrentTool == ToolName.NoTool && IsPickupable == true && IsActionActive;
     }

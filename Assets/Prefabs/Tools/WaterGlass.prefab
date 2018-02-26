@@ -117,7 +117,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e3d3a26e733ff7843ac90780c45f8fa5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -179,6 +179,9 @@ MonoBehaviour:
   AnimatorParameter: 
   IsPickupable: 0
   IsActionActive: 0
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 0
   ActionProgress: 0
   PickupRotation: {x: 0, y: 0, z: 0}
   StationaryRotation: {x: 0, y: 0, z: 0}
@@ -198,10 +201,13 @@ MonoBehaviour:
   NeedsToBeSanitized: 0
   CanBeDropped: 0
   DirtyMesh: {fileID: 0}
+  IsUsedUpAfterUse: 1
   UsesBeforeDirty: 0
-  HydrationReplenished: 0
-  TimeItTakes: 0
-  ActionTime: 0
+  HydrationModel:
+    HydrationReplenished: 30
+    TimeItTakes: 3
+    ActionTime: 1
+    DisplayPrefab: {fileID: 0}
 --- !u!136 &136913672457061280
 CapsuleCollider:
   m_ObjectHideFlags: 1

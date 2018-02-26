@@ -26,13 +26,14 @@ public class ActionableActioner : MonoBehaviour
     private Action ExternalActionWhenFailed;
     private bool IsActioning;
     private MovementController MovementController;
-    private int PreviousAnimation;
+    private SanitationController SanitationController;
 
     // Use this for initialization
     private void Start () 
 	{
         Asource = GetComponent<AudioSource>();
         Canvas = FindObjectOfType<Canvas>();
+        SanitationController = GetComponent<SanitationController>();
     }
 
     // Update is called once per frame
@@ -54,15 +55,40 @@ public class ActionableActioner : MonoBehaviour
 
             if (CurrentTime >= TotalTime)
             {
-                PlayParticleEffects(CurrentAction.GetActionableParameters().ActionSuccessParticles, CurrentAction.transform);
-                
-                CurrentTime = 0;
-                StopAction();
-                ActionAfterFinishing?.Invoke(gameObject);
-                ExternalActionWhenSuccessful?.Invoke();
-                CurrentAction.PlayFinishedActionSFX();
+                OnSuccess();
             }
         }
+    }
+
+    private void OnSuccess()
+    {
+        PlayParticleEffects(CurrentAction.GetActionableParameters().ActionSuccessParticles, CurrentAction.transform);
+
+        CurrentTime = 0;
+        StopAction();
+        ProcessToolAfterSuccess();
+        ProcessPlayerSanitation();
+        ActionAfterFinishing?.Invoke(gameObject);
+        ExternalActionWhenSuccessful?.Invoke();
+        CurrentAction.PlayFinishedActionSFX();
+    }
+
+    private void ProcessToolAfterSuccess()
+    {
+        var toolController = GetComponent<ToolController>();
+        if (toolController.GetToolBase()?.IsUsedUpAfterUse ?? false)
+        {
+            toolController.DestroyTool();
+        }
+        if (CurrentAction.DirtiesTool && toolController.GetToolBase().NeedsToBeSanitized)
+        {
+            toolController.GetToolBase().ToolUsed();
+        }
+    }
+
+    private void ProcessPlayerSanitation()
+    {
+        SanitationController.MakePlayerDirty(CurrentAction.PlayerDesanitationAmount);
     }
 
     internal void AttemptAction(Actionable pAction, MovementController pMovementController = null, Action pExternalActionWhenSuccessful = null, Action pExternalActionWhenFailed = null)

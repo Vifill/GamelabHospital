@@ -24,13 +24,21 @@ public class BedController : MonoBehaviour
         set
         {
             mPatientInBed = value;
-            BedStation.IsActionActive = value == null;
+           // mBedStation.IsActionActive = value == null;
         }
     }
-    private BedStation BedStation;
+
+    public BedStation BedStation
+    {
+        get
+        {
+            return mBedStation;
+        }
+    }
+    private BedStation mBedStation;
 
     private void Start()
     {
-        BedStation = GetComponent<BedStation>();
+        mBedStation = GetComponent<BedStation>();
     }
 }

@@ -11,6 +11,8 @@ public class CharacterInputs : MonoBehaviour
     private LevelController LevelController;
     private GameController GC;
     private PlayerDataController DataCtrl = new PlayerDataController();
+    private ActionableActioner ActionableActioner;
+
 
     // Use this for initialization
     private void Start ()
@@ -19,6 +21,7 @@ public class CharacterInputs : MonoBehaviour
         GC = FindObjectOfType<GameController>();
         ActionController = GetComponent<PlayerActionController>();
         ToolController = GetComponent<ToolController>();
+        ActionableActioner = GetComponent<ActionableActioner>();
 	}
 	
 	// Update is called once per frame
@@ -26,20 +29,11 @@ public class CharacterInputs : MonoBehaviour
 	{
         if (Input.GetButtonDown("Action") && !GameController.InMenuScreen)
         {
-            //var action = GetActionablesUtility.GetActionableAndPickupable(GetCurrentTool(), transform);
-
-
-            //if (action != null)
-            //{
-            //    ActionController.AttemptAction(action);
-            //    //ToolController.GetToolBase()?.ToolUsed();
-            //}
-
-            var action = HighlightController.HighlightedObject?.GetComponent<Actionable>();
+            var action = HighlightController.HighlightedObject?.GetComponent<Actionable>().GetMostRelevantAction(GetCurrentTool(), gameObject);
 
             if (action != null && action.CanBeActioned(GetCurrentTool(), gameObject))
             {
-                ActionController.AttemptAction(action);
+                ActionableActioner.AttemptAction(action);
             }
             
             if (action != null && !action.CanBeActioned(GetCurrentTool(), gameObject))
@@ -51,20 +45,11 @@ public class CharacterInputs : MonoBehaviour
 
         if(Input.GetButtonUp("Action"))
         {
-            ActionController.StopAction();
-            
+            ActionableActioner.StopAction();
         }
 
         if (Input.GetButtonDown("Drop"))
         {
-            //var ActionablesForDrop = GetActionablesUtility.GetActionablesForDrop(transform);
-
-            //if (ActionablesForDrop == null && ToolController.GetCurrentToolName() != ToolName.NoTool)
-            //{
-            //    DropTool(ToolController.CurrentTool);
-            //    ToolController.RemoveTool();
-            //}
-
             Actionable actionable;
 
             if (HighlightController.HighlightedObject == null)
@@ -107,21 +92,6 @@ public class CharacterInputs : MonoBehaviour
         {
             DataCtrl.ClearPrefs();
         }
-
-        //if (Input.GetButtonDown("PickUp"))
-        //{
-        //    var pickupable = GetPickupable();
-        //    if (pickupable != null)
-        //    {
-        //        ActionController.AttemptAction(pickupable);
-        //    }
-
-        //    else if (pickupable == null && ToolController.GetCurrentToolName() != ToolName.NoTool)
-        //    {
-        //        DropTool(ToolController.CurrentTool);
-        //        ToolController.RemoveTool();
-        //    }
-        //}
     }
 
     private ToolName GetCurrentTool()
@@ -133,10 +103,5 @@ public class CharacterInputs : MonoBehaviour
     {
         ActionController.Asource.PlayOneShot(ActionController.DropSound);
         ToolController.DropTool();
-        //pTool.transform.parent = null;
-        //pTool.GetComponent<Rigidbody>().isKinematic = false;
-        //pTool.transform.position = transform.GetChild(0).position;
-        //ActionController.Asource.PlayOneShot(ActionController.DropSound);
-        //ToolController.RemoveTool();
     }
 }

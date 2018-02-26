@@ -29,9 +29,17 @@ public class GetActionablesUtility: ScriptableObject
     //    return closeActionables.OrderBy(a => Vector3.Distance(pPlayerTransform.position, a.transform.position)).FirstOrDefault();
     //}
 
-    public static Actionable GetActionableForHighlight(ToolBase pCurrentTool, Transform pPlayerTransform)
+    //public static Actionable GetActionableForHighlight(ToolBase pCurrentTool, Transform pPlayerTransform)
+    //{
+    //    var closeActionables = FindObjectsOfType<Actionable>().Where(a => a.gameObject != pCurrentTool?.gameObject && a.IsClose(pPlayerTransform) && a.IsActionActive);
+    //    return closeActionables.OrderBy(a => Vector3.Distance(pPlayerTransform.position, a.transform.position)).FirstOrDefault();
+    //}
+
+    public static Actionable GetActionableForHighlight(ToolController pToolController, Transform pPlayerTransform)
     {
-        var closeActionables = FindObjectsOfType<Actionable>().Where(a => a.gameObject != pCurrentTool?.gameObject && a.IsClose(pPlayerTransform) && a.IsActionActive);
-        return closeActionables.OrderBy(a => Vector3.Distance(pPlayerTransform.position, a.transform.position)).FirstOrDefault();
+        var canBeActioned = FindObjectsOfType<Actionable>().Where(a => a.gameObject != pToolController.GetToolBase()?.gameObject && a.CanBeActioned(pToolController.GetCurrentToolName(), pPlayerTransform.gameObject) && a.IsActionActive && a.IsClose(pPlayerTransform));
+        var cantBeActioned = FindObjectsOfType<Actionable>().Where(a => a.gameObject != pToolController.GetToolBase()?.gameObject && !a.CanBeActioned(pToolController.GetCurrentToolName(), pPlayerTransform.gameObject) && a.IsActionActive && a.IsClose(pPlayerTransform));
+
+        return canBeActioned?.OrderBy(a => Vector3.Distance(pPlayerTransform.position, a.transform.position)).FirstOrDefault() ?? cantBeActioned.OrderBy(a => Vector3.Distance(pPlayerTransform.position, a.transform.position)).FirstOrDefault();
     }
 }

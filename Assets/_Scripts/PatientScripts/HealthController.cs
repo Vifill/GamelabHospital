@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
+    public bool TEST_HPS;
+
     public float HydrationMeter;
     public float CholeraSeverity;
 
@@ -13,6 +15,9 @@ public class HealthController : MonoBehaviour
     public CholeraConfig CholeraConfig;
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
     public GameObject HydrationUIPrefab;
+    public GameObject PukeParticleEffect;
+    public Transform PukePosition;
+    public BedManager BedManagerInstance;
 
     public float ConstantDehydrationSpeed;
     public float ConstantHealing;
@@ -33,7 +38,7 @@ public class HealthController : MonoBehaviour
     {
         while(true)
         {
-            float odds = ThresholdOddsConfig.ListOfThresholds.Last(a => a.ThresholdOfActivation <= CholeraSeverity).OddsOfExcretion;
+            float odds = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= CholeraSeverity)?.OddsOfExcretion ?? 0.0f;
             if(UnityEngine.Random.Range(0,100) < odds)
             {
                 Excrete();
@@ -48,16 +53,44 @@ public class HealthController : MonoBehaviour
 
     private void Excrete()
     {
+        ReduceHydration();
+        ReduceCholeraSeverity();
+        MakeBedDirty();
+        StartPukingAnimation();
+        Debug.Log($"I'M PUKING!");
+    }
+
+    private void StartPukingAnimation()
+    {
+        var puke = Instantiate(PukeParticleEffect, PukePosition.position, PukePosition.rotation, PukePosition);
+        Destroy(puke, 3f);
+    }
+
+    private void ReduceCholeraSeverity()
+    {
+        CholeraSeverity -= CholeraConfig.ExcreteCholeraSeverityLoss;
+    }
+
+    private void ReduceHydration()
+    {
         float randomVariance = UnityEngine.Random.Range(-CholeraConfig.ExcreteHydrationLossVariance, CholeraConfig.ExcreteHydrationLossVariance);
         float hydrationLossModifier = HydrationConfig.HydrationLowerThreshold >= HydrationMeter ? HydrationConfig.HydrationLowerThresholdModifier : 1;
         HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier;
-
-        Debug.Log($"I'M PUKING!");
     }
 
     private void Update()
     {
-        if(!PatientStatusController.IsDead)
+        if (TEST_HPS && CholeraSeverity > 0)
+        {
+            CholeraSeverity -= .5f * Time.deltaTime;
+        }
+
+        if (!PatientStatusController.IsHealed && CholeraSeverity <= 0)
+        {
+            PatientStatusController.IsHealed = true;
+        }
+
+        if(!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
         {
             HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime;
             CholeraSeverity -= ConstantHealing * Time.deltaTime;
@@ -66,6 +99,29 @@ public class HealthController : MonoBehaviour
             {
                 PatientStatusController.Death();
             }
+        }
+    }
+    private void MakeBedDirty()
+    {
+        var beds = BedManagerInstance?.Beds;
+        BedController patientBed = null;
+
+        int size = beds?.Count ?? 0;
+        for (int i = 0; i < size; i++)
+        {
+            if (beds[i].PatientInBed == gameObject)
+            {
+                patientBed = beds[i];
+            }
+        }
+
+        if (patientBed != null)
+        {
+            patientBed.BedStation.IncreaseDirtyMeter(20);
+        }
+        else
+        {
+            print("<color=magenta> puked but was not in bed </color>");
         }
     }
 }

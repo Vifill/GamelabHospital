@@ -20,7 +20,7 @@ public class HighlightController : MonoBehaviour
 	// Update is called once per frame
 	private void Update () 
 	{
-        var actionable = GetActionablesUtility.GetActionableForHighlight(ToolCtrl.GetToolBase(), transform);
+        var actionable = GetActionablesUtility.GetActionableForHighlight(ToolCtrl, transform)?.GetMostRelevantAction(ToolCtrl.GetCurrentToolName(), gameObject);
 
         if (actionable == null)
         {

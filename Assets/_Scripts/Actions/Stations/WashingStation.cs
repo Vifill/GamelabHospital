@@ -18,7 +18,7 @@ public class WashingStation : Actionable
         return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
     }
 
-    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         var toolbase = pObjectActioning.GetComponent<ToolController>().GetToolBase();
 

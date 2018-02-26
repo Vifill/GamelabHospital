@@ -10,11 +10,10 @@ public class PatientMovementController : MonoBehaviour
     public BedManager BedManager;
     public WaitingRoomSlotManager SlotManager;
     private GameObject ExitPoint;
-    private GameObject TargetBed;
+    public GameObject TargetBed;
     private NavMeshAgent NavMeshAgent;
     private PatientStatusController PatientStatus;
     private StretchersController StretchersController;
-    private AilmentController AilmentController;
 
 	// Use this for initialization
 	private void Start()
@@ -23,7 +22,6 @@ public class PatientMovementController : MonoBehaviour
         PatientStatus = GetComponent<PatientStatusController>();
         StretchersController = GetComponent<StretchersController>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
-        AilmentController = GetComponent<AilmentController>();
 
         if (BedManager.GetAvailableBeds().Any())
         {
@@ -67,12 +65,12 @@ public class PatientMovementController : MonoBehaviour
 
         StretchersController.OnStretchers = false;
 
-        var patientPlacement = TargetBed.transform.GetChild(0);
+        var patientPlacement = TargetBed.transform.Find("PatientPlacement");
         transform.SetPositionAndRotation(patientPlacement.position, patientPlacement.rotation);
+        transform.SetParent(TargetBed.transform.Find("Highlightable"));
 
         PatientStatus.IsInBed = true;
         TargetBed.GetComponent<BedController>().PatientInBed = gameObject;
-        AilmentController.IsActionActive = true;
     }
 
     public void GetOutOfBed()
@@ -80,6 +78,7 @@ public class PatientMovementController : MonoBehaviour
         NavMeshAgent.enabled = true;
         PatientStatus.IsInBed = false;
 
+        transform.SetParent(null);
         var patientPlacement = new Vector3(TargetBed.transform.position.x, TargetBed.transform.position.y, TargetBed.transform.position.z + 2f);
         transform.SetPositionAndRotation(patientPlacement, TargetBed.transform.rotation);
 
@@ -89,7 +88,5 @@ public class PatientMovementController : MonoBehaviour
         NavMeshAgent.stoppingDistance = 0;
 
         NavMeshAgent.SetDestination(ExitPoint.transform.position);
-        AilmentController.IsActionActive = false;
-    }
-    
+    }    
 }

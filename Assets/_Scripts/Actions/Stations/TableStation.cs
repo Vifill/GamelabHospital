@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class TableStation : Actionable
 {
-    public GameObject TableObject;
     public GameObject StartingTableObjectPrefab;
 
     [Header("Table Sounds")]
     public AudioClip PickUpSound;
     public AudioClip DropSound;
+
+    public GameObject TableObject { get; private set; }
 
     protected override void Initialize()
     {
@@ -28,7 +29,7 @@ public class TableStation : Actionable
         TableObject.GetComponent<Pickupable>().IsActionActive = false;
     }
 
-    public override bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         //Can only be actioned if player is holding a tool and table empty or player empty handed and tool on table
         return (pCurrentTool == ToolName.NoTool && TableObject != null) || (pCurrentTool != ToolName.NoTool && TableObject == null);
@@ -43,6 +44,7 @@ public class TableStation : Actionable
         {
             ToolBase pToolOnTable = TableObject.GetComponent<ToolBase>();
             pToolOnTable.gameObject.GetComponent<Pickupable>().IsActionActive = true;
+            pToolOnTable.gameObject.GetComponent<Pickupable>().RemoveHighlight();
             toolController.SetTool(TableObject);
             ChangeObjectLayer(TableObject.transform, "Default");
             TableObject = null;
@@ -63,7 +65,7 @@ public class TableStation : Actionable
 
     private void PlaceTool()
     {
-        TableObject.transform.SetParent(transform.GetChild(0).transform);
+        TableObject.transform.SetParent(transform.Find("Highlightable"));
         TableObject.transform.localRotation = Quaternion.Euler(TableObject.GetComponent<Pickupable>().StationaryRotation);
         TableObject.transform.localPosition = TableObject.GetComponent<Pickupable>().StationaryOffsetPosition;
         ChangeObjectLayer(TableObject.transform, "Ignore Raycast");

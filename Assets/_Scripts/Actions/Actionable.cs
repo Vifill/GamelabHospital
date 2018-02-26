@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Actionable : MonoBehaviour 
@@ -10,6 +12,14 @@ public abstract class Actionable : MonoBehaviour
 
     [Header("Actionable Parameters")]
     public float RadiusOfActivation;
+
+    public Actionable GetMostRelevantAction(ToolName pCurrentTool, GameObject pObjectActioning)
+    {
+        var actionables = GetComponentsInChildren<Actionable>().ToList();
+        var actionablesThatCanBeActioned = actionables.Where(a => a.CanBeActioned(pCurrentTool, pObjectActioning));
+        return actionablesThatCanBeActioned.FirstOrDefault() ?? transform.root.GetComponent<Actionable>();
+    }
+
     public float ActionTime;
     public GameObject ActionParticles;
     public GameObject ActionSuccessParticles;
@@ -18,8 +28,11 @@ public abstract class Actionable : MonoBehaviour
     public string AnimatorParameter;
     public bool IsPickupable;
     public bool IsActionActive;
-    
-    public abstract bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning);
+    public bool DirtiesTool;
+    public bool NeedsSanitizedTool;
+    public float PlayerDesanitationAmount;
+
+    public abstract bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning);
     public virtual void OnFinishedAction(GameObject pObjectActioning) { }
     public virtual void OnStartAction(GameObject pObjectActioning) { }
     protected virtual void Initialize() { }
@@ -31,6 +44,12 @@ public abstract class Actionable : MonoBehaviour
     public virtual ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
     {
         return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
+    }
+
+    public bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
+    {
+        bool canUseTool = pCurrentTool == ToolName.NoTool || !NeedsSanitizedTool || (NeedsSanitizedTool && !pObjectActioning.GetComponent<ToolController>().GetToolBase().IsDirty);
+        return canUseTool && CanBeActionedExtended(pCurrentTool, pObjectActioning);
     }
 
     private void Start()
@@ -134,7 +153,7 @@ public abstract class Actionable : MonoBehaviour
     {
         if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
         {
-            SetHighlight(FindObjectOfType<HighlightController>().HighlightShader);
+            transform.root.GetComponent<Actionable>().SetHighlight(FindObjectOfType<HighlightController>().HighlightShader);
             MouseCursorController.SetCursorToClickable();
         }
     }
@@ -143,7 +162,7 @@ public abstract class Actionable : MonoBehaviour
     {
         if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
         {
-            RemoveHighlight();
+            transform.root.GetComponent<Actionable>().RemoveHighlight();
             MouseCursorController.SetCursorToIdle();
         }
     }

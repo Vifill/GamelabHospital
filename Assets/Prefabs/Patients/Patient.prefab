@@ -1033,6 +1033,7 @@ GameObject:
   - component: {fileID: 64982504008598272}
   - component: {fileID: 137541734558870246}
   - component: {fileID: 183641565057957092}
+  - component: {fileID: 64690647487047670}
   m_Layer: 0
   m_Name: DeathCloth
   m_TagString: Untagged
@@ -1930,6 +1931,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1694231066434450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4928286199856396}
+  m_Layer: 0
+  m_Name: PukePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1709531750380194
 GameObject:
   m_ObjectHideFlags: 1
@@ -2445,17 +2461,17 @@ GameObject:
   - component: {fileID: 4428063834294384}
   - component: {fileID: 136088267323064392}
   - component: {fileID: 195766594866677406}
+  - component: {fileID: 114501508067448934}
   - component: {fileID: 114639249190641622}
   - component: {fileID: 114167547869232802}
   - component: {fileID: 114842480938854366}
   - component: {fileID: 54898771245809458}
-  - component: {fileID: 114980728345504342}
-  - component: {fileID: 114112584716681446}
   - component: {fileID: 82929273122270710}
   - component: {fileID: 114178381946047798}
   - component: {fileID: 82596395373070156}
   - component: {fileID: 114213634877675612}
-  m_Layer: 0
+  - component: {fileID: 114881950544257098}
+  m_Layer: 10
   m_Name: Patient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3427,12 +3443,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1976841698954826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4931275199876828}
   - {fileID: 4807734688163810}
   - {fileID: 4481155229058974}
+  - {fileID: 4928286199856396}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4584,6 +4601,19 @@ Transform:
   - {fileID: 4033333264040230}
   m_Father: {fileID: 4344281721050316}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4928286199856396
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694231066434450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.45, z: 0.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4428063834294384}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4931275199876828
 Transform:
@@ -5875,7 +5905,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8a03a5511fcc0634eb77b61fcc0cbb58, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5943,7 +5973,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8a03a5511fcc0634eb77b61fcc0cbb58, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6490,6 +6520,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &64690647487047670
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1371811901633488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!64 &64982504008598272
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -6700,25 +6744,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114112584716681446
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1976841698954826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07fe49f16bd9e29488feb5a0fddd1331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PatientStatusUIPrefab: {fileID: 114703664585664556, guid: f2133eee3d9b694468d17253fa8d1af5,
-    type: 2}
-  ScorePopUpTextPrefab: {fileID: 114324320961869780, guid: 8ba2366353a4c4946a4977c683fc5f8e,
-    type: 2}
-  HealedImg: {fileID: 21300000, guid: fefd1f96a44f0764f9f78c709787f94f, type: 3}
-  DeathImg: {fileID: 21300000, guid: cbae879c3896c664bad0642a1318809e, type: 3}
-  UIOffset: 1
-  PatientColorConfig: {fileID: 11400000, guid: 3e919c07e8e75fb45b49ddcaa6512ece, type: 2}
 --- !u!114 &114167547869232802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6732,10 +6757,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathParticles: {fileID: 1092951528231844, guid: 30474d91d3a83334b9e100f55d66a418,
     type: 2}
+  PatientDeathClothSound: {fileID: 0}
   IsInBed: 0
-  MaxHealth: 0
-  CurHealth: 0
-  IsWounded: 0
   IsDead: 0
 --- !u!114 &114178381946047798
 MonoBehaviour:
@@ -6760,16 +6783,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5478d1b215af014ea2a5961b88510b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TEST_HPS: 1
   HydrationMeter: 100
   CholeraSeverity: 60
   HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
   CholeraConfig: {fileID: 11400000, guid: 1a29015937cb12d4e890d61c0b4ed1bd, type: 2}
   ThresholdOddsConfig: {fileID: 11400000, guid: a9a967e65765b9d4891827c2ea524fe3,
     type: 2}
-  HydrationUIPrefab: {fileID: 1149620341329518, guid: 89608c2ff69c4ed458250912c9f0cd6b,
+  HydrationUIPrefab: {fileID: 1149620341329518, guid: 81a4b3d17fff8f345b03efedb06d434a,
     type: 2}
-  ConstantDehydrationSpeed: 0
+  PukeParticleEffect: {fileID: 1532283546104660, guid: 3e962117722c1bb4793a51bab55c24ed,
+    type: 2}
+  PukePosition: {fileID: 4928286199856396}
+  BedManagerInstance: {fileID: 0}
+  ConstantDehydrationSpeed: 0.5
   ConstantHealing: 0
+--- !u!114 &114501508067448934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976841698954826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 670d2a5988225664a9eeecfa112245d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadiusOfActivation: 3
+  ActionTime: 1
+  ActionParticles: {fileID: 1762786678015178, guid: 0a66df2cd90f82540aa0bacb83e22e3a,
+    type: 2}
+  ActionSuccessParticles: {fileID: 1092865637220726, guid: d4298922edc05e64eb184212faaea7af,
+    type: 2}
+  ActionSoundEvent: {fileID: 0}
+  ActionFinishedSoundEvent: {fileID: 8300000, guid: 8edd76273988cc54bae774fec6017a85,
+    type: 3}
+  AnimatorParameter: 
+  IsPickupable: 0
+  IsActionActive: 0
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 0
+  ActionProgress: 0
+  CanBeCheckedOutParticle: {fileID: 1595240440422196, guid: 0ebd6da55a04b9445a8ca1f9e274206d,
+    type: 2}
 --- !u!114 &114639249190641622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6781,8 +6838,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53648674e2bb09947abbfd7931ec3ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BedManager: {fileID: 11400000, guid: 3cdab872e83598c4dbb8dc4fced5a6e5, type: 2}
+  BedManager: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
   SlotManager: {fileID: 0}
+  TargetBed: {fileID: 0}
 --- !u!114 &114842480938854366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6794,9 +6852,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccaa2a436da8aa94280fd4841f2c373d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Stretchers: {fileID: 1195251972860312}
+  StandingPatient: {fileID: 1208872657586454}
+  DeathCloth: {fileID: 1371811901633488}
+  LyingPosition: {fileID: 4672368023882596}
   OnStretchers: 0
   IsDead: 0
---- !u!114 &114980728345504342
+--- !u!114 &114881950544257098
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -6804,10 +6866,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1976841698954826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79dbb5a0101f11748981d07fb89a26e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6df05a81255153043a0908e6a957e6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RadiusOfActivation: 0
+  RadiusOfActivation: 3
   ActionTime: 0
   ActionParticles: {fileID: 0}
   ActionSuccessParticles: {fileID: 0}
@@ -6815,13 +6877,11 @@ MonoBehaviour:
   ActionFinishedSoundEvent: {fileID: 0}
   AnimatorParameter: 
   IsPickupable: 0
-  IsActionActive: 1
+  IsActionActive: 0
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 5
   ActionProgress: 0
-  AilmentConfig: {fileID: 11400000, guid: f9f034779a1cc0946929174f7c64ddec, type: 2}
-  PatientHealedSuccessSound: {fileID: 8300000, guid: 8edd76273988cc54bae774fec6017a85,
-    type: 3}
-  PatientDeathClothSound: {fileID: 8300000, guid: 214f6a8d562ac184c8c2115ced2b93a5,
-    type: 3}
 --- !u!136 &136088267323064392
 CapsuleCollider:
   m_ObjectHideFlags: 1

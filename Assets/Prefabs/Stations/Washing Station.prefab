@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65204939588997474}
   - component: {fileID: 82596198332511574}
   - component: {fileID: 114146872924099162}
+  - component: {fileID: 114647848302655996}
   m_Layer: 0
   m_Name: Washing Station
   m_TagString: Untagged
@@ -637,7 +638,37 @@ MonoBehaviour:
   AnimatorParameter: 
   IsPickupable: 0
   IsActionActive: 1
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 0
   ActionProgress: 0
+--- !u!114 &114647848302655996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194696074187054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7805961a13b0c45b09b52162bd89a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadiusOfActivation: 2
+  ActionTime: 1.5
+  ActionParticles: {fileID: 1148858721968314, guid: 897d4e50b5ff5914ea69257085b6a15c,
+    type: 2}
+  ActionSuccessParticles: {fileID: 1056199771017028, guid: 82a445cee909d1f4faffc41578c01e64,
+    type: 2}
+  ActionSoundEvent: {fileID: 8300000, guid: 7570ab45ee0645c49931cf0137f40a62, type: 3}
+  ActionFinishedSoundEvent: {fileID: 0}
+  AnimatorParameter: 
+  IsPickupable: 0
+  IsActionActive: 1
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 0
+  ActionProgress: 0
+  CleanableTools: 0100000004000000
 --- !u!198 &198305491691279176
 ParticleSystem:
   m_ObjectHideFlags: 1

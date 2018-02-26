@@ -8,4 +8,5 @@ public class CholeraConfig : ScriptableObject
     public float ExcreteCooldown;
     public float ExcreteHydrationLoss;
     public float ExcreteHydrationLossVariance;
+    public float ExcreteCholeraSeverityLoss;
 }
