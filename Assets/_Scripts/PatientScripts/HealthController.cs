@@ -123,20 +123,12 @@ public class HealthController : MonoBehaviour
     private void MakeBedDirty()
     {
         var beds = BedManagerInstance?.Beds;
-        BedController patientBed = null;
 
-        int size = beds?.Count ?? 0;
-        for (int i = 0; i < size; i++)
-        {
-            if (beds[i].PatientInBed == gameObject)
-            {
-                patientBed = beds[i];
-            }
-        }
+        var patientInBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);        
 
-        if (patientBed != null)
+        if (patientInBed != null)
         {
-            patientBed.BedStation.IncreaseDirtyMeter(20);
+            patientInBed.BedStation.IncreaseDirtyMeter(20);
         }
         else
         {
