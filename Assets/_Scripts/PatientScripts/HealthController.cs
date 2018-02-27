@@ -14,7 +14,7 @@ public class HealthController : MonoBehaviour
     public HydrationConfig HydrationConfig;
     public CholeraConfig CholeraConfig;
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
-    public SanitationConfig SanitationConfig;
+    public SanitationConfig BedSanitationConfig;
 
     public GameObject HydrationUIPrefab;
     public GameObject PukeParticleEffect;
@@ -45,8 +45,9 @@ public class HealthController : MonoBehaviour
             var inBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);            
             if(inBed != null)
             {
-                var severityIncrease = SanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.CholeraSeverityIncreasePerSecond ?? 0;
+                var severityIncrease = BedSanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.CholeraSeverityIncreasePerSecond ?? 0;
                 CholeraSeverity += severityIncrease;
+                CholeraSeverity = Mathf.Clamp(CholeraSeverity, 0, 100);
             }
         }
     }
@@ -128,7 +129,7 @@ public class HealthController : MonoBehaviour
 
         if (patientInBed != null)
         {
-            patientInBed.BedStation.IncreaseDirtyMeter(20);
+            patientInBed.BedStation.IncreaseDirtyMeter(CholeraConfig.ExcreteBedDirtyIncrease);
         }
         else
         {

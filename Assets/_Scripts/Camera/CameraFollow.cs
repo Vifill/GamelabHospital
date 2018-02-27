@@ -100,9 +100,9 @@ public class CameraFollow : MonoBehaviour
 	private Square GetGroupSquare()
 	{
 		Square square = new Square();
-
+        int length = Players?.Length ?? 0;
 		//make rectangle out of extremes
-		for (int i = 0; i < Players.Length; i++) 
+		for (int i = 0; i < length; i++) 
 		{
 			Vector3 playerpos = Players [i].transform.position;
 
