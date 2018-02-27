@@ -66,7 +66,7 @@ public class HydrationController : Actionable
 
         if (Counter <= CurrentHydrationModel.TimeItTakes)
         {
-            HealthCtrl.HydrationMeter += (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime;
+            HealthCtrl.HydrationMeter = Mathf.Clamp(HealthCtrl.HydrationMeter + (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime, 0, 100);
         }
         else
         {

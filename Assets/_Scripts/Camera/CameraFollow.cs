@@ -61,8 +61,9 @@ public class CameraFollow : MonoBehaviour
 	{
 		Square square = GetGroupSquare();
 		Vector3 center = Vector3.zero;
+        int length = Players?.Length ?? 0;
 
-		if (Players.Length > 1) 
+        if (length > 1) 
 		{
 			Vector2 leftTopCorner = new Vector2(square.minX,square.maxZ);
 			Vector2 rightBottomCorner = new Vector2(square.maxX, square.minZ);
@@ -70,7 +71,7 @@ public class CameraFollow : MonoBehaviour
 
 			center = new Vector3(diaCenter.x , 1 ,diaCenter.y);
 		}
-		else if (Players.Length == 1)
+		else if (length == 1)
 		{
 			center = Players[0].transform.position;
 			center.y = 1f;
@@ -82,8 +83,9 @@ public class CameraFollow : MonoBehaviour
 	{
 		Square square = GetGroupSquare ();
 		Vector3 size;
+        int length = Players?.Length ?? 0;
 
-		if (Players.Length > 1) 
+        if (length > 1) 
 		{
 			float sizeX =  Mathf.Abs(square.maxX - square.minX);
 			float sizeZ =  Mathf.Abs(square.maxZ - square.minZ);

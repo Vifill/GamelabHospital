@@ -124,7 +124,7 @@ public class HealthController : MonoBehaviour
     private void MakeBedDirty()
     {
         var beds = BedManagerInstance?.Beds;
-
+            
         var patientInBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);        
 
         if (patientInBed != null)
