@@ -33,7 +33,7 @@ public class CharacterInputs : MonoBehaviour
 
             if (action != null && action.CanBeActioned(GetCurrentTool(), gameObject))
             {
-                ActionableActioner.AttemptAction(action);
+                ActionableActioner.AttemptAction(action, GetComponent<MovementController>());
             }
             
             if (action != null && !action.CanBeActioned(GetCurrentTool(), gameObject))

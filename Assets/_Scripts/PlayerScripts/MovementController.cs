@@ -54,8 +54,7 @@ public class MovementController : MonoBehaviour {
 
                     if (!Animator.GetBool("IsWalking"))
                     {
-                        Animator.SetBool("IsWalking", true);
-                        EmissionModule.enabled = true;
+                        StartWalkingAnimation();
                     }
                 }
             }
@@ -63,8 +62,7 @@ public class MovementController : MonoBehaviour {
             {
                 if (Animator.GetBool("IsWalking"))
                 {
-                    Animator.SetBool("IsWalking", false);
-                    EmissionModule.enabled = false;
+                    StopWalkingAnimation();
                 }
             }
             //if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
@@ -92,9 +90,22 @@ public class MovementController : MonoBehaviour {
         }
     }
 
+    private void StartWalkingAnimation()
+    {
+        Animator.SetBool("IsWalking", true);
+        EmissionModule.enabled = true;
+    }
+
+    private void StopWalkingAnimation()
+    {
+        Animator.SetBool("IsWalking", false);
+        EmissionModule.enabled = false;
+    }
+
     public void StopMovement()
     {
         CanMove = false;
+        StopWalkingAnimation();
     }
 
     public void StartMovement()
