@@ -8,6 +8,9 @@ public class OrderlyController : MonoBehaviour
 {
     [HideInInspector] public OrderlyAction CurrentAction;
     [HideInInspector] public OrderlyOrder CurrentOrder;
+    public GameObject MovementParticle;
+
+    private ParticleSystem.EmissionModule EmissionModule;
     //public NavMeshAgent NavAgent;
 
     private ActionableActioner Actioner;
@@ -50,11 +53,28 @@ public class OrderlyController : MonoBehaviour
     private void Start () 
 	{
         Actioner = GetComponent<ActionableActioner>();
-	}
+
+        if (MovementParticle != null)
+        {
+            GameObject tempParticle = ((GameObject)Instantiate(MovementParticle, new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z), transform.rotation, transform));
+            EmissionModule = tempParticle.GetComponentInChildren<ParticleSystem>().emission;
+            EmissionModule.enabled = false;
+        }
+    }
 
     public void StartActionable(Actionable pActionable)
     {
         Actioner.AttemptAction(pActionable);
+    }
+
+    public void EnableMovementParticle()
+    {
+        EmissionModule.enabled = true;
+    }
+
+    public void DisableMovementParticle()
+    {
+        EmissionModule.enabled = false;
     }
 
     //private IEnumerator ActionableCoroutine()
