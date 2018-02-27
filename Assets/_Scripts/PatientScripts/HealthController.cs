@@ -42,7 +42,7 @@ public class HealthController : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(1);
-            var inBed = BedManagerInstance.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);            
+            var inBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);            
             if(inBed != null)
             {
                 var severityIncrease = SanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.CholeraSeverityIncreasePerSecond ?? 0;
