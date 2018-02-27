@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class HydrationController : Actionable
 {
+    public SanitationConfig SanitationConfig;
+
     private HealthController HealthCtrl;
     private HydrationModel CurrentHydrationModel;
     private bool IsHydrating;
@@ -47,6 +51,13 @@ public class HydrationController : Actionable
     {
         IsHydrating = true;
         OnStartHydrating();
+        ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel);
+    }
+
+    private void ResolveSanitationEffect(float pDirtyStatus)
+    {
+        var severity = SanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
+        HealthCtrl.CholeraSeverity += severity?.CholeraSeverityIncreasePerSecond ?? 0;
     }
 
     private void Hydrate()

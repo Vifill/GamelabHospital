@@ -53,8 +53,7 @@ public class BedStation : Actionable
 
     public void IncreaseDirtyMeter(float pValue)
     {
-        DirtyMeter += pValue;
-        Mathf.Clamp(DirtyMeter, 0, 100);
+        DirtyMeter = Mathf.Clamp(DirtyMeter += pValue, 0, 100);
         //UI Stuff
         UpdateDirtyUI();
     }
