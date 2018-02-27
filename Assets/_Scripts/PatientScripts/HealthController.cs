@@ -14,6 +14,8 @@ public class HealthController : MonoBehaviour
     public HydrationConfig HydrationConfig;
     public CholeraConfig CholeraConfig;
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
+    public SanitationConfig SanitationConfig;
+
     public GameObject HydrationUIPrefab;
     public GameObject PukeParticleEffect;
     public Transform PukePosition;
@@ -32,6 +34,21 @@ public class HealthController : MonoBehaviour
         HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
         PatientStatusController = GetComponent<PatientStatusController>();
         StartCoroutine(SickCoroutine());
+        StartCoroutine(BedSanitationCheckCoroutine());
+    }
+    
+    private IEnumerator BedSanitationCheckCoroutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(1);
+            var inBed = BedManagerInstance.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);            
+            if(inBed != null)
+            {
+                var severityIncrease = SanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.CholeraSeverityIncreasePerSecond ?? 0;
+                CholeraSeverity += severityIncrease;
+            }
+        }
     }
 
     private IEnumerator SickCoroutine()
@@ -50,6 +67,8 @@ public class HealthController : MonoBehaviour
             }
         }
     }
+
+
 
     private void Excrete()
     {
@@ -80,10 +99,10 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        if (TEST_HPS && CholeraSeverity > 0)
-        {
-            CholeraSeverity -= .5f * Time.deltaTime;
-        }
+        //if (TEST_HPS && CholeraSeverity > 0)
+        //{
+        //    CholeraSeverity -= .5f * Time.deltaTime;
+        //}
 
         if (!PatientStatusController.IsHealed && CholeraSeverity <= 0)
         {
