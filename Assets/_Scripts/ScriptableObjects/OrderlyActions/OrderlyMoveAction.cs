@@ -15,8 +15,11 @@ public class OrderlyMoveAction : OrderlyAction
 
     private NavMeshAgent NavAgent;
 
+    private Animator Animator;
+
     public OrderlyMoveAction(Transform pPosition, float pDistanceToStop = 0, float pDistanceWhenCloseEnough = 2)
     {
+        
         Target = pPosition;
         DistanceToStop = pDistanceToStop;
         DistanceWhenCloseEnough = pDistanceWhenCloseEnough;
@@ -41,6 +44,16 @@ public class OrderlyMoveAction : OrderlyAction
 
     protected override void OnStartAction()
     {
+        Animator = OrderlyObject.GetComponentInChildren<Animator>();
+
+        if (!Animator.GetBool("IsWalking"))
+        {
+            Animator.SetBool("IsWalking", true);
+            //EmissionModule.enabled = true;
+        }
+
+        OrderlyObject.GetComponent<OrderlyController>().EnableMovementParticle();
+
         PositionToMoveTo = GetTargetPoint(Target);
 
         NavAgent = OrderlyObject.GetComponent<NavMeshAgent>();
@@ -48,6 +61,17 @@ public class OrderlyMoveAction : OrderlyAction
 
         NavAgent.SetDestination(PositionToMoveTo);
         NavAgent.stoppingDistance = DistanceToStop;
+    }
+
+    protected override void OnStopAction()
+    {
+        if (Animator.GetBool("IsWalking"))
+        {
+            Animator.SetBool("IsWalking", false);
+            //EmissionModule.enabled = true;
+        }
+
+        OrderlyObject.GetComponent<OrderlyController>().DisableMovementParticle();
     }
 
     private Vector3 GetTargetPoint(Transform actionable)
