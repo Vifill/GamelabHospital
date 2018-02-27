@@ -14,7 +14,7 @@ public class HealthController : MonoBehaviour
     public HydrationConfig HydrationConfig;
     public CholeraConfig CholeraConfig;
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
-    public SanitationConfig SanitationConfig;
+    public SanitationConfig BedSanitationConfig;
 
     public GameObject HydrationUIPrefab;
     public GameObject PukeParticleEffect;
@@ -42,11 +42,12 @@ public class HealthController : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(1);
-            var inBed = BedManagerInstance.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);            
+            var inBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);            
             if(inBed != null)
             {
-                var severityIncrease = SanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.CholeraSeverityIncreasePerSecond ?? 0;
+                var severityIncrease = BedSanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.CholeraSeverityIncreasePerSecond ?? 0;
                 CholeraSeverity += severityIncrease;
+                CholeraSeverity = Mathf.Clamp(CholeraSeverity, 0, 100);
             }
         }
     }
@@ -123,20 +124,12 @@ public class HealthController : MonoBehaviour
     private void MakeBedDirty()
     {
         var beds = BedManagerInstance?.Beds;
-        BedController patientBed = null;
 
-        int size = beds?.Count ?? 0;
-        for (int i = 0; i < size; i++)
-        {
-            if (beds[i].PatientInBed == gameObject)
-            {
-                patientBed = beds[i];
-            }
-        }
+        var patientInBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);        
 
-        if (patientBed != null)
+        if (patientInBed != null)
         {
-            patientBed.BedStation.IncreaseDirtyMeter(20);
+            patientInBed.BedStation.IncreaseDirtyMeter(20);
         }
         else
         {

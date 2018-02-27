@@ -27,11 +27,10 @@ public class OrderlyInteractionAction : OrderlyAction
         {
             OrderlyObject.GetComponent<ActionableActioner>().AttemptAction(Action, null, ActionFinished, CancelOrder);
         }
-        //else
+        else
         {
             OrderlyObject.GetComponent<ActionableActioner>().PlayInvalidActionSound();
             CancelOrder();
         }
     }
-
 }

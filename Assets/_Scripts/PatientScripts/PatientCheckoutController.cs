@@ -7,14 +7,12 @@ class PatientCheckoutController : Actionable
     private GameObject CanBeCheckedOutParticleInstance;
     private PatientStatusController PatientStatusController;
     private HydrationController HydrationController;
-    private AudioSource ActionSoundSource;
     private bool IsCheckingOut = false;
 
     protected override void Initialize()
     {
         PatientStatusController = GetComponent<PatientStatusController>();
         HydrationController = GetComponent<HydrationController>();
-        AudioSource ActionSoundSource = GetComponent<AudioSource>();
     }
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {

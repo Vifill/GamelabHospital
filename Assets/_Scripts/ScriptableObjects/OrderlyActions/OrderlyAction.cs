@@ -10,16 +10,19 @@ public abstract class OrderlyAction
     public virtual void UpdateAction() { }
     protected virtual void OnStartAction() { }
     protected virtual void OnFinishedAction() { }
+    protected virtual void OnStopAction() { }
 
     protected GameObject OrderlyObject;
 
     protected void ActionFinished()
     {
+        OnStopAction();
         OrderlyObject.GetComponent<OrderlyController>().ActionFinished();
     }
 
     protected void CancelOrder()
     {
+        OnStopAction();
         OrderlyObject.GetComponent<OrderlyController>().CancelOrder();
     }
 
