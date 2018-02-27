@@ -129,7 +129,7 @@ public class HealthController : MonoBehaviour
 
         if (patientInBed != null)
         {
-            patientInBed.BedStation.IncreaseDirtyMeter(20);
+            patientInBed.BedStation.IncreaseDirtyMeter(CholeraConfig.ExcreteBedDirtyIncrease);
         }
         else
         {
