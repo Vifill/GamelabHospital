@@ -1,11 +1,15 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Stencil/Outline"
-{
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+
+Shader "Custom/Outline" {
 	Properties
 	{
+		_TextureColor("TexColor", TexColor) = (1,0,1,1)
 		_Color("Color", Color) = (1,0,0,1)
 		_Thickness("Thickness", float) = 4
+		_MainTex("Texture", 2D) = "white" {}
 	}
 		SubShader
 	{
@@ -21,6 +25,8 @@ Shader "Stencil/Outline"
 		Comp always
 		Pass replace
 	}
+
+
 		CGPROGRAM
 #pragma vertex vert
 #pragma fragment frag
@@ -55,11 +61,13 @@ Shader "Stencil/Outline"
 		return OUT;
 	}
 
+	sampler2D _MainTex;
+	//fixed4 _TextureColor;
 	half4 frag(g2f IN) : COLOR
 	{
-		//this renders nothing, if you want the base mesh and color
-		//fill this in with a standard fragment shader calculation
-		return 0;
+		fixed4 col = tex2D(_MainTex, IN.uv);
+		return col;
+		//*****************************************'
 	}
 		ENDCG
 	}
