@@ -2,7 +2,7 @@
 
 class PatientCheckoutController : Actionable
 {
-    public GameObject CanBeCheckedOutParticle;
+    public GameObject CanBeCheckedOutVisual;
 
     private GameObject CanBeCheckedOutParticleInstance;
     private PatientStatusController PatientStatusController;
@@ -30,9 +30,9 @@ class PatientCheckoutController : Actionable
     {
         if ((PatientStatusController?.IsHealed ?? false) && (HydrationController?.enabled ?? false))
         {
-            if (CanBeCheckedOutParticle != null)
+            if (CanBeCheckedOutVisual != null)
             {
-                CanBeCheckedOutParticleInstance = (GameObject)Instantiate(CanBeCheckedOutParticle, new Vector3(transform.position.x, transform.position.y - .5f, transform.position.z), Quaternion.identity);
+                CanBeCheckedOutParticleInstance = (GameObject)Instantiate(CanBeCheckedOutVisual, new Vector3(transform.position.x, transform.position.y - .5f, transform.position.z), Quaternion.identity);
             }
             HydrationController.enabled = false;
         }

@@ -88,6 +88,14 @@ public class MovementController : MonoBehaviour {
             //    transform.rotation = Quaternion.LookRotation(Velocity);
             //}
         }
+        else
+        {
+            if (Animator.GetBool("IsWalking"))
+            {
+                Animator.SetBool("IsWalking", false);
+                EmissionModule.enabled = false;
+            }
+        }
     }
 
     private void StartWalkingAnimation()
