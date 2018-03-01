@@ -260,7 +260,7 @@
 			CGPROGRAM
 	#pragma vertex vert
 	#pragma fragment frag
-	#pragma target 4.0
+	#pragma target 2.0
 	#pragma multi_compile_fog
 	#include "UnityLightingCommon.cginc" // for _LightColor0
 	#include "UnityCG.cginc" // for UnityObjectToWorldNormal

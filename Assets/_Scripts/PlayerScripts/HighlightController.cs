@@ -15,7 +15,7 @@ public class HighlightController : MonoBehaviour
 	private void Start () 
 	{
         ToolCtrl = GetComponent<ToolController>();
-	}
+    }
 	
 	// Update is called once per frame
 	private void Update () 
@@ -33,8 +33,6 @@ public class HighlightController : MonoBehaviour
             actionable.SetHighlight(HighlightShader);
             HighlightedObject = actionable.gameObject;
             PreviousActionable?.RemoveHighlight();
-            
-
         }
         //if (actionable != null)
         //{
