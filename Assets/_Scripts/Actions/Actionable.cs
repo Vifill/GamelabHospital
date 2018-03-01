@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Actionable : MonoBehaviour 
@@ -94,7 +95,7 @@ public abstract class Actionable : MonoBehaviour
         }
     }
 
-    public void SetHighlight(Shader pHighlightShader)
+    public void SetHighlight(Shader pHighlightShader, Color? pColor = null)
     {
         var renderers = transform.Find("Highlightable")?.GetComponentsInChildren<Renderer>();
         if (renderers != null)
@@ -110,6 +111,14 @@ public abstract class Actionable : MonoBehaviour
             foreach (Material mat in mats)
             {
                 mat.shader = pHighlightShader;
+                if (pColor != null)
+                {
+                    mat.SetColor("_OutlineColor", pColor.Value);
+                }
+                else
+                {
+                    mat.SetColor("_OutlineColor", new Color(0.67f, 1f, 0.184f));
+                }
             }
         }
     }
@@ -143,7 +152,17 @@ public abstract class Actionable : MonoBehaviour
     {
         if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
         {
-            SetHighlight(FindObjectOfType<HighlightController>().HighlightShader);
+            bool canSomeoneActionMe = GameController.GetOrderliesInScene.Any(a => CanBeActioned(a.GetComponent<ToolController>().GetCurrentToolName(), a.gameObject));
+            SetHighlight(FindObjectOfType<HighlightController>().HighlightShader, new Color(0f, 0.5f, 1f));
+            //if (!canSomeoneActionMe)
+            //{
+            //    SetHighlight(FindObjectOfType<HighlightController>().HighlightShader, new Color(0.8f,0,0));
+            //}
+            //else
+            //{
+            //    SetHighlight(FindObjectOfType<HighlightController>().HighlightShader);
+            //}
+
             MouseCursorController.SetCursorToClickable();
         }
     }

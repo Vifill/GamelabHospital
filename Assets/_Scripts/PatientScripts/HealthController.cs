@@ -121,7 +121,7 @@ public class HealthController : MonoBehaviour
         }
         else
         {
-            print("<color=magenta> puked but was not in bed </color>");
+           // print("<color=magenta> puked but was not in bed </color>");
         }
     }
 }

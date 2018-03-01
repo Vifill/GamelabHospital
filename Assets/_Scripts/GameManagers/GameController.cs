@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameController : MonoBehaviour 
@@ -7,6 +8,7 @@ public class GameController : MonoBehaviour
     static public bool InMenuScreen;
     static public bool InPauseMenu;
     static public bool OrderlyInScene { get; private set; }
+    static public List<OrderlyController> GetOrderliesInScene { get; private set; }
     public BedManager BedManager;
     public GameObject PauseMenuPrefab;
     private Transform MainCanvas;
@@ -25,6 +27,7 @@ public class GameController : MonoBehaviour
         if (FindObjectOfType<OrderlyController>() != null)
         {
             OrderlyInScene = true;
+            GetOrderliesInScene = FindObjectsOfType<OrderlyController>().ToList();
         }
         else
         {
