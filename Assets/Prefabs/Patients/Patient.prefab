@@ -2477,7 +2477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1982455099386776
 GameObject:
   m_ObjectHideFlags: 1
@@ -3443,7 +3443,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1976841698954826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.832829, y: 0, z: 2.42295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4931275199876828}
@@ -6827,8 +6827,7 @@ MonoBehaviour:
   NeedsSanitizedTool: 0
   PlayerDesanitationAmount: 0
   ActionProgress: 0
-  CanBeCheckedOutParticle: {fileID: 1595240440422196, guid: 0ebd6da55a04b9445a8ca1f9e274206d,
-    type: 2}
+  CanBeCheckedOutVisual: {fileID: 0}
 --- !u!114 &114639249190641622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7476,10 +7475,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
-  m_Acceleration: 8
+  m_Speed: 6
+  m_Acceleration: 60
   avoidancePriority: 50
-  m_AngularSpeed: 400
+  m_AngularSpeed: 500
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
