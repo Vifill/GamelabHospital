@@ -78,8 +78,11 @@ public class HydrationController : Actionable
     {
         if (CurrentHydrationModel.DisplayPrefab != null)
         {
-            var posObj = MovementController.TargetBed.transform.Find("IVPos");
-            DisplayedObject = Instantiate(CurrentHydrationModel.DisplayPrefab,posObj.position,posObj.rotation,posObj);
+            if (DisplayedObject == null)
+            {
+                var posObj = MovementController.TargetBed.transform.Find("IVPos");
+                DisplayedObject = Instantiate(CurrentHydrationModel.DisplayPrefab, posObj.position, posObj.rotation, posObj);
+            }  
         }
     }
 
