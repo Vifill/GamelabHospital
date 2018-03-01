@@ -24,7 +24,12 @@ public class SanitationController : MonoBehaviour
 	private void Start() 
 	{
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
-        DirtyParticles.SetActive(false);
+
+        if (DirtyParticles.activeInHierarchy)
+        {
+            DirtyParticles.SetActive(false);
+        }
+        
         InitializeSanitationUI();
 	}
 	
