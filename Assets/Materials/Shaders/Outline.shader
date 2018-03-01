@@ -1,20 +1,18 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-
 Shader "Custom/Outline" {
 	Properties
 	{
-		_TextureColor("TexColor", TexColor) = (1,0,1,1)
-		_Color("Color", Color) = (1,0,0,1)
-		_Thickness("Thickness", float) = 4
+		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("Texture", 2D) = "white" {}
+		_BorderColor("Border Color", Color) = (0.67,1,0.184,1)
+		//_BorderColor("Border Color", Color) = (1,0,0,1)
+		_Thickness("Border Thickness", float) = 10
 	}
 		SubShader
 	{
 
-		Tags{ "Queue" = "Geometry" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
+		Tags{ "Queue" = "Geometry" "IgnoreProjector" = "True" "RenderType" = "Opaque" }
 		Blend SrcAlpha OneMinusSrcAlpha
 		Cull Back
 		ZTest always
@@ -25,8 +23,6 @@ Shader "Custom/Outline" {
 		Comp always
 		Pass replace
 	}
-
-
 		CGPROGRAM
 #pragma vertex vert
 #pragma fragment frag
@@ -60,14 +56,13 @@ Shader "Custom/Outline" {
 
 		return OUT;
 	}
-
+	float4 _Color;
 	sampler2D _MainTex;
-	//fixed4 _TextureColor;
 	half4 frag(g2f IN) : COLOR
 	{
-		fixed4 col = tex2D(_MainTex, IN.uv);
-		return col;
-		//*****************************************'
+		float4 color = tex2D(_MainTex, IN.uv);
+		color = color * _Color;
+		return color;
 	}
 		ENDCG
 	}
@@ -85,7 +80,7 @@ Shader "Custom/Outline" {
 #pragma fragment frag
 
 
-		half4 _Color;
+	half4 _BorderColor;
 	float _Thickness;
 
 	struct v2g
@@ -160,13 +155,13 @@ Shader "Custom/Outline" {
 
 	half4 frag(g2f IN) : COLOR
 	{
-		_Color.a = 1;
-	return _Color;
+		_BorderColor.a = 1;
+	return _BorderColor;
 	}
 
 		ENDCG
 
 	}
 	}
-		FallBack "Diffuse"
+	FallBack "Diffuse"
 }
