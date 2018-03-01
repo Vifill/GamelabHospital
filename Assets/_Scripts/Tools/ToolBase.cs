@@ -17,7 +17,10 @@ public class ToolBase : MonoBehaviour
 
     private void Start()
     {
-        DirtyMesh?.SetActive(false);
+        if(DirtyMesh != null)
+        {
+            DirtyMesh?.SetActive(false);
+        }
     }
 
     public void ToolUsed()
