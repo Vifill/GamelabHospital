@@ -64,6 +64,7 @@ public class PatientSpawner : MonoBehaviour
         GameObject patient = (GameObject)Instantiate(PatientsToSpawn[index], SpawnPoint.position, SpawnPoint.rotation);
 
         patient.GetComponent<HealthController>().CholeraSeverity = UnityEngine.Random.Range(SpawnConfig.CholeraSeverityRange.x, SpawnConfig.CholeraSeverityRange.y);
+        patient.GetComponent<HealthController>().HydrationMeter = UnityEngine.Random.Range(SpawnConfig.HydrationRange.x, SpawnConfig.HydrationRange.y);
 
         //Remove that patient
         PatientsToSpawn.RemoveAt(index);
