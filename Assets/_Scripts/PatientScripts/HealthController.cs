@@ -8,13 +8,14 @@ public class HealthController : MonoBehaviour
 {
     public bool TEST_HPS;
 
-    public float HydrationMeter;
     public float CholeraSeverity;
+    public float HydrationMeter;
 
     public HydrationConfig HydrationConfig;
     public CholeraConfig CholeraConfig;
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
     public SanitationConfig BedSanitationConfig;
+    public HydrationHealingConfig HydrationHealingConfig;
 
     public GameObject HydrationUIPrefab;
     public GameObject PukeParticleEffect;
@@ -36,7 +37,38 @@ public class HealthController : MonoBehaviour
         StartCoroutine(SickCoroutine());
         StartCoroutine(BedSanitationCheckCoroutine());
     }
-    
+
+    private void Update()
+    {
+        //if (TEST_HPS && CholeraSeverity > 0)
+        //{
+        //    CholeraSeverity -= .5f * Time.deltaTime;
+        //}
+
+        var severityDecrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.CholeraSeverityDecreasePerSecond ?? 0;
+
+        if (severityDecrease > 0)
+        {
+            CholeraSeverity -= severityDecrease * Time.deltaTime;
+        }
+
+        if (!PatientStatusController.IsHealed && CholeraSeverity <= 0)
+        {
+            PatientStatusController.IsHealed = true;
+        }
+
+        if (!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
+        {
+            HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime;
+            CholeraSeverity -= ConstantHealing * Time.deltaTime;
+
+            if (!PatientStatusController.IsDead && HydrationMeter <= 0)
+            {
+                PatientStatusController.Death();
+            }
+        }
+    }
+
     private IEnumerator BedSanitationCheckCoroutine()
     {
         while(true)
@@ -69,8 +101,6 @@ public class HealthController : MonoBehaviour
         }
     }
 
-
-
     private void Excrete()
     {
         ReduceHydration();
@@ -98,29 +128,6 @@ public class HealthController : MonoBehaviour
         HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier;
     }
 
-    private void Update()
-    {
-        //if (TEST_HPS && CholeraSeverity > 0)
-        //{
-        //    CholeraSeverity -= .5f * Time.deltaTime;
-        //}
-
-        if (!PatientStatusController.IsHealed && CholeraSeverity <= 0)
-        {
-            PatientStatusController.IsHealed = true;
-        }
-
-        if(!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
-        {
-            HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime;
-            CholeraSeverity -= ConstantHealing * Time.deltaTime;
-
-            if (!PatientStatusController.IsDead && HydrationMeter <= 0)
-            {
-                PatientStatusController.Death();
-            }
-        }
-    }
     private void MakeBedDirty()
     {
         var beds = BedManagerInstance?.Beds;
