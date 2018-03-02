@@ -11,6 +11,7 @@ public class SpawnConfig : ScriptableObject
     public float RandomVariance;
 
     public Vector2 CholeraSeverityRange;
+    public Vector2 HydrationRange;
 
     public List<PatientSpawnModel> ListOfPatientPrefabs;
 }
