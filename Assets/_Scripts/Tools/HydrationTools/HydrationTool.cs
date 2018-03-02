@@ -15,6 +15,7 @@ public class HydrationModel
     public float TimeItTakes;
     public float ActionTime;
     public GameObject DisplayPrefab;
+    public AudioClip HydrationSound;
 }
 
 

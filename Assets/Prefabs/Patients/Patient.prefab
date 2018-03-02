@@ -6831,6 +6831,7 @@ MonoBehaviour:
   ActionProgress: 0
   CanBeCheckedOutVisual: {fileID: 1595240440422196, guid: 0ebd6da55a04b9445a8ca1f9e274206d,
     type: 2}
+  IsCheckingOut: 0
 --- !u!114 &114639249190641622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6877,7 +6878,7 @@ MonoBehaviour:
   ActionTime: 0
   ActionParticles: {fileID: 0}
   ActionSuccessParticles: {fileID: 0}
-  ActionSoundEvent: {fileID: 8300000, guid: 0fe150a76c6fce54286ccb27eddfe948, type: 3}
+  ActionSoundEvent: {fileID: 0}
   ActionFinishedSoundEvent: {fileID: 0}
   AnimatorParameter: 
   IsPickupable: 0

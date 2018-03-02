@@ -36,6 +36,7 @@ public class HydrationController : Actionable
         {
             CurrentHydrationModel = (pObjectActioning.GetComponent<ToolController>().GetToolBase() as HydrationTool).HydrationModel;
             actionTime = CurrentHydrationModel.ActionTime;
+            ActionSoundEvent = CurrentHydrationModel.HydrationSound;
         }
 
         return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = actionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
