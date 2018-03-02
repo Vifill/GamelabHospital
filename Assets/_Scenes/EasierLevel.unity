@@ -3137,7 +3137,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.32
+      value: -1.0399996
       objectReference: {fileID: 0}
     - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6996,7 +6996,7 @@ Prefab:
         type: 2}
       propertyPath: LevelConfig
       value: 
-      objectReference: {fileID: 11400000, guid: 91290c834f4aa5d4c92b7319bffffbb2,
+      objectReference: {fileID: 11400000, guid: 79f2081d7abe823458476fc213558153,
         type: 2}
     - target: {fileID: 114527165294818196, guid: 5c4315246dbe1b24f8c57968b3b99056,
         type: 2}
@@ -8671,7 +8671,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.3200004
+      value: -1.04
       objectReference: {fileID: 0}
     - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10892,6 +10892,7 @@ GameObject:
   - component: {fileID: 1849269553}
   - component: {fileID: 1849269552}
   - component: {fileID: 1849269557}
+  - component: {fileID: 1849269558}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10981,6 +10982,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 5a7aad1831f70a149a752baf3667e427, type: 2}
+--- !u!114 &1849269558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1849269551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 923bc4d7198b60540a35731703f39ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraCage: {x: 16.79, y: 17.08}
+  Offset: {x: 2.6, y: 5.7}
+  Speed: 0.3
+  MaxTraveldistance: 0.5
+  CameraOffset: 9
 --- !u!1 &1849993277
 GameObject:
   m_ObjectHideFlags: 0
@@ -12185,7 +12202,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.04
+      value: -3.64
       objectReference: {fileID: 0}
     - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
       propertyPath: m_LocalPosition.y
