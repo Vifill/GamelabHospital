@@ -24,7 +24,17 @@ public class MaterialSwapping : MonoBehaviour {
         Timer += Time.deltaTime;
         if (Timer >= Rate)
         {
+            if (Index < Materials.Length)
+            {
+                SwapMaterial();
+            }
+            else
+            {
+                Index = 0;
+                SwapMaterial();
+            }
 
+            Timer = 0f;
         }
 	}
 

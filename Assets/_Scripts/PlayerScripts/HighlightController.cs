@@ -37,7 +37,7 @@ public class HighlightController : MonoBehaviour
             else
             {
                 //cant be used... RED
-                actionable.SetHighlight(HighlightShader, new Color(0.8f,0,0));
+                //actionable.SetHighlight(HighlightShader, new Color(0.8f,0,0));
             }
 
             HighlightedObject = actionable.gameObject;
