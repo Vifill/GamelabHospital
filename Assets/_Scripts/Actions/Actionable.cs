@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,6 +12,14 @@ public abstract class Actionable : MonoBehaviour
 
     [Header("Actionable Parameters")]
     public float RadiusOfActivation;
+
+    public Actionable GetMostRelevantAction(ToolName pCurrentTool, GameObject pObjectActioning)
+    {
+        var actionables = GetComponentsInChildren<Actionable>().ToList();
+        var actionablesThatCanBeActioned = actionables.Where(a => a.CanBeActioned(pCurrentTool, pObjectActioning));
+        return actionablesThatCanBeActioned.FirstOrDefault() ?? transform.root.GetComponent<Actionable>();
+    }
+
     public float ActionTime;
     public GameObject ActionParticles;
     public GameObject ActionSuccessParticles;
@@ -95,7 +104,7 @@ public abstract class Actionable : MonoBehaviour
         }
     }
 
-    public void SetHighlight(Shader pHighlightShader, Color? pColor = null)
+    public void SetHighlight(Shader pHighlightShader)
     {
         var renderers = transform.Find("Highlightable")?.GetComponentsInChildren<Renderer>();
         if (renderers != null)
@@ -111,14 +120,6 @@ public abstract class Actionable : MonoBehaviour
             foreach (Material mat in mats)
             {
                 mat.shader = pHighlightShader;
-                if (pColor != null)
-                {
-                    mat.SetColor("_OutlineColor", pColor.Value);
-                }
-                else
-                {
-                    mat.SetColor("_OutlineColor", new Color(0.67f, 1f, 0.184f));
-                }
             }
         }
     }
@@ -152,17 +153,7 @@ public abstract class Actionable : MonoBehaviour
     {
         if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
         {
-            bool canSomeoneActionMe = GameController.GetOrderliesInScene.Any(a => CanBeActioned(a.GetComponent<ToolController>().GetCurrentToolName(), a.gameObject));
-            SetHighlight(FindObjectOfType<HighlightController>().HighlightShader, new Color(0f, 0.5f, 1f));
-            //if (!canSomeoneActionMe)
-            //{
-            //    SetHighlight(FindObjectOfType<HighlightController>().HighlightShader, new Color(0.8f,0,0));
-            //}
-            //else
-            //{
-            //    SetHighlight(FindObjectOfType<HighlightController>().HighlightShader);
-            //}
-
+            transform.root.GetComponent<Actionable>().SetHighlight(FindObjectOfType<HighlightController>().HighlightShader);
             MouseCursorController.SetCursorToClickable();
         }
     }
@@ -171,7 +162,7 @@ public abstract class Actionable : MonoBehaviour
     {
         if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
         {
-            RemoveHighlight();
+            transform.root.GetComponent<Actionable>().RemoveHighlight();
             MouseCursorController.SetCursorToIdle();
         }
     }
