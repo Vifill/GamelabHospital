@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public class CameraFollow : MonoBehaviour 
 {
@@ -62,8 +61,9 @@ public class CameraFollow : MonoBehaviour
 	{
 		Square square = GetGroupSquare();
 		Vector3 center = Vector3.zero;
+        int length = Players?.Length ?? 0;
 
-		if (Players.Length > 1) 
+        if (length > 1) 
 		{
 			Vector2 leftTopCorner = new Vector2(square.minX,square.maxZ);
 			Vector2 rightBottomCorner = new Vector2(square.maxX, square.minZ);
@@ -71,7 +71,7 @@ public class CameraFollow : MonoBehaviour
 
 			center = new Vector3(diaCenter.x , 1 ,diaCenter.y);
 		}
-		else if (Players.Length == 1)
+		else if (length == 1)
 		{
 			center = Players[0].transform.position;
 			center.y = 1f;
@@ -83,8 +83,9 @@ public class CameraFollow : MonoBehaviour
 	{
 		Square square = GetGroupSquare ();
 		Vector3 size;
+        int length = Players?.Length ?? 0;
 
-		if (Players.Length > 1) 
+        if (length > 1) 
 		{
 			float sizeX =  Mathf.Abs(square.maxX - square.minX);
 			float sizeZ =  Mathf.Abs(square.maxZ - square.minZ);
@@ -101,9 +102,9 @@ public class CameraFollow : MonoBehaviour
 	private Square GetGroupSquare()
 	{
 		Square square = new Square();
-
+        int length = Players?.Length ?? 0;
 		//make rectangle out of extremes
-		for (int i = 0; i < Players.Length; i++) 
+		for (int i = 0; i < length; i++) 
 		{
 			Vector3 playerpos = Players [i].transform.position;
 
@@ -129,10 +130,7 @@ public class CameraFollow : MonoBehaviour
 		Gizmos.DrawWireCube(new Vector3(Offset.x, 1 , Offset.y), new Vector3(CameraCage.x, 1,CameraCage.y));
 
 		Gizmos.color = Color.green;
-		if (EditorApplication.isPlaying) 
-		{
-			Gizmos.DrawWireCube(GetGroupCenter(),GetGroupRectangleSize());
-			Gizmos.DrawWireSphere (GetGroupCenter(), 0.5f);
-		}
+		Gizmos.DrawWireCube(GetGroupCenter(),GetGroupRectangleSize());
+		Gizmos.DrawWireSphere (GetGroupCenter(), 0.5f);
 	}
 }

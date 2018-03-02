@@ -53,7 +53,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4874144612281360}
   - component: {fileID: 33410122833007560}
-  - component: {fileID: 136156281832601172}
   - component: {fileID: 23920488391100284}
   m_Layer: 0
   m_Name: WaterGlass
@@ -104,7 +103,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4523782976302392}
   - component: {fileID: 33515809005301848}
-  - component: {fileID: 136390941995749740}
   - component: {fileID: 23385787234135314}
   m_Layer: 0
   m_Name: WaterGlass (1)
@@ -139,7 +137,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4714141847795006}
   - component: {fileID: 33937374577498820}
-  - component: {fileID: 136092128709767424}
   - component: {fileID: 23059530745451694}
   m_Layer: 0
   m_Name: WaterGlass (2)
@@ -252,7 +249,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1135410968667960}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.5065827, y: 0.54, z: 7.818675}
+  m_LocalPosition: {x: 10.11, y: 0.56744194, z: 5.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4296151820077172}
@@ -476,8 +473,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.7, y: 1.4, z: 1}
+  m_Center: {x: 0.0056090355, y: 0.1912446, z: 0}
 --- !u!82 &82815874997564378
 AudioSource:
   m_ObjectHideFlags: 1
@@ -597,44 +594,8 @@ MonoBehaviour:
   AnimatorParameter: 
   IsPickupable: 0
   IsActionActive: 1
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 0
   ActionProgress: 0
   ToolObject: {fileID: 1230556889992956, guid: bf127c9f1f7d3ba48954ed37f05a14f9, type: 2}
---- !u!136 &136092128709767424
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1965700940129362}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136156281832601172
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1196787467792010}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136390941995749740
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1797726600152064}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

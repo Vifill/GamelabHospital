@@ -9,4 +9,6 @@ public class CholeraConfig : ScriptableObject
     public float ExcreteHydrationLoss;
     public float ExcreteHydrationLossVariance;
     public float ExcreteCholeraSeverityLoss;
+    [Tooltip("How much the bed gets dirty after each excretion")]
+    public float ExcreteBedDirtyIncrease;
 }

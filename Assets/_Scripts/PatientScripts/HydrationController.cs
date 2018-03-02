@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class HydrationController : Actionable
 {
+    public SanitationConfig SanitationConfig;
+
     private HealthController HealthCtrl;
     private HydrationModel CurrentHydrationModel;
     private bool IsHydrating;
@@ -47,6 +51,13 @@ public class HydrationController : Actionable
     {
         IsHydrating = true;
         OnStartHydrating();
+        ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel);
+    }
+
+    private void ResolveSanitationEffect(float pDirtyStatus)
+    {
+        var severity = SanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
+        HealthCtrl.CholeraSeverity += severity?.CholeraSeverityIncreasePerSecond ?? 0;
     }
 
     private void Hydrate()
@@ -55,7 +66,7 @@ public class HydrationController : Actionable
 
         if (Counter <= CurrentHydrationModel.TimeItTakes)
         {
-            HealthCtrl.HydrationMeter += (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime;
+            HealthCtrl.HydrationMeter = Mathf.Clamp(HealthCtrl.HydrationMeter + (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime, 0, 100);
         }
         else
         {
@@ -67,8 +78,11 @@ public class HydrationController : Actionable
     {
         if (CurrentHydrationModel.DisplayPrefab != null)
         {
-            var posObj = MovementController.TargetBed.transform.Find("IVPos");
-            DisplayedObject = Instantiate(CurrentHydrationModel.DisplayPrefab,posObj.position,posObj.rotation,posObj);
+            if (DisplayedObject == null)
+            {
+                var posObj = MovementController.TargetBed.transform.Find("IVPos");
+                DisplayedObject = Instantiate(CurrentHydrationModel.DisplayPrefab, posObj.position, posObj.rotation, posObj);
+            }  
         }
     }
 

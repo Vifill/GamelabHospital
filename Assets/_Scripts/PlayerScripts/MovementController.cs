@@ -31,18 +31,12 @@ public class MovementController : MonoBehaviour {
 	// Update is called once per frame
 	private void Update ()
     {
-
         if (CanMove)
         {
             //CharCntrlr Move
 
             if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
             {
-                //horizontal = Mathf.Lerp(horizontal, Input.GetAxisRaw("Horizontal"), WindUpTime * Time.deltaTime);
-                //vertical = Mathf.Lerp(vertical, Input.GetAxisRaw("Vertical"), WindUpTime * Time.deltaTime);
-
-                //Debug.Log("H " + horizontal + "  V " + vertical);
-
                 Direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                 //Debug.Log(Direction);
                 if (Direction.magnitude > 1)
@@ -60,8 +54,7 @@ public class MovementController : MonoBehaviour {
 
                     if (!Animator.GetBool("IsWalking"))
                     {
-                        Animator.SetBool("IsWalking", true);
-                        EmissionModule.enabled = true;
+                        StartWalkingAnimation();
                     }
                 }
             }
@@ -69,8 +62,7 @@ public class MovementController : MonoBehaviour {
             {
                 if (Animator.GetBool("IsWalking"))
                 {
-                    Animator.SetBool("IsWalking", false);
-                    EmissionModule.enabled = false;
+                    StopWalkingAnimation();
                 }
             }
             //if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
@@ -106,9 +98,22 @@ public class MovementController : MonoBehaviour {
         }
     }
 
+    private void StartWalkingAnimation()
+    {
+        Animator.SetBool("IsWalking", true);
+        EmissionModule.enabled = true;
+    }
+
+    private void StopWalkingAnimation()
+    {
+        Animator.SetBool("IsWalking", false);
+        EmissionModule.enabled = false;
+    }
+
     public void StopMovement()
     {
         CanMove = false;
+        StopWalkingAnimation();
     }
 
     public void StartMovement()

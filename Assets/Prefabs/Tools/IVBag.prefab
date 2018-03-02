@@ -184,12 +184,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToolName: 6
   NeedsToBeSanitized: 0
-  CanBeDropped: 1
+  CanBeDropped: 0
   DirtyMesh: {fileID: 0}
   IsUsedUpAfterUse: 1
   UsesBeforeDirty: 0
   HydrationModel:
-    HydrationReplenished: 100
+    HydrationReplenished: 50
     TimeItTakes: 10
     ActionTime: 2
     DisplayPrefab: {fileID: 1619660120352002, guid: 97bd60cb4bfb2434596d1e4115e4aab9,

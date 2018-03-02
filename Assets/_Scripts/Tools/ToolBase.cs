@@ -15,6 +15,14 @@ public class ToolBase : MonoBehaviour
 
     private int CurrentUsesBeforeDirty;
 
+    private void Start()
+    {
+        if(DirtyMesh != null)
+        {
+            DirtyMesh?.SetActive(false);
+        }
+    }
+
     public void ToolUsed()
     {
         if(NeedsToBeSanitized)
@@ -23,10 +31,9 @@ public class ToolBase : MonoBehaviour
             if (CurrentUsesBeforeDirty >= UsesBeforeDirty)
             {
                 IsDirty = true;
-                if(DirtyMesh != null)
-                {
-                    DirtyMesh?.SetActive(true);
-                }
+
+                DirtyMesh?.SetActive(true);
+               
             }
         }
     }
@@ -34,10 +41,8 @@ public class ToolBase : MonoBehaviour
     public void CleanTool()
     {
         IsDirty = false;
-        if(DirtyMesh != null)
-        {
-            DirtyMesh?.SetActive(false);
-        }
+
+        DirtyMesh?.SetActive(false);
     }
 }
 

@@ -3443,7 +3443,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1976841698954826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.832829, y: 0, z: 2.42295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4931275199876828}
@@ -6637,7 +6637,7 @@ AudioSource:
   m_GameObject: {fileID: 1976841698954826}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243624113533629842, guid: 3801dc34f7b5e1c4ca009479b18c89b9,
+  OutputAudioMixerGroup: {fileID: 243687687179067772, guid: 3801dc34f7b5e1c4ca009479b18c89b9,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
@@ -6783,19 +6783,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5478d1b215af014ea2a5961b88510b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TEST_HPS: 1
+  TEST_HPS: 0
   HydrationMeter: 100
   CholeraSeverity: 60
   HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
   CholeraConfig: {fileID: 11400000, guid: 1a29015937cb12d4e890d61c0b4ed1bd, type: 2}
   ThresholdOddsConfig: {fileID: 11400000, guid: a9a967e65765b9d4891827c2ea524fe3,
     type: 2}
+  BedSanitationConfig: {fileID: 11400000, guid: 79bb8956573112f49b04d3ee7b778a25,
+    type: 2}
   HydrationUIPrefab: {fileID: 1149620341329518, guid: 81a4b3d17fff8f345b03efedb06d434a,
     type: 2}
   PukeParticleEffect: {fileID: 1532283546104660, guid: 3e962117722c1bb4793a51bab55c24ed,
     type: 2}
   PukePosition: {fileID: 4928286199856396}
-  BedManagerInstance: {fileID: 0}
+  BedManagerInstance: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
   ConstantDehydrationSpeed: 0.5
   ConstantHealing: 0
 --- !u!114 &114501508067448934
@@ -6825,8 +6827,7 @@ MonoBehaviour:
   NeedsSanitizedTool: 0
   PlayerDesanitationAmount: 0
   ActionProgress: 0
-  CanBeCheckedOutParticle: {fileID: 1595240440422196, guid: 0ebd6da55a04b9445a8ca1f9e274206d,
-    type: 2}
+  CanBeCheckedOutVisual: {fileID: 0}
 --- !u!114 &114639249190641622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6873,7 +6874,7 @@ MonoBehaviour:
   ActionTime: 0
   ActionParticles: {fileID: 0}
   ActionSuccessParticles: {fileID: 0}
-  ActionSoundEvent: {fileID: 0}
+  ActionSoundEvent: {fileID: 8300000, guid: 0fe150a76c6fce54286ccb27eddfe948, type: 3}
   ActionFinishedSoundEvent: {fileID: 0}
   AnimatorParameter: 
   IsPickupable: 0
@@ -6882,6 +6883,7 @@ MonoBehaviour:
   NeedsSanitizedTool: 0
   PlayerDesanitationAmount: 5
   ActionProgress: 0
+  SanitationConfig: {fileID: 11400000, guid: 8e5cf8227361e3f49abdfeaf9aea8402, type: 2}
 --- !u!136 &136088267323064392
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -7473,10 +7475,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
-  m_Acceleration: 8
+  m_Speed: 6
+  m_Acceleration: 60
   avoidancePriority: 50
-  m_AngularSpeed: 400
+  m_AngularSpeed: 500
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0

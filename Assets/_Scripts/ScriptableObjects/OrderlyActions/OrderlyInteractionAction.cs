@@ -20,6 +20,7 @@ public class OrderlyInteractionAction : OrderlyAction
 
     protected override void OnStartAction()
     {
+        Action = Action.GetMostRelevantAction(OrderlyObject.GetComponent<ToolController>().GetCurrentToolName(), OrderlyObject);
         ActionPosition = Action.transform.position;
         ActionPosition.y = OrderlyObject.transform.position.y;
         if (Action.CanBeActioned(OrderlyObject.GetComponent<ToolController>().GetCurrentToolName(), OrderlyObject) /*&& Action.IsClose(OrderlyObject.transform)*/)
@@ -32,5 +33,4 @@ public class OrderlyInteractionAction : OrderlyAction
             CancelOrder();
         }
     }
-
 }
