@@ -91,7 +91,8 @@ public class LevelManager : MonoBehaviour
     public void CheckIfAllPatientsAreDone()
     {
         var statuses = new List<PatientStatusController>(FindObjectsOfType<PatientStatusController>());
-        if(!statuses.Any() || statuses.All(a => a.IsDead || a.IsHealed))
+        var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>());
+        if(!statuses.Any() || statuses.All(a => a.IsDead) || checkouts.All(a => a.IsCheckingOut))
         {
             Invoke("CheckIfPassed", 3); 
 //#if !UNITY_EDITOR

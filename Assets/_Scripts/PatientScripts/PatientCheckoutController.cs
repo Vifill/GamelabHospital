@@ -7,7 +7,7 @@ class PatientCheckoutController : Actionable
     private GameObject CanBeCheckedOutParticleInstance;
     private PatientStatusController PatientStatusController;
     private HydrationController HydrationController;
-    private bool IsCheckingOut = false;
+    public bool IsCheckingOut = false;
 
     protected override void Initialize()
     {
