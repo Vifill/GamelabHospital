@@ -61,6 +61,11 @@ public class PatientStatusController : MonoBehaviour
         LevelManager?.AddDeath();
         //LevelManager?.AddPoints(-(ailmentConfig.PointsWhenHealed));
         //AilmentUIController.CreateScorePopUpText(-(ailmentConfig.PointsWhenHealed));
+        foreach (var actionable in GetComponents<Actionable>())
+        {
+            actionable.RemoveHighlight();
+            actionable.IsActionActive = false;
+        }
         PlayDeathClothSound();
         MovementController.GetOutOfBed();
         StretchersController.IsDead = true;
