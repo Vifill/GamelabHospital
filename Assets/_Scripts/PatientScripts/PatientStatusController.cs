@@ -31,7 +31,6 @@ public class PatientStatusController : MonoBehaviour
     private PatientMovementController MovementController;
     private StretchersController StretchersController;
     private LevelManager LevelManager;
-    private HydrationController HydrationController;
 
 
     // Use this for initialization
@@ -40,7 +39,6 @@ public class PatientStatusController : MonoBehaviour
         IsHealed = false;
         MovementController = GetComponent<PatientMovementController>();
         StretchersController = GetComponent<StretchersController>();
-        HydrationController = GetComponent<HydrationController>();
         LevelManager = FindObjectOfType<LevelManager>();
         AudioSource = GetComponent<AudioSource>();
     }
@@ -63,8 +61,11 @@ public class PatientStatusController : MonoBehaviour
         LevelManager?.AddDeath();
         //LevelManager?.AddPoints(-(ailmentConfig.PointsWhenHealed));
         //AilmentUIController.CreateScorePopUpText(-(ailmentConfig.PointsWhenHealed));
-        HydrationController.IsActionActive = false;
-        HydrationController.RemoveHighlight();
+        foreach (var actionable in GetComponents<Actionable>())
+        {
+            actionable.RemoveHighlight();
+            actionable.IsActionActive = false;
+        }
         PlayDeathClothSound();
         MovementController.GetOutOfBed();
         StretchersController.IsDead = true;
