@@ -35,6 +35,7 @@ public class PauseMenuManager : MonoBehaviour
     public void BunttonOptions()
     {
         FindObjectOfType<MusicController>().PlayButtonSound();
-        Instantiate(OptionsMenuPrefab, transform.parent);
+        var optionMenu = Instantiate(OptionsMenuPrefab, transform.parent);
+        optionMenu.GetComponent<OptionMenuManager>().Initialize(gameObject);
     }
 }

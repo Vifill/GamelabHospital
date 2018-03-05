@@ -214,6 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a55beba1c57114d945f8323b1183d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionsMenuPrefab: {fileID: 1061250552499816, guid: 2e8e3575a04897e448c5756a7f1a182b,
+    type: 2}
 --- !u!114 &114104692485615932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -731,7 +733,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114020610889616740}
-        m_MethodName: ButtonQuit
+        m_MethodName: BunttonOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
