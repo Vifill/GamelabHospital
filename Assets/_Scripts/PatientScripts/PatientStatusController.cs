@@ -23,11 +23,16 @@ public class PatientStatusController : MonoBehaviour
             {
                 LevelManager.CheckIfAllPatientsAreDone();
             }
+            if (mIsHealed)
+            {
+                HydrationController.StopAllHydrations();
+            }
         }
     }
     public bool IsInBed = false;
     public bool IsDead = false;
 
+    private HydrationController HydrationController;
     private PatientMovementController MovementController;
     private StretchersController StretchersController;
     private LevelManager LevelManager;
@@ -37,6 +42,7 @@ public class PatientStatusController : MonoBehaviour
     private void Start()
     {
         IsHealed = false;
+        HydrationController = GetComponent<HydrationController>();
         MovementController = GetComponent<PatientMovementController>();
         StretchersController = GetComponent<StretchersController>();
         LevelManager = FindObjectOfType<LevelManager>();
@@ -66,6 +72,7 @@ public class PatientStatusController : MonoBehaviour
             actionable.RemoveHighlight();
             actionable.IsActionActive = false;
         }
+        HydrationController.StopAllHydrations();
         PlayDeathClothSound();
         MovementController.GetOutOfBed();
         StretchersController.IsDead = true;
