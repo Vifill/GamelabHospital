@@ -40,8 +40,8 @@ GameObject:
   m_Name: BedMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1432145258744064
 GameObject:
@@ -333,7 +333,7 @@ MonoBehaviour:
   NeedsSanitizedTool: 1
   PlayerDesanitationAmount: 20
   ActionProgress: 0
-  DirtyMeter: 0
+  DirtyMeter: 50
   RequiredTool: 4
   DirtyBarPrefab: {fileID: 1584299532339696, guid: 3bb17afc9f730a94d801c7bebfd439a0,
     type: 2}

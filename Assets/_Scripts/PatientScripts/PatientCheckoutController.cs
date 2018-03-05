@@ -24,6 +24,7 @@ class PatientCheckoutController : Actionable
         IsCheckingOut = true;
         PatientStatusController.CheckOut();
         Destroy(CanBeCheckedOutParticleInstance);
+        IsActionActive = false;
     }
 
     private void Update()

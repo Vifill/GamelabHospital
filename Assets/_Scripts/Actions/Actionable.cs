@@ -15,7 +15,7 @@ public abstract class Actionable : MonoBehaviour
 
     public Actionable GetMostRelevantAction(ToolName pCurrentTool, GameObject pObjectActioning)
     {
-        var actionables = GetComponentsInChildren<Actionable>().ToList();
+        var actionables = GetComponentsInChildren<Actionable>().Where(a => a.IsActionActive).ToList();
         var actionablesThatCanBeActioned = actionables.Where(a => a.CanBeActioned(pCurrentTool, pObjectActioning));
         return actionablesThatCanBeActioned.FirstOrDefault() ?? transform.root.GetComponent<Actionable>();
     }
