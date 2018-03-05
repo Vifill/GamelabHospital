@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1616651532390392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.11, y: 0.56744194, z: 0.41}
+  m_LocalPosition: {x: 10.189493, y: 0.56, z: 6.595443}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4241252456091066}
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RadiusOfActivation: 2
-  ActionTime: 0.75
+  ActionTime: 1.25
   ActionParticles: {fileID: 0}
   ActionSuccessParticles: {fileID: 0}
   ActionSoundEvent: {fileID: 0}
@@ -257,5 +257,8 @@ MonoBehaviour:
   AnimatorParameter: 
   IsPickupable: 0
   IsActionActive: 1
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 0
   ActionProgress: 0
   ToolObject: {fileID: 1240736790147530, guid: f8f1727c4c6ee9d4e8a8394c43af63af, type: 2}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
 
 public class SanitationController : MonoBehaviour
@@ -16,11 +17,19 @@ public class SanitationController : MonoBehaviour
     public string UIPosition;
     public Sprite SanitationUIPicture;
     public Color SanitationUIColor;
+    public GameObject DirtyParticles;
+    public SanitationConfig DoctorSanitationConfig;
 
 	// Use this for initialization
 	private void Start() 
 	{
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
+
+        if (DirtyParticles.activeInHierarchy)
+        {
+            DirtyParticles.SetActive(false);
+        }
+        
         InitializeSanitationUI();
 	}
 	
@@ -41,12 +50,22 @@ public class SanitationController : MonoBehaviour
     {
         CurrentSanitationLevel += pDirt;
         SanitationUI.UpdateSanitationUI();
+
+        if (CurrentSanitationLevel >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
+        {
+            DirtyParticles.SetActive(true);
+        }
     }
 
     public void ClearSanitation()
     {
         CurrentSanitationLevel = 0;
         SanitationUI.UpdateSanitationUI();
+
+        if (DirtyParticles.activeInHierarchy)
+        {
+            DirtyParticles.SetActive(false);
+        }
     }
 
 }

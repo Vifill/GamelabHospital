@@ -36,6 +36,7 @@ public class HydrationController : Actionable
         {
             CurrentHydrationModel = (pObjectActioning.GetComponent<ToolController>().GetToolBase() as HydrationTool).HydrationModel;
             actionTime = CurrentHydrationModel.ActionTime;
+            ActionSoundEvent = CurrentHydrationModel.HydrationSound;
         }
 
         return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = actionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
@@ -78,8 +79,11 @@ public class HydrationController : Actionable
     {
         if (CurrentHydrationModel.DisplayPrefab != null)
         {
-            var posObj = MovementController.TargetBed.transform.Find("IVPos");
-            DisplayedObject = Instantiate(CurrentHydrationModel.DisplayPrefab,posObj.position,posObj.rotation,posObj);
+            if (DisplayedObject == null)
+            {
+                var posObj = MovementController.TargetBed.transform.Find("IVPos");
+                DisplayedObject = Instantiate(CurrentHydrationModel.DisplayPrefab, posObj.position, posObj.rotation, posObj);
+            }  
         }
     }
 

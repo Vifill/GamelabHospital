@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelController
 {
-    private SceneLoader SceneLoader = new SceneLoader();
+    private SceneLoader SceneLoader;
 
     public LevelController(SceneLoader pSceneLoader)
     {

@@ -104,7 +104,7 @@ public abstract class Actionable : MonoBehaviour
         }
     }
 
-    public void SetHighlight(Shader pHighlightShader)
+    public void SetHighlight(Shader pHighlightShader, Color? pColor = null)
     {
         var renderers = transform.Find("Highlightable")?.GetComponentsInChildren<Renderer>();
         if (renderers != null)
@@ -120,6 +120,14 @@ public abstract class Actionable : MonoBehaviour
             foreach (Material mat in mats)
             {
                 mat.shader = pHighlightShader;
+                if (pColor != null)
+                {
+                    mat.SetColor("_OutlineColor", pColor.Value);
+                }
+                else
+                {
+                    mat.SetColor("_OutlineColor", new Color(0.67f, 1f, 0.184f));
+                }
             }
         }
     }
@@ -151,12 +159,15 @@ public abstract class Actionable : MonoBehaviour
 
     public void OnMouseEnter()
     {
+        
+
         if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
         {
-            transform.root.GetComponent<Actionable>().SetHighlight(FindObjectOfType<HighlightController>().HighlightShader);
+            transform.root.GetComponent<Actionable>().SetHighlight(FindObjectOfType<HighlightController>().HighlightShader, new Color(0f, 0.5f, 1f));
             MouseCursorController.SetCursorToClickable();
         }
     }
+
 
     public void OnMouseExit()
     {
