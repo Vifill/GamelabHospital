@@ -159,8 +159,6 @@ public abstract class Actionable : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        
-
         if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
         {
             transform.root.GetComponent<Actionable>().SetHighlight(FindObjectOfType<HighlightController>().HighlightShader, new Color(0f, 0.5f, 1f));

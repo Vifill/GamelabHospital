@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class PatientCheckoutController : Actionable
+public class PatientCheckoutController : Actionable
 {
     public GameObject CanBeCheckedOutVisual;
 
