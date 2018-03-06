@@ -5,20 +5,33 @@ using UnityEngine;
 
 public class HighlightController : MonoBehaviour 
 {
+    public Shader StandardOutlineShader;
+    public Shader WebGLOutlineShader;
+    [System.NonSerialized]
     public Shader HighlightShader;
     public static GameObject HighlightedObject;
 
     private Actionable PreviousActionable;
     private ToolController ToolCtrl;
 
-	// Use this for initialization
-	private void Start () 
+    private void Awake()
+    {
+    #if UNITY_WEBGL
+            print("webGL");
+            HighlightShader = WebGLOutlineShader;
+    #else
+            print("notWebgl");
+            HighlightShader = StandardOutlineShader;
+    #endif
+    }
+
+    private void Start() 
 	{
         ToolCtrl = GetComponent<ToolController>();
     }
 	
 	// Update is called once per frame
-	private void Update () 
+	private void Update() 
 	{
         var actionable = GetActionablesUtility.GetActionableForHighlight(ToolCtrl, transform)?.GetMostRelevantAction(ToolCtrl.GetCurrentToolName(), gameObject);
 

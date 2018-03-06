@@ -1,4 +1,4 @@
-﻿Shader "Custom/VertOutline"
+﻿Shader "Custom/WebGLOutline"
 {
 	Properties{
 		_Color("Color", Color) = (0,1,0,1)
@@ -6,7 +6,7 @@
 		_MainTex("Base (RGB)", 2D) = "white" {}
 		_OutlineFactor("Outline Factor", Range(0, 1)) = 1
 		_OutlineColor("Outline Color", Color) = (0.67,1,0.184,1)
-		_OutlineWidth("Outline Width", Range(0, 10)) = .15
+		_OutlineWidth("Outline Width", Range(0, 10)) = .0015
 		_BodyAlpha("Body Alpha", Range(0, 1)) = 1
 
 		_Stencil("Stencil ID", Int) = 16
