@@ -6,7 +6,12 @@ public class DrawBounds : MonoBehaviour
 {
     void OnDrawGizmos()
     {
-        Mesh mesh = gameObject.GetComponent<MeshFilter>().mesh;
+        if (gameObject.GetComponent<MeshFilter>() == null)
+        {
+            return;
+        }
+
+        Mesh mesh = gameObject.GetComponent<MeshFilter>().sharedMesh;
         mesh.RecalculateBounds();
         Bounds bounds = mesh.bounds;
         
@@ -23,8 +28,6 @@ public class DrawBounds : MonoBehaviour
             center + new Vector3(-extents.x, extents.y, extents.z),
             center - extents
         };
-        
-
 
         Gizmos.color = Color.red;
         for (int i = 0; i < corners.Length; i++)

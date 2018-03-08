@@ -13,19 +13,23 @@ public class WindShaderController : MonoBehaviour {
         MaterialPropertyBlock props = new MaterialPropertyBlock();
         MeshRenderer renderer;
 
-        foreach (GameObject obj in objects)
+        for (int i = 0; i < objects.Count; i++)
         {
+            if (objects[i].GetComponent<MeshFilter>() == null)
+            {
+                continue;
+            }
             float r = Random.Range(RandomOffsetRange.x, RandomOffsetRange.y);
             props.SetFloat("_RandomOffset", r);
-            props.SetVectorArray("_Bounds", FindBoundsInWorldSpace(obj.GetComponent<MeshFilter>().mesh));
-            renderer = obj.GetComponent<MeshRenderer>();
+            props.SetVectorArray("_Bounds", FindBoundsInWorldSpace(objects[i].GetComponent<MeshFilter>().sharedMesh));
+            renderer = objects[i].GetComponent<MeshRenderer>();
             renderer.SetPropertyBlock(props);
         }
     }
 
     List<Vector4> FindBoundsInWorldSpace(Mesh pMesh)
     {
-        Mesh mesh = gameObject.GetComponent<MeshFilter>().mesh;
+        Mesh mesh = pMesh;
         mesh.RecalculateBounds();
 
         Bounds bounds = mesh.bounds;

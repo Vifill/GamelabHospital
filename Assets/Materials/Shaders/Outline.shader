@@ -1,9 +1,12 @@
 ﻿Shader "Custom/Outline"
 {
 	Properties{
-		_Color("Color", Color) = (0,1,0,1)
+		_Color("Color", Color) = (1,1,1,1)
+		_MainTex("Albedo (RGB)", 2D) = "white" {}
+		_Glossiness("Smoothness", Range(0,1)) = 0.5
+		_Metallic("Metallic", Range(0,1)) = 0.0
+
 		_Brightness("Brightness", Range(0, 6)) = 1
-		_MainTex("Base (RGB)", 2D) = "white" {}
 		_OutlineFactor("Outline Factor", Range(0, 1)) = 1
 		_OutlineColor("Outline Color", Color) = (0.67,1,0.184,1)
 		_OutlineWidth("Outline Width", Range(0, 10)) = .15
@@ -16,7 +19,7 @@
 	}
 	SubShader {
 		Tags { 
-			"RenderType" = "Transparent"
+			"RenderType" = "Opaque" 
 			"Queue" = "Transparent" 
 			"IgnoreProjector" = "True"
 		}
@@ -239,88 +242,33 @@
 
 			ENDCG
 		}
-
-		Pass {
-			Name "VerticsOutline_Body"
-			Tags{ "LightMode" = "ForwardBase" }
-			Cull Back
-			ZWrite On
-			Blend SrcAlpha OneMinusSrcAlpha
-			ColorMask RGBA
-
-			Stencil {
-				Ref[_Stencil]
-				Comp Always
-				Pass Replace
-				ZFail Replace
-				ReadMask[_StencilReadMask]
-				WriteMask[_StencilWriteMask]
-			}
+		
 
 			CGPROGRAM
-	#pragma vertex vert
-	#pragma fragment frag
-	#pragma target 2.0
-	#pragma multi_compile_fog
-	#include "UnityLightingCommon.cginc" // for _LightColor0
-	#include "UnityCG.cginc" // for UnityObjectToWorldNormal
+#pragma surface surf Standard fullforwardshadows
+#pragma target 3.0
 
-			struct appdata_t {
-				float4 vertex : POSITION;
-				float2 texcoord : TEXCOORD0;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
+				sampler2D _MainTex;
+
+			struct Input {
+				float2 uv_MainTex;
 			};
 
-			struct v2f {
-				float4 vertex : SV_POSITION;
-				float2 texcoord : TEXCOORD0;
-				fixed4 diff : COLOR0;
-				UNITY_FOG_COORDS(1)
-					UNITY_VERTEX_OUTPUT_STEREO
-			};
-
-			sampler2D _MainTex;
-			float4 _MainTex_ST;
-			uniform float _BodyAlpha;
-
-			
-			v2f vert(appdata_base v)
-			{
-				v2f o;
-				UNITY_SETUP_INSTANCE_ID(v);
-				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-
-				o.vertex = UnityObjectToClipPos(v.vertex);
-
-				o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
-				UNITY_TRANSFER_FOG(o,o.vertex);
-
-				//Light
-				half3 worldNormal = UnityObjectToWorldNormal(v.normal);
-				half nl = max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
-				fixed4 lightcolor = fixed4(1, 1, 1, 1);
-				o.diff = nl * lightcolor;
-				o.diff.rgb += ShadeSH9(half4(worldNormal, 1));
-				return o;
-			}
-
+			half _Glossiness;
+			half _Metallic;
 			fixed4 _Color;
-			float _Brightness;
 
-			fixed4 frag(v2f i) : SV_Target
-			{
-				fixed4 col = tex2D(_MainTex, i.texcoord);
-				UNITY_APPLY_FOG(i.fogCoord, col);
-				UNITY_OPAQUE_ALPHA(col.a);
-				fixed lum = Luminance(col);
+			UNITY_INSTANCING_BUFFER_START(Props)
+			UNITY_INSTANCING_BUFFER_END(Props)
 
-			
-				col *= _Color * max(_Brightness, lum);
-				col *= i.diff;
-				return fixed4(col.rgb, _BodyAlpha);
+				void surf(Input IN, inout SurfaceOutputStandard o) {
+				fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+				o.Albedo = c.rgb;
+				o.Metallic = _Metallic;
+				o.Smoothness = _Glossiness;
+				o.Alpha = c.a;
 			}
-
 			ENDCG
-		}
 	}
+	FallBack "Diffuse"
 }
