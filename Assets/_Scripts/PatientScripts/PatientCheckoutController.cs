@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class PatientCheckoutController : Actionable
+public class PatientCheckoutController : Actionable
 {
     public GameObject CanBeCheckedOutVisual;
 
@@ -24,6 +24,7 @@ class PatientCheckoutController : Actionable
         IsCheckingOut = true;
         PatientStatusController.CheckOut();
         Destroy(CanBeCheckedOutParticleInstance);
+        IsActionActive = false;
     }
 
     private void Update()

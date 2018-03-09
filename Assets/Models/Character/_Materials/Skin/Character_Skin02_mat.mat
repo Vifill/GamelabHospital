@@ -59,6 +59,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BodyAlpha: 0.287
+    - _Brightness: 0.03
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -69,17 +71,24 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Outline: 0.453
+    - _OutlineFactor: 1
+    - _OutlineWidth: 0.65
     - _Parallax: 0.02
     - _Shininess: 0.7
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Thickness: 4
+    - _Stencil: 16
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _Thickness: 9
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _BorderColor: {r: 0.67, g: 1, b: 0.184, a: 1}
-    - _Color: {r: 1, g: 0.78701824, b: 0.5588235, a: 1}
+    - _Color: {r: 1, g: 0.90415823, b: 0.8014706, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 0.5955882, g: 1, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

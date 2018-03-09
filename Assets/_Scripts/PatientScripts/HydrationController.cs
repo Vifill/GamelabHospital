@@ -14,19 +14,12 @@ public class HydrationController : Actionable
     private float Counter;
     private GameObject DisplayedObject;
     private PatientMovementController MovementController;
+    private Dictionary<HydrationModel, Coroutine> CurrentHydrations = new Dictionary<HydrationModel, Coroutine>();
 
     protected override void Initialize()
     {
         HealthCtrl = GetComponent<HealthController>();
         MovementController = GetComponent<PatientMovementController>();
-    }
-
-    private void Update()
-    {
-        if (IsHydrating)
-        {
-            Hydrate();
-        }
     }
 
     public override ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
@@ -50,8 +43,12 @@ public class HydrationController : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
-        IsHydrating = true;
-        OnStartHydrating();
+        if (CurrentHydrations.ContainsKey(CurrentHydrationModel))
+        {
+            StopCoroutine(CurrentHydrations[CurrentHydrationModel]);
+            CurrentHydrations.Remove(CurrentHydrationModel);
+        }
+        CurrentHydrations.Add(CurrentHydrationModel, StartCoroutine(HydrationCoroutine(CurrentHydrationModel)));
         ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel);
     }
 
@@ -61,36 +58,41 @@ public class HydrationController : Actionable
         HealthCtrl.CholeraSeverity += severity?.CholeraSeverityIncreasePerSecond ?? 0;
     }
 
-    private void Hydrate()
+    private IEnumerator HydrationCoroutine(HydrationModel pHmodel)
     {
-        Counter += Time.deltaTime;
-
-        if (Counter <= CurrentHydrationModel.TimeItTakes)
-        {
-            HealthCtrl.HydrationMeter = Mathf.Clamp(HealthCtrl.HydrationMeter + (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime, 0, 100);
-        }
-        else
-        {
-            OnFinishedHydrating();
-        }
-    }
-
-    private void OnStartHydrating()
-    {
-        if (CurrentHydrationModel.DisplayPrefab != null)
+        if (pHmodel.DisplayPrefab != null)
         {
             if (DisplayedObject == null)
             {
                 var posObj = MovementController.TargetBed.transform.Find("IVPos");
-                DisplayedObject = Instantiate(CurrentHydrationModel.DisplayPrefab, posObj.position, posObj.rotation, posObj);
-            }  
+                DisplayedObject = Instantiate(pHmodel.DisplayPrefab, posObj.position, posObj.rotation, posObj);
+            }
         }
+
+        float counter = 0;
+
+        while(counter <= pHmodel.TimeItTakes)
+        {
+            HealthCtrl.HydrationMeter = Mathf.Clamp(HealthCtrl.HydrationMeter + (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime, 0, 100);
+
+            counter += Time.deltaTime;
+            yield return null;
+        }
+
+        if (DisplayedObject != null)
+        {
+            Destroy(DisplayedObject);
+        }
+
+        CurrentHydrations.Remove(pHmodel);
     }
 
-    private void OnFinishedHydrating()
+    public void StopAllHydrations()
     {
-        IsHydrating = false;
-        Counter = 0;
+        foreach (var hydration in CurrentHydrations)
+        {
+            StopCoroutine(hydration.Value);
+        }
 
         if (DisplayedObject != null)
         {

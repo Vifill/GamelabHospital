@@ -5,20 +5,39 @@ using UnityEngine;
 
 public class HighlightController : MonoBehaviour 
 {
+    public Shader StandardOutlineShader;
+    public Shader WebGLOutlineShader;
+    [System.NonSerialized]
     public Shader HighlightShader;
     public static GameObject HighlightedObject;
 
     private Actionable PreviousActionable;
     private ToolController ToolCtrl;
 
-	// Use this for initialization
-	private void Start () 
+    private void Awake()
+    {
+#if UNITY_EDITOR
+        print("<color=green>run in Editor</color>");
+        HighlightShader = StandardOutlineShader;
+#elif UNITY_WEBGL
+        print("<color=green>run in webGL</color>");
+        HighlightShader = WebGLOutlineShader;
+#elif UNITY_STANDALONE
+        print("<color=green>run in StandAlone</color>");
+        HighlightShader = StandardOutlineShader;
+#else
+        print("<color=green>run in other</color>");
+        HighlightShader = StandardOutlineShader;
+#endif
+    }
+
+    private void Start() 
 	{
         ToolCtrl = GetComponent<ToolController>();
     }
 	
 	// Update is called once per frame
-	private void Update () 
+	private void Update() 
 	{
         var actionable = GetActionablesUtility.GetActionableForHighlight(ToolCtrl, transform)?.GetMostRelevantAction(ToolCtrl.GetCurrentToolName(), gameObject);
 

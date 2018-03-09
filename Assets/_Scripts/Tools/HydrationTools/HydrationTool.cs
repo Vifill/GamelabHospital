@@ -16,6 +16,23 @@ public class HydrationModel
     public float ActionTime;
     public GameObject DisplayPrefab;
     public AudioClip HydrationSound;
+
+
+    public override bool Equals(object obj)
+    {
+        var modelToCompare = (HydrationModel)obj;
+        bool comparer = DisplayPrefab == modelToCompare.DisplayPrefab;
+        comparer &= HydrationReplenished == modelToCompare.HydrationReplenished;
+        comparer &= TimeItTakes == modelToCompare.TimeItTakes;
+        comparer &= ActionTime == modelToCompare.ActionTime;
+        comparer &= HydrationSound == modelToCompare.HydrationSound;
+        return comparer;
+    }
+
+    public override int GetHashCode()
+    {
+        return DisplayPrefab?.GetHashCode() ?? 1;
+    }
 }
 
 
