@@ -20,8 +20,8 @@
 	SubShader {
 		Tags { 
 			"RenderType" = "Opaque" 
-			"Queue" = "Transparent" 
-			"IgnoreProjector" = "True"
+			
+
 		}
 		LOD 200
 
