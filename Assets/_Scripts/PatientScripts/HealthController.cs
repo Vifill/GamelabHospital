@@ -25,6 +25,7 @@ public class HealthController : MonoBehaviour
     public float ConstantDehydrationSpeed;
     public float ConstantHealing;
 
+    private HydrationController HydrationController;
     private PatientStatusController PatientStatusController;
     private GameObject HydrationUI;
 
@@ -34,6 +35,7 @@ public class HealthController : MonoBehaviour
         HydrationUI = Instantiate(HydrationUIPrefab, canvas);
         HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
         PatientStatusController = GetComponent<PatientStatusController>();
+        HydrationController = GetComponent<HydrationController>();
         StartCoroutine(SickCoroutine());
         StartCoroutine(BedSanitationCheckCoroutine());
     }
@@ -89,12 +91,12 @@ public class HealthController : MonoBehaviour
         while(true)
         {
             float odds = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= CholeraSeverity)?.OddsOfExcretion ?? 0.0f;
-            if(UnityEngine.Random.Range(0,100) < odds)
+            if(UnityEngine.Random.Range(0,100) < odds && HydrationController.IsActionActive)
             {
                 Excrete();
                 yield return new WaitForSeconds(CholeraConfig.ExcreteCooldown);
             }
-            else
+            else if (!(UnityEngine.Random.Range(0,100) < odds))
             {
                 yield return new WaitForSeconds(CholeraConfig.CholeraCheckRate);
             }
