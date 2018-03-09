@@ -139,8 +139,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816757247161776}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.14, y: 0, z: -1.32}
+  m_LocalRotation: {x: -0.0022079041, y: 0.9999976, z: -0.000017414533, w: -0.000000038449713}
+  m_LocalPosition: {x: 1, y: 0, z: 5.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4632487164283986}
@@ -148,7 +148,7 @@ Transform:
   - {fileID: 4949133931597938}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.002, y: 0, z: -0.25300002}
+  m_LocalEulerAnglesHint: {x: 0.002, y: 180, z: -0.25300002}
 --- !u!4 &4949133931597938
 Transform:
   m_ObjectHideFlags: 1
@@ -333,7 +333,7 @@ MonoBehaviour:
   NeedsSanitizedTool: 1
   PlayerDesanitationAmount: 20
   ActionProgress: 0
-  DirtyMeter: 50
+  DirtyMeter: 0
   RequiredTool: 4
   DirtyBarPrefab: {fileID: 1584299532339696, guid: 3bb17afc9f730a94d801c7bebfd439a0,
     type: 2}
