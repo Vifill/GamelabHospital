@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Configs/Levels/SpawnConfig")]
 public class SpawnConfig : ScriptableObject
 {
     public float SpawnRate;

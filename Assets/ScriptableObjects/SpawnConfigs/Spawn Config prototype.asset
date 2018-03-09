@@ -9,14 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b8a85a70c76f5c4e9babb749f623453, type: 3}
-  m_Name: Level5_SpawnConfig
+  m_Name: Spawn Config prototype
   m_EditorClassIdentifier: 
-  SpawnRate: 10
-  RandomVariance: 1
+  SpawnRate: 14
+  RandomVariance: 0
+  CholeraSeverityRange: {x: 50, y: 75}
+  HydrationRange: {x: 0, y: 0}
   ListOfPatientPrefabs:
-  - PatientPrefab: {fileID: 1976841698954826, guid: 6ba6ac478c592a0488b9ae29d7d96647,
-      type: 2}
-    ChanceOfSpawn: 35
   - PatientPrefab: {fileID: 1976841698954826, guid: fac5642152ea58440ad2a425bc07ac0c,
       type: 2}
-    ChanceOfSpawn: 70
+    ChanceOfSpawn: 100
