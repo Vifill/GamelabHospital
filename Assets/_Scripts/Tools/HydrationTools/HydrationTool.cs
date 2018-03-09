@@ -31,7 +31,7 @@ public class HydrationModel
 
     public override int GetHashCode()
     {
-        return DisplayPrefab.GetHashCode();
+        return DisplayPrefab?.GetHashCode() ?? 1;
     }
 }
 
