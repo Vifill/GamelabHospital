@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -11,18 +12,23 @@ public class OptionMenuManager : MonoBehaviour
 
     private GameObject PauseMenu;
     private Resolution[] Resolutions;
+    private bool Fullscreen;
+    private int ResolutionIndex;
+    private int QualityIndex;
 
 	public void Initialize(GameObject pPausemenu)
     {
         PauseMenu = pPausemenu;
         PauseMenu.SetActive(false);
         GetResolutions();
+        GetGraphicQualityIndexes();
     }
 
-    //private void Start()
-    //{
-    //    GetResolutions();
-    //}
+    private void GetGraphicQualityIndexes()
+    {
+        QualityIndex = QualitySettings.GetQualityLevel();
+        Fullscreen = Screen.fullScreen;
+    }
 
     private void GetResolutions()
     {
@@ -41,6 +47,8 @@ public class OptionMenuManager : MonoBehaviour
                 Resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
+                ResolutionIndex = i;
+                options.RemoveAt(currentResolutionIndex);
             }
         }
 
@@ -53,8 +61,9 @@ public class OptionMenuManager : MonoBehaviour
 
     public void SetResolution(int pResolutionIndex)
     {
-        Resolution resolution = Resolutions[pResolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        ResolutionIndex = pResolutionIndex;
+        //Resolution resolution = Resolutions[pResolutionIndex];
+        //Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void SetFullscreen(bool pIsFullscreen)
@@ -64,7 +73,8 @@ public class OptionMenuManager : MonoBehaviour
 
     public void SetQuality(int pQualityIndex)
     {
-        QualitySettings.SetQualityLevel(pQualityIndex);
+        QualityIndex = pQualityIndex;
+        //QualitySettings.SetQualityLevel(pQualityIndex);
     }
 
     public void SetMasterVolume(float pVolume)
@@ -82,9 +92,17 @@ public class OptionMenuManager : MonoBehaviour
         AudioMixer.SetFloat("SfxVolume", pVolume);
     }
 
+    public void ApplyButton()
+    {
+        Resolution resolution = Resolutions[ResolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        QualitySettings.SetQualityLevel(QualityIndex);
+    }
 
     public void ButtonBack()
     {
+        FindObjectOfType<MusicController>().PlayButtonSound();
+        GameController.InOptionMenu = false;
         PauseMenu.SetActive(true);
         Destroy(gameObject);
     }

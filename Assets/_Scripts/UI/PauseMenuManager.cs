@@ -32,10 +32,11 @@ public class PauseMenuManager : MonoBehaviour
         LvlCtrl.RestartCurrentScene();
     }
 
-    public void BunttonOptions()
+    public void ButtonOptions()
     {
         FindObjectOfType<MusicController>().PlayButtonSound();
         var optionMenu = Instantiate(OptionsMenuPrefab, transform.parent);
+        GameController.InOptionMenu = true;
         optionMenu.GetComponent<OptionMenuManager>().Initialize(gameObject);
     }
 }

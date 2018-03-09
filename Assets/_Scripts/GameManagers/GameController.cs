@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 {
     static public bool InMenuScreen;
     static public bool InPauseMenu;
+    static public bool InOptionMenu;
     static public bool OrderlyInScene { get; private set; }
     static public List<OrderlyController> GetOrderliesInScene { get; private set; }
     public BedManager BedManager;
