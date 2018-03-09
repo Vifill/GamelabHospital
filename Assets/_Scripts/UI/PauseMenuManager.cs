@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PauseMenuManager : MonoBehaviour 
 {
+    public GameObject OptionsMenuPrefab;
     private GameController GC;
     private LevelController LvlCtrl;
 
@@ -29,5 +30,13 @@ public class PauseMenuManager : MonoBehaviour
     {
         FindObjectOfType<MusicController>().PlayButtonSound();
         LvlCtrl.RestartCurrentScene();
+    }
+
+    public void ButtonOptions()
+    {
+        FindObjectOfType<MusicController>().PlayButtonSound();
+        var optionMenu = Instantiate(OptionsMenuPrefab, transform.parent);
+        GameController.InOptionMenu = true;
+        optionMenu.GetComponent<OptionMenuManager>().Initialize(gameObject);
     }
 }
