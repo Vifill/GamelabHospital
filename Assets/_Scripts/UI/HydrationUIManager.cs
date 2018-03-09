@@ -43,11 +43,11 @@ public class HydrationUIManager : MonoBehaviour
 
     private void SetHydrationWarning()
     {
-        if(!IsWarning && HydrationMeterUI.fillAmount >= WarningThreshold)
+        if(!IsWarning && HydrationMeterUI.fillAmount <= WarningThreshold)
         {
             SetHydrationWarning(true);
         }
-        else if(IsWarning && HydrationMeterUI.fillAmount < WarningThreshold)
+        else if(IsWarning && HydrationMeterUI.fillAmount > WarningThreshold)
         {
             SetHydrationWarning(false);
         }
