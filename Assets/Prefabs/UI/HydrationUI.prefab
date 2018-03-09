@@ -124,10 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1a1df258607ee47996baa8d13eabf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HydrationAnimator: {fileID: 95854831997857500}
   HydrationMeterUI: {fileID: 114879859912549470}
   SeveretyMeterUI: {fileID: 114838615123327526}
   StatusColorConfig: {fileID: 11400000, guid: 3e919c07e8e75fb45b49ddcaa6512ece, type: 2}
   UIOffset: 1
+  WarningThreshold: 0.25
 --- !u!114 &114476368111096190
 MonoBehaviour:
   m_ObjectHideFlags: 1

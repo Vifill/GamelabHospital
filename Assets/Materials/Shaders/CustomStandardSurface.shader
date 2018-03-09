@@ -1,4 +1,4 @@
-﻿Shader "Custom/CustomStandardSurface" {
+﻿Shader "Custom/Testing/CustomStandardSurface" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo", 2D) = "white" {}

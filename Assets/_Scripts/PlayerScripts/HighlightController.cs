@@ -19,10 +19,10 @@ public class HighlightController : MonoBehaviour
 #if UNITY_EDITOR
         print("<color=green>run in Editor</color>");
         HighlightShader = StandardOutlineShader;
-#elif UNITY_WEBGLUNITY_STANDALONE
+#elif UNITY_WEBGL
         print("<color=green>run in webGL</color>");
         HighlightShader = WebGLOutlineShader;
-#elif UNITY_WEBGLUNITY_STANDALONE
+#elif UNITY_STANDALONE
         print("<color=green>run in StandAlone</color>");
         HighlightShader = StandardOutlineShader;
 #else
