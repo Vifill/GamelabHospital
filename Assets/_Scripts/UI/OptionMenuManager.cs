@@ -9,6 +9,7 @@ public class OptionMenuManager : MonoBehaviour
 {
     public AudioMixer AudioMixer;
     public Dropdown ResolutionDropdown;
+    public Dropdown GraphicsDropdown;
 
     private GameObject PauseMenu;
     private Resolution[] Resolutions;
@@ -22,6 +23,13 @@ public class OptionMenuManager : MonoBehaviour
         PauseMenu.SetActive(false);
         GetResolutions();
         GetGraphicQualityIndexes();
+        RefreshSelectedSettings();
+    }
+
+    private void RefreshSelectedSettings()
+    {
+        GraphicsDropdown.RefreshShownValue();
+        GraphicsDropdown.value = QualityIndex;
     }
 
     private void GetGraphicQualityIndexes()
@@ -62,8 +70,6 @@ public class OptionMenuManager : MonoBehaviour
     public void SetResolution(int pResolutionIndex)
     {
         ResolutionIndex = pResolutionIndex;
-        //Resolution resolution = Resolutions[pResolutionIndex];
-        //Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void SetFullscreen(bool pIsFullscreen)
@@ -74,7 +80,6 @@ public class OptionMenuManager : MonoBehaviour
     public void SetQuality(int pQualityIndex)
     {
         QualityIndex = pQualityIndex;
-        //QualitySettings.SetQualityLevel(pQualityIndex);
     }
 
     public void SetMasterVolume(float pVolume)
