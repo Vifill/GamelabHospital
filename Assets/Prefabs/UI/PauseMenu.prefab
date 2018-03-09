@@ -92,12 +92,12 @@ GameObject:
   - component: {fileID: 114385052926525520}
   - component: {fileID: 114977379278812162}
   m_Layer: 5
-  m_Name: ThirdButton
+  m_Name: OptionsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1531802430807094
 GameObject:
   m_ObjectHideFlags: 1
@@ -214,6 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a55beba1c57114d945f8323b1183d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionsMenuPrefab: {fileID: 1061250552499816, guid: 2e8e3575a04897e448c5756a7f1a182b,
+    type: 2}
 --- !u!114 &114104692485615932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -491,7 +493,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quit Game
+  m_Text: Options
 --- !u!114 &114664790624681228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -731,7 +733,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114020610889616740}
-        m_MethodName: ButtonQuit
+        m_MethodName: ButtonOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -862,7 +864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000091552734, y: -177}
+  m_AnchoredPosition: {x: 0.000091552734, y: -104}
   m_SizeDelta: {x: 474, y: 122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224283496300770732
@@ -919,7 +921,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 15}
+  m_AnchoredPosition: {x: 0, y: 51}
   m_SizeDelta: {x: 474, y: 122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224466271103395980
