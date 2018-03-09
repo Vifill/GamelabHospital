@@ -76,7 +76,7 @@ public class ActionableActioner : MonoBehaviour
     private void ProcessToolAfterSuccess()
     {
         var toolController = GetComponent<ToolController>();
-        if (toolController.GetToolBase()?.IsUsedUpAfterUse ?? false)
+        if ((toolController.GetToolBase()?.IsUsedUpAfterUse ?? false) && CurrentAction.ConsumesTool)
         {
             toolController.DestroyTool();
         }
