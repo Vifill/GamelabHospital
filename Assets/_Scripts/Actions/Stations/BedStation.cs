@@ -14,8 +14,6 @@ public class BedStation : Actionable
     public GameObject DirtyBarPrefab;
     private GameObject DirtyBarInstance;
     private Camera Cam;
-    private float BarMaxWidth;
-    private float BarHeight;
     private Image BarFill;
 
 
@@ -29,8 +27,6 @@ public class BedStation : Actionable
         DirtyBarInstance = Instantiate(DirtyBarPrefab, FindObjectOfType<Canvas>().transform);
         DirtyBarInstance.transform.position = Cam.WorldToScreenPoint(transform.position);
         BarFill = DirtyBarInstance.transform.GetChild(0).GetComponent<Image>();
-        BarMaxWidth = BarFill.rectTransform.rect.width;
-        BarHeight = BarFill.rectTransform.rect.height;
         UpdateDirtyUI();
     }
 
@@ -67,7 +63,8 @@ public class BedStation : Actionable
 
     private void UpdateDirtyUI()
     {
-        BarFill.rectTransform.sizeDelta = new Vector2(((BarMaxWidth / 100) * DirtyMeter), BarHeight);
+        //BarFill.rectTransform.sizeDelta = new Vector2(((BarMaxWidth / 100) * DirtyMeter), BarHeight);
+        BarFill.fillAmount = DirtyMeter / 100;
     }
 
     private void OnGUI()
