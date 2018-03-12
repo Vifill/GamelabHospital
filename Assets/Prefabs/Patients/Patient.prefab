@@ -1869,6 +1869,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1659180009018804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4931683886787360}
+  m_Layer: 10
+  m_Name: WarningIconPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1667652133742558
 GameObject:
   m_ObjectHideFlags: 1
@@ -3450,6 +3465,7 @@ Transform:
   - {fileID: 4807734688163810}
   - {fileID: 4481155229058974}
   - {fileID: 4928286199856396}
+  - {fileID: 4931683886787360}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4633,6 +4649,19 @@ Transform:
   - {fileID: 4678257106701984}
   m_Father: {fileID: 4428063834294384}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4931683886787360
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1659180009018804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4428063834294384}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4932024213734052
 Transform:
@@ -6783,7 +6812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5478d1b215af014ea2a5961b88510b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TEST_HPS: 0
   CholeraSeverity: 60
   HydrationMeter: 75
   HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
@@ -6796,10 +6824,12 @@ MonoBehaviour:
     type: 2}
   HydrationUIPrefab: {fileID: 1149620341329518, guid: 81a4b3d17fff8f345b03efedb06d434a,
     type: 2}
-  PukeParticleEffect: {fileID: 1532283546104660, guid: 3e962117722c1bb4793a51bab55c24ed,
+  PukeWarningSignPrefab: {fileID: 1815776712570514, guid: 4db1a0ae3a924bc45b7035ab2c9756f0,
+    type: 2}
+  PukeParticleEffectPrefab: {fileID: 1532283546104660, guid: 3e962117722c1bb4793a51bab55c24ed,
     type: 2}
   PukePosition: {fileID: 4928286199856396}
-  BedManagerInstance: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
+  WarningIconPosition: {fileID: 4931683886787360}
   ConstantDehydrationSpeed: 0.5
   ConstantHealing: 0
 --- !u!114 &114501508067448934
