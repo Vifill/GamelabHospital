@@ -128,7 +128,7 @@ MonoBehaviour:
   HydrationMeterUI: {fileID: 114879859912549470}
   SeveretyMeterUI: {fileID: 114838615123327526}
   StatusColorConfig: {fileID: 11400000, guid: 3e919c07e8e75fb45b49ddcaa6512ece, type: 2}
-  UIOffset: 1
+  UIOffset: 1.2
   WarningThreshold: 0.25
 --- !u!114 &114476368111096190
 MonoBehaviour:
@@ -142,14 +142,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5147059, g: 0.5147059, b: 0.5147059, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c40d178c2ae55c247a83dd1c2d66b85b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 49df0cbcccc408344ad614d1366090fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.6827586, b: 0, a: 1}
+  m_Color: {r: 0.40652668, g: 0.9044118, b: 0.119701564, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.5862069, b: 1, a: 0.591}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -270,7 +270,7 @@ RectTransform:
   m_GameObject: {fileID: 1313504191251706}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children: []
   m_Father: {fileID: 224422971305872614}
   m_RootOrder: 0
@@ -288,7 +288,7 @@ RectTransform:
   m_GameObject: {fileID: 1779564345113302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children: []
   m_Father: {fileID: 224422971305872614}
   m_RootOrder: 1
