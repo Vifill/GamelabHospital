@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1395156671498228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.64, y: 0.51, z: 9.21}
+  m_LocalPosition: {x: 1.7299998, y: 0.5, z: 0.10000026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4008658413605068}
@@ -140,6 +140,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -156,6 +157,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -170,7 +172,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1426283363478116}
-  m_Mesh: {fileID: 4300000, guid: e1afa925e0229ba438f3194a8f5b7bc8, type: 3}
+  m_Mesh: {fileID: 4300002, guid: e1afa925e0229ba438f3194a8f5b7bc8, type: 3}
 --- !u!65 &65227221619266384
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -276,14 +278,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RadiusOfActivation: 2
-  TimeToTakeAction: 0
+  ActionTime: 0
   ActionParticles: {fileID: 0}
+  ActionSuccessParticles: {fileID: 0}
   ActionSoundEvent: {fileID: 0}
   ActionFinishedSoundEvent: {fileID: 0}
+  AnimatorParameter: 
   IsPickupable: 0
   IsActionActive: 1
+  DirtiesTool: 0
+  NeedsSanitizedTool: 0
+  PlayerDesanitationAmount: 0
+  ConsumesTool: 0
   ActionProgress: 0
-  TableObject: {fileID: 0}
   StartingTableObjectPrefab: {fileID: 0}
   PickUpSound: {fileID: 8300000, guid: 44726c85aeca0594397c7e80e6387e70, type: 3}
   DropSound: {fileID: 8300000, guid: b485a0e6493cbab4c9eab812cff35989, type: 3}

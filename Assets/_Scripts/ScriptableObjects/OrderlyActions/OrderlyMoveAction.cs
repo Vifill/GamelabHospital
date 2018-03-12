@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets._Scripts.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -76,7 +77,7 @@ public class OrderlyMoveAction : OrderlyAction
 
     private Vector3 GetTargetPoint(Transform actionable)
     {
-        var parentTransform = actionable.Find("Navmesh Guidepoints");
+        var parentTransform = actionable.Find(Constants.GuidePoints);
         Vector3 closestPoint = actionable.position;
         if (parentTransform != null)
         {
