@@ -41,7 +41,7 @@ public class HighlightController : MonoBehaviour
 	// Update is called once per frame
 	private void Update() 
 	{
-        if (PlayerTransform != null)
+        if (PlayerTransform != null && ToolCtrl != null)
         {
             var actionable = GetActionablesUtility.GetActionableForHighlight(ToolCtrl, PlayerTransform)?.GetMostRelevantAction(ToolCtrl.GetCurrentToolName(), PlayerTransform.gameObject);
 
@@ -53,7 +53,7 @@ public class HighlightController : MonoBehaviour
 
             else if (actionable != PreviousActionable)
             {
-                if (actionable.CanBeActioned(ToolCtrl.GetCurrentToolName(), gameObject))
+                if (actionable.CanBeActioned(ToolCtrl.GetCurrentToolName(), PlayerTransform.gameObject))
                 {
                     actionable.SetHighlight(HighlightShader);
                 }
