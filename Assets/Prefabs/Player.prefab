@@ -370,7 +370,6 @@ GameObject:
   - component: {fileID: 114117830681646700}
   - component: {fileID: 114285765612533102}
   - component: {fileID: 114923763610549644}
-  - component: {fileID: 114761894439511948}
   - component: {fileID: 82353113361513662}
   - component: {fileID: 114387764140377364}
   - component: {fileID: 208039283450588218}
@@ -3577,20 +3576,6 @@ MonoBehaviour:
   DirtyParticles: {fileID: 1924597358167150}
   DoctorSanitationConfig: {fileID: 11400000, guid: 8e5cf8227361e3f49abdfeaf9aea8402,
     type: 2}
---- !u!114 &114761894439511948
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1206070611663440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef29a210760f5e0408fd45509e143382, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StandardOutlineShader: {fileID: 4800000, guid: 9330b0c20a48fb24dbea1203a59f8df2,
-    type: 3}
-  WebGLOutlineShader: {fileID: 4800000, guid: 77362c87e28b8d346b2501efbcfe69c1, type: 3}
 --- !u!114 &114923763610549644
 MonoBehaviour:
   m_ObjectHideFlags: 1

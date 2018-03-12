@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114065370836835360}
   - component: {fileID: 114715137660505864}
   - component: {fileID: 114473966216598148}
+  - component: {fileID: 114295128852408656}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -176,7 +177,7 @@ MonoBehaviour:
   EndScreenPrefab: {fileID: 1610231225011098, guid: 5cd54265060eaec498d8ca9b81abd728,
     type: 2}
   SunPrefab: {fileID: 1159113201939540, guid: ad352ea09b6da52429f156c65d1462b7, type: 2}
-  LevelConfig: {fileID: 11400000, guid: ab9c5a50bed823b4facf5b0b0889a757, type: 2}
+  LevelConfig: {fileID: 0}
 --- !u!114 &114163115634664054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,6 +192,20 @@ MonoBehaviour:
   SpawnConfig: {fileID: 11400000, guid: 160c1f91d6343d442a66dab8e88d3344, type: 2}
   SpawnPoint: {fileID: 0}
   BedManager: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
+--- !u!114 &114295128852408656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809543526668006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef29a210760f5e0408fd45509e143382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StandardOutlineShader: {fileID: 4800000, guid: 9330b0c20a48fb24dbea1203a59f8df2,
+    type: 3}
+  WebGLOutlineShader: {fileID: 4800000, guid: 77362c87e28b8d346b2501efbcfe69c1, type: 3}
 --- !u!114 &114473966216598148
 MonoBehaviour:
   m_ObjectHideFlags: 1
