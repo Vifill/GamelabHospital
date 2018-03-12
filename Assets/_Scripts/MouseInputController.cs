@@ -20,7 +20,7 @@ public class MouseInputController : MonoBehaviour
 	private void Update () 
 	{
         CheckOrderQueue();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !GameController.InMenuScreen)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

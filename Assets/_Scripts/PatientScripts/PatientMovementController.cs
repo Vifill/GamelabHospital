@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ public class PatientMovementController : MonoBehaviour
             var bedScript = BedManager.GetAvailableBeds()[0];
             bedScript.GetComponent<BedController>().IsReserved = true;
             TargetBed = bedScript.gameObject;
-            NavMeshAgent.SetDestination(TargetBed.transform.position);
+            NavMeshAgent.SetDestination(GetGuidePoint(TargetBed));
         }
         else if (SlotManager.AvailableSlots().Any())
         {
@@ -38,9 +39,14 @@ public class PatientMovementController : MonoBehaviour
             NavMeshAgent.SetDestination(slotScript.transform.position);            
         }
 	}
-	
-	// Update is called once per frame
-	private void Update () 
+
+    private Vector3 GetGuidePoint(GameObject targetBed)
+    {
+        return targetBed.transform.Find(Constants.GuidePoints).transform.position;
+    }
+
+    // Update is called once per frame
+    private void Update () 
 	{
 
 	}
@@ -75,6 +81,7 @@ public class PatientMovementController : MonoBehaviour
 
     public void GetOutOfBed()
     {
+        GetComponentInChildren<Animator>().SetBool("IsWalking", true);
         NavMeshAgent.enabled = true;
         PatientStatus.IsInBed = false;
 

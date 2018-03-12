@@ -13,6 +13,7 @@ public class HighlightController : MonoBehaviour
 
     private Actionable PreviousActionable;
     private ToolController ToolCtrl;
+    private Transform PlayerTransform;
 
     private void Awake()
     {
@@ -33,42 +34,45 @@ public class HighlightController : MonoBehaviour
 
     private void Start() 
 	{
-        ToolCtrl = GetComponent<ToolController>();
+        PlayerTransform = FindObjectOfType<PlayerActionController>()?.transform;
+        ToolCtrl = PlayerTransform?.GetComponent<ToolController>();
     }
 	
 	// Update is called once per frame
 	private void Update() 
 	{
-        var actionable = GetActionablesUtility.GetActionableForHighlight(ToolCtrl, transform)?.GetMostRelevantAction(ToolCtrl.GetCurrentToolName(), gameObject);
-
-        if (actionable == null)
+        if (PlayerTransform != null && ToolCtrl != null)
         {
-            HighlightedObject = null;
-            PreviousActionable?.RemoveHighlight();
-        }
+            var actionable = GetActionablesUtility.GetActionableForHighlight(ToolCtrl, PlayerTransform)?.GetMostRelevantAction(ToolCtrl.GetCurrentToolName(), PlayerTransform.gameObject);
 
-        else if (actionable != PreviousActionable)
-        {
-            if (actionable.CanBeActioned(ToolCtrl.GetCurrentToolName(), gameObject))
+            if (actionable == null)
             {
-                actionable.SetHighlight(HighlightShader);
-            }
-            else
-            {
-                //cant be used... RED
-                actionable.SetHighlight(HighlightShader, new Color(0.8f,0,0));
+                HighlightedObject = null;
+                PreviousActionable?.RemoveHighlight();
             }
 
-            HighlightedObject = actionable.gameObject;
-            PreviousActionable?.RemoveHighlight();
+            else if (actionable != PreviousActionable)
+            {
+                if (actionable.CanBeActioned(ToolCtrl.GetCurrentToolName(), PlayerTransform.gameObject))
+                {
+                    actionable.SetHighlight(HighlightShader);
+                }
+                else
+                {
+                    //cant be used... RED
+                    actionable.SetHighlight(HighlightShader, new Color(0.8f, 0, 0));
+                }
+
+                HighlightedObject = actionable.gameObject;
+                PreviousActionable?.RemoveHighlight();
+            }
+            //if (actionable != null)
+            //{
+            //    actionable.SetHighlight(HighlightShader);
+            //    HighlightedObject = actionable.gameObject;
+            //}
+
+            PreviousActionable = actionable;
         }
-        //if (actionable != null)
-        //{
-        //    actionable.SetHighlight(HighlightShader);
-        //    HighlightedObject = actionable.gameObject;
-        //}
-
-        PreviousActionable = actionable;
-
     }
 }
