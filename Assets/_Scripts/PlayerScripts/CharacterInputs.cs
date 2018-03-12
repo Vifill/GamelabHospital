@@ -12,6 +12,7 @@ public class CharacterInputs : MonoBehaviour
     private GameController GC;
     private PlayerDataController DataCtrl = new PlayerDataController();
     private ActionableActioner ActionableActioner;
+    private OptionMenuManager OptionMenuManager;
 
 
     // Use this for initialization
@@ -74,7 +75,12 @@ public class CharacterInputs : MonoBehaviour
 
         if (Input.GetButtonDown("Pause"))
         {
-            if (!GameController.InPauseMenu)
+            if (GameController.InOptionMenu)
+            {
+                OptionMenuManager = FindObjectOfType<OptionMenuManager>();
+                OptionMenuManager.ButtonBack();
+            }
+            else if (!GameController.InPauseMenu)
             {
                 GC.PauseGame(GC.PauseMenuPrefab);
             }
