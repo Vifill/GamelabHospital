@@ -7,6 +7,7 @@ Shader "Custom/2D/Fluid"
 		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
 		_Color("Tint", Color) = (1,1,1,1)
 		_BucketFillAmount("FillAmount", Range(0,1)) = 1
+		_WaveBorderThickness("BorderThickness", Range(0,1)) = 0.05
 		_WaveSize("WaveSize", Range(0,.1)) = 0.036
 		_WaveSpeed("WaveSpeed", Range(0,10)) = 4
 		_WaveAmount("WaveAmount", Range(0,40)) = 20
@@ -110,6 +111,7 @@ Shader "Custom/2D/Fluid"
 	float _WaveSize;
 	float _WaveSpeed;
 	float _WaveAmount;
+	float _WaveBorderThickness;
 
 	fixed4 frag(v2f IN) : SV_Target
 	{
@@ -122,6 +124,13 @@ Shader "Custom/2D/Fluid"
 			 float wave = sin(_Time.y * _WaveSpeed + IN.texcoord.x * _WaveAmount);
 			 half waveHeight = fillAmount + lerp(fillAmount - _WaveSize, fillAmount, wave);
 			 //color.a = max(0, sign(waveHeight - IN.texcoord.y));
+			 float dist = waveHeight - IN.texcoord.y;
+			 
+			 if (dist < _WaveBorderThickness)
+			 {
+				 color.rgb -= float3(.2,.2,.2);
+			 }
+
 			 if (IN.texcoord.y > waveHeight)
 			 {
 				 color.a = 0;

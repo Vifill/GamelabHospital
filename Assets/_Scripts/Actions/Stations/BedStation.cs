@@ -63,7 +63,7 @@ public class BedStation : Actionable
 
     private void UpdateDirtyUI()
     {
-        BarFill.fillAmount = DirtyMeter / 100;
+        BarFill.GetComponent<UIFillAmount>().FillAmount = DirtyMeter / 100;
     }
 
     private void Update()
