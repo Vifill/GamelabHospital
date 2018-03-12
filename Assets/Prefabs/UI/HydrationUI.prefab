@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224843408125259322}
   - component: {fileID: 222408564456402004}
   - component: {fileID: 114879859912549470}
+  - component: {fileID: 114389296167471718}
   m_Layer: 5
   m_Name: HydrationMeter
   m_TagString: Untagged
@@ -130,6 +131,18 @@ MonoBehaviour:
   StatusColorConfig: {fileID: 11400000, guid: 3e919c07e8e75fb45b49ddcaa6512ece, type: 2}
   UIOffset: 1
   WarningThreshold: 0.25
+--- !u!114 &114389296167471718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1127917739236242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc865d712e54b034c8784af250aeb547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SourceMaterial: {fileID: 2100000, guid: 4130f48da7e4c0c45a227a471ac74550, type: 2}
 --- !u!114 &114476368111096190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: a634df80c0e252a478d18d520e6073fa, type: 2}
   m_Color: {r: 0, g: 0.5862069, b: 1, a: 0.591}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -231,7 +244,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: fa1c208a31058754dbc348bfb614c8e7, type: 3}
-  m_Type: 3
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
