@@ -15,7 +15,7 @@ public class BedStation : Actionable
     private GameObject DirtyBarInstance;
     private Camera Cam;
     private Image BarFill;
-    private Vector3 BucketUIPos;
+    public Transform BucketUIPos;
 
 
     protected override void Initialize()
@@ -68,8 +68,7 @@ public class BedStation : Actionable
 
     private void Update()
     {
-        BucketUIPos = new Vector3(transform.position.x, 1, transform.position.z);
-        DirtyBarInstance.transform.position = Cam.WorldToScreenPoint(BucketUIPos);
+        DirtyBarInstance.transform.position = Cam.WorldToScreenPoint(BucketUIPos.position);
     }
 
     //public Vector3 GetWorldPositionOnPlane(Vector3 pScreenPosition, float z)
