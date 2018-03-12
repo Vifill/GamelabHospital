@@ -7,21 +7,27 @@ public class InfoScreenController : MonoBehaviour
     private GameController GC;
 
     public GameObject InfoScreenPrefab;
-
+    public float SecondsBeforeScreenAppears;
     // Use this for initialization
     private void Start ()
 	{
         GC = FindObjectOfType<GameController>();
         //GC.PauseGame(InfoScreenPrefab);
 
-        StartCoroutine(InstantiateScreen());
+        //StartCoroutine(InstantiateScreen());
+        Invoke("InstantiateScreen", SecondsBeforeScreenAppears);
 	}
 
     // Instantiates the screen
-    private IEnumerator InstantiateScreen()
-    {
-        yield return new WaitForSeconds(1);
+    //private IEnumerator InstantiateScreen()
+    //{
+    //    yield return new WaitForSeconds(SecondsBeforeScreenAppears);
 
+    //    GC.PauseGame(InfoScreenPrefab);
+    //}
+
+    private void InstantiateScreen()
+    {
         GC.PauseGame(InfoScreenPrefab);
     }
 
