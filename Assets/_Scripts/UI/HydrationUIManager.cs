@@ -31,7 +31,7 @@ public class HydrationUIManager : MonoBehaviour
     {
         if (HealthController != null)
         {
-            HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
+            HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
             SeveretyMeterUI.fillAmount = HealthController.CholeraSeverity / 100;
 
             SetSeverityColor();

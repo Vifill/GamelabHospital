@@ -10,36 +10,61 @@ public class MouseCursorController : MonoBehaviour
     public AudioSource MouseClickAudioSource;
     public AudioClip MouseClickDownSound;
     public AudioClip MouseClickUpSound;
+    public bool IsEnabledInLevel;
 
     private Texture2D PreviousCursor;
 	// Use this for initialization
 	private void Start () 
 	{
-        Cursor.SetCursor(CursorIdle, Vector2.zero, CursorMode.Auto);
-        PreviousCursor = CursorIdle;
+        var orderly = FindObjectOfType<OrderlyController>();
+        IsEnabledInLevel = orderly != null;
+
+        if (GameController.InMenuScreen || IsEnabledInLevel)
+        {
+            Cursor.visible = true;
+            Cursor.SetCursor(CursorIdle, Vector2.zero, CursorMode.Auto);
+            PreviousCursor = CursorIdle;
+        }
+    }
+
+    private void Update()
+    {
+        Cursor.visible = GameController.InMenuScreen || IsEnabledInLevel;
     }
 
     public void SetCursorToIdle()
     {
-        Cursor.SetCursor(CursorIdle, Vector2.zero, CursorMode.Auto);
-        PreviousCursor = CursorIdle;
+        if (IsEnabledInLevel)
+        {
+            Cursor.SetCursor(CursorIdle, Vector2.zero, CursorMode.Auto);
+            PreviousCursor = CursorIdle;
+        }
     }
 
     public void SetCursorToClickable()
     {
-        Cursor.SetCursor(CursorHover, Vector2.zero, CursorMode.Auto);
-        PreviousCursor = CursorHover;
+        if (IsEnabledInLevel)
+        {
+            Cursor.SetCursor(CursorHover, Vector2.zero, CursorMode.Auto);
+            PreviousCursor = CursorHover;
+        }
     }
 
     public void OnClickDown()
     {
-        Cursor.SetCursor(CursorClick, Vector2.zero, CursorMode.Auto);
-        MouseClickAudioSource.PlayOneShot(MouseClickDownSound);
+        if (IsEnabledInLevel)
+        {
+            Cursor.SetCursor(CursorClick, Vector2.zero, CursorMode.Auto);
+            MouseClickAudioSource.PlayOneShot(MouseClickDownSound);
+        }
     }
 
     public void OnClickUp()
     {
-        Cursor.SetCursor(PreviousCursor, Vector2.zero, CursorMode.Auto);
-        MouseClickAudioSource.PlayOneShot(MouseClickUpSound);
+        if (IsEnabledInLevel)
+        {
+            Cursor.SetCursor(PreviousCursor, Vector2.zero, CursorMode.Auto);
+            MouseClickAudioSource.PlayOneShot(MouseClickUpSound);
+        }
     }
 }
