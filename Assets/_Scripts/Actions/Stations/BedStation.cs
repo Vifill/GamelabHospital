@@ -15,6 +15,7 @@ public class BedStation : Actionable
     private GameObject DirtyBarInstance;
     private Camera Cam;
     private Image BarFill;
+    private Vector3 BucketUIPos;
 
 
     protected override void Initialize()
@@ -25,7 +26,6 @@ public class BedStation : Actionable
         if (DirtyBarPrefab != null)
         Cam = FindObjectOfType<Camera>();
         DirtyBarInstance = Instantiate(DirtyBarPrefab, FindObjectOfType<Canvas>().transform);
-        DirtyBarInstance.transform.position = Cam.WorldToScreenPoint(transform.position);
         BarFill = DirtyBarInstance.transform.GetChild(0).GetComponent<Image>();
         UpdateDirtyUI();
     }
@@ -63,21 +63,21 @@ public class BedStation : Actionable
 
     private void UpdateDirtyUI()
     {
-        //BarFill.rectTransform.sizeDelta = new Vector2(((BarMaxWidth / 100) * DirtyMeter), BarHeight);
         BarFill.fillAmount = DirtyMeter / 100;
     }
 
-    private void OnGUI()
+    private void Update()
     {
-        DirtyBarInstance.transform.position = Cam.WorldToScreenPoint(transform.position);
+        BucketUIPos = new Vector3(transform.position.x, 1, transform.position.z);
+        DirtyBarInstance.transform.position = Cam.WorldToScreenPoint(BucketUIPos);
     }
 
-    //public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z)
+    //public Vector3 GetWorldPositionOnPlane(Vector3 pScreenPosition, float z)
     //{
-    //    Ray ray = Camera.main.ScreenPointToRay(screenPosition);
-    //    Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, z));
+    //    Ray ray = Camera.main.ScreenPointToRay(pScreenPosition);
+    //    Plane plane = new Plane(Vector3.forward, new Vector3(0, 0, z));
     //    float distance;
-    //    xy.Raycast(ray, out distance);
+    //    plane.Raycast(ray, out distance);
     //    return ray.GetPoint(distance);
     //}
 }
