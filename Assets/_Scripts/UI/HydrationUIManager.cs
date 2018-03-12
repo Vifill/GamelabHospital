@@ -19,6 +19,13 @@ public class HydrationUIManager : MonoBehaviour
 
     private HealthController HealthController;
     private Transform Patient;
+    public GameObject WarningIconInstance;
+    
+
+    public void SetExcreteWarning(bool pValue)
+    {
+        WarningIconInstance.SetActive(pValue);
+    }
 
     public void InitializeHydrationUI(HealthController pHealthController)
     {
