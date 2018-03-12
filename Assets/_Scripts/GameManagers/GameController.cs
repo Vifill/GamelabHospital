@@ -46,6 +46,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0;
         InMenuScreen = true;
         InPauseMenu = true;
+        GetComponent<MouseCursorController>().SetCursorToIdle();
         CurrentUIScreen = Instantiate(pUIScreen, MainCanvas);
         CurrentUIScreen.GetComponent<PauseMenuManager>()?.Initialize(this);
     }

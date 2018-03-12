@@ -21,6 +21,7 @@ public class MouseCursorController : MonoBehaviour
 
         if (GameController.InMenuScreen || IsEnabledInLevel)
         {
+            Cursor.visible = true;
             Cursor.SetCursor(CursorIdle, Vector2.zero, CursorMode.Auto);
             PreviousCursor = CursorIdle;
         }
@@ -28,7 +29,7 @@ public class MouseCursorController : MonoBehaviour
 
     private void Update()
     {
-        Cursor.visible = IsEnabledInLevel;
+        Cursor.visible = GameController.InMenuScreen || IsEnabledInLevel;
     }
 
     public void SetCursorToIdle()
