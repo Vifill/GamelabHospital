@@ -11,6 +11,10 @@ Shader "Custom/2D/Fluid"
 		_WaveSize("WaveSize", Range(0,.1)) = 0.036
 		_WaveSpeed("WaveSpeed", Range(0,10)) = 4
 		_WaveAmount("WaveAmount", Range(0,40)) = 20
+
+		_MinFill("MinFill", Range(0, 1)) = 0
+		_MaxFill("MaxFill", Range(0,1)) = 0
+
 		_StencilComp("Stencil Comparison", Float) = 8
 		_Stencil("Stencil ID", Float) = 0
 		_StencilOp("Stencil Operation", Float) = 0
@@ -113,6 +117,9 @@ Shader "Custom/2D/Fluid"
 	float _WaveAmount;
 	float _WaveBorderThickness;
 
+	float _MaxFill;
+	float _MinFill;
+
 	fixed4 frag(v2f IN) : SV_Target
 	{
 		UNITY_SETUP_INSTANCE_ID(i);
@@ -123,6 +130,7 @@ Shader "Custom/2D/Fluid"
 		{
 			 float wave = sin(_Time.y * _WaveSpeed + IN.texcoord.x * _WaveAmount);
 			 half waveHeight = fillAmount + lerp(fillAmount - _WaveSize, fillAmount, wave);
+			 waveHeight = (_MaxFill - _MinFill) * waveHeight + _MinFill;
 			 //color.a = max(0, sign(waveHeight - IN.texcoord.y));
 			 float dist = waveHeight - IN.texcoord.y;
 			 

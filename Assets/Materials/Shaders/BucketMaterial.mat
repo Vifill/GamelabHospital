@@ -55,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BucketFillAmount: 0.72
+    - _BucketFillAmount: 0
     - _BumpScale: 1
     - _ColorMask: 15
     - _Cutoff: 0.5
@@ -64,7 +64,9 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _MaxFill: 1
     - _Metallic: 0
+    - _MinFill: 0.15
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -79,6 +81,7 @@ Material:
     - _UVSec: 0
     - _UseUIAlphaClip: 0
     - _WaveAmount: 12
+    - _WaveBorderThickness: 0.05
     - _WaveSize: 0.033
     - _WaveSpeed: 4
     - _ZWrite: 1
