@@ -125,25 +125,14 @@ Shader "Custom/2D/Fluid"
 		UNITY_SETUP_INSTANCE_ID(i);
 		float fillAmount = UNITY_ACCESS_INSTANCED_PROP(_BucketFillAmount_arr, _BucketFillAmount) / 2;
 		half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
-
-		if (color.a != 0)
-		{
-			 float wave = sin(_Time.y * _WaveSpeed + IN.texcoord.x * _WaveAmount);
-			 half waveHeight = fillAmount + lerp(fillAmount - _WaveSize, fillAmount, wave);
-			 waveHeight = (_MaxFill - _MinFill) * waveHeight + _MinFill;
-			 //color.a = max(0, sign(waveHeight - IN.texcoord.y));
-			 float dist = waveHeight - IN.texcoord.y;
-			 
-			 if (dist < _WaveBorderThickness)
-			 {
-				 color.rgb -= float3(.2,.2,.2);
-			 }
-
-			 if (IN.texcoord.y > waveHeight)
-			 {
-				 color.a = 0;
-			 }
-		}
+		
+		float wave = sin(_Time.y * _WaveSpeed + IN.texcoord.x * _WaveAmount);
+		half waveHeight = fillAmount + lerp(fillAmount - _WaveSize, fillAmount, wave);
+		waveHeight = (_MaxFill - _MinFill) * waveHeight + _MinFill; //"clamp" if the visible image is smaller than the source
+		
+		float dist = waveHeight - IN.texcoord.y;	 
+		color.rgb -= float3(.2, .2, .2) * max(0, sign(_WaveBorderThickness - dist)); // darker outline on the top of the wave
+		color.a = color.a * max(0, sign(waveHeight - IN.texcoord.y)); // keep source alpha but make all fill above the wave invisible
 
 		#ifdef UNITY_UI_CLIP_RECT
 				color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
@@ -154,8 +143,8 @@ Shader "Custom/2D/Fluid"
 		#endif
 
 		return color;
-	}
-		ENDCG
-	}
+		}
+			ENDCG
+		}
 	}
 }

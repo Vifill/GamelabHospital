@@ -9,7 +9,7 @@
 		_Brightness("Brightness", Range(0, .1)) = 0.03
 		_OutlineFactor("Outline Factor", Range(0, 1)) = 1
 		_OutlineColor("Outline Color", Color) = (0.67,1,0.184,1)
-		_OutlineWidth("Outline Width", Range(0, 10)) = .0015
+		_OutlineWithWebGL("Outline Width", Range(0, 10)) = .0015
 		_BodyAlpha("Body Alpha", Range(0, 1)) = 1
 
 		_Stencil("Stencil ID", Int) = 16
@@ -135,7 +135,7 @@
 	sampler2D _MainTex;
 	float4 _MainTex_ST;
 	uniform fixed4 _OutlineColor;
-	uniform float _OutlineWidth;
+	uniform float _OutlineWithWebGL;
 	uniform float _OutlineFactor;
 
 	v2f vert(appdata_t v)
@@ -149,7 +149,7 @@
 		o.vertex = UnityObjectToClipPos(v.vertex);
 		float3 norm = mul((float3x3)UNITY_MATRIX_IT_MV, caculateVec);
 		float2 offset = TransformViewToProjection(norm.xy);
-		o.vertex.xy += offset * o.vertex.z * _OutlineWidth;
+		o.vertex.xy += offset * o.vertex.z * _OutlineWithWebGL;
 
 		o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
 		UNITY_TRANSFER_FOG(o,o.vertex);
@@ -210,7 +210,7 @@
 	sampler2D _MainTex;
 	float4 _MainTex_ST;
 	uniform fixed4 _OutlineColor;
-	uniform float _OutlineWidth;
+	uniform float _OutlineWithWebGL;
 	uniform float _OutlineFactor;
 
 	v2f vert(appdata_t v)
@@ -224,7 +224,7 @@
 		o.vertex = UnityObjectToClipPos(v.vertex);
 		float3 norm = mul((float3x3)UNITY_MATRIX_IT_MV, caculateVec);
 		float2 offset = TransformViewToProjection(norm.xy);
-		o.vertex.xy += offset * o.vertex.z * _OutlineWidth;
+		o.vertex.xy += offset * o.vertex.z * _OutlineWithWebGL;
 
 		o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
 		UNITY_TRANSFER_FOG(o,o.vertex);
