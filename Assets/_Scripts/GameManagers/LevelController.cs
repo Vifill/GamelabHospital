@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets._Scripts.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,7 @@ public class LevelController
 
 	public void LoadNextLevel(int pCurrentLevel)
     {
-        SceneLoader.LoadScene($"Level{pCurrentLevel+1}");
+        SceneLoader.LoadScene($"{Constants.SceneNamePrefix}{pCurrentLevel+1}");
         //GameController.InMenuScreen = false;
     }
 

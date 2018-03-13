@@ -24,7 +24,8 @@ public class HealthController : MonoBehaviour
     public float ConstantDehydrationSpeed;
     public float ConstantHealing;
 
-    private BedManager BedManagerInstance;
+    public BedManager BedManagerInstance;
+
     private HydrationController HydrationController;
     private PatientStatusController PatientStatusController;
     private GameObject HydrationUI;

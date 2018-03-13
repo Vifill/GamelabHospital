@@ -12,7 +12,17 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: WallLamp
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_Lightbulb_mat
+    second: {fileID: 2100000, guid: 1507b28641b33e24b9adea613ee9290f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_mat
+    second: {fileID: 2100000, guid: 38aa03b157381b346b9b6cf332114812, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
