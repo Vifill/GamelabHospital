@@ -11,7 +11,12 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Cylinder001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lamppost_mat
+    second: {fileID: 2100000, guid: a25fc1c3e94d7da449c4d357f815e3ff, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
