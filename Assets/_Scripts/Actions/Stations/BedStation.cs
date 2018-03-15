@@ -7,6 +7,7 @@ public class BedStation : Actionable
 {
     public float DirtyMeter;
     private BedController BedController;
+    private GameController GC;
 
     public ToolName RequiredTool;
 
@@ -21,12 +22,12 @@ public class BedStation : Actionable
     protected override void Initialize()
     {
         BedController = GetComponent<BedController>();
+        GC = FindObjectOfType<GameController>();
 
         //UI Stuff
         Cam = FindObjectOfType<Camera>();
-        var shouldSpawnUI = true;
 
-        if (DirtyBarPrefab != null && shouldSpawnUI)
+        if (DirtyBarPrefab != null && GC.ShouldSpawnBucketUI())
         {
             DirtyBarInstance = Instantiate(DirtyBarPrefab, FindObjectOfType<Canvas>().transform);
             BarFill = DirtyBarInstance.transform.GetChild(0).GetComponent<Image>();

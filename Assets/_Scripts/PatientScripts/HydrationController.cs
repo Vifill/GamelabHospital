@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class HydrationController : Actionable
 {
-    public SanitationThresholdConfig SanitationThresholdConfig;
-
+    private SanitationThresholdConfig DoctorSanitationThresholdConfig;
     private HealthController HealthCtrl;
     private HydrationModel CurrentHydrationModel;
     private bool IsHydrating;
@@ -19,6 +18,7 @@ public class HydrationController : Actionable
     protected override void Initialize()
     {
         HealthCtrl = GetComponent<HealthController>();
+        DoctorSanitationThresholdConfig = HealthCtrl.DoctorSanitationThresholdConfig;
         MovementController = GetComponent<PatientMovementController>();
     }
 
@@ -54,7 +54,7 @@ public class HydrationController : Actionable
 
     private void ResolveSanitationEffect(float pDirtyStatus)
     {
-        var severity = SanitationThresholdConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
+        var severity = DoctorSanitationThresholdConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
         HealthCtrl.CholeraSeverity += severity?.CholeraSeverityIncreasePerSecond ?? 0;
     }
 

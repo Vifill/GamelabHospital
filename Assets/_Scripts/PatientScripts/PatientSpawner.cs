@@ -71,8 +71,9 @@ public class PatientSpawner : MonoBehaviour
         healthController.HydrationConfig = patientModel.HydrationConfig;
         healthController.CholeraConfig = patientModel.CholeraConfig;
         healthController.ThresholdOddsConfig = patientModel.ThresholdOddsConfig;
-        healthController.BedSanitationConfig = patientModel.BedSanitationConfig;
+        healthController.BedSanitationConfig = patientModel.BedSanitationThresholdConfig;
         healthController.HydrationHealingConfig = patientModel.HydrationHealingConfig;
+        healthController.DoctorSanitationThresholdConfig = patientModel.DoctorSanitationThresholdConfig;
 
         //Remove that patient
         PatientsToSpawn.RemoveAt(index);

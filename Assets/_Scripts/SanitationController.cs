@@ -21,12 +21,14 @@ public class SanitationController : MonoBehaviour
     public Color SanitationUIColor;
     public GameObject DirtyParticles;
     public SanitationThresholdConfig DoctorSanitationConfig;
+    public GameController GC;
 
 	// Use this for initialization
 	private void Start() 
 	{
         Tutorial2ScreenController = FindObjectOfType<Level2TutorialScreenController>();
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
+        GC = FindObjectOfType<GameController>();
 
         if (DirtyParticles.activeInHierarchy)
         {
@@ -38,9 +40,7 @@ public class SanitationController : MonoBehaviour
 
     private void InitializeSanitationUI()
     {
-        var shouldSpawnUI = true;
-
-        if (shouldSpawnUI)
+        if (GC.ShouldSpawnSanitationUI())
         {
             SanitationBar = Instantiate(SanitationBarUIPrefab, MainCanvas);
             SanitationUI = SanitationBar.GetComponent<SanitationUI>();
