@@ -14,10 +14,12 @@ public class ToolBase : MonoBehaviour
     public bool IsDirty { get; private set; }
 
     private int CurrentUsesBeforeDirty;
+    private Level3TutorialScreenController TutorialScreenController;
 
     private void Start()
     {
-        if(DirtyMesh != null)
+        TutorialScreenController = FindObjectOfType<Level3TutorialScreenController>();
+        if (DirtyMesh != null)
         {
             DirtyMesh?.SetActive(false);
         }
@@ -30,6 +32,11 @@ public class ToolBase : MonoBehaviour
             CurrentUsesBeforeDirty++;
             if (CurrentUsesBeforeDirty >= UsesBeforeDirty)
             {
+                if(ToolName == ToolName.Bucket && TutorialScreenController != null)
+                {
+                    TutorialScreenController.DisplayBucketDirtyScreen();
+                }
+
                 IsDirty = true;
 
                 DirtyMesh?.SetActive(true);
