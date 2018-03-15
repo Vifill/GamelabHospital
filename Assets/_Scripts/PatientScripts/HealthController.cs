@@ -9,10 +9,15 @@ public class HealthController : MonoBehaviour
     public float CholeraSeverity;
     public float HydrationMeter;
 
+    [HideInInspector]
     public HydrationConfig HydrationConfig;
+    [HideInInspector]
     public CholeraConfig CholeraConfig;
+    [HideInInspector]
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
-    public SanitationConfig BedSanitationConfig;
+    [HideInInspector]
+    public SanitationThresholdConfig BedSanitationConfig;
+    [HideInInspector]
     public HydrationHealingConfig HydrationHealingConfig;
 
     public GameObject HydrationUIPrefab;

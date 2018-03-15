@@ -15,7 +15,15 @@ MonoBehaviour:
   RandomVariance: 0
   CholeraSeverityRange: {x: 20, y: 50}
   HydrationRange: {x: 70, y: 90}
-  ListOfPatientPrefabs:
-  - PatientPrefab: {fileID: 1976841698954826, guid: fac5642152ea58440ad2a425bc07ac0c,
+  PatientPrefab: {fileID: 1976841698954826, guid: fac5642152ea58440ad2a425bc07ac0c,
+    type: 2}
+  ListOfPatientConfigs:
+  - HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
+    CholeraConfig: {fileID: 11400000, guid: 1a29015937cb12d4e890d61c0b4ed1bd, type: 2}
+    ThresholdOddsConfig: {fileID: 11400000, guid: a9a967e65765b9d4891827c2ea524fe3,
+      type: 2}
+    BedSanitationConfig: {fileID: 11400000, guid: 79bb8956573112f49b04d3ee7b778a25,
+      type: 2}
+    HydrationHealingConfig: {fileID: 11400000, guid: 50deca0eeca8726428e77195ed34b9ac,
       type: 2}
     ChanceOfSpawn: 100
