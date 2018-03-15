@@ -24,7 +24,8 @@ public class PatientSpawnModel
     public HydrationConfig HydrationConfig;
     public CholeraConfig CholeraConfig;
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
-    public SanitationThresholdConfig BedSanitationConfig;
+    public SanitationThresholdConfig BedSanitationThresholdConfig;
     public HydrationHealingConfig HydrationHealingConfig;
+    public SanitationThresholdConfig DoctorSanitationThresholdConfig;
     public float ChanceOfSpawn;
 }

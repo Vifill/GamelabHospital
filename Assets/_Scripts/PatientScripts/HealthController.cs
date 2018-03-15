@@ -19,6 +19,8 @@ public class HealthController : MonoBehaviour
     public SanitationThresholdConfig BedSanitationConfig;
     [HideInInspector]
     public HydrationHealingConfig HydrationHealingConfig;
+    [HideInInspector]
+    public SanitationThresholdConfig DoctorSanitationThresholdConfig;
 
     public GameObject HydrationUIPrefab;
     public GameObject PukeWarningSignPrefab;
