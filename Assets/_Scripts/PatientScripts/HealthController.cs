@@ -35,12 +35,17 @@ public class HealthController : MonoBehaviour
     private void Start()
     {
         MainCanvasTransform = GameObject.FindGameObjectWithTag("MainCanvas").transform;
-        HydrationUI = Instantiate(HydrationUIPrefab, MainCanvasTransform);
-        HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
+        SpawnHydrationUI();
         PatientStatusController = GetComponent<PatientStatusController>();
         HydrationController = GetComponent<HydrationController>();
         StartCoroutine(SickCoroutine());
         StartCoroutine(BedSanitationCheckCoroutine());
+    }
+
+    private void SpawnHydrationUI()
+    {
+        HydrationUI = Instantiate(HydrationUIPrefab, MainCanvasTransform);
+        HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
     }
 
     private void Update()
