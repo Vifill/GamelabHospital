@@ -41,30 +41,41 @@ public class SanitationController : MonoBehaviour
 
     private void InitializeSanitationUI()
     {
-        SanitationBar = Instantiate(SanitationBarUIPrefab, MainCanvas);
-        SanitationUI = SanitationBar.GetComponent<SanitationUI>();
-        SanitationUI.Initialize(SanitationUIPicture, SanitationUIColor, this, UIPosition);
+        var shouldSpawnUI = true;
+
+        if (shouldSpawnUI)
+        {
+            SanitationBar = Instantiate(SanitationBarUIPrefab, MainCanvas);
+            SanitationUI = SanitationBar.GetComponent<SanitationUI>();
+            SanitationUI.Initialize(SanitationUIPicture, SanitationUIColor, this, UIPosition);
+        }
     }
 
     public void MakePlayerDirty(float pDirt)
     {
-        CurrentSanitationLevel += pDirt;
-        SanitationUI.UpdateSanitationUI();
-
-        if (CurrentSanitationLevel >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
+        if (SanitationUI != null)
         {
-            DirtyParticles.SetActive(true);
+            CurrentSanitationLevel += pDirt;
+            SanitationUI.UpdateSanitationUI();
+
+            if (CurrentSanitationLevel >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
+            {
+                DirtyParticles.SetActive(true);
+            }
         }
     }
 
     public void ClearSanitation()
     {
-        CurrentSanitationLevel = 0;
-        SanitationUI.UpdateSanitationUI();
-
-        if (DirtyParticles.activeInHierarchy)
+        if (SanitationBar != null)
         {
-            DirtyParticles.SetActive(false);
+            CurrentSanitationLevel = 0;
+            SanitationUI.UpdateSanitationUI();
+
+            if (DirtyParticles.activeInHierarchy)
+            {
+                DirtyParticles.SetActive(false);
+            }
         }
     }
 
