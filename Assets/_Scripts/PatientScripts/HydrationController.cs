@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HydrationController : Actionable
 {
-    public SanitationThresholdConfig SanitationConfig;
+    public SanitationThresholdConfig SanitationThresholdConfig;
 
     private HealthController HealthCtrl;
     private HydrationModel CurrentHydrationModel;
@@ -32,7 +32,7 @@ public class HydrationController : Actionable
             ActionSoundEvent = CurrentHydrationModel.HydrationSound;
         }
 
-        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = actionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles};
+        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = actionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles, MakesPlayerDirty = MakesPlayerDirty};
 
     }
 
@@ -54,7 +54,7 @@ public class HydrationController : Actionable
 
     private void ResolveSanitationEffect(float pDirtyStatus)
     {
-        var severity = SanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
+        var severity = SanitationThresholdConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
         HealthCtrl.CholeraSeverity += severity?.CholeraSeverityIncreasePerSecond ?? 0;
     }
 
