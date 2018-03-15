@@ -28,9 +28,9 @@ public class PatientSpawner : MonoBehaviour
     private void InitializeSpawnDataModel()
     {
         float totalPatients = LevelManager.LevelConfig.LevelTimeSecs / SpawnConfig.SpawnRate;        
-        TotalChance = SpawnConfig.ListOfPatientPrefabs.Sum(a=> a.ChanceOfSpawn);
+        TotalChance = SpawnConfig.ListOfPatientConfigs.Sum(a=> a.ChanceOfSpawn);
 
-        foreach (var dataModel in SpawnConfig.ListOfPatientPrefabs)
+        foreach (var dataModel in SpawnConfig.ListOfPatientConfigs)
         {
             int numberOfPatientsThisType = Mathf.RoundToInt(dataModel.ChanceOfSpawn / TotalChance * totalPatients);
             for(int i = 0; i < numberOfPatientsThisType; i++)
