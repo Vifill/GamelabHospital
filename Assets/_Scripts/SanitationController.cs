@@ -10,6 +10,8 @@ public class SanitationController : MonoBehaviour
     private SanitationUI SanitationUI;
     private Transform MainCanvas;
 
+    private Level2TutorialScreenController Tutorial2ScreenController;
+
     public float CurrentSanitationLevel;
     public float MaxSanitationLevel;
 
@@ -24,6 +26,7 @@ public class SanitationController : MonoBehaviour
 	// Use this for initialization
 	private void Start() 
 	{
+        Tutorial2ScreenController = FindObjectOfType<Level2TutorialScreenController>();
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         GC = FindObjectOfType<GameController>();
 
@@ -34,12 +37,6 @@ public class SanitationController : MonoBehaviour
         
         InitializeSanitationUI();
 	}
-	
-	// Update is called once per frame
-	private void Update() 
-	{
-
-    }
 
     private void InitializeSanitationUI()
     {
@@ -61,6 +58,10 @@ public class SanitationController : MonoBehaviour
             if (CurrentSanitationLevel >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
             {
                 DirtyParticles.SetActive(true);
+                if(Tutorial2ScreenController != null)
+                {
+                    Tutorial2ScreenController.DisplayDirtyPlayerScreen();
+                }
             }
         }
     }

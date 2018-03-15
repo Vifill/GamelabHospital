@@ -2,25 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level2TutorialScreenController : MonoBehaviour 
+public class Level3TutorialScreenController : MonoBehaviour 
 {
     private bool HasBeenShown = false;
 
     private InfoScreenController InfoScreenController;
-    public GameObject PlayerDirtyScreen;
+    public GameObject BucketDirtyScreen;
 
     private void Start()
     {
         InfoScreenController = GetComponent<InfoScreenController>();
     }
 
-    public void DisplayDirtyPlayerScreen()
+    public void DisplayBucketDirtyScreen()
     {
         if (!HasBeenShown)
         {
             HasBeenShown = true;
-            InfoScreenController.InstantiateInfoScreen(PlayerDirtyScreen);
+            InfoScreenController.InstantiateInfoScreen(BucketDirtyScreen);
         }
     }
-
 }
