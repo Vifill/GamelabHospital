@@ -13,17 +13,12 @@ public class SpawnConfig : ScriptableObject
     public Vector2 CholeraSeverityRange;
     public Vector2 HydrationRange;
 
-    public GameObject PatientPrefab;
-
-    public List<PatientSpawnModel> ListOfPatientConfigs;
+    public List<PatientSpawnModel> ListOfPatientPrefabs;
 }
 
 [System.Serializable]
 public class PatientSpawnModel
 {
-    public HydrationConfig HydrationConfig;
-    public CholeraConfig CholerConfig;
-    public CholeraThresholdOddsConfig ThresholdOddsConfig;
-    public 
+    public GameObject PatientPrefab;
     public float ChanceOfSpawn;
 }
