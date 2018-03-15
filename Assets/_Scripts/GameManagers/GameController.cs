@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     private Transform MainCanvas;
     private GameObject CurrentUIScreen;
 
+    public DoctorSanitationConfig DoctorSanitationConfig;
+
 	// Use this for initialization
 	private void Start () 
 	{
