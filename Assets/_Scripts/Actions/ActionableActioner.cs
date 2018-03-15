@@ -38,7 +38,7 @@ public class ActionableActioner : MonoBehaviour
         Canvas = FindObjectOfType<Canvas>();
         SanitationController = GetComponent<SanitationController>();
         GC = FindObjectOfType<GameController>();
-        ToolController = FindObjectOfType<ToolController>();
+        ToolController = GetComponent<ToolController>();
     }
 
     // Update is called once per frame

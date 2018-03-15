@@ -20,8 +20,9 @@ public class SanitationController : MonoBehaviour
     public Sprite SanitationUIPicture;
     public Color SanitationUIColor;
     public GameObject DirtyParticles;
+    [HideInInspector]
     public SanitationThresholdConfig DoctorSanitationConfig;
-    public GameController GC;
+    private GameController GC;
 
 	// Use this for initialization
 	private void Start() 
