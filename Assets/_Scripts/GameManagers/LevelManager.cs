@@ -56,7 +56,8 @@ public class LevelManager : MonoBehaviour
         {
             TimeOver = true;
             FindObjectOfType<PatientSpawner>().StopSpawning();
-            CheckIfAllPatientsAreDone();
+            LevelPassed();
+            //CheckIfAllPatientsAreDone();
             //DayNightCycle.StopPlayback();
             //CheckIfPassed();
         }
