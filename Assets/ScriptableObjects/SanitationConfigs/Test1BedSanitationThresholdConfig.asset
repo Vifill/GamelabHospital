@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Name: Test1BedSanitationThresholdConfig
   m_EditorClassIdentifier: 
   ListOfThresholds:
-  - ThresholdOfActivation: 90
+  - ThresholdOfActivation: 80
+    CholeraSeverityIncreasePerSecond: 0.75
+  - ThresholdOfActivation: 95
     CholeraSeverityIncreasePerSecond: 1.25
