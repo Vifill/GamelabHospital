@@ -7,7 +7,7 @@ using System.Linq;
 
 public class ActionableActioner : MonoBehaviour 
 {
-    private Actionable CurrentAction;
+    protected Actionable CurrentAction;
     private GameObject ActionableParticles;
     private Image ProgressBar;
     private Canvas Canvas;
@@ -65,7 +65,7 @@ public class ActionableActioner : MonoBehaviour
         }
     }
 
-    private void OnSuccess()
+    protected virtual void OnSuccess()
     {
         PlayParticleEffects(CurrentAction.GetActionableParameters().ActionSuccessParticles, CurrentAction.transform);
 
