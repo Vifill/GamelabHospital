@@ -10,5 +10,6 @@ namespace Assets._Scripts.Utilities
     {
         public static string GuidePoints = "Navmesh Guidepoints";
         public static string SceneNamePrefix = "Midterms_Level";
+        public static string MainMenu = "MainMenu";
     }
 }

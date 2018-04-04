@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Configs/Patient/SanitationThresholdConfig")]
-public class SanitationConfig : ScriptableObject
+public class SanitationThresholdConfig : ScriptableObject
 {
     public List<SanitationThresholdModel> ListOfThresholds;
 }

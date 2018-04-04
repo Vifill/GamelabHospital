@@ -9,11 +9,18 @@ public class HealthController : MonoBehaviour
     public float CholeraSeverity;
     public float HydrationMeter;
 
+    [HideInInspector]
     public HydrationConfig HydrationConfig;
+    [HideInInspector]
     public CholeraConfig CholeraConfig;
+    [HideInInspector]
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
-    public SanitationConfig BedSanitationConfig;
+    [HideInInspector]
+    public SanitationThresholdConfig BedSanitationConfig;
+    [HideInInspector]
     public HydrationHealingConfig HydrationHealingConfig;
+    [HideInInspector]
+    public SanitationThresholdConfig DoctorSanitationThresholdConfig;
 
     public GameObject HydrationUIPrefab;
     public GameObject PukeWarningSignPrefab;
@@ -35,12 +42,17 @@ public class HealthController : MonoBehaviour
     private void Start()
     {
         MainCanvasTransform = GameObject.FindGameObjectWithTag("MainCanvas").transform;
-        HydrationUI = Instantiate(HydrationUIPrefab, MainCanvasTransform);
-        HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
+        SpawnHydrationUI();
         PatientStatusController = GetComponent<PatientStatusController>();
         HydrationController = GetComponent<HydrationController>();
         StartCoroutine(SickCoroutine());
         StartCoroutine(BedSanitationCheckCoroutine());
+    }
+
+    private void SpawnHydrationUI()
+    {
+        HydrationUI = Instantiate(HydrationUIPrefab, MainCanvasTransform);
+        HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
     }
 
     private void Update()
