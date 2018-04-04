@@ -170,7 +170,7 @@ public abstract class Actionable : MonoBehaviour
 
     public void OnMouseExit()
     {
-        if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
+        if (GameController.OrderlyInScene && IsActionActive)
         {
             transform.root.GetComponent<Actionable>().RemoveHighlight();
             MouseCursorController.SetCursorToIdle();
