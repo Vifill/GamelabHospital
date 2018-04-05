@@ -10,14 +10,12 @@ public class MovementController : MonoBehaviour {
     public bool CanMove;
     public float WindUpTime = 5;
 
-    private Rigidbody RB;
     private Vector3 Direction;
 
 
     // Use this for initialization
     private void Start ()
     {
-        RB = GetComponent<Rigidbody>();
         CanMove = true;
 	}
 	

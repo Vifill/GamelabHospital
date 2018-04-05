@@ -314,7 +314,7 @@ namespace cakeslice
             outline2Material = null;
             outline3Material = null;
         }
-
+	
         public void UpdateMaterialsPublicProperties()
         {
             if(outlineShaderMaterial)

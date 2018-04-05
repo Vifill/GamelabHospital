@@ -97,10 +97,10 @@ public class LevelManager : MonoBehaviour
 //#if !UNITY_EDITOR
 //            StartCoroutine(DataLogic.SendLevelInfo(PlayerDataController.GetUserID(), SceneManager.GetActiveScene().buildIndex, Points, LevelConfig.StarConfig.GetStar(Points), PatientsHealed, PatientDeaths, TestingPeriod));
 //#endif
-            if (true)
-            {
-                StartCoroutine(DataLogic.SendLevelInfo(PlayerDataController.GetUserID(), SceneManager.GetActiveScene().buildIndex, Points, LevelConfig.StarConfig.GetStar(Points), PatientsHealed, PatientDeaths));
-            }
+            //if (true)
+            //{
+            //    //StartCoroutine(DataLogic.SendLevelInfo(PlayerDataController.GetUserID(), SceneManager.GetActiveScene().buildIndex, Points, LevelConfig.StarConfig.GetStar(Points), PatientsHealed, PatientDeaths));
+            //}
         }
     }
 
