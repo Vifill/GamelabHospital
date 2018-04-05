@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 114715137660505864}
   - component: {fileID: 114473966216598148}
   - component: {fileID: 114295128852408656}
+  - component: {fileID: 114086908781724214}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -157,6 +158,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadingScreen: {fileID: 1754126569428620, guid: ffbb7547c324a854bac1ea8752ebc14f,
     type: 2}
+--- !u!114 &114086908781724214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809543526668006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45ada92b390468469ee545dc8fe46ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114148671757538956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,6 +243,7 @@ MonoBehaviour:
   BedManager: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
   PauseMenuPrefab: {fileID: 1914914731958650, guid: 192e0c2f7db78b049a8e196931c71d28,
     type: 2}
+  DoctorSanitationConfig: {fileID: 0}
 --- !u!114 &114532227978550538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,6 +272,7 @@ MonoBehaviour:
   MouseClickAudioSource: {fileID: 82534212683227708}
   MouseClickDownSound: {fileID: 8300000, guid: 02eb9d46cc7f74f418eefdf6e3464f10, type: 3}
   MouseClickUpSound: {fileID: 8300000, guid: 55680db20b7fd454e88b66755c1c723d, type: 3}
+  IsEnabledInLevel: 0
 --- !u!114 &114715137660505864
 MonoBehaviour:
   m_ObjectHideFlags: 1

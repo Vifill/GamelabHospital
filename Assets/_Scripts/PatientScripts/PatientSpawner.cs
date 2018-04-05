@@ -11,7 +11,7 @@ public class PatientSpawner : MonoBehaviour
 
     public BedManager BedManager;
 
-    private List<GameObject> PatientsToSpawn = new List<GameObject>();
+    private List<PatientSpawnModel> PatientsToSpawn = new List<PatientSpawnModel>();
     private float TotalChance = 0;
 
     private LevelManager LevelManager;
@@ -28,14 +28,14 @@ public class PatientSpawner : MonoBehaviour
     private void InitializeSpawnDataModel()
     {
         float totalPatients = LevelManager.LevelConfig.LevelTimeSecs / SpawnConfig.SpawnRate;        
-        TotalChance = SpawnConfig.ListOfPatientPrefabs.Sum(a=> a.ChanceOfSpawn);
+        TotalChance = SpawnConfig.ListOfPatientConfigs.Sum(a=> a.ChanceOfSpawn);
 
-        foreach (var dataModel in SpawnConfig.ListOfPatientPrefabs)
+        foreach (var dataModel in SpawnConfig.ListOfPatientConfigs)
         {
             int numberOfPatientsThisType = Mathf.RoundToInt(dataModel.ChanceOfSpawn / TotalChance * totalPatients);
             for(int i = 0; i < numberOfPatientsThisType; i++)
             {
-                PatientsToSpawn.Add(dataModel.PatientPrefab);
+                PatientsToSpawn.Add(dataModel);
             }
         }
     }
@@ -61,10 +61,19 @@ public class PatientSpawner : MonoBehaviour
     {
         //Pick random patient in the list to spawn.
         int index = UnityEngine.Random.Range(0, PatientsToSpawn.Count-1);
-        GameObject patient = (GameObject)Instantiate(PatientsToSpawn[index], SpawnPoint.position, SpawnPoint.rotation);
+        GameObject patient = (GameObject)Instantiate(SpawnConfig.PatientPrefab, SpawnPoint.position, SpawnPoint.rotation);
 
-        patient.GetComponent<HealthController>().CholeraSeverity = UnityEngine.Random.Range(SpawnConfig.CholeraSeverityRange.x, SpawnConfig.CholeraSeverityRange.y);
-        patient.GetComponent<HealthController>().HydrationMeter = UnityEngine.Random.Range(SpawnConfig.HydrationRange.x, SpawnConfig.HydrationRange.y);
+        var healthController = patient.GetComponent<HealthController>();
+        var patientModel = PatientsToSpawn[index];
+
+        healthController.CholeraSeverity = UnityEngine.Random.Range(SpawnConfig.CholeraSeverityRange.x, SpawnConfig.CholeraSeverityRange.y);
+        healthController.HydrationMeter = UnityEngine.Random.Range(SpawnConfig.HydrationRange.x, SpawnConfig.HydrationRange.y);
+        healthController.HydrationConfig = patientModel.HydrationConfig;
+        healthController.CholeraConfig = patientModel.CholeraConfig;
+        healthController.ThresholdOddsConfig = patientModel.ThresholdOddsConfig;
+        healthController.BedSanitationConfig = patientModel.BedSanitationThresholdConfig;
+        healthController.HydrationHealingConfig = patientModel.HydrationHealingConfig;
+        healthController.DoctorSanitationThresholdConfig = patientModel.DoctorSanitationThresholdConfig;
 
         //Remove that patient
         PatientsToSpawn.RemoveAt(index);

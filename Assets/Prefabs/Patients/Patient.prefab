@@ -6822,6 +6822,7 @@ MonoBehaviour:
     type: 2}
   HydrationHealingConfig: {fileID: 11400000, guid: 50deca0eeca8726428e77195ed34b9ac,
     type: 2}
+  DoctorSanitationThresholdConfig: {fileID: 0}
   HydrationUIPrefab: {fileID: 1149620341329518, guid: 81a4b3d17fff8f345b03efedb06d434a,
     type: 2}
   PukeWarningSignPrefab: {fileID: 1815776712570514, guid: 4db1a0ae3a924bc45b7035ab2c9756f0,
@@ -6858,8 +6859,8 @@ MonoBehaviour:
   IsActionActive: 0
   DirtiesTool: 0
   NeedsSanitizedTool: 0
-  PlayerDesanitationAmount: 0
   ConsumesTool: 0
+  MakesPlayerDirty: 0
   ActionProgress: 0
   CanBeCheckedOutVisual: {fileID: 1595240440422196, guid: 0ebd6da55a04b9445a8ca1f9e274206d,
     type: 2}
@@ -6917,10 +6918,9 @@ MonoBehaviour:
   IsActionActive: 0
   DirtiesTool: 0
   NeedsSanitizedTool: 0
-  PlayerDesanitationAmount: 5
   ConsumesTool: 1
+  MakesPlayerDirty: 1
   ActionProgress: 0
-  SanitationConfig: {fileID: 11400000, guid: 8e5cf8227361e3f49abdfeaf9aea8402, type: 2}
 --- !u!136 &136088267323064392
 CapsuleCollider:
   m_ObjectHideFlags: 1

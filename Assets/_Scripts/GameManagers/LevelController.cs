@@ -24,6 +24,11 @@ public class LevelController
         SceneLoader.LoadScene("LevelSelection");
     }
 
+    public void GoToMainMenu()
+    {
+        SceneLoader.LoadScene(Constants.MainMenu);
+    }
+
     public void RestartCurrentScene()
     {
         SceneLoader.LoadScene(SceneManager.GetActiveScene().name);

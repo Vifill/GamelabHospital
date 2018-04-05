@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     private Transform MainCanvas;
     private GameObject CurrentUIScreen;
 
+    public DoctorSanitationConfig DoctorSanitationConfig;
+
 	// Use this for initialization
 	private void Start () 
 	{
@@ -35,6 +37,16 @@ public class GameController : MonoBehaviour
             OrderlyInScene = false;
         }
 	}
+
+    public bool ShouldSpawnBucketUI()
+    {
+        return DoctorSanitationConfig.SanitationModels.Any(a => a.ToolName == ToolName.Bucket && a.DesanitationAmount > 0);
+    }
+
+    public bool ShouldSpawnSanitationUI()
+    {
+        return DoctorSanitationConfig.SanitationModels.Any(a => a.ToolName == ToolName.Water && a.DesanitationAmount > 0);
+    }
 
     public void PauseGame(GameObject pUIScreen)
     {

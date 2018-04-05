@@ -23,7 +23,8 @@ public class PauseMenuManager : MonoBehaviour
     public void ButtonMenu()
     {
         FindObjectOfType<MusicController>().PlayButtonSound();
-        LvlCtrl.GoToLevelSelection();
+        //LvlCtrl.GoToLevelSelection();
+        LvlCtrl.GoToMainMenu();
     }
 
     public void ButtonRestart()

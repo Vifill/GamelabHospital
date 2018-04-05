@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class HydrationController : Actionable
 {
-    public SanitationConfig SanitationConfig;
-
+    private SanitationThresholdConfig DoctorSanitationThresholdConfig;
     private HealthController HealthCtrl;
     private HydrationModel CurrentHydrationModel;
     private bool IsHydrating;
@@ -19,6 +18,7 @@ public class HydrationController : Actionable
     protected override void Initialize()
     {
         HealthCtrl = GetComponent<HealthController>();
+        DoctorSanitationThresholdConfig = HealthCtrl.DoctorSanitationThresholdConfig;
         MovementController = GetComponent<PatientMovementController>();
     }
 
@@ -32,7 +32,7 @@ public class HydrationController : Actionable
             ActionSoundEvent = CurrentHydrationModel.HydrationSound;
         }
 
-        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = actionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
+        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = actionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles, MakesPlayerDirty = MakesPlayerDirty};
 
     }
 
@@ -54,7 +54,7 @@ public class HydrationController : Actionable
 
     private void ResolveSanitationEffect(float pDirtyStatus)
     {
-        var severity = SanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
+        var severity = DoctorSanitationThresholdConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
         HealthCtrl.CholeraSeverity += severity?.CholeraSeverityIncreasePerSecond ?? 0;
     }
 
