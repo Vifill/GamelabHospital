@@ -23,8 +23,8 @@ public class EndScreenUIManager : MonoBehaviour
     public Image Star2;
     public Image Star3;
     public Image ProgressBar;
-    public Button LevelSelectionBtnObj;
-    public Button StaticLvlSelectBtnObj;
+    //public Button LevelSelectionBtnObj;
+    //public Button StaticLvlSelectBtnObj;
     public Button RestartLevelBtnObj;
     public Button NextLvlBtnObj;
     public float FillSpeed;
@@ -45,24 +45,24 @@ public class EndScreenUIManager : MonoBehaviour
             if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings - 1)
             {
                 NextLvlBtnObj.gameObject.SetActive(true);
-                LevelSelectionBtnObj.gameObject.SetActive(false);
+                //LevelSelectionBtnObj.gameObject.SetActive(false);
                 RestartLevelBtnObj.gameObject.SetActive(false);
-                StaticLvlSelectBtnObj.gameObject.SetActive(true);
+                //StaticLvlSelectBtnObj.gameObject.SetActive(true);
             }
             else
             {
                 NextLvlBtnObj.gameObject.SetActive(false);
-                LevelSelectionBtnObj.gameObject.SetActive(true);
+                //LevelSelectionBtnObj.gameObject.SetActive(true);
                 RestartLevelBtnObj.gameObject.SetActive(false);
-                StaticLvlSelectBtnObj.gameObject.SetActive(false);
+                //StaticLvlSelectBtnObj.gameObject.SetActive(false);
             }
         }
         else
         {
             RestartLevelBtnObj.gameObject.SetActive(true);
             NextLvlBtnObj.gameObject.SetActive(false);
-            LevelSelectionBtnObj.gameObject.SetActive(false);
-            StaticLvlSelectBtnObj.gameObject.SetActive(true);
+            //LevelSelectionBtnObj.gameObject.SetActive(false);
+            //StaticLvlSelectBtnObj.gameObject.SetActive(true);
         }
 
         

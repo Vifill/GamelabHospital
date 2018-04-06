@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ActionableActioner : MonoBehaviour 
 {
@@ -12,7 +13,7 @@ public class ActionableActioner : MonoBehaviour
     private Canvas Canvas;
 
     public GameObject ProgressBarPrefab;
-    public Transform ProcessBarWorldPosition;
+    public Transform ProgressBarWorldPosition;
     public AudioSource Asource;
     public AudioClip PickUpSound;
     public AudioClip DropSound;
@@ -27,6 +28,8 @@ public class ActionableActioner : MonoBehaviour
     private bool IsActioning;
     private MovementController MovementController;
     private SanitationController SanitationController;
+    private GameController GC;
+    private ToolController ToolController;
 
     // Use this for initialization
     private void Start () 
@@ -34,6 +37,8 @@ public class ActionableActioner : MonoBehaviour
         Asource = GetComponent<AudioSource>();
         Canvas = FindObjectOfType<Canvas>();
         SanitationController = GetComponent<SanitationController>();
+        GC = FindObjectOfType<GameController>();
+        ToolController = GetComponent<ToolController>();
     }
 
     // Update is called once per frame
@@ -51,7 +56,7 @@ public class ActionableActioner : MonoBehaviour
 
             CurrentTime += Time.deltaTime;
             ProgressBar.fillAmount = CurrentTime / TotalTime;
-            ProgressBar.transform.parent.position = Camera.main.WorldToScreenPoint(ProcessBarWorldPosition.position) /*+ new Vector3(0, UIOffset)*/;
+            ProgressBar.transform.parent.position = Camera.main.WorldToScreenPoint(ProgressBarWorldPosition.position) /*+ new Vector3(0, UIOffset)*/;
 
             if (CurrentTime >= TotalTime)
             {
@@ -66,8 +71,8 @@ public class ActionableActioner : MonoBehaviour
 
         CurrentTime = 0;
         StopAction();
-        ProcessToolAfterSuccess();
         ProcessPlayerSanitation();
+        ProcessToolAfterSuccess();
         ActionAfterFinishing?.Invoke(gameObject);
         ExternalActionWhenSuccessful?.Invoke();
         CurrentAction.PlayFinishedActionSFX();
@@ -75,20 +80,26 @@ public class ActionableActioner : MonoBehaviour
 
     private void ProcessToolAfterSuccess()
     {
-        var toolController = GetComponent<ToolController>();
-        if ((toolController.GetToolBase()?.IsUsedUpAfterUse ?? false) && CurrentAction.ConsumesTool)
+        if ((ToolController.GetToolBase()?.IsUsedUpAfterUse ?? false) && CurrentAction.ConsumesTool)
         {
-            toolController.DestroyTool();
+            ToolController.DestroyTool();
         }
-        if (CurrentAction.DirtiesTool && toolController.GetToolBase().NeedsToBeSanitized)
+        if (CurrentAction.DirtiesTool && ToolController.GetToolBase().NeedsToBeSanitized)
         {
-            toolController.GetToolBase().ToolUsed();
+            ToolController.GetToolBase().ToolUsed();
         }
     }
 
     private void ProcessPlayerSanitation()
     {
-        SanitationController.MakePlayerDirty(CurrentAction.PlayerDesanitationAmount);
+        if (CurrentAction.GetActionableParameters().MakesPlayerDirty)
+        {
+            var model = GC.DoctorSanitationConfig.SanitationModels.SingleOrDefault(a => a.ToolName == ToolController.GetCurrentToolName());
+            if(model != null)
+            {
+                SanitationController.MakePlayerDirty(model.DesanitationAmount);
+            }
+        }
     }
 
     internal void AttemptAction(Actionable pAction, MovementController pMovementController = null, Action pExternalActionWhenSuccessful = null, Action pExternalActionWhenFailed = null)

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,11 @@ public class InfoScreenController : MonoBehaviour
         //StartCoroutine(InstantiateScreen());
         Invoke("InstantiateScreen", SecondsBeforeScreenAppears);
 	}
+
+    internal void InstantiateInfoScreen(GameObject pCheckoutScreenPrefab)
+    {
+        GC.PauseGame(pCheckoutScreenPrefab);
+    }
 
     // Instantiates the screen
     //private IEnumerator InstantiateScreen()

@@ -30,8 +30,8 @@ public abstract class Actionable : MonoBehaviour
     public bool IsActionActive;
     public bool DirtiesTool;
     public bool NeedsSanitizedTool;
-    public float PlayerDesanitationAmount;
     public bool ConsumesTool;
+    public bool MakesPlayerDirty;
 
     public abstract bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning);
     public virtual void OnFinishedAction(GameObject pObjectActioning) { }
@@ -44,7 +44,7 @@ public abstract class Actionable : MonoBehaviour
 
     public virtual ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
     {
-        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
+        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles, MakesPlayerDirty = MakesPlayerDirty };
     }
 
     public bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
@@ -115,11 +115,17 @@ public abstract class Actionable : MonoBehaviour
             foreach (Renderer rend in renderers)
             {
                 //rend.material.shader = pHighlightShader;
-                mats.AddRange(rend.materials);
+                //dont highlight particlesystems
+                if (rend.GetComponent<ParticleSystem>() == null)
+                {
+                    mats.AddRange(rend.materials);
+                }
+                
             }
 
             foreach (Material mat in mats)
             {
+
                 mat.shader = pHighlightShader;
                 if (pColor != null)
                 {
@@ -147,8 +153,13 @@ public abstract class Actionable : MonoBehaviour
 
             foreach (Renderer rend in renderers)
             {
+                //dont highlight particlesystems
+                if (rend.GetComponent<ParticleSystem>() == null)
+                {
+                    mats.AddRange(rend.materials);
+                }
                 //rend.material.shader = pHighlightShader;
-                mats.AddRange(rend.materials);
+               
             }
 
             foreach (Material mat in mats)
@@ -170,7 +181,7 @@ public abstract class Actionable : MonoBehaviour
 
     public void OnMouseExit()
     {
-        if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
+        if (GameController.OrderlyInScene && IsActionActive)
         {
             transform.root.GetComponent<Actionable>().RemoveHighlight();
             MouseCursorController.SetCursorToIdle();
@@ -198,5 +209,5 @@ public class ActionableParameters
     public AudioClip ActionFinishedSoundClip;
     public string AnimationParameter; 
     public bool IsPickupable;
-    public float MakePlayerDirty;
+    public bool MakesPlayerDirty;
 }

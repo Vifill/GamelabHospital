@@ -7,6 +7,7 @@ public class BedStation : Actionable
 {
     public float DirtyMeter;
     private BedController BedController;
+    private GameController GC;
 
     public ToolName RequiredTool;
 
@@ -21,13 +22,17 @@ public class BedStation : Actionable
     protected override void Initialize()
     {
         BedController = GetComponent<BedController>();
+        GC = FindObjectOfType<GameController>();
 
         //UI Stuff
-        if (DirtyBarPrefab != null)
         Cam = FindObjectOfType<Camera>();
-        DirtyBarInstance = Instantiate(DirtyBarPrefab, FindObjectOfType<Canvas>().transform);
-        BarFill = DirtyBarInstance.transform.GetChild(0).GetComponent<Image>();
-        UpdateDirtyUI();
+
+        if (DirtyBarPrefab != null && GC.ShouldSpawnBucketUI())
+        {
+            DirtyBarInstance = Instantiate(DirtyBarPrefab, FindObjectOfType<Canvas>().transform);
+            BarFill = DirtyBarInstance.transform.GetChild(0).GetComponent<Image>();
+            UpdateDirtyUI();
+        } 
     }
 
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
@@ -63,12 +68,18 @@ public class BedStation : Actionable
 
     private void UpdateDirtyUI()
     {
-        BarFill.GetComponent<UIFillAmount>().FillAmount = DirtyMeter / 100;
+        if (DirtyBarInstance != null)
+        {
+            BarFill.GetComponent<UIFillAmount>().FillAmount = DirtyMeter / 100;
+        }
     }
 
     private void Update()
     {
-        DirtyBarInstance.transform.position = Cam.WorldToScreenPoint(BucketUIPos.position);
+        if (DirtyBarInstance != null)
+        {
+            DirtyBarInstance.transform.position = Cam.WorldToScreenPoint(BucketUIPos.position);
+        }
     }
 
     //public Vector3 GetWorldPositionOnPlane(Vector3 pScreenPosition, float z)
