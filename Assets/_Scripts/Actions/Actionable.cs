@@ -115,11 +115,17 @@ public abstract class Actionable : MonoBehaviour
             foreach (Renderer rend in renderers)
             {
                 //rend.material.shader = pHighlightShader;
-                mats.AddRange(rend.materials);
+                //dont highlight particlesystems
+                if (rend.GetComponent<ParticleSystem>() == null)
+                {
+                    mats.AddRange(rend.materials);
+                }
+                
             }
 
             foreach (Material mat in mats)
             {
+
                 mat.shader = pHighlightShader;
                 if (pColor != null)
                 {
@@ -147,8 +153,13 @@ public abstract class Actionable : MonoBehaviour
 
             foreach (Renderer rend in renderers)
             {
+                //dont highlight particlesystems
+                if (rend.GetComponent<ParticleSystem>() == null)
+                {
+                    mats.AddRange(rend.materials);
+                }
                 //rend.material.shader = pHighlightShader;
-                mats.AddRange(rend.materials);
+               
             }
 
             foreach (Material mat in mats)
