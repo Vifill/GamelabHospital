@@ -160,9 +160,9 @@ GameObject:
   - component: {fileID: 4742347879460734}
   - component: {fileID: 65105722371421456}
   - component: {fileID: 114788812090140734}
-  - component: {fileID: 65556181138199890}
   - component: {fileID: 114368368249734538}
   - component: {fileID: 82010009663108682}
+  - component: {fileID: 65209149851375728}
   m_Layer: 0
   m_Name: Bed
   m_TagString: Untagged
@@ -274,8 +274,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816757247161776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 4.72, y: 0, z: 4.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4632487164283986}
@@ -479,7 +479,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3, y: 1, z: 3.3}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!65 &65556181138199890
+--- !u!65 &65209149851375728
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -489,8 +489,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 3.3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 1, z: 3.3}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!82 &82010009663108682
 AudioSource:
   m_ObjectHideFlags: 1
@@ -594,8 +594,8 @@ MonoBehaviour:
   IsActionActive: 1
   DirtiesTool: 1
   NeedsSanitizedTool: 1
-  PlayerDesanitationAmount: 20
   ConsumesTool: 0
+  MakesPlayerDirty: 0
   ActionProgress: 0
   DirtyMeter: 0
   RequiredTool: 4
