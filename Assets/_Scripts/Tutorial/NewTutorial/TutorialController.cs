@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Events;
 
 public class TutorialController : MonoBehaviour
 {
@@ -12,10 +13,14 @@ public class TutorialController : MonoBehaviour
 
     public Text ObjectiveTextUIObject;
 
+    public Dictionary<EventManager.EventCodes, UnityAction> EventActions = new Dictionary<EventManager.EventCodes, UnityAction>();
+
     private int ObjectiveIndex = 0;
 
     private void Start()
     {
+        AddActionsToEvents();
+
         if(Objectives?.Any() ?? false)
         {
             if(Objectives[0] != null)
@@ -23,6 +28,11 @@ public class TutorialController : MonoBehaviour
                 StartNewObjective(Objectives[0]);
             }
         }
+    }
+
+    private void AddActionsToEvents()
+    {
+        EventActions.Add(EventManager.EventCodes.DoneGetWater, OnWaterDoneEvent);
     }
 
     private void StartNewObjective(Objective pNextObjective)
@@ -42,10 +52,22 @@ public class TutorialController : MonoBehaviour
     
     private void ObjectiveEnd()
     {
+        if(EventActions.ContainsKey(CurrentObjective.OnFinishEvent))
+        {
+            EventActions[CurrentObjective.OnFinishEvent].Invoke();
+        }
+
         ObjectiveIndex++;
         if(Objectives[ObjectiveIndex] != null)
         {
             StartNewObjective(Objectives[ObjectiveIndex]);
+
         }
     }
+    
+    private void OnWaterDoneEvent()
+    {
+        
+    }
+
 }
