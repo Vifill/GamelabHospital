@@ -13,7 +13,7 @@ public class ActionableActioner : MonoBehaviour
     private Canvas Canvas;
 
     public GameObject ProgressBarPrefab;
-    public Transform ProcessBarWorldPosition;
+    public Transform ProgressBarWorldPosition;
     public AudioSource Asource;
     public AudioClip PickUpSound;
     public AudioClip DropSound;
@@ -56,7 +56,7 @@ public class ActionableActioner : MonoBehaviour
 
             CurrentTime += Time.deltaTime;
             ProgressBar.fillAmount = CurrentTime / TotalTime;
-            ProgressBar.transform.parent.position = Camera.main.WorldToScreenPoint(ProcessBarWorldPosition.position) /*+ new Vector3(0, UIOffset)*/;
+            ProgressBar.transform.parent.position = Camera.main.WorldToScreenPoint(ProgressBarWorldPosition.position) /*+ new Vector3(0, UIOffset)*/;
 
             if (CurrentTime >= TotalTime)
             {
