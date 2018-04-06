@@ -9,6 +9,9 @@ public class HealthController : MonoBehaviour
     public float CholeraSeverity;
     public float HydrationMeter;
 
+    public float MaxHydration;
+    public float MinHydration;
+
     [HideInInspector]
     public HydrationConfig HydrationConfig;
     [HideInInspector]
