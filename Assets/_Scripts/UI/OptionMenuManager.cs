@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class OptionMenuManager : MonoBehaviour 
 {
     public AudioMixer AudioMixer;
     public Dropdown ResolutionDropdown;
     public Dropdown GraphicsDropdown;
+    public GameObject BackButton;
 
     private GameObject PauseMenu;
     private Resolution[] Resolutions;
@@ -24,6 +26,9 @@ public class OptionMenuManager : MonoBehaviour
         GetResolutions();
         GetGraphicQualityIndexes();
         RefreshSelectedSettings();
+
+        var canvasEventSys = FindObjectOfType<EventSystem>();
+        canvasEventSys.SetSelectedGameObject(BackButton);
     }
 
     private void RefreshSelectedSettings()
@@ -109,6 +114,7 @@ public class OptionMenuManager : MonoBehaviour
         FindObjectOfType<MusicController>().PlayButtonSound();
         GameController.InOptionMenu = false;
         PauseMenu.SetActive(true);
+        PauseMenu.GetComponent<PauseMenuManager>().SetSelectedButton();
         Destroy(gameObject);
     }
 }
