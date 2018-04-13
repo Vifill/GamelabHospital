@@ -49,7 +49,7 @@ public class HydrationController : Actionable
             CurrentHydrations.Remove(CurrentHydrationModel);
         }
         CurrentHydrations.Add(CurrentHydrationModel, StartCoroutine(HydrationCoroutine(CurrentHydrationModel)));
-        ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel);
+        ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().Sanitation);
     }
 
     private void ResolveSanitationEffect(float pDirtyStatus)
