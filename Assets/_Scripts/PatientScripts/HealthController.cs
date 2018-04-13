@@ -9,8 +9,13 @@ public class HealthController : MonoBehaviour
     public float CholeraSeverity;
     public float HydrationMeter;
 
-    public float MaxHydration;
-    public float MinHydration;
+    public float MaxHydration = 100;
+    public float MinHydration = 0;
+
+    [HideInInspector]
+    public float HydrationClampMax;
+    [HideInInspector]
+    public float HydrationClampMin;
 
     [HideInInspector]
     public HydrationConfig HydrationConfig;
@@ -44,6 +49,8 @@ public class HealthController : MonoBehaviour
 
     private void Start()
     {
+        HydrationClampMax = MaxHydration;
+        HydrationClampMin = MinHydration;
         MainCanvasTransform = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         SpawnHydrationUI();
         PatientStatusController = GetComponent<PatientStatusController>();
@@ -74,7 +81,7 @@ public class HealthController : MonoBehaviour
 
         if (!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
         {
-            HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime;
+            HydrationMeter = Mathf.Clamp(HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime, HydrationClampMin, HydrationClampMax);
             CholeraSeverity -= ConstantHealing * Time.deltaTime;
 
             if (!PatientStatusController.IsDead && HydrationMeter <= 0)
@@ -155,7 +162,7 @@ public class HealthController : MonoBehaviour
     {
         float randomVariance = UnityEngine.Random.Range(-CholeraConfig.ExcreteHydrationLossVariance, CholeraConfig.ExcreteHydrationLossVariance);
         float hydrationLossModifier = HydrationConfig.HydrationLowerThreshold >= HydrationMeter ? HydrationConfig.HydrationLowerThresholdModifier : 1;
-        HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier;
+        HydrationMeter = Mathf.Clamp(HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier, HydrationClampMin, HydrationClampMax);
     }
 
     private void MakeBedDirty()

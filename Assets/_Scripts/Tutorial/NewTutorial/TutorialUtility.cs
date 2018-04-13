@@ -23,12 +23,29 @@ public class TutorialUtility : MonoBehaviour
         {
             if (pState)
             {
-                Mathf.Clamp(controller.HydrationMeter, controller.MinHydration, controller.HydrationMeter);
+                controller.HydrationClampMin = controller.HydrationMeter;
+                controller.HydrationClampMax = controller.HydrationMeter;
             }
             else
             {
-                Mathf.Clamp(controller.HydrationMeter, controller.MinHydration, controller.MaxHydration);
+                controller.HydrationClampMin = controller.MinHydration;
+                controller.HydrationClampMax = controller.MaxHydration;
             }
         }
+    }
+
+    public void SetFreezeSpawn(bool pState)
+    {
+
+    }
+
+    public void SetFreezeExcretion(bool pState)
+    {
+
+    }
+
+    public void SetFreezeCholeraSeverity(bool pState)
+    {
+
     }
 }
