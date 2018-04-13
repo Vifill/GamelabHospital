@@ -12,10 +12,18 @@ public class HealthController : MonoBehaviour
     public float MaxHydration = 100;
     public float MinHydration = 0;
 
+    public float MaxHealth = 100;
+    public float MinHealth = 0;
+
     [HideInInspector]
     public float HydrationClampMax;
     [HideInInspector]
     public float HydrationClampMin;
+    [HideInInspector]
+    public float HealthClampMax;
+    [HideInInspector]
+    public float HealthClampMin;
+
 
     [HideInInspector]
     public HydrationConfig HydrationConfig;
@@ -51,6 +59,8 @@ public class HealthController : MonoBehaviour
     {
         HydrationClampMax = MaxHydration;
         HydrationClampMin = MinHydration;
+        HealthClampMax = MaxHealth;
+        HealthClampMin = MinHealth;
         MainCanvasTransform = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         SpawnHydrationUI();
         PatientStatusController = GetComponent<PatientStatusController>();
@@ -71,7 +81,7 @@ public class HealthController : MonoBehaviour
 
         if (severityDecrease > 0)
         {
-            CholeraSeverity -= severityDecrease * Time.deltaTime;
+            CholeraSeverity = Mathf.Clamp(CholeraSeverity -= severityDecrease * Time.deltaTime, HealthClampMin, HealthClampMax);
         }
 
         if (!PatientStatusController.IsHealed && CholeraSeverity <= 0)
@@ -82,7 +92,7 @@ public class HealthController : MonoBehaviour
         if (!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
         {
             HydrationMeter = Mathf.Clamp(HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime, HydrationClampMin, HydrationClampMax);
-            CholeraSeverity -= ConstantHealing * Time.deltaTime;
+            CholeraSeverity = Mathf.Clamp(CholeraSeverity -= ConstantHealing * Time.deltaTime, HealthClampMin, HealthClampMax);
 
             if (!PatientStatusController.IsDead && HydrationMeter <= 0)
             {
@@ -105,8 +115,7 @@ public class HealthController : MonoBehaviour
             if(inBed != null)
             {
                 var severityIncrease = BedSanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.CholeraSeverityIncreasePerSecond ?? 0;
-                CholeraSeverity += severityIncrease;
-                CholeraSeverity = Mathf.Clamp(CholeraSeverity, 0, 100);
+                CholeraSeverity = Mathf.Clamp(CholeraSeverity += severityIncrease, HealthClampMin, HealthClampMax);
             }
         }
     }
@@ -155,7 +164,7 @@ public class HealthController : MonoBehaviour
 
     private void ReduceCholeraSeverity()
     {
-        CholeraSeverity -= CholeraConfig.ExcreteCholeraSeverityLoss;
+        CholeraSeverity = Mathf.Clamp(CholeraSeverity -= CholeraConfig.ExcreteCholeraSeverityLoss, HealthClampMin, HealthClampMax);
     }
 
     private void ReduceHydration()

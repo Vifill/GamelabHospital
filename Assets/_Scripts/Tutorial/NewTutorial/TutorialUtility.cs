@@ -34,18 +34,32 @@ public class TutorialUtility : MonoBehaviour
         }
     }
 
-    public void SetFreezeSpawn(bool pState)
+    public void SetSpawnFreeze(bool pState)
     {
 
     }
 
-    public void SetFreezeExcretion(bool pState)
+    public void SetExcretionFreeze(bool pState)
     {
 
     }
 
-    public void SetFreezeCholeraSeverity(bool pState)
+    public void SetCholeraSeverityFreeze(bool pState)
     {
+        var healthControllers = FindObjectsOfType<HealthController>();
 
+        foreach (var controller in healthControllers)
+        {
+            if (pState)
+            {
+                controller.HealthClampMin = controller.CholeraSeverity;
+                controller.HealthClampMax = controller.CholeraSeverity;
+            }
+            else
+            {
+                controller.HealthClampMin = controller.MinHealth;
+                controller.HealthClampMax = controller.MaxHealth;
+            }
+        }
     }
 }
