@@ -23,10 +23,8 @@ public class HealthController : MonoBehaviour
     public SanitationThresholdConfig DoctorSanitationThresholdConfig;
 
     public GameObject HydrationUIPrefab;
-    public GameObject PukeWarningSignPrefab;
     public GameObject PukeParticleEffectPrefab;
     public Transform PukePosition;
-    public Transform WarningIconPosition;
     
     public float ConstantDehydrationSpeed;
     public float ConstantHealing;
@@ -36,7 +34,6 @@ public class HealthController : MonoBehaviour
     private HydrationController HydrationController;
     private PatientStatusController PatientStatusController;
     private GameObject HydrationUI;
-    private GameObject PukeWarningSignInstance;
     private Transform MainCanvasTransform;
 
     private void Start()
@@ -78,11 +75,6 @@ public class HealthController : MonoBehaviour
             {
                 PatientStatusController.Death();
             }
-        }
-
-        if(PukeWarningSignInstance != null)
-        {
-            PukeWarningSignInstance.transform.position = Camera.main.WorldToScreenPoint(WarningIconPosition.position);
         }
     }
 
@@ -131,7 +123,6 @@ public class HealthController : MonoBehaviour
         IncreaseHealthWhenExcreting();
         MakeBedDirty();
         StartPukingAnimation();
-        Destroy(PukeWarningSignInstance, 2);
         HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
 
         Debug.Log($"I'M PUKING!");
