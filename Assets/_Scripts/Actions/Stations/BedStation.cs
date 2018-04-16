@@ -17,10 +17,12 @@ public class BedStation : Actionable
     private Camera Cam;
     private Image BarFill;
     public Transform BucketUIPos;
+    private LevelManager LevelManager;
 
 
     protected override void Initialize()
     {
+        LevelManager = FindObjectOfType<LevelManager>();
         BedController = GetComponent<BedController>();
         GC = FindObjectOfType<GameController>();
 
@@ -50,6 +52,7 @@ public class BedStation : Actionable
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
         SetClean();
+        LevelManager.AddPoints(50, transform.position);
     }
 
     public void IncreaseDirtyMeter(float pValue)
