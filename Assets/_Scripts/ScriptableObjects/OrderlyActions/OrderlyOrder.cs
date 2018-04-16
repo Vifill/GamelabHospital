@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class OrderlyOrder
@@ -21,6 +20,11 @@ public class OrderlyOrder
             return ActionQueue.Dequeue();
         }
         return null;
+    }
+
+    public OrderlyInteractionAction GetInteractionAction()
+    {
+        return ActionQueue.First(a => a is OrderlyInteractionAction) as OrderlyInteractionAction;
     }
 
     internal void AddAction(OrderlyAction pOrderlyAction)
