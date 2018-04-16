@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
         var goalUI = Instantiate(GoalUIPrefab, UICanvas.transform);
         UIManager = goalUI.GetComponent<PointsUIManager>();
         UIManager.Initialize();
-        UIManager.UpdateUI(PatientsHealed);
+        UIManager.UpdateUI(PatientsHealed, Vector3.zero);
         StartTime = LevelConfig.LevelTimeSecs;
         Timer = StartTime;
         var sun = Instantiate(SunPrefab);
@@ -63,20 +63,21 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void AddPoints (int pPoints)
+    public void AddPoints (int pPoints, Vector3 pPosition)
     {
         Points += pPoints;
         if (Points < 0)
         {
             Points = 0;
         }
+        StartCoroutine(UIManager.UpdateUI(pPoints, pPosition));
     }
 
     public void AddHealed()
     {
         PatientsHealed++;
 
-        UIManager.UpdateUI(PatientsHealed);
+        UIManager.UpdateUI(PatientsHealed, Vector3.zero);
 
         //if (PatientsHealed == LevelConfig.PatientsToHeal)
         //{

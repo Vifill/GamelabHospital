@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WashingStation : Actionable
 {
+    public GameObject DocWashedParticlePrefab;
     private float OriginalStartingTime;
     private GameObject ObjectActioning;
 
@@ -39,6 +40,7 @@ public class WashingStation : Actionable
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
         pObjectActioning.GetComponent<SanitationController>().ClearSanitation();
+        Instantiate(DocWashedParticlePrefab, pObjectActioning.transform.position, Quaternion.identity, pObjectActioning.transform);
         ActionTime = OriginalStartingTime;
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    public float CholeraSeverity;
+    public float Health;
     public float HydrationMeter;
 
     [HideInInspector]
@@ -23,24 +23,23 @@ public class HealthController : MonoBehaviour
     public SanitationThresholdConfig DoctorSanitationThresholdConfig;
 
     public GameObject HydrationUIPrefab;
-    public GameObject PukeWarningSignPrefab;
     public GameObject PukeParticleEffectPrefab;
     public Transform PukePosition;
-    public Transform WarningIconPosition;
     
     public float ConstantDehydrationSpeed;
     public float ConstantHealing;
 
     public BedManager BedManagerInstance;
 
+    private LevelManager LevelManager;
     private HydrationController HydrationController;
     private PatientStatusController PatientStatusController;
     private GameObject HydrationUI;
-    private GameObject PukeWarningSignInstance;
     private Transform MainCanvasTransform;
 
     private void Start()
     {
+        LevelManager = FindObjectOfType<LevelManager>();
         MainCanvasTransform = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         SpawnHydrationUI();
         PatientStatusController = GetComponent<PatientStatusController>();
@@ -57,14 +56,14 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        var severityDecrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.CholeraSeverityDecreasePerSecond ?? 0;
+        var healthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
 
-        if (severityDecrease > 0)
+        if (healthIncrease > 0)
         {
-            CholeraSeverity -= severityDecrease * Time.deltaTime;
+            Health += healthIncrease * Time.deltaTime;
         }
 
-        if (!PatientStatusController.IsHealed && CholeraSeverity <= 0)
+        if (!PatientStatusController.IsHealed && Health >= 100)
         {
             PatientStatusController.IsHealed = true;
         }
@@ -72,17 +71,13 @@ public class HealthController : MonoBehaviour
         if (!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
         {
             HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime;
-            CholeraSeverity -= ConstantHealing * Time.deltaTime;
+            Health += ConstantHealing * Time.deltaTime;
 
             if (!PatientStatusController.IsDead && HydrationMeter <= 0)
             {
                 PatientStatusController.Death();
-            }
-        }
 
-        if(PukeWarningSignInstance != null)
-        {
-            PukeWarningSignInstance.transform.position = Camera.main.WorldToScreenPoint(WarningIconPosition.position);
+            }
         }
     }
 
@@ -94,9 +89,9 @@ public class HealthController : MonoBehaviour
             var inBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);            
             if(inBed != null)
             {
-                var severityIncrease = BedSanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.CholeraSeverityIncreasePerSecond ?? 0;
-                CholeraSeverity += severityIncrease;
-                CholeraSeverity = Mathf.Clamp(CholeraSeverity, 0, 100);
+                var healthDecrease = BedSanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.HealthDecreasePerSecond ?? 0;
+                Health -= healthDecrease;
+                Health = Mathf.Clamp(Health, 0, 100);
             }
         }
     }
@@ -105,7 +100,7 @@ public class HealthController : MonoBehaviour
     {
         while(true)
         {
-            float odds = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= CholeraSeverity)?.OddsOfExcretion ?? 0.0f;
+            float odds = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= Health)?.OddsOfExcretion ?? 0.0f;
             if(UnityEngine.Random.Range(0,100) < odds && HydrationController.IsActionActive)
             {
                 StartFeelingSick();
@@ -128,10 +123,9 @@ public class HealthController : MonoBehaviour
     private void Excrete()
     {
         ReduceHydration();
-        ReduceCholeraSeverity();
+        IncreaseHealthWhenExcreting();
         MakeBedDirty();
         StartPukingAnimation();
-        Destroy(PukeWarningSignInstance, 2);
         HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
 
         Debug.Log($"I'M PUKING!");
@@ -143,14 +137,14 @@ public class HealthController : MonoBehaviour
         Destroy(puke, 3f);
     }
 
-    private void ReduceCholeraSeverity()
+    private void IncreaseHealthWhenExcreting()
     {
-        CholeraSeverity -= CholeraConfig.ExcreteCholeraSeverityLoss;
+        Health += CholeraConfig.ExcreteHealthIncrease;
     }
 
     private void ReduceHydration()
     {
-        float randomVariance = UnityEngine.Random.Range(-CholeraConfig.ExcreteHydrationLossVariance, CholeraConfig.ExcreteHydrationLossVariance);
+        float randomVariance = UnityEngine.Random.Range(CholeraConfig.ExcreteHydrationLossVariance, CholeraConfig.ExcreteHydrationLossVariance*2);
         float hydrationLossModifier = HydrationConfig.HydrationLowerThreshold >= HydrationMeter ? HydrationConfig.HydrationLowerThresholdModifier : 1;
         HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier;
     }

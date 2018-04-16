@@ -14,12 +14,14 @@ public class HydrationController : Actionable
     private GameObject DisplayedObject;
     private PatientMovementController MovementController;
     private Dictionary<HydrationModel, Coroutine> CurrentHydrations = new Dictionary<HydrationModel, Coroutine>();
+    private LevelManager LevelManager;
 
     protected override void Initialize()
     {
         HealthCtrl = GetComponent<HealthController>();
         DoctorSanitationThresholdConfig = HealthCtrl.DoctorSanitationThresholdConfig;
         MovementController = GetComponent<PatientMovementController>();
+        LevelManager = FindObjectOfType<LevelManager>();
     }
 
     public override ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
@@ -50,12 +52,18 @@ public class HydrationController : Actionable
         }
         CurrentHydrations.Add(CurrentHydrationModel, StartCoroutine(HydrationCoroutine(CurrentHydrationModel)));
         ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel);
+
+        if (LevelManager == null)
+        {
+            print("POP2");
+        }
+        LevelManager.AddPoints(20, transform.position);
     }
 
     private void ResolveSanitationEffect(float pDirtyStatus)
     {
         var severity = DoctorSanitationThresholdConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
-        HealthCtrl.CholeraSeverity += severity?.CholeraSeverityIncreasePerSecond ?? 0;
+        HealthCtrl.Health -= severity?.HealthDecreasePerSecond ?? 0;
     }
 
     private IEnumerator HydrationCoroutine(HydrationModel pHmodel)

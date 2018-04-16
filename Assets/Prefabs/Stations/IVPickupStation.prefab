@@ -26,8 +26,8 @@ GameObject:
   m_Name: IVBag (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1585610212361728
 GameObject:
@@ -44,8 +44,8 @@ GameObject:
   m_Name: IVBag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1616651532390392
 GameObject:
@@ -95,8 +95,8 @@ GameObject:
   m_Name: IVBag (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1905947795154594
 GameObject:
@@ -113,8 +113,8 @@ GameObject:
   m_Name: IVStation_v2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4075161565486070
 Transform:
@@ -122,14 +122,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1616651532390392}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -5.69, y: 0, z: 2.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4241252456091066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4210200376429374
 Transform:
   m_ObjectHideFlags: 1
@@ -541,10 +541,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RadiusOfActivation: 2
-  ActionTime: 1.25
+  ActionTime: 1
   ActionParticles: {fileID: 0}
   ActionSuccessParticles: {fileID: 0}
-  ActionSoundEvent: {fileID: 0}
+  ActionSoundEvent: {fileID: 8300000, guid: ce7aa0c745db0cb499751599ad05a93c, type: 3}
   ActionFinishedSoundEvent: {fileID: 8300000, guid: 44726c85aeca0594397c7e80e6387e70,
     type: 3}
   AnimatorParameter: 
@@ -552,7 +552,7 @@ MonoBehaviour:
   IsActionActive: 1
   DirtiesTool: 0
   NeedsSanitizedTool: 0
-  PlayerDesanitationAmount: 0
   ConsumesTool: 0
+  MakesPlayerDirty: 0
   ActionProgress: 0
   ToolObject: {fileID: 1240736790147530, guid: f8f1727c4c6ee9d4e8a8394c43af63af, type: 2}

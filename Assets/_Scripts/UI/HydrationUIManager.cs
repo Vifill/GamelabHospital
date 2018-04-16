@@ -39,7 +39,7 @@ public class HydrationUIManager : MonoBehaviour
         if (HealthController != null)
         {
             HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
-            SeveretyMeterUI.fillAmount = HealthController.CholeraSeverity / 100;
+            SeveretyMeterUI.fillAmount = HealthController.Health / 100;
 
             SetSeverityColor();
             SetHydrationWarning();
@@ -69,17 +69,30 @@ public class HydrationUIManager : MonoBehaviour
 
     private void SetSeverityColor()
     {
-        if (SeveretyMeterUI.fillAmount >= 0.75)
+        //if (SeveretyMeterUI.fillAmount <= 0.25)
+        //{
+        //    SeveretyMeterUI.color = StatusColorConfig.StatusRed;
+        //}
+        //else if (SeveretyMeterUI.fillAmount <= 0.45)
+        //{
+        //    SeveretyMeterUI.color = StatusColorConfig.StatusYellow;
+        //}
+        //else
+        //{
+        //    SeveretyMeterUI.color = StatusColorConfig.StatusGreen;
+        //}
+
+        if (SeveretyMeterUI.fillAmount >= 0.45)
+        {
+            SeveretyMeterUI.color = StatusColorConfig.StatusGreen;
+        }
+        else if (SeveretyMeterUI.fillAmount <= 0.25)
         {
             SeveretyMeterUI.color = StatusColorConfig.StatusRed;
         }
-        else if (SeveretyMeterUI.fillAmount >= 0.45)
-        {
-            SeveretyMeterUI.color = StatusColorConfig.StatusYellow;
-        }
         else
         {
-            SeveretyMeterUI.color = StatusColorConfig.StatusGreen;
+            SeveretyMeterUI.color = StatusColorConfig.StatusYellow;
         }
     }
 }
