@@ -14,7 +14,7 @@ public class WashingStation : Actionable
 
     public override ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
     {
-        ActionTime += pObjectActioning?.GetComponent<SanitationController>().CurrentSanitationLevel / 100 ?? 0;
+        ActionTime += pObjectActioning?.GetComponent<SanitationController>().Sanitation / 100 ?? 0;
         return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
     }
 

@@ -49,13 +49,13 @@ public class HydrationController : Actionable
             CurrentHydrations.Remove(CurrentHydrationModel);
         }
         CurrentHydrations.Add(CurrentHydrationModel, StartCoroutine(HydrationCoroutine(CurrentHydrationModel)));
-        ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel);
+        ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().Sanitation);
     }
 
     private void ResolveSanitationEffect(float pDirtyStatus)
     {
         var severity = DoctorSanitationThresholdConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
-        HealthCtrl.CholeraSeverity += severity?.CholeraSeverityIncreasePerSecond ?? 0;
+        HealthCtrl.CholeraSeverity = Mathf.Clamp(HealthCtrl.CholeraSeverity += severity?.CholeraSeverityIncreasePerSecond ?? 0, HealthCtrl.HealthClampMin, HealthCtrl.HealthClampMax);
     }
 
     private IEnumerator HydrationCoroutine(HydrationModel pHmodel)
@@ -73,7 +73,7 @@ public class HydrationController : Actionable
 
         while(counter <= pHmodel.TimeItTakes)
         {
-            HealthCtrl.HydrationMeter = Mathf.Clamp(HealthCtrl.HydrationMeter + (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime, 0, 100);
+            HealthCtrl.HydrationMeter = Mathf.Clamp(HealthCtrl.HydrationMeter + (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime, HealthCtrl.MinHydration, HealthCtrl.MaxHydration);
 
             counter += Time.deltaTime;
             yield return null;

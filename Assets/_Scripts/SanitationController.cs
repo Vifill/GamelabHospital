@@ -12,8 +12,13 @@ public class SanitationController : MonoBehaviour
 
     private Level2TutorialScreenController Tutorial2ScreenController;
 
-    public float CurrentSanitationLevel;
-    public float MaxSanitationLevel;
+    public float Sanitation;
+    public float MaxSanitation = 100;
+    public float MinSanitation = 0;
+    [HideInInspector]
+    public float SanitationClampMax;
+    [HideInInspector]
+    public float SanitationClampMin;
 
     public GameObject SanitationBarUIPrefab;
     public string UIPosition;
@@ -27,6 +32,8 @@ public class SanitationController : MonoBehaviour
 	// Use this for initialization
 	private void Start() 
 	{
+        SanitationClampMax = MaxSanitation;
+        SanitationClampMin = MinSanitation;
         Tutorial2ScreenController = FindObjectOfType<Level2TutorialScreenController>();
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         GC = FindObjectOfType<GameController>();
@@ -53,10 +60,10 @@ public class SanitationController : MonoBehaviour
     {
         if (SanitationUI != null)
         {
-            CurrentSanitationLevel += pDirt;
+            Sanitation = Mathf.Clamp(Sanitation += pDirt, SanitationClampMin, SanitationClampMax);
             SanitationUI.UpdateSanitationUI();
 
-            if (CurrentSanitationLevel >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
+            if (Sanitation >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
             {
                 DirtyParticles.SetActive(true);
                 if(Tutorial2ScreenController != null)
@@ -71,7 +78,7 @@ public class SanitationController : MonoBehaviour
     {
         if (SanitationBar != null)
         {
-            CurrentSanitationLevel = 0;
+            Sanitation = 0;
             SanitationUI.UpdateSanitationUI();
 
             if (DirtyParticles.activeInHierarchy)
