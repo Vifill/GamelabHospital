@@ -33,6 +33,7 @@ public class HealthController : MonoBehaviour
 
     public BedManager BedManagerInstance;
 
+    private LevelManager LevelManager;
     private HydrationController HydrationController;
     private PatientStatusController PatientStatusController;
     private GameObject HydrationUI;
@@ -41,6 +42,7 @@ public class HealthController : MonoBehaviour
 
     private void Start()
     {
+        LevelManager = FindObjectOfType<LevelManager>();
         MainCanvasTransform = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         SpawnHydrationUI();
         PatientStatusController = GetComponent<PatientStatusController>();
@@ -77,6 +79,7 @@ public class HealthController : MonoBehaviour
             if (!PatientStatusController.IsDead && HydrationMeter <= 0)
             {
                 PatientStatusController.Death();
+
             }
         }
 

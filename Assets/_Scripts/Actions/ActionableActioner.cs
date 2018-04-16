@@ -104,6 +104,10 @@ public class ActionableActioner : MonoBehaviour
 
     internal void AttemptAction(Actionable pAction, MovementController pMovementController = null, Action pExternalActionWhenSuccessful = null, Action pExternalActionWhenFailed = null)
     {
+        if (IsActioning)
+        {
+            return;
+        }
         MovementController = pMovementController;
         ExternalActionWhenSuccessful = pExternalActionWhenSuccessful;
         ExternalActionWhenFailed = pExternalActionWhenFailed;
