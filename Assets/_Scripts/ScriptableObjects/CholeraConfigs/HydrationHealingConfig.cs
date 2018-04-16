@@ -12,5 +12,5 @@ public class HydrationHealingConfig : ScriptableObject
 public class HealingThresholdModel
 {
     public float ThresholdOfActivation;
-    public float CholeraSeverityDecreasePerSecond;
+    public float HealthIncreasePerSecond;
 }

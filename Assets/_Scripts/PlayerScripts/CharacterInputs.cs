@@ -20,6 +20,7 @@ public class CharacterInputs : MonoBehaviour
 	{
         if (Input.GetButtonDown("Action") && !GameController.InMenuScreen)
         {
+            //Debug.Log("Action button down");
             var action = HighlightController.HighlightedObject?.GetComponent<Actionable>().GetMostRelevantAction(GetCurrentTool(), gameObject);
 
             if (action != null && action.CanBeActioned(GetCurrentTool(), gameObject))
@@ -33,9 +34,10 @@ public class CharacterInputs : MonoBehaviour
                 ActionController.Asource.PlayOneShot(ActionController.InvalidActionSound);
             }
         }
-
+        
         if(Input.GetButtonUp("Action"))
         {
+            //Debug.Log("Action button up");
             ActionableActioner.StopAction();
         }
 
