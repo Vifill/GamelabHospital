@@ -55,6 +55,8 @@ public class HealthController : MonoBehaviour
     private GameObject PukeWarningSignInstance;
     private Transform MainCanvasTransform;
 
+    private Coroutine CurrentCoroutineSick;
+
     private void Start()
     {
         HydrationClampMax = MaxHydration;
@@ -65,7 +67,7 @@ public class HealthController : MonoBehaviour
         SpawnHydrationUI();
         PatientStatusController = GetComponent<PatientStatusController>();
         HydrationController = GetComponent<HydrationController>();
-        StartCoroutine(SickCoroutine());
+        StartSickCoroutine();
         StartCoroutine(BedSanitationCheckCoroutine());
     }
 
@@ -104,6 +106,16 @@ public class HealthController : MonoBehaviour
         {
             PukeWarningSignInstance.transform.position = Camera.main.WorldToScreenPoint(WarningIconPosition.position);
         }
+    }
+
+    public Coroutine GetSickCoroutine()
+    {
+        return CurrentCoroutineSick;
+    }
+
+    public void StartSickCoroutine()
+    {
+        CurrentCoroutineSick = StartCoroutine(SickCoroutine());
     }
 
     private IEnumerator BedSanitationCheckCoroutine()

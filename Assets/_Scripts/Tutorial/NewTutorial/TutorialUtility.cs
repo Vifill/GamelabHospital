@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TutorialUtility : MonoBehaviour 
 {
     private PatientSpawner PatientSpawner;
     private float OriginalSpawnRate;
+    private List<BedController> UnreservedBeds;
 
 	private void Start() 
 	{
@@ -39,22 +41,50 @@ public class TutorialUtility : MonoBehaviour
 
     public void SetSpawnFreeze(bool pState)
     {
+        var patientSpawner = FindObjectOfType<PatientSpawner>();
+        
         if (pState)
         {
-            PatientSpawner.SpawnConfig.SpawnRate = 0;
+            //UnreservedBeds = new List<BedController>(FindObjectsOfType<BedController>().Where(a => !a.IsReserved));
+
+            //foreach (var bed in UnreservedBeds)
+            //{
+            //    bed.IsReserved = true;
+            //}
+            Debug.Log("freeze spawn " + pState);
+            PatientSpawner.StopSpawning();
         }
         else
         {
-            PatientSpawner.SpawnConfig.SpawnRate = OriginalSpawnRate;
+            //foreach (var bed in UnreservedBeds)
+            //{
+            //    bed.IsReserved = false;
+            //}
+            Debug.Log("freeze spawn " + pState);
+            PatientSpawner.StartSpawnCoroutine();
         }
     }
 
     public void SetExcretionFreeze(bool pState)
     {
-
+        var patientsInScene = FindObjectsOfType<HealthController>();
+        if (pState)
+        {
+            foreach (var patient in patientsInScene)
+            {
+                StopCoroutine(patient.GetSickCoroutine());
+            }
+        }
+        else
+        {
+            foreach (var patient in patientsInScene)
+            {
+                patient.StartSickCoroutine();
+            }
+        }
     }
 
-    public void SetCholeraSeverityFreeze(bool pState)
+    public void SetHealthFreeze(bool pState)
     {
         var healthControllers = FindObjectsOfType<HealthController>();
 
