@@ -31,6 +31,12 @@ public class HydrationUIManager : MonoBehaviour
     {
         HealthController = pHealthController;
         Patient = pHealthController.transform;
+
+        // Make sure UI starts at right fill amount
+        HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
+        SeveretyMeterUI.fillAmount = HealthController.Health / 100;
+
+        // UI position
         transform.position = Camera.main.WorldToScreenPoint(HealthController.transform.position + new Vector3(0, UIOffset, UIOffset));
     }
 

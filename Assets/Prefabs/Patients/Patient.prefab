@@ -6812,7 +6812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5478d1b215af014ea2a5961b88510b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CholeraSeverity: 60
+  Health: 0
   HydrationMeter: 75
   HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
   CholeraConfig: {fileID: 11400000, guid: 1a29015937cb12d4e890d61c0b4ed1bd, type: 2}
@@ -6825,12 +6825,9 @@ MonoBehaviour:
   DoctorSanitationThresholdConfig: {fileID: 0}
   HydrationUIPrefab: {fileID: 1149620341329518, guid: 81a4b3d17fff8f345b03efedb06d434a,
     type: 2}
-  PukeWarningSignPrefab: {fileID: 1815776712570514, guid: 4db1a0ae3a924bc45b7035ab2c9756f0,
-    type: 2}
   PukeParticleEffectPrefab: {fileID: 1532283546104660, guid: 3e962117722c1bb4793a51bab55c24ed,
     type: 2}
   PukePosition: {fileID: 4928286199856396}
-  WarningIconPosition: {fileID: 4931683886787360}
   ConstantDehydrationSpeed: 0.5
   ConstantHealing: 0
   BedManagerInstance: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
@@ -6846,7 +6843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RadiusOfActivation: 3
-  ActionTime: 1
+  ActionTime: 0.5
   ActionParticles: {fileID: 1762786678015178, guid: 0a66df2cd90f82540aa0bacb83e22e3a,
     type: 2}
   ActionSuccessParticles: {fileID: 1092865637220726, guid: d4298922edc05e64eb184212faaea7af,
