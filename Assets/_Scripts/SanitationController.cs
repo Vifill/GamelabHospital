@@ -73,7 +73,7 @@ public class SanitationController : MonoBehaviour
             {
                 DirtyParticles85Percent.SetActive(true);
             }
-            else if (CurrentSanitationLevel >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
+            else if (Sanitation >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
             {
                 DirtyParticles50Percent.SetActive(true);
                 if(Tutorial2ScreenController != null)

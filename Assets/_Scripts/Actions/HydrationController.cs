@@ -63,7 +63,7 @@ public class HydrationController : Actionable
     private void ResolveSanitationEffect(float pDirtyStatus)
     {
         var severity = DoctorSanitationThresholdConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= pDirtyStatus);
-        HealthCtrl.CholeraSeverity = Mathf.Clamp(HealthCtrl.CholeraSeverity += severity?.CholeraSeverityIncreasePerSecond ?? 0, HealthCtrl.HealthClampMin, HealthCtrl.HealthClampMax);
+        HealthCtrl.Health = Mathf.Clamp(HealthCtrl.Health -= severity?.HealthDecreasePerSecond ?? 0, HealthCtrl.HealthClampMin, HealthCtrl.HealthClampMax);
     }
 
     private IEnumerator HydrationCoroutine(HydrationModel pHmodel)

@@ -92,8 +92,8 @@ public class TutorialUtility : MonoBehaviour
         {
             if (pState)
             {
-                controller.HealthClampMin = controller.CholeraSeverity;
-                controller.HealthClampMax = controller.CholeraSeverity;
+                controller.HealthClampMin = controller.Health;
+                controller.HealthClampMax = controller.Health;
             }
             else
             {
