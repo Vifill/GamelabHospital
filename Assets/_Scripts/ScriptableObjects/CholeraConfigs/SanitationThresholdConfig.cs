@@ -12,6 +12,6 @@ public class SanitationThresholdConfig : ScriptableObject
 public class SanitationThresholdModel
 {
     public float ThresholdOfActivation;
-    public float CholeraSeverityIncreasePerSecond;
+    public float HealthDecreasePerSecond;
 }
 

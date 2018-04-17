@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class InfoScreenUIManager : MonoBehaviour 
 {
@@ -32,7 +33,22 @@ public class InfoScreenUIManager : MonoBehaviour
             NextButton.gameObject.SetActive(false);
             BackButton.gameObject.SetActive(false);
         }
+        SetSelectedButton();
 	}
+
+    public void SetSelectedButton()
+    {
+        var canvasEventSys = FindObjectOfType<EventSystem>();
+
+        if (NextButton.gameObject.activeInHierarchy)
+        {
+            canvasEventSys.SetSelectedGameObject(NextButton.gameObject);
+        }
+        else if (CloseButton.gameObject.activeInHierarchy)
+        {
+            canvasEventSys.SetSelectedGameObject(CloseButton.gameObject);
+        }
+    }
 
     public void NextBtn ()
     {
@@ -50,6 +66,7 @@ public class InfoScreenUIManager : MonoBehaviour
         }
 
         BackButton.gameObject.SetActive(true);
+        SetSelectedButton();
     }
 
     public void BackBtn ()
@@ -66,5 +83,6 @@ public class InfoScreenUIManager : MonoBehaviour
             CloseButton.gameObject.SetActive(false);
             NextButton.gameObject.SetActive(true);
         }
+        SetSelectedButton();
     }
 }

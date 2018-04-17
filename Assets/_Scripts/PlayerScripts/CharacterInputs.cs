@@ -1,25 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterInputs : MonoBehaviour 
 {
     private PlayerActionController ActionController;
     private ToolController ToolController;
-    private LevelController LevelController;
-    private GameController GC;
-    private PlayerDataController DataCtrl = new PlayerDataController();
     private ActionableActioner ActionableActioner;
-    private OptionMenuManager OptionMenuManager;
 
 
     // Use this for initialization
     private void Start ()
 	{
-        LevelController = new LevelController(FindObjectOfType<SceneLoader>());
-        GC = FindObjectOfType<GameController>();
         ActionController = GetComponent<PlayerActionController>();
         ToolController = GetComponent<ToolController>();
         ActionableActioner = GetComponent<ActionableActioner>();
@@ -30,6 +20,7 @@ public class CharacterInputs : MonoBehaviour
 	{
         if (Input.GetButtonDown("Action") && !GameController.InMenuScreen)
         {
+            //Debug.Log("Action button down");
             var action = HighlightController.HighlightedObject?.GetComponent<Actionable>().GetMostRelevantAction(GetCurrentTool(), gameObject);
 
             if (action != null && action.CanBeActioned(GetCurrentTool(), gameObject))
@@ -43,9 +34,10 @@ public class CharacterInputs : MonoBehaviour
                 ActionController.Asource.PlayOneShot(ActionController.InvalidActionSound);
             }
         }
-
+        
         if(Input.GetButtonUp("Action"))
         {
+            //Debug.Log("Action button up");
             ActionableActioner.StopAction();
         }
 
@@ -66,37 +58,6 @@ public class CharacterInputs : MonoBehaviour
             {
                 DropTool(ToolController.CurrentTool);
             }
-        }
-
-        if(Input.GetKeyDown(KeyCode.N))
-        {
-            LevelController.LoadNextLevel(FindObjectOfType<LevelManager>().LevelConfig.LevelNumber);
-        }
-
-        if (Input.GetButtonDown("Pause"))
-        {
-            if (GameController.InOptionMenu)
-            {
-                OptionMenuManager = FindObjectOfType<OptionMenuManager>();
-                OptionMenuManager.ButtonBack();
-            }
-            else if (!GameController.InPauseMenu)
-            {
-                GC.PauseGame(GC.PauseMenuPrefab);
-            }
-            else
-            {
-                GC.ResumeGame();
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.F12))
-        {
-            DataCtrl.UnlockAllLevels();
-        }
-        if (Input.GetKeyDown(KeyCode.F11))
-        {
-            DataCtrl.ClearPrefs();
         }
     }
 

@@ -8,10 +8,12 @@ public class PatientCheckoutController : Actionable
     private PatientStatusController PatientStatusController;
     private HydrationController HydrationController;
     private Level1TutorialScreenController TutorialScreenController;
+    private LevelManager LevelManager;
     public bool IsCheckingOut = false;
 
     protected override void Initialize()
     {
+        LevelManager = FindObjectOfType<LevelManager>();
         PatientStatusController = GetComponent<PatientStatusController>();
         HydrationController = GetComponent<HydrationController>();
         TutorialScreenController = FindObjectOfType<Level1TutorialScreenController>() ?? null;
@@ -23,6 +25,7 @@ public class PatientCheckoutController : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        LevelManager.AddPoints(1000, transform.position);
         IsCheckingOut = true;
         PatientStatusController.CheckOut();
         Destroy(CanBeCheckedOutParticleInstance);

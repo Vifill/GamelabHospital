@@ -24,7 +24,8 @@ public class SanitationController : MonoBehaviour
     public string UIPosition;
     public Sprite SanitationUIPicture;
     public Color SanitationUIColor;
-    public GameObject DirtyParticles;
+    public GameObject DirtyParticles50Percent;
+    public GameObject DirtyParticles85Percent;
     [HideInInspector]
     public SanitationThresholdConfig DoctorSanitationConfig;
     private GameController GC;
@@ -38,9 +39,14 @@ public class SanitationController : MonoBehaviour
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         GC = FindObjectOfType<GameController>();
 
-        if (DirtyParticles.activeInHierarchy)
+        if (DirtyParticles50Percent.activeInHierarchy)
         {
-            DirtyParticles.SetActive(false);
+            DirtyParticles50Percent.SetActive(false);
+        }
+
+        if (DirtyParticles85Percent.activeInHierarchy)
+        {
+            DirtyParticles85Percent.SetActive(false);
         }
         
         InitializeSanitationUI();
@@ -65,7 +71,11 @@ public class SanitationController : MonoBehaviour
 
             if (Sanitation >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
             {
-                DirtyParticles.SetActive(true);
+                DirtyParticles85Percent.SetActive(true);
+            }
+            else if (CurrentSanitationLevel >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
+            {
+                DirtyParticles50Percent.SetActive(true);
                 if(Tutorial2ScreenController != null)
                 {
                     Tutorial2ScreenController.DisplayDirtyPlayerScreen();
@@ -81,9 +91,14 @@ public class SanitationController : MonoBehaviour
             Sanitation = 0;
             SanitationUI.UpdateSanitationUI();
 
-            if (DirtyParticles.activeInHierarchy)
+            if (DirtyParticles50Percent.activeInHierarchy)
             {
-                DirtyParticles.SetActive(false);
+                DirtyParticles50Percent.SetActive(false);
+            }
+
+            if (DirtyParticles85Percent.activeInHierarchy)
+            {
+                DirtyParticles85Percent.SetActive(false);
             }
         }
     }
