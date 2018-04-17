@@ -13,55 +13,55 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: HoldingSyringe
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: HoldingSaw
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: HoldingWater
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsSawing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsInjecting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsBandaging
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsWoundCleaning
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsWalking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -813,41 +813,41 @@ AnimatorStateMachine:
     m_Position: {x: 156, y: 84, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102923501935472426}
-    m_Position: {x: 360, y: 168, z: 0}
+    m_Position: {x: 396, y: 144, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102455908656291004}
-    m_Position: {x: -96, y: 168, z: 0}
+    m_Position: {x: -84, y: 144, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102076956056207972}
-    m_Position: {x: 132, y: 168, z: 0}
+    m_Position: {x: 156, y: 144, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102671559074585626}
-    m_Position: {x: 336, y: -24, z: 0}
+    m_Position: {x: 396, y: 24, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102435115555024428}
-    m_Position: {x: 132, y: 228, z: 0}
+    m_Position: {x: 156, y: 204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102668992941397860}
-    m_Position: {x: -96, y: 228, z: 0}
+    m_Position: {x: -84, y: 204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102300025708425188}
-    m_Position: {x: 360, y: 228, z: 0}
+    m_Position: {x: 396, y: 204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102937476696296250}
-    m_Position: {x: 420, y: 84, z: 0}
+    m_Position: {x: 396, y: 84, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102082758719818252}
-    m_Position: {x: -96, y: 84, z: 0}
+    m_Position: {x: -84, y: 84, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102265411915286226}
-    m_Position: {x: 108, y: -24, z: 0}
+    m_Position: {x: 156, y: 24, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 300, y: 24, z: 0}
-  m_EntryPosition: {x: -84, y: -36, z: 0}
-  m_ExitPosition: {x: 492, y: 24, z: 0}
+  m_AnyStatePosition: {x: -48, y: -24, z: 0}
+  m_EntryPosition: {x: -48, y: 24, z: 0}
+  m_ExitPosition: {x: -48, y: -84, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102184425619267648}
