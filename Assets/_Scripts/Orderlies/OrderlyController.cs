@@ -9,7 +9,7 @@ public class OrderlyController : MonoBehaviour
     [HideInInspector] public OrderlyAction CurrentAction;
     [HideInInspector] public OrderlyOrder CurrentOrder;
     public GameObject MovementParticle;
-
+    bool HasParticleSystem;
     private ParticleSystem.EmissionModule EmissionModule;
     //public NavMeshAgent NavAgent;
 
@@ -59,6 +59,7 @@ public class OrderlyController : MonoBehaviour
             GameObject tempParticle = ((GameObject)Instantiate(MovementParticle, new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z), transform.rotation, transform));
             EmissionModule = tempParticle.GetComponentInChildren<ParticleSystem>().emission;
             EmissionModule.enabled = false;
+            HasParticleSystem = true;
         }
     }
 
@@ -69,12 +70,18 @@ public class OrderlyController : MonoBehaviour
 
     public void EnableMovementParticle()
     {
-        EmissionModule.enabled = true;
+        if (HasParticleSystem)
+        {
+            EmissionModule.enabled = true;
+        }
     }
 
     public void DisableMovementParticle()
     {
-        EmissionModule.enabled = false;
+        if (HasParticleSystem)
+        {
+            EmissionModule.enabled = false;
+        }
     }
 
     //private IEnumerator ActionableCoroutine()
