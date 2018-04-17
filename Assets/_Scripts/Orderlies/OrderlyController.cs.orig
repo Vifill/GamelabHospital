@@ -10,11 +10,14 @@ public class OrderlyController : MonoBehaviour
     [HideInInspector] public OrderlyAction CurrentAction;
     [HideInInspector] public OrderlyOrder CurrentOrder;
     public GameObject MovementParticle;
+<<<<<<< HEAD
     public GameObject QueueUIPrefab;
-    bool HasParticleSystem;
 
     private GameObject QueueUI;
     private List<GameObject> QueueIcons = new List<GameObject>();
+=======
+    bool HasParticleSystem;
+>>>>>>> 9152c5afee455b307498c47d4b234da7efeda51f
     private ParticleSystem.EmissionModule EmissionModule;
     private MouseInputController MouseInputController;
     private Transform QueueWorldPos;

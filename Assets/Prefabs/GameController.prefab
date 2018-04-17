@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 114473966216598148}
   - component: {fileID: 114295128852408656}
   - component: {fileID: 114086908781724214}
+  - component: {fileID: 114617307966714784}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -45,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1809543526668006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8971293, y: -2.4774392, z: -1.0023276}
+  m_LocalPosition: {x: 2.7, y: -2.4774392, z: -2.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -189,7 +190,12 @@ MonoBehaviour:
   EndScreenPrefab: {fileID: 1610231225011098, guid: 5cd54265060eaec498d8ca9b81abd728,
     type: 2}
   SunPrefab: {fileID: 1159113201939540, guid: ad352ea09b6da52429f156c65d1462b7, type: 2}
-  LevelConfig: {fileID: 0}
+  LevelConfig: {fileID: 11400000, guid: 72955933ac36be945ac4b69cf6cab993, type: 2}
+  PlayerAI: {fileID: 1268599045371048, guid: 6273c468a1350cb4a9103c81b5d3aa72, type: 2}
+  ShiftDoctor: {fileID: 1313231252481954, guid: f79f5641ea6b722409aba2fed0264490,
+    type: 2}
+  ShiftOverCanvas: {fileID: 1215149326299314, guid: 14f6a945023ef2d48a8b7a490bbff6b2,
+    type: 2}
 --- !u!114 &114163115634664054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4724a60f38e9a9d429ac2b2c31dd7c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnConfig: {fileID: 11400000, guid: 160c1f91d6343d442a66dab8e88d3344, type: 2}
+  SpawnConfig: {fileID: 11400000, guid: 51903e123dc59284fa276faf2304b751, type: 2}
   SpawnPoint: {fileID: 0}
   BedManager: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
 --- !u!114 &114295128852408656
@@ -243,7 +249,8 @@ MonoBehaviour:
   BedManager: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
   PauseMenuPrefab: {fileID: 1914914731958650, guid: 192e0c2f7db78b049a8e196931c71d28,
     type: 2}
-  DoctorSanitationConfig: {fileID: 0}
+  DoctorSanitationConfig: {fileID: 11400000, guid: 742250b55894d844c8217b748d6b2b8a,
+    type: 2}
 --- !u!114 &114532227978550538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -253,6 +260,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ec93e909cf5d814d909fb8a98be56a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114617307966714784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809543526668006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd482ea99d53dc348ba45ccf93406f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114639089606500178

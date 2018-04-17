@@ -20,11 +20,38 @@ ModelImporter:
     2100012: WaterStation_Water_mat
     2300000: WaterStation
     2300002: WaterStation_Water
+    2300004: //RootNode
     3300000: WaterStation
     3300002: WaterStation_Water
+    3300004: //RootNode
     4300000: WaterStation
     4300002: WaterStation_Water
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WaterStation_Table
+    second: {fileID: 2100000, guid: 45f646ad4f72d14428a3ae646a0dd852, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WaterStation_Tank_TopBottom_mat
+    second: {fileID: 2100000, guid: 2784a7aac1f39e34485e13f5b8c65d4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WaterStation_Tank_mat
+    second: {fileID: 2100000, guid: dd000123d07e67642b7ffafde7a738a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WaterStation_Tap_mat
+    second: {fileID: 2100000, guid: 7c826798af6cb74438cd128872516289, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WaterStation_Tray
+    second: {fileID: 2100000, guid: 53f68964e71bcd04fa22c6b9deceb178, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
