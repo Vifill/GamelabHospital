@@ -110,7 +110,11 @@ public class ToolController : MonoBehaviour
 
     internal ToolBase GetToolBase()
     {
-        return CurrentTool?.GetComponent<ToolBase>();
+        if(CurrentTool != null)
+        {
+            return CurrentTool?.GetComponent<ToolBase>() ?? null;
+        }
+        return null;
     }
 
     internal void DropTool()

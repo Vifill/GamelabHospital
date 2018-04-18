@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
-=======
-using System.Collections.Generic;
->>>>>>> 8774382426c28c09dae0bb5d59dc17f3e5ad6cc5
 using System.Linq;
 using UnityEngine;
 
