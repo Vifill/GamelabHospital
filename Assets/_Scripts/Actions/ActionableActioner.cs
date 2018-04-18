@@ -225,10 +225,15 @@ public class ActionableActioner : MonoBehaviour
 
     private void RemoveHiglightedPossibleActions()
     {
-        for (int i = 0; i < HighlightedActions.Count; i++)
+        foreach(var highlightedAction in HighlightedActions.Where(a => a != null))
         {
-            HighlightedActions[i].RemoveHighlight();
+            highlightedAction.RemoveHighlight();
         }
+
+        //for (int i = 0; i < HighlightedActions.Count; i++)
+        //{
+        //    HighlightedActions[i]?.RemoveHighlight();
+        //}
         HighlightedActions.Clear();
     }
 }
