@@ -30,7 +30,7 @@ public class ActionableActioner : MonoBehaviour
     private SanitationController SanitationController;
     private GameController GC;
     private ToolController ToolController;
-
+    private List<Actionable> HighlightedActions;
     // Use this for initialization
     private void Start () 
 	{
@@ -204,5 +204,15 @@ public class ActionableActioner : MonoBehaviour
             return particle;
         }
         return null;
+    }
+
+    private void HighlightPossibleActions()
+    {
+        HighlightedActions = FindObjectsOfType<Actionable>().Where(a => a.CanBeActioned(ToolController.GetCurrentToolName(), gameObject)).ToList();
+
+        for (int i = 0; i < HighlightedActions.Count; i++)
+        {
+            //HighlightedActions[i].SetHighlight();
+        }
     }
 }

@@ -73,8 +73,12 @@ public class CameraFollow : MonoBehaviour
 		}
 		else if (length == 1)
 		{
-			center = Players[0].transform.position;
-			center.y = 1f;
+            center = Vector3.zero;
+            if (Players[0] != null)
+            {
+                center = Players[0].transform.position;
+            }
+            center.y = 1f;
 		}
 		return center;
 	}
