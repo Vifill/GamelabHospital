@@ -1330,7 +1330,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1418035133725950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.33, y: 1.5, z: 4.18}
+  m_LocalPosition: {x: 6.84, y: 1.5, z: 1.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4452987066295120}
@@ -2725,7 +2725,7 @@ Animator:
   m_GameObject: {fileID: 1606687990038296}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: affdd970fcd258d408437719aa83a068, type: 3}
-  m_Controller: {fileID: 9100000, guid: aa975262c6be63b4382e6ce4c46a9c8f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 030556435c63b8a4e9a7edf84d1d08cf, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2768,6 +2768,7 @@ MonoBehaviour:
   QueueUIPrefab: {fileID: 1542787366011764, guid: 74e6fb4e424ee024c9b2e8e230b43a59,
     type: 2}
   YUIOffset: 20
+  MaxVisibleIcons: 4
 --- !u!114 &114818806424198070
 MonoBehaviour:
   m_ObjectHideFlags: 1
