@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-=======
-﻿using System.Collections.Generic;
->>>>>>> 62218ea7fa4476e1e55e46393fdb83ee63af4e8f
 using System.Linq;
 using UnityEngine;
 
@@ -36,10 +30,5 @@ public class OrderlyOrder
     internal void AddAction(OrderlyAction pOrderlyAction)
     {
         ActionQueue.Enqueue(pOrderlyAction);
-    }
-
-    public OrderlyInteractionAction GetInteractionAction()
-    {
-        return ActionQueue.First(a => a is OrderlyInteractionAction) as OrderlyInteractionAction;
     }
 }
