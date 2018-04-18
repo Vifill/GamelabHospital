@@ -13,11 +13,11 @@ public class SanitationUI : MonoBehaviour
 
     public void UpdateSanitationUI()
     {
-        SanitationProgressBar.fillAmount = SanitationController.CurrentSanitationLevel / SanitationController.MaxSanitationLevel;
+        SanitationProgressBar.fillAmount = SanitationController.Sanitation / SanitationController.MaxSanitation;
 
-        if (SanitationController.CurrentSanitationLevel >= SanitationController.MaxSanitationLevel)
+        if (SanitationController.Sanitation >= SanitationController.MaxSanitation)
         {
-            SanitationController.CurrentSanitationLevel = SanitationController.MaxSanitationLevel;
+            SanitationController.Sanitation = SanitationController.MaxSanitation;
         }
 
         if (SanitationProgressBar.fillAmount >= 0.75)

@@ -33,6 +33,7 @@ public class MouseInputController : MonoBehaviour
                     order.AddAction(new OrderlyMoveAction(actionable.transform));
                     order.AddAction(new OrderlyInteractionAction(actionable));
 
+
                     AddOrderToQueue(order);
                 }
                 Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
