@@ -43,13 +43,8 @@ public class MouseInputController : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && !GameController.InMenuScreen)
         {
             //Orderlies[0].CancelOrder();
-            StopOrderAndClearQueue();
+            Orderlies[0]?.CurrentAction?.CancelOrder();
         }
-    }
-
-    private void StopOrderAndClearQueue()
-    {
-        Orderlies[0]?.CurrentAction?.CancelOrder();
     }
 
     private void AddOrderToQueue(OrderlyOrder pOrder)

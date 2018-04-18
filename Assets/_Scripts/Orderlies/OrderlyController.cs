@@ -66,8 +66,11 @@ public class OrderlyController : MonoBehaviour
     private void Start () 
 	{
         QueueWorldPos = GetComponent<ActionableActioner>().ProgressBarWorldPosition;
-        QueueUI = Instantiate(QueueUIPrefab, QueueWorldPos.position, Quaternion.identity, FindObjectOfType<Canvas>().transform);
-        UIWidth = QueueUI.GetComponent<RectTransform>().rect.width;
+        if (QueueUIPrefab != null)
+        {
+            QueueUI = Instantiate(QueueUIPrefab, QueueWorldPos.position, Quaternion.identity, FindObjectOfType<Canvas>().transform);
+            UIWidth = QueueUI.GetComponent<RectTransform>().rect.width;
+        }
         MouseInputController = FindObjectOfType<MouseInputController>();
         Actioner = GetComponent<ActionableActioner>();
 
@@ -114,7 +117,11 @@ public class OrderlyController : MonoBehaviour
             CurrentAction.UpdateAction();
         }
         UIPos = Camera.main.WorldToScreenPoint(QueueWorldPos.position) + new Vector3(0, YUIOffset, 0);
-        QueueUI.transform.position = UIPos;
+
+        if (QueueUI != null)
+        {
+            QueueUI.transform.position = UIPos;
+        }
 	}
 
     public void InitializeQueueUI()
