@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        Player = FindObjectOfType<PlayerActionController>().gameObject;
+        Player = FindObjectOfType<PlayerActionController>()?.gameObject;
         Time.timeScale = 1;
         UICanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
         var timerUI = Instantiate(ClockUIPrefab, UICanvas.transform);
@@ -131,31 +131,51 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator ShiftOver()
     {
-        //GameObject tempCanvas = Instantiate(ShiftOverCanvas, transfor);
         GameObject UIGO = (GameObject)Instantiate(ShiftOverCanvas, FindObjectOfType<Canvas>().transform);
         Transform exit = GameObject.Find("Exit").transform;
+        var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>()).Where(a => a.GetComponent<PatientStatusController>().IsHealed).ToList();
+        Time.timeScale = 1.5f;
 
         //Orderly
         OrderlyController ordelyController = FindObjectOfType<OrderlyController>();
-        OrderlyOrder orderlyOrder = new OrderlyOrder(exit.position);
-        orderlyOrder.AddAction(new OrderlyMoveAction(exit));
-        ordelyController.StartOrder(orderlyOrder);
+        if (ordelyController != null && Player != null)
+        {
+            OrderlyOrder orderlyOrder = new OrderlyOrder(exit.position);
+            orderlyOrder.AddAction(new OrderlyMoveAction(exit));
+            ordelyController.StartOrder(orderlyOrder);
+        }
+        else if (ordelyController != null && Player == null)
+        {
+            OrderlyOrder order = new OrderlyOrder(exit.position);
+            if (checkouts.Count > 0)
+            {
+                order = new OrderlyOrder(checkouts[0].transform.position);
+            }
+
+            for (int i = 0; i < checkouts.Count; i++)
+            {
+                order.AddAction(new OrderlyMoveAction(checkouts[i].transform));
+                order.AddAction(new OrderlyInteractionAction(checkouts[i]));
+            }
+            order.AddAction(new OrderlyMoveAction(exit));
+
+            ordelyController.StartOrder(order);
+        }
+        
 
 
         //shift doctor change
-
         var EmptyBeds = new List<BedController>(FindObjectsOfType<BedController>()).Where(a => !a.IsReserved).ToList();
-        var PatientBeds = new List<BedController>(FindObjectsOfType<BedController>()).Where(a => a.IsReserved).ToList();
-
+        var PatientBeds = new List<BedController>(FindObjectsOfType<BedController>()).Where(a => a.IsReserved /* &&(a.PatientInBed?.GetComponentInChildren<PatientStatusController>()?.IsHealed ?? false)*/).ToList();
         GameObject bedToMoveTo;
         //GameObject
         if (PatientBeds.Any())
         {
-            bedToMoveTo = PatientBeds[Random.Range(0, EmptyBeds.Count())].gameObject;
+            bedToMoveTo = PatientBeds[Random.Range(0, PatientBeds.Count() - 1)].gameObject;
         }
         else
         {
-            bedToMoveTo = EmptyBeds[Random.Range(0, EmptyBeds.Count())].gameObject;
+            bedToMoveTo = EmptyBeds[Random.Range(0, EmptyBeds.Count() - 1)].gameObject;
         }
 
         GameObject shiftDoctorGO = (GameObject)Instantiate(ShiftDoctor, exit.position, Quaternion.identity);
@@ -163,35 +183,40 @@ public class LevelManager : MonoBehaviour
         OrderlyController shiftDoctorController = shiftDoctorGO.GetComponent<OrderlyController>();
         OrderlyOrder shiftOrder = new OrderlyOrder(bedToMoveTo.transform.position);
         shiftOrder.AddAction(new OrderlyMoveAction(bedToMoveTo.transform));
-        
 
+        OrderlyController playerController = null;
         //Player
-        GameObject CheckoutPlayer = Instantiate(PlayerAI, Player.transform.position, Player.transform.rotation);
-        Destroy(Player);
-        var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>()).Where(a => a.GetComponent<PatientStatusController>().IsHealed).ToList();
-        var playerController = CheckoutPlayer.GetComponent<OrderlyController>();
-        OrderlyOrder order = new OrderlyOrder(exit.position);
-        if (checkouts.Count > 0)
+        if (Player != null)
         {
-            order = new OrderlyOrder(checkouts[0].transform.position);
+            GameObject CheckoutPlayer = Instantiate(PlayerAI, Player.transform.position, Player.transform.rotation);
+            Destroy(Player);
+            playerController = CheckoutPlayer.GetComponent<OrderlyController>();
+            OrderlyOrder order = new OrderlyOrder(exit.position);
+            if (checkouts.Count > 0)
+            {
+                order = new OrderlyOrder(checkouts[0].transform.position);
+            }
+
+            for (int i = 0; i < checkouts.Count; i++)
+            {
+                order.AddAction(new OrderlyMoveAction(checkouts[i].transform));
+                order.AddAction(new OrderlyInteractionAction(checkouts[i]));
+            }
+            order.AddAction(new OrderlyMoveAction(exit));
+
+            shiftDoctorController.StartOrder(shiftOrder);
+            playerController.StartOrder(order);
         }
 
-        for (int i = 0; i < checkouts.Count; i++)
-        {
-            order.AddAction(new OrderlyMoveAction(checkouts[i].transform));
-            order.AddAction(new OrderlyInteractionAction(checkouts[i]));
-        }
-        order.AddAction(new OrderlyMoveAction(exit));
-        
-        shiftDoctorController.StartOrder(shiftOrder);
-        playerController.StartOrder(order);
 
-        Time.timeScale = 1.5f;
 
-        while (playerController.CurrentOrder != null || shiftDoctorController.CurrentOrder != null)
+        while (playerController?.CurrentOrder != null || shiftDoctorController?.CurrentOrder != null || ordelyController?.CurrentOrder != null)
         {
             yield return null;
         }
+
+
+
 
         yield return new WaitForSeconds(0.5f);
         Destroy(UIGO);

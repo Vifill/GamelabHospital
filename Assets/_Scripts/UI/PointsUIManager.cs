@@ -91,9 +91,13 @@ public class PointsUIManager : MonoBehaviour
         DisplayedScoreText.text = DisplayedScore.ToString();
         ScoreAnimator.SetBool("GivingPoints", false);
         Destroy(pText.gameObject);
-        ParticleSystem.EmissionModule emmision = pGO.GetComponent<ParticleSystem>().emission;
-        emmision.enabled = false;
-        Destroy(pGO, 2);
+        if (pGO?.GetComponent<ParticleSystem>() != null)
+        {
+            ParticleSystem.EmissionModule emmision = pGO.GetComponent<ParticleSystem>().emission;
+            emmision.enabled = false;
+            Destroy(pGO, 2);
+        }
+        
         yield return null;
     }
 

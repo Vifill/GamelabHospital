@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class HighlightController : MonoBehaviour 
 {
+    public bool ItemTextActive;
+    public GameObject ItemText;
     public Shader StandardOutlineShader;
     public Shader WebGLOutlineShader;
     [System.NonSerialized]
     public Shader HighlightShader;
     public static GameObject HighlightedObject;
 
+    private RectTransform rect;
     private Actionable PreviousActionable;
     private ToolController ToolCtrl;
     private Transform PlayerTransform;
+
+    private List<GameObject> ItemTexts = new List<GameObject>();
 
     private void Awake()
     {
@@ -36,6 +41,7 @@ public class HighlightController : MonoBehaviour
 	{
         PlayerTransform = FindObjectOfType<PlayerActionController>()?.transform;
         ToolCtrl = PlayerTransform?.GetComponent<ToolController>();
+        rect = FindObjectOfType<Canvas>().GetComponent<RectTransform>();
     }
 	
 	// Update is called once per frame
@@ -49,6 +55,7 @@ public class HighlightController : MonoBehaviour
             {
                 HighlightedObject = null;
                 PreviousActionable?.RemoveHighlight();
+                RemoveTexts();
             }
 
             else if (actionable != PreviousActionable)
@@ -64,7 +71,12 @@ public class HighlightController : MonoBehaviour
                 }
 
                 HighlightedObject = actionable.gameObject;
-                PreviousActionable?.RemoveHighlight();
+                if (PreviousActionable != null)
+                {
+                    PreviousActionable?.RemoveHighlight();
+                    RemoveTexts();
+                }
+                AddText(actionable);
             }
             //if (actionable != null)
             //{
@@ -74,5 +86,40 @@ public class HighlightController : MonoBehaviour
 
             PreviousActionable = actionable;
         }
+    }
+
+    void RemoveTexts()
+    {
+        for (int i = 0; i < ItemTexts.Count; i++)
+        {
+            GameObject tempGO = ItemTexts[i];
+            ItemTexts.Remove(tempGO);
+            Destroy(tempGO);
+        }
+    }
+
+    void AddText(Actionable pActionable)
+    {
+        if (!ItemTextActive)
+        {
+            return;
+        }
+
+        GameObject tempTextGO = Instantiate(ItemText, rect.transform);
+
+        Text tempText = tempTextGO.GetComponent<Text>();
+        string itemName = pActionable.name;
+        string[] splitName = itemName.Split('(');
+        tempText.text = splitName[0];
+        tempText.rectTransform.anchoredPosition = WorldToCanvas(pActionable.transform.position);
+
+        ItemTexts.Add(tempTextGO);
+    }
+
+    Vector2 WorldToCanvas(Vector3 pVector)
+    {
+        Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(pVector);
+        return new Vector2(((ViewportPosition.x * rect.sizeDelta.x) - (rect.sizeDelta.x * 0.5f)),
+                           ((ViewportPosition.y * rect.sizeDelta.y) - (rect.sizeDelta.y * 0.5f)));
     }
 }
