@@ -24,7 +24,7 @@ public class OrderlyOrder
 
     public OrderlyInteractionAction GetInteractionAction()
     {
-        return ActionQueue.First(a => a is OrderlyInteractionAction) as OrderlyInteractionAction;
+        return ActionQueue.FirstOrDefault(a => a is OrderlyInteractionAction) as OrderlyInteractionAction;
     }
 
     internal void AddAction(OrderlyAction pOrderlyAction)

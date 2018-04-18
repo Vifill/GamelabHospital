@@ -44,8 +44,8 @@ public class MouseInputController : MonoBehaviour
     private void AddOrderToQueue(OrderlyOrder pOrder)
     {
         Orders.Enqueue(pOrder);
-        Orderlies[0].InitializeQueueUI();
         CheckOrderQueue();
+        Orderlies[0].InitializeQueueUI();
     }
 
     private void CheckOrderQueue()

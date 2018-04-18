@@ -11,8 +11,10 @@ public class OrderlyController : MonoBehaviour
     [HideInInspector] public OrderlyOrder CurrentOrder;
     public GameObject MovementParticle;
     public GameObject QueueUIPrefab;
-    bool HasParticleSystem;
+    public float YUIOffset;
+    public float MaxVisibleIcons = 4;
 
+    private bool HasParticleSystem;
     private GameObject QueueUI;
     private List<GameObject> QueueIcons = new List<GameObject>();
     private ParticleSystem.EmissionModule EmissionModule;
@@ -110,42 +112,9 @@ public class OrderlyController : MonoBehaviour
         {
             CurrentAction.UpdateAction();
         }
-        UIPos = Camera.main.WorldToScreenPoint(QueueWorldPos.position);
+        UIPos = Camera.main.WorldToScreenPoint(QueueWorldPos.position) + new Vector3(0, YUIOffset, 0);
         QueueUI.transform.position = UIPos;
 	}
-
-    //private void UpdateQueueUI()
-    //{
-    //    var interactionActions = MouseInputController.GetAllInteractionActions();
-
-    //    if (interactionActions.Any())
-    //    {
-    //        if (!QueueIcons.Any())
-    //        {
-    //            foreach (var action in interactionActions)
-    //            {
-    //                var icon = Instantiate(action.GetActionIcon());
-    //                QueueIcons.Add(icon);
-    //            }
-    //        }
-    //        else
-    //        {
-
-    //        }
-            
-    //    }
-    //    else
-    //    {
-    //        if (QueueIcons.Any())
-    //        {
-    //            foreach (var icon in QueueIcons)
-    //            {
-    //                Destroy(icon);
-    //                QueueIcons.Remove(icon);
-    //            }
-    //        }
-    //    }
-    //}
 
     public void InitializeQueueUI()
     {
@@ -158,21 +127,39 @@ public class OrderlyController : MonoBehaviour
             QueueIcons.Clear();
         }
 
-        var interactionActions = MouseInputController.GetAllInteractionActions();
+        List<OrderlyInteractionAction> interactionActions = new List<OrderlyInteractionAction>();
+
+        if (CurrentOrder?.GetInteractionAction() != null)
+        {
+            interactionActions.Add(CurrentOrder.GetInteractionAction());
+        }
+        
+        interactionActions.AddRange(MouseInputController.GetAllInteractionActions());
 
         if (interactionActions.Any())
         {
             int counter = 1;
-           
 
             foreach (var action in interactionActions)
             {
-                //instantiate in right pos
-                float Xpos = (UIWidth / (interactionActions.Count() + 1) * counter);
-                print("Xpos of Icon = " + Xpos);
-                //Vector3 iconSpawnPos = new Vector3((QueueUI.transform.position.x - (UIWidth/2)) + Xpos, QueueUI.transform.position.y, QueueUI.transform.position.z);
-                var icon = Instantiate(action.GetActionIcon(), new Vector3(0,0,0), QueueUI.transform.rotation, QueueUI.transform);
-                icon.transform.localPosition = new Vector3(Xpos - (UIWidth/2), 0, 0);
+                float Xpos = 0;
+
+                //if (counter <= MaxVisibleIcons)
+                //{
+                //    Xpos = (UIWidth / Mathf.Clamp(interactionActions.Count() + 1, 0, MaxVisibleIcons) * counter);
+
+                //}
+                //else
+                //{
+                //    float startXValue = (UIWidth / (MaxVisibleIcons + 1)) * MaxVisibleIcons;
+                //    Xpos = startXValue + ((UIWidth - startXValue) / (((interactionActions.Count() + 1) - MaxVisibleIcons) * counter));
+                //}
+
+                Xpos = ((UIWidth / (interactionActions.Count + 1)) * counter);
+
+                var icon = Instantiate(action.GetActionIcon(), new Vector3(0, 0, 0), QueueUI.transform.rotation, QueueUI.transform);
+                icon.transform.localPosition = new Vector3(Xpos - (UIWidth / 2), 0, 0);
+                icon.transform.SetSiblingIndex(interactionActions.Count - 1);
                 //icon.transform.position = iconSpawnPos;
                 QueueIcons.Add(icon);
                 counter++;
