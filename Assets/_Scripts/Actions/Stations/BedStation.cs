@@ -49,7 +49,7 @@ public class BedStation : Actionable
         //UI Stuff
         Cam = FindObjectOfType<Camera>();
 
-        if (DirtyBarPrefab != null && GC.ShouldSpawnBucketUI())
+        if (DirtyBarPrefab != null /*&& GC.ShouldSpawnBucketUI()*/)
         {
             InitializeDirtyBar();
             UpdateDirtyUI();
