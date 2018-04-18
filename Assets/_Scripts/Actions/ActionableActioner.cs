@@ -225,7 +225,6 @@ public class ActionableActioner : MonoBehaviour
 
     private void RemoveHiglightedPossibleActions()
     {
-        print("NOOOOO");
         for (int i = 0; i < HighlightedActions.Count; i++)
         {
             HighlightedActions[i].RemoveHighlight();
