@@ -3504,7 +3504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProgressBarPrefab: {fileID: 1934616767393400, guid: ca1bbd0ca8b52ef4d8531c10cce2a2c2,
     type: 2}
-  ProcessBarWorldPosition: {fileID: 4070558396249290}
+  ProgressBarWorldPosition: {fileID: 4070558396249290}
   Asource: {fileID: 82353113361513662}
   PickUpSound: {fileID: 8300000, guid: 44726c85aeca0594397c7e80e6387e70, type: 3}
   DropSound: {fileID: 8300000, guid: b485a0e6493cbab4c9eab812cff35989, type: 3}
@@ -3565,15 +3565,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e72b482cdd50e74b815be5c85980c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentSanitationLevel: 0
-  MaxSanitationLevel: 100
+  Sanitation: 0
+  MaxSanitation: 100
+  MinSanitation: 0
+  SanitationClampMax: 0
+  SanitationClampMin: 0
   SanitationBarUIPrefab: {fileID: 1979533752814144, guid: d612a684194c25f4a8f54fb4a299f5df,
     type: 2}
   UIPosition: P1PortraitPos
   SanitationUIPicture: {fileID: 21300000, guid: e7a80b549c97808419ddf1a50ff0dc7e,
     type: 3}
   SanitationUIColor: {r: 0, g: 1, b: 0.04827571, a: 1}
-  DirtyParticles: {fileID: 1924597358167150}
+  DirtyParticles50Percent: {fileID: 1143854748240214, guid: 4e3d461fd4266894aa7eb01e72d536fd,
+    type: 2}
+  DirtyParticles85Percent: {fileID: 1857356222201080, guid: 42e0afadca0515549b1118449ba293d5,
+    type: 2}
   DoctorSanitationConfig: {fileID: 11400000, guid: 8e5cf8227361e3f49abdfeaf9aea8402,
     type: 2}
 --- !u!114 &114923763610549644

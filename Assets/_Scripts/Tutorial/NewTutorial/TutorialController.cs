@@ -9,13 +9,13 @@ using UnityEngine.Events;
 public class TutorialController : MonoBehaviour
 {
     public List<Objective> Objectives;
-    public Objective CurrentObjective;
-
+    public GameObject ArrowPrefab;
     public Text ObjectiveTextUIObject;
 
-    public Dictionary<EventManager.EventCodes, UnityAction> EventActions = new Dictionary<EventManager.EventCodes, UnityAction>();
-
+    private Objective CurrentObjective;
+    private Dictionary<EventManager.EventCodes, UnityAction> EventActions = new Dictionary<EventManager.EventCodes, UnityAction>();
     private int ObjectiveIndex = 0;
+    private List<GameObject> CurrentArrows = new List<GameObject>();
 
     private void Start()
     {
@@ -37,10 +37,12 @@ public class TutorialController : MonoBehaviour
 
     private void StartNewObjective(Objective pNextObjective)
     {
-        //Stop listening to the old event if there is one
+        //Clean up last objective
         if(CurrentObjective != null)
         {
             EventManager.StopListening(CurrentObjective.OnFinishEvent, ObjectiveEnd);
+            CurrentArrows.ForEach(a => Destroy(a));
+            CurrentArrows.Clear();
         }
         //Set the next objective
         CurrentObjective = pNextObjective;
@@ -48,8 +50,19 @@ public class TutorialController : MonoBehaviour
         EventManager.StartListening(CurrentObjective.OnFinishEvent, ObjectiveEnd);
         //Set the new objective text
         ObjectiveTextUIObject.text = CurrentObjective.ObjectiveDescription;
+
+        SpawnArrowsForObjective(pNextObjective);
     }
-    
+
+    private void SpawnArrowsForObjective(Objective pObjective)
+    {
+        foreach(Transform position in pObjective.GetArrowPositions())
+        {
+            var arrowObj = Instantiate(ArrowPrefab, position);
+            CurrentArrows.Add(arrowObj);
+        }
+    }
+
     private void ObjectiveEnd()
     {
         if(EventActions.ContainsKey(CurrentObjective.OnFinishEvent))
@@ -61,7 +74,6 @@ public class TutorialController : MonoBehaviour
         if(Objectives[ObjectiveIndex] != null)
         {
             StartNewObjective(Objectives[ObjectiveIndex]);
-
         }
     }
     
