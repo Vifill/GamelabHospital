@@ -19,6 +19,8 @@ public class OrderlyController : MonoBehaviour
     private MouseInputController MouseInputController;
     private Transform QueueWorldPos;
     //public NavMeshAgent NavAgent;
+    private float UIWidth;
+    private Vector3 UIPos = new Vector3();
 
     private ActionableActioner Actioner;
 
@@ -62,6 +64,7 @@ public class OrderlyController : MonoBehaviour
 	{
         QueueWorldPos = GetComponent<ActionableActioner>().ProgressBarWorldPosition;
         QueueUI = Instantiate(QueueUIPrefab, QueueWorldPos.position, Quaternion.identity, FindObjectOfType<Canvas>().transform);
+        UIWidth = QueueUI.GetComponent<RectTransform>().rect.width;
         MouseInputController = FindObjectOfType<MouseInputController>();
         Actioner = GetComponent<ActionableActioner>();
 
@@ -107,8 +110,8 @@ public class OrderlyController : MonoBehaviour
         {
             CurrentAction.UpdateAction();
         }
-
-        QueueUI.transform.position = Camera.main.WorldToScreenPoint(QueueWorldPos.position);
+        UIPos = Camera.main.WorldToScreenPoint(QueueWorldPos.position);
+        QueueUI.transform.position = UIPos;
 	}
 
     //private void UpdateQueueUI()
@@ -159,17 +162,18 @@ public class OrderlyController : MonoBehaviour
 
         if (interactionActions.Any())
         {
-            int counter = 0;
-            float uiWidth = QueueUI.GetComponent<RectTransform>().rect.width;
-            print(uiWidth);
+            int counter = 1;
+           
+
             foreach (var action in interactionActions)
             {
                 //instantiate in right pos
-                float Xpos = (uiWidth / (interactionActions.Count() + 1) * counter);
+                float Xpos = (UIWidth / (interactionActions.Count() + 1) * counter);
                 print("Xpos of Icon = " + Xpos);
-                Vector3 iconSpawnPos = new Vector3((QueueUI.transform.position.x - (uiWidth/2)) + Xpos, QueueUI.transform.position.y, QueueUI.transform.position.z);
-                var icon = Instantiate(action.GetActionIcon(), Vector3.zero, QueueUI.transform.rotation, QueueUI.transform);
-                icon.transform.position = iconSpawnPos;
+                //Vector3 iconSpawnPos = new Vector3((QueueUI.transform.position.x - (UIWidth/2)) + Xpos, QueueUI.transform.position.y, QueueUI.transform.position.z);
+                var icon = Instantiate(action.GetActionIcon(), new Vector3(0,0,0), QueueUI.transform.rotation, QueueUI.transform);
+                icon.transform.localPosition = new Vector3(Xpos - (UIWidth/2), 0, 0);
+                //icon.transform.position = iconSpawnPos;
                 QueueIcons.Add(icon);
                 counter++;
             }

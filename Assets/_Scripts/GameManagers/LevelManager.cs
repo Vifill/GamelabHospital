@@ -163,39 +163,44 @@ public class LevelManager : MonoBehaviour
         OrderlyController shiftDoctorController = shiftDoctorGO.GetComponent<OrderlyController>();
         OrderlyOrder shiftOrder = new OrderlyOrder(bedToMoveTo.transform.position);
         shiftOrder.AddAction(new OrderlyMoveAction(bedToMoveTo.transform));
-        
+
 
         //Player
-        GameObject CheckoutPlayer = Instantiate(PlayerAI, Player.transform.position, Player.transform.rotation);
-        Destroy(Player);
-        var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>()).Where(a => a.GetComponent<PatientStatusController>().IsHealed).ToList();
-        var playerController = CheckoutPlayer.GetComponent<OrderlyController>();
-        OrderlyOrder order = new OrderlyOrder(exit.position);
-        if (checkouts.Count > 0)
+        if (Player == null)
         {
-            order = new OrderlyOrder(checkouts[0].transform.position);
+            GameObject CheckoutPlayer = Instantiate(PlayerAI, Player.transform.position, Player.transform.rotation);
+            Destroy(Player);
+
+
+            var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>()).Where(a => a.GetComponent<PatientStatusController>().IsHealed).ToList();
+            var playerController = CheckoutPlayer.GetComponent<OrderlyController>();
+            OrderlyOrder order = new OrderlyOrder(exit.position);
+            if (checkouts.Count > 0)
+            {
+                order = new OrderlyOrder(checkouts[0].transform.position);
+            }
+
+            for (int i = 0; i < checkouts.Count; i++)
+            {
+                order.AddAction(new OrderlyMoveAction(checkouts[i].transform));
+                order.AddAction(new OrderlyInteractionAction(checkouts[i]));
+            }
+            order.AddAction(new OrderlyMoveAction(exit));
+
+            shiftDoctorController.StartOrder(shiftOrder);
+            playerController.StartOrder(order);
+
+            Time.timeScale = 1.5f;
+
+            while (playerController.CurrentOrder != null || shiftDoctorController.CurrentOrder != null)
+            {
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.5f);
+            Destroy(UIGO);
+            LevelPassed();
         }
-
-        for (int i = 0; i < checkouts.Count; i++)
-        {
-            order.AddAction(new OrderlyMoveAction(checkouts[i].transform));
-            order.AddAction(new OrderlyInteractionAction(checkouts[i]));
-        }
-        order.AddAction(new OrderlyMoveAction(exit));
-        
-        shiftDoctorController.StartOrder(shiftOrder);
-        playerController.StartOrder(order);
-
-        Time.timeScale = 1.5f;
-
-        while (playerController.CurrentOrder != null || shiftDoctorController.CurrentOrder != null)
-        {
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(0.5f);
-        Destroy(UIGO);
-        LevelPassed();
     }
 
     private void LevelPassed()
