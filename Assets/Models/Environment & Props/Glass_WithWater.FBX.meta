@@ -1,57 +1,35 @@
 fileFormatVersion: 2
-guid: 3935155b429320849b9f1d3248a02cda
-timeCreated: 1523021308
+guid: ee627e7cbc2f3e448a4b18d5c73ebbda
+timeCreated: 1523977969
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: WaterStation
-    100004: WaterStation_Water
-    400000: //RootNode
-    400002: WaterStation
-    400004: WaterStation_Water
-    2100000: WaterStation_Tank_mat
-    2100002: WaterStation_Tank_TopBottom_mat
-    2100004: WaterStation_Tap_mat
-    2100006: WaterStation_Tray
-    2100008: WaterStation_Tray_Water
-    2100010: WaterStation_Table
-    2100012: WaterStation_Water_mat
-    2300000: WaterStation
-    2300002: WaterStation_Water
-    2300004: //RootNode
-    3300000: WaterStation
-    3300002: WaterStation_Water
-    3300004: //RootNode
-    4300000: WaterStation
-    4300002: WaterStation_Water
+    100000: Glass
+    100002: Glass_Water
+    100004: //RootNode
+    400000: Glass
+    400002: Glass_Water
+    400004: //RootNode
+    2100000: Glass_mat
+    2100002: Glass_Water_mat
+    2300000: Glass
+    2300002: Glass_Water
+    3300000: Glass
+    3300002: Glass_Water
+    4300000: Glass
+    4300002: Glass_Water
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: WaterStation_Table
-    second: {fileID: 2100000, guid: 45f646ad4f72d14428a3ae646a0dd852, type: 2}
+      name: Glass_Water_mat
+    second: {fileID: 2100000, guid: 83da562d2a1ee17499676ad4158cf8b5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: WaterStation_Tank_TopBottom_mat
-    second: {fileID: 2100000, guid: 2784a7aac1f39e34485e13f5b8c65d4a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: WaterStation_Tank_mat
-    second: {fileID: 2100000, guid: dd000123d07e67642b7ffafde7a738a5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: WaterStation_Tap_mat
-    second: {fileID: 2100000, guid: 7c826798af6cb74438cd128872516289, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: WaterStation_Tray
-    second: {fileID: 2100000, guid: 53f68964e71bcd04fa22c6b9deceb178, type: 2}
+      name: Glass_mat
+    second: {fileID: 2100000, guid: 229e16c6b96a397448c2d9385d0a8e63, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -81,7 +59,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 4
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
