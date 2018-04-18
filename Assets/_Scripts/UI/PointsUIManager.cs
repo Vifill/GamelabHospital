@@ -7,6 +7,7 @@ using System.Linq;
 
 public class PointsUIManager : MonoBehaviour 
 {
+    public GameObject ScoreParticleSystem;
     public GameObject PopupScoreText;
     public Color ScoreTextColor;
     private Text DisplayedScoreText;
@@ -91,6 +92,12 @@ public class PointsUIManager : MonoBehaviour
             ParticleSystem.EmissionModule emmision = pGO.GetComponent<ParticleSystem>().emission;
             emmision.enabled = false;
             Destroy(pGO, 2);
+        }
+
+        if (ScoreParticleSystem != null)
+        {
+            GameObject GO = Instantiate(ScoreParticleSystem, Vector3.zero, Quaternion.identity, DisplayedScoreText.transform);
+            Destroy(GO, 5);
         }
         
         yield return null;

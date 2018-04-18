@@ -143,7 +143,7 @@ public abstract class Actionable : MonoBehaviour
 
     public void RemoveHighlight()
     {
-        if(gameObject == null)
+        if (gameObject == null)
         {
             return;
         }
