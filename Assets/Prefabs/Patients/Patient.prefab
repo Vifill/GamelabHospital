@@ -6814,6 +6814,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 0
   HydrationMeter: 75
+  MaxHydration: 100
+  MinHydration: 0
+  MaxHealth: 100
+  MinHealth: 0
+  HydrationClampMax: 0
+  HydrationClampMin: 0
+  HealthClampMax: 0
+  HealthClampMin: 0
   HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
   CholeraConfig: {fileID: 11400000, guid: 1a29015937cb12d4e890d61c0b4ed1bd, type: 2}
   ThresholdOddsConfig: {fileID: 11400000, guid: a9a967e65765b9d4891827c2ea524fe3,
@@ -6858,7 +6866,7 @@ MonoBehaviour:
   NeedsSanitizedTool: 0
   ConsumesTool: 0
   MakesPlayerDirty: 0
-  ActionIcon: {fileID: 1905278274570502, guid: bb061269047850c4f9e5861662755199, type: 2}
+  ActionIcon: {fileID: 1722825242517722, guid: 6c45c4503ee7f3c4d8db31bf73239332, type: 2}
   ActionProgress: 0
   CanBeCheckedOutVisual: {fileID: 1595240440422196, guid: 0ebd6da55a04b9445a8ca1f9e274206d,
     type: 2}
