@@ -22,8 +22,18 @@ public class PatientSpawner : MonoBehaviour
 	{
         LevelManager = FindObjectOfType<LevelManager>();
         InitializeSpawnDataModel();
-        CurrentCoroutine = StartCoroutine(SpawnCoroutine());
+        StartSpawnCoroutine();
 	}
+
+    public Coroutine GetCurrentCoroutine()
+    {
+        return CurrentCoroutine;
+    }
+
+    public void StartSpawnCoroutine()
+    {
+        CurrentCoroutine = StartCoroutine(SpawnCoroutine());
+    }
 
     private void InitializeSpawnDataModel()
     {

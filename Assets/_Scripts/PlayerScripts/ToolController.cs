@@ -34,7 +34,7 @@ public class ToolController : MonoBehaviour
         SetAnimation();
     }
 
-    internal void SetTool(GameObject pToolObject)
+    public virtual void SetTool(GameObject pToolObject)
     {
         //TODO: Check if already has tool, to be safe?
         if(GetCurrentToolName() != ToolName.NoTool)
