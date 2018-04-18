@@ -20,7 +20,7 @@ public abstract class OrderlyAction
         OrderlyObject.GetComponent<OrderlyController>().ActionFinished();
     }
 
-    protected void CancelOrder()
+    internal void CancelOrder()
     {
         OnStopAction();
         OrderlyObject.GetComponent<OrderlyController>().CancelOrder();

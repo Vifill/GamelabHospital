@@ -39,6 +39,17 @@ public class MouseInputController : MonoBehaviour
                 Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
             }
         }
+
+        if (Input.GetMouseButtonDown(1) && !GameController.InMenuScreen)
+        {
+            //Orderlies[0].CancelOrder();
+            StopOrderAndClearQueue();
+        }
+    }
+
+    private void StopOrderAndClearQueue()
+    {
+        Orderlies[0]?.CurrentAction?.CancelOrder();
     }
 
     private void AddOrderToQueue(OrderlyOrder pOrder)

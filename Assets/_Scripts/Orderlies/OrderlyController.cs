@@ -40,6 +40,7 @@ public class OrderlyController : MonoBehaviour
 
     internal void CancelOrder()
     {
+        //CurrentAction.CancelOrder();
         CurrentAction = null;
         CurrentOrder = null;
         MouseInputController.ClearQueue();
