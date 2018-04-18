@@ -31,6 +31,7 @@ public class ActionableActioner : MonoBehaviour
     private GameController GC;
     private ToolController ToolController;
     private List<Actionable> HighlightedActions;
+
     // Use this for initialization
     private void Start () 
 	{
@@ -39,6 +40,9 @@ public class ActionableActioner : MonoBehaviour
         SanitationController = GetComponent<SanitationController>();
         GC = FindObjectOfType<GameController>();
         ToolController = GetComponent<ToolController>();
+
+        ToolController.OnToolSet.AddListener(HighlightPossibleActions);
+        ToolController.OnToolRemove.AddListener(RemoveHiglightedPossibleActions);
     }
 
     // Update is called once per frame
@@ -211,11 +215,21 @@ public class ActionableActioner : MonoBehaviour
 
     private void HighlightPossibleActions()
     {
-        HighlightedActions = FindObjectsOfType<Actionable>().Where(a => a.CanBeActioned(ToolController.GetCurrentToolName(), gameObject)).ToList();
+        HighlightedActions = FindObjectsOfType<Actionable>().Where(a => a.CanBeActioned(ToolController.GetCurrentToolName(), gameObject) && a.GetComponent<TableStation>() == null).ToList();
 
         for (int i = 0; i < HighlightedActions.Count; i++)
         {
-            //HighlightedActions[i].SetHighlight();
+            HighlightedActions[i].SetHighlight(Shader.Find("Custom/Pulse"));
         }
+    }
+
+    private void RemoveHiglightedPossibleActions()
+    {
+        print("NOOOOO");
+        for (int i = 0; i < HighlightedActions.Count; i++)
+        {
+            HighlightedActions[i].RemoveHighlight();
+        }
+        HighlightedActions.Clear();
     }
 }
