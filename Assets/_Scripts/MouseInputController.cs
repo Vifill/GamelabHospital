@@ -44,6 +44,7 @@ public class MouseInputController : MonoBehaviour
     private void AddOrderToQueue(OrderlyOrder pOrder)
     {
         Orders.Enqueue(pOrder);
+        Orderlies[0].InitializeQueueUI();
         CheckOrderQueue();
     }
 
@@ -65,5 +66,11 @@ public class MouseInputController : MonoBehaviour
     public void ClearQueue()
     {
         Orders.Clear();
+        Orderlies[0].InitializeQueueUI();
+    }
+
+    public List<OrderlyInteractionAction> GetAllInteractionActions()
+    {
+        return Orders.Select(a => a.GetInteractionAction()).ToList();
     }
 }

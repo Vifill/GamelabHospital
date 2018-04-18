@@ -33,4 +33,9 @@ public class OrderlyInteractionAction : OrderlyAction
             CancelOrder();
         }
     }
+
+    public GameObject GetActionIcon()
+    {
+        return Action.ActionIcon;
+    }
 }

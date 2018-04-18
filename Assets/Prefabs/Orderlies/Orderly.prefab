@@ -1330,7 +1330,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1418035133725950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.84, y: 1.5, z: 1.76}
+  m_LocalPosition: {x: 8.33, y: 1.5, z: 4.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4452987066295120}
@@ -2764,6 +2764,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementParticle: {fileID: 1280083263524546, guid: 61a58eee84a23084f9cb49a6045fd95b,
+    type: 2}
+  QueueUIPrefab: {fileID: 1542787366011764, guid: 74e6fb4e424ee024c9b2e8e230b43a59,
     type: 2}
 --- !u!114 &114818806424198070
 MonoBehaviour:
