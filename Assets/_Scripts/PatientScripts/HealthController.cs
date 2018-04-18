@@ -9,6 +9,22 @@ public class HealthController : MonoBehaviour
     public float Health;
     public float HydrationMeter;
 
+    public float MaxHydration = 100;
+    public float MinHydration = 0;
+
+    public float MaxHealth = 100;
+    public float MinHealth = 0;
+
+    [HideInInspector]
+    public float HydrationClampMax;
+    [HideInInspector]
+    public float HydrationClampMin;
+    [HideInInspector]
+    public float HealthClampMax;
+    [HideInInspector]
+    public float HealthClampMin;
+
+
     [HideInInspector]
     public HydrationConfig HydrationConfig;
     [HideInInspector]
@@ -37,14 +53,20 @@ public class HealthController : MonoBehaviour
     private GameObject HydrationUI;
     private Transform MainCanvasTransform;
 
+    private Coroutine CurrentCoroutineSick;
+
     private void Start()
     {
         LevelManager = FindObjectOfType<LevelManager>();
+        HydrationClampMax = MaxHydration;
+        HydrationClampMin = MinHydration;
+        HealthClampMax = MaxHealth;
+        HealthClampMin = MinHealth;
         MainCanvasTransform = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         SpawnHydrationUI();
         PatientStatusController = GetComponent<PatientStatusController>();
         HydrationController = GetComponent<HydrationController>();
-        StartCoroutine(SickCoroutine());
+        StartSickCoroutine();
         StartCoroutine(BedSanitationCheckCoroutine());
     }
 
@@ -79,6 +101,16 @@ public class HealthController : MonoBehaviour
 
             }
         }
+    }
+
+    public Coroutine GetSickCoroutine()
+    {
+        return CurrentCoroutineSick;
+    }
+
+    public void StartSickCoroutine()
+    {
+        CurrentCoroutineSick = StartCoroutine(SickCoroutine());
     }
 
     private IEnumerator BedSanitationCheckCoroutine()
@@ -146,7 +178,7 @@ public class HealthController : MonoBehaviour
     {
         float randomVariance = UnityEngine.Random.Range(CholeraConfig.ExcreteHydrationLossVariance, CholeraConfig.ExcreteHydrationLossVariance*2);
         float hydrationLossModifier = HydrationConfig.HydrationLowerThreshold >= HydrationMeter ? HydrationConfig.HydrationLowerThresholdModifier : 1;
-        HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier;
+        HydrationMeter = Mathf.Clamp(HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier, HydrationClampMin, HydrationClampMax);
     }
 
     private void MakeBedDirty()
