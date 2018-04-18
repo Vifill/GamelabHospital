@@ -7,7 +7,7 @@ using System.Linq;
 
 public class ActionableActioner : MonoBehaviour 
 {
-    private Actionable CurrentAction;
+    protected Actionable CurrentAction;
     private GameObject ActionableParticles;
     private Image ProgressBar;
     private Canvas Canvas;
@@ -31,6 +31,7 @@ public class ActionableActioner : MonoBehaviour
     private GameController GC;
     private ToolController ToolController;
     private List<Actionable> HighlightedActions;
+
     // Use this for initialization
     private void Start () 
 	{
@@ -39,6 +40,9 @@ public class ActionableActioner : MonoBehaviour
         SanitationController = GetComponent<SanitationController>();
         GC = FindObjectOfType<GameController>();
         ToolController = GetComponent<ToolController>();
+
+        ToolController.OnToolSet.AddListener(HighlightPossibleActions);
+        ToolController.OnToolRemove.AddListener(RemoveHiglightedPossibleActions);
     }
 
     // Update is called once per frame
@@ -65,7 +69,7 @@ public class ActionableActioner : MonoBehaviour
         }
     }
 
-    private void OnSuccess()
+    protected virtual void OnSuccess()
     {
         PlayParticleEffects(CurrentAction.GetActionableParameters().ActionSuccessParticles, CurrentAction.transform);
 
@@ -127,6 +131,9 @@ public class ActionableActioner : MonoBehaviour
         pAction.OnStartAction(gameObject);
         var progressBar = Instantiate(ProgressBarPrefab);
         progressBar.transform.SetParent(Canvas.transform);
+
+        DestroyProgressBar();
+
         ProgressBar = progressBar.transform.GetChild(0).GetComponent<Image>();
         TotalTime = parameters.TimeToTakeAction;
         IsActioning = true;
@@ -208,11 +215,21 @@ public class ActionableActioner : MonoBehaviour
 
     private void HighlightPossibleActions()
     {
-        HighlightedActions = FindObjectsOfType<Actionable>().Where(a => a.CanBeActioned(ToolController.GetCurrentToolName(), gameObject)).ToList();
+        HighlightedActions = FindObjectsOfType<Actionable>().Where(a => a.CanBeActioned(ToolController.GetCurrentToolName(), gameObject) && a.GetComponent<TableStation>() == null).ToList();
 
         for (int i = 0; i < HighlightedActions.Count; i++)
         {
-            //HighlightedActions[i].SetHighlight();
+            HighlightedActions[i].SetHighlight(Shader.Find("Custom/Pulse"));
         }
+    }
+
+    private void RemoveHiglightedPossibleActions()
+    {
+        print("NOOOOO");
+        for (int i = 0; i < HighlightedActions.Count; i++)
+        {
+            HighlightedActions[i].RemoveHighlight();
+        }
+        HighlightedActions.Clear();
     }
 }

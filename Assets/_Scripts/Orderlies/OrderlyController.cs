@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,12 +10,19 @@ public class OrderlyController : MonoBehaviour
     [HideInInspector] public OrderlyAction CurrentAction;
     [HideInInspector] public OrderlyOrder CurrentOrder;
     public GameObject MovementParticle;
+    public GameObject QueueUIPrefab;
     bool HasParticleSystem;
+
+    private GameObject QueueUI;
+    private List<GameObject> QueueIcons = new List<GameObject>();
     private ParticleSystem.EmissionModule EmissionModule;
+    private MouseInputController MouseInputController;
+    private Transform QueueWorldPos;
     //public NavMeshAgent NavAgent;
+    private float UIWidth;
+    private Vector3 UIPos = new Vector3();
 
     private ActionableActioner Actioner;
-
 
     public void StartOrder(OrderlyOrder pOrder)
     {
@@ -32,7 +40,7 @@ public class OrderlyController : MonoBehaviour
     {
         CurrentAction = null;
         CurrentOrder = null;
-        FindObjectOfType<MouseInputController>().ClearQueue();
+        MouseInputController.ClearQueue();
     }
 
     internal void ActionFinished()
@@ -47,11 +55,17 @@ public class OrderlyController : MonoBehaviour
         {
             StartAction(nextAction);
         }
+
+        InitializeQueueUI();
     }
 
     // Use this for initialization
     private void Start () 
 	{
+        QueueWorldPos = GetComponent<ActionableActioner>().ProgressBarWorldPosition;
+        QueueUI = Instantiate(QueueUIPrefab, QueueWorldPos.position, Quaternion.identity, FindObjectOfType<Canvas>().transform);
+        UIWidth = QueueUI.GetComponent<RectTransform>().rect.width;
+        MouseInputController = FindObjectOfType<MouseInputController>();
         Actioner = GetComponent<ActionableActioner>();
 
         if (MovementParticle != null)
@@ -96,5 +110,74 @@ public class OrderlyController : MonoBehaviour
         {
             CurrentAction.UpdateAction();
         }
+        UIPos = Camera.main.WorldToScreenPoint(QueueWorldPos.position);
+        QueueUI.transform.position = UIPos;
 	}
+
+    //private void UpdateQueueUI()
+    //{
+    //    var interactionActions = MouseInputController.GetAllInteractionActions();
+
+    //    if (interactionActions.Any())
+    //    {
+    //        if (!QueueIcons.Any())
+    //        {
+    //            foreach (var action in interactionActions)
+    //            {
+    //                var icon = Instantiate(action.GetActionIcon());
+    //                QueueIcons.Add(icon);
+    //            }
+    //        }
+    //        else
+    //        {
+
+    //        }
+            
+    //    }
+    //    else
+    //    {
+    //        if (QueueIcons.Any())
+    //        {
+    //            foreach (var icon in QueueIcons)
+    //            {
+    //                Destroy(icon);
+    //                QueueIcons.Remove(icon);
+    //            }
+    //        }
+    //    }
+    //}
+
+    public void InitializeQueueUI()
+    {
+        if (QueueIcons.Any())
+        {
+            foreach(var icon in QueueIcons)
+            {
+                Destroy(icon);
+            }
+            QueueIcons.Clear();
+        }
+
+        var interactionActions = MouseInputController.GetAllInteractionActions();
+
+        if (interactionActions.Any())
+        {
+            int counter = 1;
+           
+
+            foreach (var action in interactionActions)
+            {
+                //instantiate in right pos
+                float Xpos = (UIWidth / (interactionActions.Count() + 1) * counter);
+                print("Xpos of Icon = " + Xpos);
+                //Vector3 iconSpawnPos = new Vector3((QueueUI.transform.position.x - (UIWidth/2)) + Xpos, QueueUI.transform.position.y, QueueUI.transform.position.z);
+                var icon = Instantiate(action.GetActionIcon(), new Vector3(0,0,0), QueueUI.transform.rotation, QueueUI.transform);
+                icon.transform.localPosition = new Vector3(Xpos - (UIWidth/2), 0, 0);
+                //icon.transform.position = iconSpawnPos;
+                QueueIcons.Add(icon);
+                counter++;
+            }
+        }
+        
+    }
 }
