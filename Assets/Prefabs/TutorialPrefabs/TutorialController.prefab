@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1809950618318548}
+  m_IsPrefabParent: 1
+--- !u!1 &1809950618318548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4471104362058194}
+  - component: {fileID: 114551058550544286}
+  - component: {fileID: 114352073657408428}
+  m_Layer: 0
+  m_Name: TutorialController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4471104362058194
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809950618318548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.7465982, y: -1.3111349, z: 7.632659}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114352073657408428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809950618318548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6644cdfe28d8843834be717513ebf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114551058550544286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809950618318548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed52fbce481b4b444860bd456bf6fd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Objectives:
+  - {fileID: 11400000, guid: 7fb9ec0dd9a04a5488ae4c602c6d13bc, type: 2}
+  - {fileID: 11400000, guid: 3fa6c6fe1bc25794c83e9b3b1b68555c, type: 2}
+  - {fileID: 11400000, guid: 943d56ac8d8f9ed44b05e96642e5113a, type: 2}
+  - {fileID: 11400000, guid: 7b1c859d47970e14c9d755a1e5442673, type: 2}
+  - {fileID: 11400000, guid: e8d712555b028754bb9a424bb7d2f64c, type: 2}
+  - {fileID: 11400000, guid: 0e65e7ce44fee7e4ba9747e87b4e29fe, type: 2}
+  ArrowPrefab: {fileID: 1629054675639376, guid: 061c840b894251f458009a1686446872,
+    type: 2}
+  ObjectiveTextUIObject: {fileID: 0}

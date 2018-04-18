@@ -7,6 +7,13 @@ using UnityEngine.UI;
 public class BedStation : Actionable 
 {
     public float DirtyMeter;
+    public float MaxDirtyness = 100;
+    public float MinDirtyness = 0;
+    [HideInInspector]
+    public float DirtynessClampMax;
+    [HideInInspector]
+    public float DirtynessClampMin;
+
     private BedController BedController;
     private GameController GC;
 
@@ -33,6 +40,8 @@ public class BedStation : Actionable
     protected override void Initialize()
     {
         LevelManager = FindObjectOfType<LevelManager>();
+        DirtynessClampMax = MaxDirtyness;
+        DirtynessClampMin = MinDirtyness;
         BedController = GetComponent<BedController>();
         GC = FindObjectOfType<GameController>();
         Canvas = GameObject.Find("MainCanvas");
@@ -80,7 +89,7 @@ public class BedStation : Actionable
 
     public void IncreaseDirtyMeter(float pValue)
     {
-        DirtyMeter = Mathf.Clamp(DirtyMeter += pValue, 0, 100);
+        DirtyMeter = Mathf.Clamp(DirtyMeter += pValue, DirtynessClampMin, DirtynessClampMax);
         //UI Stuff
         UpdateDirtyUI();
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ToolController : MonoBehaviour 
 {
@@ -9,6 +10,10 @@ public class ToolController : MonoBehaviour
     public GameObject CurrentTool { get; private set; }
     public Transform DropPosition;
     public Animator Animator;
+
+    public UnityEvent OnToolSet;
+    public UnityEvent OnToolRemove;
+
 
     public ToolName GetCurrentToolName()
     {
@@ -24,11 +29,12 @@ public class ToolController : MonoBehaviour
 
     internal void RemoveTool()
     {
+        OnToolRemove.Invoke();
         CurrentTool = null;
         SetAnimation();
     }
 
-    internal void SetTool(GameObject pToolObject)
+    public virtual void SetTool(GameObject pToolObject)
     {
         //TODO: Check if already has tool, to be safe?
         if(GetCurrentToolName() != ToolName.NoTool)
@@ -47,6 +53,7 @@ public class ToolController : MonoBehaviour
 
         //Debug.Log("Pickingup and setting actionactive false");
         SetAnimation();
+        OnToolSet.Invoke();
     }
 
     private IEnumerator SetActionActiveFalse(Pickupable pickupable)
@@ -81,10 +88,10 @@ public class ToolController : MonoBehaviour
                     Animator.SetBool("HoldingBandage", true);
                     break;
                 case ToolName.Water:
-                    Animator.SetBool("HoldingBandage", true);
+                    Animator.SetBool("HoldingWater", true);
                     break;
                 case ToolName.IVBag:
-                    Animator.SetBool("HoldingSyringe", true);
+                    Animator.SetBool("HoldingIVBag", true);
                     break;
             }
 
@@ -103,11 +110,16 @@ public class ToolController : MonoBehaviour
 
     internal ToolBase GetToolBase()
     {
-        return CurrentTool?.GetComponent<ToolBase>();
+        if(CurrentTool != null)
+        {
+            return CurrentTool?.GetComponent<ToolBase>() ?? null;
+        }
+        return null;
     }
 
     internal void DropTool()
     {
+        OnToolRemove.Invoke();
         CurrentTool.transform.parent = null;
         CurrentTool.GetComponent<Rigidbody>().isKinematic = false;
         CurrentTool.transform.position = DropPosition.position;

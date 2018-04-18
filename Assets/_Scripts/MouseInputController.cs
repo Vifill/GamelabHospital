@@ -33,10 +33,17 @@ public class MouseInputController : MonoBehaviour
                     order.AddAction(new OrderlyMoveAction(actionable.transform));
                     order.AddAction(new OrderlyInteractionAction(actionable));
 
+
                     AddOrderToQueue(order);
                 }
                 Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
             }
+        }
+
+        if (Input.GetMouseButtonDown(1) && !GameController.InMenuScreen)
+        {
+            //Orderlies[0].CancelOrder();
+            Orderlies[0]?.CurrentAction?.CancelOrder();
         }
     }
 
@@ -44,6 +51,7 @@ public class MouseInputController : MonoBehaviour
     {
         Orders.Enqueue(pOrder);
         CheckOrderQueue();
+        Orderlies[0].InitializeQueueUI();
     }
 
     private void CheckOrderQueue()
@@ -64,5 +72,11 @@ public class MouseInputController : MonoBehaviour
     public void ClearQueue()
     {
         Orders.Clear();
+        Orderlies[0].InitializeQueueUI();
+    }
+
+    public List<OrderlyInteractionAction> GetAllInteractionActions()
+    {
+        return Orders.Select(a => a.GetInteractionAction()).ToList();
     }
 }

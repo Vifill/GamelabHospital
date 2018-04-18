@@ -2725,7 +2725,7 @@ Animator:
   m_GameObject: {fileID: 1606687990038296}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: affdd970fcd258d408437719aa83a068, type: 3}
-  m_Controller: {fileID: 9100000, guid: aa975262c6be63b4382e6ce4c46a9c8f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 030556435c63b8a4e9a7edf84d1d08cf, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2765,6 +2765,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementParticle: {fileID: 1280083263524546, guid: 61a58eee84a23084f9cb49a6045fd95b,
     type: 2}
+  QueueUIPrefab: {fileID: 1542787366011764, guid: 74e6fb4e424ee024c9b2e8e230b43a59,
+    type: 2}
+  YUIOffset: 20
+  MaxVisibleIcons: 4
 --- !u!114 &114818806424198070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2779,6 +2783,16 @@ MonoBehaviour:
   ToolPosition: {fileID: 4953857957408076}
   DropPosition: {fileID: 4444496042118294}
   Animator: {fileID: 95177126971914462}
+  OnToolSet:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnToolRemove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114889469762981332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2790,8 +2804,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e72b482cdd50e74b815be5c85980c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentSanitationLevel: 0
-  MaxSanitationLevel: 100
+  Sanitation: 0
+  MaxSanitation: 100
+  MinSanitation: 0
+  SanitationClampMax: 0
+  SanitationClampMin: 0
   SanitationBarUIPrefab: {fileID: 1979533752814144, guid: d612a684194c25f4a8f54fb4a299f5df,
     type: 2}
   UIPosition: P2PortraitPos

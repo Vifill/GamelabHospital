@@ -4,12 +4,15 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour 
+public class LevelManager : MonoBehaviour
 {
+    
     private PointsUIManager UIManager;
     private Canvas UICanvas;
     private Animator DayNightCycle;
     private float StartTime;
+
+   
 
     public bool DebugDatagathering;
     public int TestingPeriod;
@@ -19,9 +22,15 @@ public class LevelManager : MonoBehaviour
     public GameObject EndScreenPrefab;
     public GameObject SunPrefab;
     public LevelConfig LevelConfig;
+    public GameObject PlayerAI;
+    public GameObject ShiftDoctor;
     public int PatientsHealed { get; private set; } = 0;
     public int PatientDeaths { get; private set; } = 0;
     public float Timer { get; private set; }
+
+    public GameObject ShiftOverCanvas;
+
+    private GameObject Player;
 
     private int Points;
 
@@ -31,6 +40,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        Player = FindObjectOfType<PlayerActionController>()?.gameObject;
         Time.timeScale = 1;
         UICanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
         var timerUI = Instantiate(ClockUIPrefab, UICanvas.transform);
@@ -44,7 +54,7 @@ public class LevelManager : MonoBehaviour
         var sun = Instantiate(SunPrefab);
         DayNightCycle = sun.GetComponent<Animator>();
         var multiplier = 1 / (StartTime / 60);
-        DayNightCycle.SetFloat("SpeedMultiplier", multiplier);
+        DayNightCycle.SetFloat("SpeedMultiplier", multiplier);//endre
     }
 
     private void Update()
@@ -56,7 +66,7 @@ public class LevelManager : MonoBehaviour
         {
             TimeOver = true;
             FindObjectOfType<PatientSpawner>().StopSpawning();
-            LevelPassed();
+            StartCoroutine(ShiftOver());
             //CheckIfAllPatientsAreDone();
             //DayNightCycle.StopPlayback();
             //CheckIfPassed();
@@ -117,6 +127,106 @@ public class LevelManager : MonoBehaviour
         {
             LevelFailed();
         }
+    }
+
+    private IEnumerator ShiftOver()
+    {
+        GameObject UIGO = (GameObject)Instantiate(ShiftOverCanvas, FindObjectOfType<Canvas>().transform);
+        Transform exit = GameObject.Find("Exit").transform;
+        var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>()).Where(a => a.GetComponent<PatientStatusController>().IsHealed).ToList();
+        Time.timeScale = 1.5f;
+
+        //Orderly
+        OrderlyController orderlyController = FindObjectOfType<OrderlyController>();
+        
+        if (orderlyController != null && Player != null)
+        {
+            orderlyController.GetComponent<ActionableActioner>().StopAction();
+            orderlyController.CurrentAction?.CancelOrder();
+            OrderlyOrder orderlyOrder = new OrderlyOrder(exit.position);
+            orderlyOrder.AddAction(new OrderlyMoveAction(exit));
+            orderlyController.StartOrder(orderlyOrder);
+        }
+        else if (orderlyController != null && Player == null)
+        {
+            orderlyController.GetComponent<ActionableActioner>().StopAction();
+            orderlyController.CurrentAction?.CancelOrder();
+            OrderlyOrder order = new OrderlyOrder(exit.position);
+            if (checkouts.Count > 0)
+            {
+                order = new OrderlyOrder(checkouts[0].transform.position);
+            }
+
+            for (int i = 0; i < checkouts.Count; i++)
+            {
+                order.AddAction(new OrderlyMoveAction(checkouts[i].transform));
+                order.AddAction(new OrderlyInteractionAction(checkouts[i]));
+            }
+            order.AddAction(new OrderlyMoveAction(exit));
+
+            orderlyController.StartOrder(order);
+        }
+        
+
+
+        //shift doctor change
+        var EmptyBeds = new List<BedController>(FindObjectsOfType<BedController>()).Where(a => !a.IsReserved).ToList();
+        var PatientBeds = new List<BedController>(FindObjectsOfType<BedController>()).Where(a => a.IsReserved /* &&(a.PatientInBed?.GetComponentInChildren<PatientStatusController>()?.IsHealed ?? false)*/).ToList();
+        GameObject bedToMoveTo;
+        //GameObject
+        if (PatientBeds.Any())
+        {
+            bedToMoveTo = PatientBeds[Random.Range(0, PatientBeds.Count() - 1)].gameObject;
+        }
+        else
+        {
+            bedToMoveTo = EmptyBeds[Random.Range(0, EmptyBeds.Count() - 1)].gameObject;
+        }
+
+        GameObject shiftDoctorGO = (GameObject)Instantiate(ShiftDoctor, exit.position, Quaternion.identity);
+        shiftDoctorGO.SetActive(true);
+        OrderlyController shiftDoctorController = shiftDoctorGO.GetComponent<OrderlyController>();
+        OrderlyOrder shiftOrder = new OrderlyOrder(bedToMoveTo.transform.position);
+        shiftOrder.AddAction(new OrderlyMoveAction(bedToMoveTo.transform));
+
+        OrderlyController playerController = null;
+        //Player
+        if (Player != null)
+        {
+            GameObject CheckoutPlayer = Instantiate(PlayerAI, Player.transform.position, Player.transform.rotation);
+            Player.GetComponent<ActionableActioner>().StopAction();
+            Destroy(Player);
+            playerController = CheckoutPlayer.GetComponent<OrderlyController>();
+            OrderlyOrder order = new OrderlyOrder(exit.position);
+            if (checkouts.Count > 0)
+            {
+                order = new OrderlyOrder(checkouts[0].transform.position);
+            }
+
+            for (int i = 0; i < checkouts.Count; i++)
+            {
+                order.AddAction(new OrderlyMoveAction(checkouts[i].transform));
+                order.AddAction(new OrderlyInteractionAction(checkouts[i]));
+            }
+            order.AddAction(new OrderlyMoveAction(exit));
+
+            shiftDoctorController.StartOrder(shiftOrder);
+            playerController.StartOrder(order);
+        }
+
+
+
+        while (playerController?.CurrentOrder != null || shiftDoctorController?.CurrentOrder != null || orderlyController?.CurrentOrder != null)
+        {
+            yield return null;
+        }
+
+
+
+
+        yield return new WaitForSeconds(0.5f);
+        Destroy(UIGO);
+        LevelPassed();
     }
 
     private void LevelPassed()

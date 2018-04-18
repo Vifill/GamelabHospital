@@ -66,6 +66,10 @@ public class OrderlyMoveAction : OrderlyAction
 
     protected override void OnStopAction()
     {
+
+        NavAgent = OrderlyObject.GetComponent<NavMeshAgent>();
+        NavAgent.isStopped = true;
+
         if (Animator.GetBool("IsWalking"))
         {
             Animator.SetBool("IsWalking", false);

@@ -1635,6 +1635,12 @@ Prefab:
       propertyPath: m_Name
       value: Bed (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 114368368249734538, guid: df84c631f07c13e40b25d36d1879e142,
+        type: 2}
+      propertyPath: ActionIcon
+      value: 
+      objectReference: {fileID: 1722825242517722, guid: 0a63dee75510e5e44b9b21e1bd3676bc,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
   m_IsPrefabParent: 0
@@ -7382,26 +7388,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4882005025328608, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955101856277828, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365085275275332, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1955101856277828, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365085275275332, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
   m_IsPrefabParent: 0
@@ -9361,31 +9347,6 @@ Prefab:
       propertyPath: m_Name
       value: Bed (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1367339296516460, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1367339296516460, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114368368249734538, guid: df84c631f07c13e40b25d36d1879e142,
-        type: 2}
-      propertyPath: DirtyMeter
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
   m_IsPrefabParent: 0
@@ -9939,35 +9900,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114146872924099162, guid: fea3b5d7c87d5e84782e6c811c30934e,
+    - target: {fileID: 114647848302655996, guid: fea3b5d7c87d5e84782e6c811c30934e,
         type: 2}
       propertyPath: ActionParticles
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1826645044465208, guid: fea3b5d7c87d5e84782e6c811c30934e, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501766571526258, guid: fea3b5d7c87d5e84782e6c811c30934e, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675419974031248, guid: fea3b5d7c87d5e84782e6c811c30934e, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1826645044465208, guid: fea3b5d7c87d5e84782e6c811c30934e, type: 2}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501766571526258, guid: fea3b5d7c87d5e84782e6c811c30934e, type: 2}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675419974031248, guid: fea3b5d7c87d5e84782e6c811c30934e, type: 2}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1148858721968314, guid: 897d4e50b5ff5914ea69257085b6a15c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fea3b5d7c87d5e84782e6c811c30934e, type: 2}
   m_IsPrefabParent: 0

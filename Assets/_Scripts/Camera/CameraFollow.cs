@@ -73,8 +73,12 @@ public class CameraFollow : MonoBehaviour
 		}
 		else if (length == 1)
 		{
-			center = Players[0].transform.position;
-			center.y = 1f;
+            center = Vector3.zero;
+            if (Players[0] != null)
+            {
+                center = Players[0].transform.position;
+            }
+            center.y = 1f;
 		}
 		return center;
 	}
@@ -103,10 +107,17 @@ public class CameraFollow : MonoBehaviour
 	{
 		Square square = new Square();
         int length = Players?.Length ?? 0;
-		//make rectangle out of extremes
-		for (int i = 0; i < length; i++) 
-		{
-			Vector3 playerpos = Players [i].transform.position;
+        //make rectangle out of extremes
+        for (int i = 0; i < length; i++)
+        { 
+
+            Vector3 playerpos = Vector3.zero;
+            if (Players[i] != null)
+            {
+                playerpos = Players[i]?.transform?.position ?? Vector3.zero;
+            }
+         
+			//Vector3 playerpos = Players[i]?.transform?.position ?? Vector3.zero;
 
 			if (playerpos.x <= square.minX)
 				square.minX = playerpos.x;

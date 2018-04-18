@@ -33,6 +33,8 @@ public abstract class Actionable : MonoBehaviour
     public bool ConsumesTool;
     public bool MakesPlayerDirty;
 
+    public GameObject ActionIcon;
+
     public abstract bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning);
     public virtual void OnFinishedAction(GameObject pObjectActioning) { }
     public virtual void OnStartAction(GameObject pObjectActioning) { }
@@ -141,7 +143,7 @@ public abstract class Actionable : MonoBehaviour
 
     public void RemoveHighlight()
     {
-        if(gameObject == null)
+        if (gameObject == null)
         {
             return;
         }
