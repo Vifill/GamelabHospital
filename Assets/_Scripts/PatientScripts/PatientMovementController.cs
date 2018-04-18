@@ -77,6 +77,8 @@ public class PatientMovementController : MonoBehaviour
 
         PatientStatus.IsInBed = true;
         TargetBed.GetComponent<BedController>().PatientInBed = gameObject;
+
+        TargetBed.GetComponent<BedStation>().LerpDirtyBarUIWhenPatientEntersBed(gameObject.GetComponent<HealthController>().HydrationUI);
     }
 
     public void GetOutOfBed()
@@ -91,6 +93,8 @@ public class PatientMovementController : MonoBehaviour
 
         TargetBed.GetComponent<BedController>().IsReserved = false;
         TargetBed.GetComponent<BedController>().PatientInBed = null;
+
+        TargetBed.GetComponent<BedStation>().LerpDirtyBarUIWhenPatientLeavesBed();
 
         NavMeshAgent.stoppingDistance = 0;
 

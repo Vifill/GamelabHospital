@@ -9,7 +9,7 @@ public class HydrationUIManager : MonoBehaviour
     public Animator HydrationAnimator;
 
     public Image HydrationMeterUI;
-    public Image SeveretyMeterUI;
+    public Image HealthMeterUI;
     public PatientStatusColorConfig StatusColorConfig; // Use same color config as for the patient status
     public float UIOffset = 1;
 
@@ -33,8 +33,11 @@ public class HydrationUIManager : MonoBehaviour
         Patient = pHealthController.transform;
 
         // Make sure UI starts at right fill amount
-        HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
-        SeveretyMeterUI.fillAmount = HealthController.Health / 100;
+
+        // For testing HydrationMeterUI_v2, switch lines for v1
+        //HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
+        HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
+        HealthMeterUI.fillAmount = HealthController.Health / 100;
 
         // UI position
         transform.position = Camera.main.WorldToScreenPoint(HealthController.transform.position + new Vector3(0, UIOffset, UIOffset));
@@ -44,8 +47,10 @@ public class HydrationUIManager : MonoBehaviour
     {
         if (HealthController != null)
         {
-            HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
-            SeveretyMeterUI.fillAmount = HealthController.Health / 100;
+            // For testing HydrationMeterUI_v2, switch lines for v1
+            //HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
+            HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
+            HealthMeterUI.fillAmount = HealthController.Health / 100;
 
             SetSeverityColor();
             SetHydrationWarning();
@@ -88,17 +93,17 @@ public class HydrationUIManager : MonoBehaviour
         //    SeveretyMeterUI.color = StatusColorConfig.StatusGreen;
         //}
 
-        if (SeveretyMeterUI.fillAmount >= 0.45)
+        if (HealthMeterUI.fillAmount >= 0.45)
         {
-            SeveretyMeterUI.color = StatusColorConfig.StatusGreen;
+            HealthMeterUI.color = StatusColorConfig.StatusGreen;
         }
-        else if (SeveretyMeterUI.fillAmount <= 0.25)
+        else if (HealthMeterUI.fillAmount <= 0.25)
         {
-            SeveretyMeterUI.color = StatusColorConfig.StatusRed;
+            HealthMeterUI.color = StatusColorConfig.StatusRed;
         }
         else
         {
-            SeveretyMeterUI.color = StatusColorConfig.StatusYellow;
+            HealthMeterUI.color = StatusColorConfig.StatusYellow;
         }
     }
 }

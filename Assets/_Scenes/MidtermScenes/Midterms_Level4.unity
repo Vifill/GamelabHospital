@@ -367,7 +367,7 @@ Transform:
   m_Children:
   - {fileID: 2117385740}
   m_Father: {fileID: 1940091387}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &47590122
 MeshRenderer:
@@ -4115,7 +4115,7 @@ Transform:
   m_Children:
   - {fileID: 1071659314}
   m_Father: {fileID: 1940091387}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &544569702
 MeshRenderer:
@@ -4928,7 +4928,7 @@ Transform:
   m_Children:
   - {fileID: 2090964658}
   m_Father: {fileID: 1940091387}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &637826049
 MeshRenderer:
@@ -8163,7 +8163,7 @@ Transform:
   m_Children:
   - {fileID: 1039551238}
   m_Father: {fileID: 1940091387}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1152845090
 MeshRenderer:
@@ -8662,31 +8662,6 @@ Prefab:
     - target: {fileID: 1816757247161776, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
       propertyPath: m_Name
       value: Bed (12)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1367339296516460, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1367339296516460, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114368368249734538, guid: df84c631f07c13e40b25d36d1879e142,
-        type: 2}
-      propertyPath: DirtyMeter
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
@@ -9757,7 +9732,7 @@ Transform:
   m_Children:
   - {fileID: 2098943443}
   m_Father: {fileID: 1940091387}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1311351285
 MeshRenderer:
@@ -11789,6 +11764,12 @@ Prefab:
       propertyPath: m_Name
       value: Bed (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 114368368249734538, guid: df84c631f07c13e40b25d36d1879e142,
+        type: 2}
+      propertyPath: DirtyBarPrefab
+      value: 
+      objectReference: {fileID: 1154615503781104, guid: 10fa7efb3641afe48b8bab47653a2f1a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
   m_IsPrefabParent: 0
@@ -14026,7 +14007,7 @@ Transform:
   m_Children:
   - {fileID: 2057340215}
   m_Father: {fileID: 1940091387}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1905622369
 MeshRenderer:
@@ -14357,13 +14338,14 @@ Transform:
   m_Children:
   - {fileID: 1373824313}
   - {fileID: 995337525}
-  - {fileID: 535088668}
   - {fileID: 1311351284}
   - {fileID: 637826048}
   - {fileID: 47590121}
   - {fileID: 1905622368}
   - {fileID: 1152845089}
   - {fileID: 544569701}
+  - {fileID: 1965015599}
+  - {fileID: 535088668}
   - {fileID: 320547969}
   - {fileID: 2028218695}
   - {fileID: 2828351}
@@ -14385,7 +14367,6 @@ Transform:
   - {fileID: 411873296}
   - {fileID: 1081645306}
   - {fileID: 1292876399}
-  - {fileID: 1965015599}
   - {fileID: 621786214}
   - {fileID: 582347240}
   - {fileID: 1973003822}
