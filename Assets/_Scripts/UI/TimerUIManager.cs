@@ -13,9 +13,11 @@ public class TimerUIManager : MonoBehaviour
     private LevelConfig LvlConfig;
     private float ClockHandAngle;
     private float TimeToPulsate;
+    private TutorialUtility TutorialUtility;
 
     public void Initialize(LevelManager pManager, float pStartTime)
     {
+        TutorialUtility = FindObjectOfType<TutorialUtility>();
         LvlManager = pManager;
         LvlConfig = LvlManager.LevelConfig;
         ClockHand = transform.GetChild(0).GetComponent<Image>();
@@ -26,19 +28,23 @@ public class TimerUIManager : MonoBehaviour
     // Update is called once per frame
     private void Update ()  
 	{
-        if (LvlManager.Timer < TimeToPulsate && !LvlManager.TimeOver)
+        if (!TutorialUtility.TimeFreeze)
         {
-            ClockAnimator.SetBool("IsPulsating", true);
+            if (LvlManager.Timer < TimeToPulsate && !LvlManager.TimeOver)
+            {
+                ClockAnimator.SetBool("IsPulsating", true);
+            }
+            if (LvlManager.Timer > 0)
+            {
+                float clockHandRotation = ClockHandAngle * Time.deltaTime;
+                //Debug.Log(clockHandRotation);
+                ClockHand.rectTransform.Rotate(new Vector3(0, 0, -clockHandRotation));
+            }
+            if (LvlManager.TimeOver)
+            {
+                ClockAnimator.SetBool("IsPulsating", false);
+            }
         }
-        if (LvlManager.Timer > 0)
-        {
-            float clockHandRotation = ClockHandAngle * Time.deltaTime;
-            //Debug.Log(clockHandRotation);
-            ClockHand.rectTransform.Rotate(new Vector3(0, 0, -clockHandRotation));
-        }
-        if (LvlManager.TimeOver)
-        {
-            ClockAnimator.SetBool("IsPulsating", false);
-        }
+        
     }
 }

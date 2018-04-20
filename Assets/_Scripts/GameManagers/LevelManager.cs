@@ -10,8 +10,12 @@ public class LevelManager : MonoBehaviour
     private PointsUIManager UIManager;
     private Canvas UICanvas;
     private Animator DayNightCycle;
-    private float StartTime;
-
+    [HideInInspector]
+    public float StartTime;
+    [HideInInspector]
+    public float TimerClampMin = 0;
+    [HideInInspector]
+    public float TimerClampMax;
    
 
     public bool DebugDatagathering;
@@ -26,7 +30,7 @@ public class LevelManager : MonoBehaviour
     public GameObject ShiftDoctor;
     public int PatientsHealed { get; private set; } = 0;
     public int PatientDeaths { get; private set; } = 0;
-    public float Timer { get; private set; }
+    public float Timer;/*{ get; private set; }*/
 
     public GameObject ShiftOverCanvas;
 
@@ -50,6 +54,7 @@ public class LevelManager : MonoBehaviour
         UIManager.Initialize();
         UIManager.UpdateUI(PatientsHealed, Vector3.zero);
         StartTime = LevelConfig.LevelTimeSecs;
+        TimerClampMax = StartTime;
         Timer = StartTime;
         var sun = Instantiate(SunPrefab);
         DayNightCycle = sun.GetComponent<Animator>();
@@ -59,8 +64,9 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        Timer -= Time.deltaTime;
-        Mathf.Clamp(Timer, 0, StartTime);
+        //Timer -= Time.deltaTime;
+        //Mathf.Clamp(Timer, 0, StartTime);
+        Timer = Mathf.Clamp(Timer -= Time.deltaTime, TimerClampMin, TimerClampMax);
         
         if (Timer <= 0 && !TimeOver)
         {

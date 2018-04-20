@@ -8,6 +8,7 @@ public class TutorialUtility : MonoBehaviour
     private PatientSpawner PatientSpawner;
     private float OriginalSpawnRate;
     private List<BedController> UnreservedBeds;
+    public bool TimeFreeze = false;
 
 	private void Start() 
 	{
@@ -139,5 +140,35 @@ public class TutorialUtility : MonoBehaviour
                 controller.DirtynessClampMax = controller.MaxDirtyness;
             }
         }
+    }
+
+    public void SetTimeFreeze(bool pState)
+    {
+        var levelManager = FindObjectOfType<LevelManager>();
+
+        if (pState)
+        {
+            //TODO: make this a bool function? complete freezing time
+            TimeFreeze = true;
+            levelManager.TimerClampMin = levelManager.Timer;
+            levelManager.TimerClampMax = levelManager.Timer;
+        }
+        else
+        {
+            TimeFreeze = false;
+            levelManager.TimerClampMin = 0;
+            levelManager.TimerClampMax = levelManager.StartTime;
+        }
+    }
+
+    // test below, remove later
+    public void FreezeTime()
+    {
+        SetTimeFreeze(true);
+    }
+
+    public void UnFreezeTime()
+    {
+        SetTimeFreeze(false);
     }
 }
