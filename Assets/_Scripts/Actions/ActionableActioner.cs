@@ -137,6 +137,7 @@ public class ActionableActioner : MonoBehaviour
         ProgressBar = progressBar.transform.GetChild(0).GetComponent<Image>();
         TotalTime = parameters.TimeToTakeAction;
         IsActioning = true;
+        pAction.IsBeingActioned = true;
         MovementController?.StopMovement();
     }
 
@@ -169,6 +170,10 @@ public class ActionableActioner : MonoBehaviour
         CurrentAction?.OnStopAction();
 
         IsActioning = false;
+        if (CurrentAction != null)
+        {
+            CurrentAction.IsBeingActioned = false;
+        }
         DestroyProgressBar();
         MovementController?.StartMovement();
 
