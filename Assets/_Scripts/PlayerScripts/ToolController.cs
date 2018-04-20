@@ -88,10 +88,10 @@ public class ToolController : MonoBehaviour
                     Animator.SetBool("HoldingBandage", true);
                     break;
                 case ToolName.Water:
-                    Animator.SetBool("HoldingBandage", true);
+                    Animator.SetBool("HoldingWater", true);
                     break;
                 case ToolName.IVBag:
-                    Animator.SetBool("HoldingSyringe", true);
+                    Animator.SetBool("HoldingIVBag", true);
                     break;
             }
 

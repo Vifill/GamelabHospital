@@ -50,7 +50,8 @@ public class HealthController : MonoBehaviour
     private LevelManager LevelManager;
     private HydrationController HydrationController;
     private PatientStatusController PatientStatusController;
-    private GameObject HydrationUI;
+    [HideInInspector]
+    public GameObject HydrationUI;
     private Transform MainCanvasTransform;
 
     private Coroutine CurrentCoroutineSick;

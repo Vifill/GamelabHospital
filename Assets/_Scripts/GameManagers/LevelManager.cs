@@ -137,15 +137,20 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1.5f;
 
         //Orderly
-        OrderlyController ordelyController = FindObjectOfType<OrderlyController>();
-        if (ordelyController != null && Player != null)
+        OrderlyController orderlyController = FindObjectOfType<OrderlyController>();
+        
+        if (orderlyController != null && Player != null)
         {
+            orderlyController.GetComponent<ActionableActioner>().StopAction();
+            orderlyController.CurrentAction?.CancelOrder();
             OrderlyOrder orderlyOrder = new OrderlyOrder(exit.position);
             orderlyOrder.AddAction(new OrderlyMoveAction(exit));
-            ordelyController.StartOrder(orderlyOrder);
+            orderlyController.StartOrder(orderlyOrder);
         }
-        else if (ordelyController != null && Player == null)
+        else if (orderlyController != null && Player == null)
         {
+            orderlyController.GetComponent<ActionableActioner>().StopAction();
+            orderlyController.CurrentAction?.CancelOrder();
             OrderlyOrder order = new OrderlyOrder(exit.position);
             if (checkouts.Count > 0)
             {
@@ -159,7 +164,7 @@ public class LevelManager : MonoBehaviour
             }
             order.AddAction(new OrderlyMoveAction(exit));
 
-            ordelyController.StartOrder(order);
+            orderlyController.StartOrder(order);
         }
         
 
@@ -189,6 +194,7 @@ public class LevelManager : MonoBehaviour
         if (Player != null)
         {
             GameObject CheckoutPlayer = Instantiate(PlayerAI, Player.transform.position, Player.transform.rotation);
+            Player.GetComponent<ActionableActioner>().StopAction();
             Destroy(Player);
             playerController = CheckoutPlayer.GetComponent<OrderlyController>();
             OrderlyOrder order = new OrderlyOrder(exit.position);
@@ -210,7 +216,7 @@ public class LevelManager : MonoBehaviour
 
 
 
-        while (playerController?.CurrentOrder != null || shiftDoctorController?.CurrentOrder != null || ordelyController?.CurrentOrder != null)
+        while (playerController?.CurrentOrder != null || shiftDoctorController?.CurrentOrder != null || orderlyController?.CurrentOrder != null)
         {
             yield return null;
         }

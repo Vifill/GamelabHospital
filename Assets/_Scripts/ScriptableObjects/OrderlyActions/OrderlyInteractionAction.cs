@@ -34,6 +34,11 @@ public class OrderlyInteractionAction : OrderlyAction
         }
     }
 
+    protected override void OnStopAction()
+    {
+        OrderlyObject.GetComponent<ActionableActioner>().StopAction();
+    }
+
     public GameObject GetActionIcon()
     {
         return Action.ActionIcon;

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4796624274203654}
   m_Layer: 0
-  m_Name: BucketUIpos
+  m_Name: DirtyBarWorldPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816757247161776}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.43, y: 0, z: 4.75}
+  m_LocalPosition: {x: 4.72, y: 0, z: 4.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4632487164283986}
@@ -604,9 +604,10 @@ MonoBehaviour:
   DirtynessClampMax: 0
   DirtynessClampMin: 0
   RequiredTool: 4
-  DirtyBarPrefab: {fileID: 1584299532339696, guid: 3bb17afc9f730a94d801c7bebfd439a0,
+  DirtyBarPrefab: {fileID: 1154615503781104, guid: 10fa7efb3641afe48b8bab47653a2f1a,
     type: 2}
-  BucketUIPos: {fileID: 4796624274203654}
+  DirtyBarWorldBedPosition: {fileID: 4796624274203654}
+  LerpSpeed: 5
 --- !u!114 &114788812090140734
 MonoBehaviour:
   m_ObjectHideFlags: 1
