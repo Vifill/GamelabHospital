@@ -23,7 +23,7 @@
 
 		CGPROGRAM
 #pragma surface surf Standard fullforwardshadows finalcolor:col
-#pragma target 3.0
+#pragma target 2.0
 
 		sampler2D _MainTex;
 
@@ -39,10 +39,8 @@
 	float _PulseSpeed;
 	float _PulseAmount;
 
-	UNITY_INSTANCING_BUFFER_START(Props)
-		UNITY_INSTANCING_BUFFER_END(Props)
 
-		void col(Input IN, SurfaceOutputStandard o, inout fixed4 color)
+	void col(Input IN, SurfaceOutputStandard o, inout fixed4 color)
 	{
 		float brightness = _Brightness;
 		brightness = step(0 , _PulseAmount) * sin(_Time.y * _PulseSpeed) * _PulseAmount;
