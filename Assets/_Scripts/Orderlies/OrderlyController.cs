@@ -9,6 +9,8 @@ public class OrderlyController : MonoBehaviour
 {
     [HideInInspector] public OrderlyAction CurrentAction;
     [HideInInspector] public OrderlyOrder CurrentOrder;
+    [HideInInspector] public Queue<OrderlyOrder> OrderQueue = new Queue<OrderlyOrder>();
+
     public GameObject MovementParticle;
     public GameObject QueueUIPrefab;
     public float YUIOffset;
@@ -20,7 +22,6 @@ public class OrderlyController : MonoBehaviour
     private ParticleSystem.EmissionModule EmissionModule;
     private MouseInputController MouseInputController;
     private Transform QueueWorldPos;
-    //public NavMeshAgent NavAgent;
     private float UIWidth;
     private Vector3 UIPos = new Vector3();
 
@@ -43,7 +44,13 @@ public class OrderlyController : MonoBehaviour
         //CurrentAction.CancelOrder();
         CurrentAction = null;
         CurrentOrder = null;
-        MouseInputController.ClearQueue();
+        ClearQueue();
+    }
+
+    private void ClearQueue()
+    {
+        OrderQueue.Clear();
+        InitializeQueueUI();
     }
 
     internal void ActionFinished()
@@ -60,6 +67,22 @@ public class OrderlyController : MonoBehaviour
         }
 
         InitializeQueueUI();
+    }
+
+    public void AddQueue(OrderlyOrder pOrder)
+    {
+        OrderQueue.Enqueue(pOrder);
+        CheckOrderQueue();
+        InitializeQueueUI();
+    }
+
+    private void CheckOrderQueue()
+    {
+        if (OrderQueue.Count > 0)
+        {
+            var nextOrder = OrderQueue.First();
+            StartOrder(OrderQueue.Dequeue());
+        }
     }
 
     // Use this for initialization
@@ -112,7 +135,8 @@ public class OrderlyController : MonoBehaviour
     // Update is called once per frame
     private void Update () 
 	{
-		if(CurrentAction != null)
+        CheckOrderQueue();
+        if (CurrentAction != null)
         {
             CurrentAction.UpdateAction();
         }
@@ -124,7 +148,12 @@ public class OrderlyController : MonoBehaviour
         }
 	}
 
-    public void InitializeQueueUI()
+    private List<OrderlyInteractionAction> GetAllInteractionActions()
+    {
+        return OrderQueue.Select(a => a.GetInteractionAction()).ToList();
+    }
+
+    private void InitializeQueueUI()
     {
         if (QueueIcons.Any())
         {
@@ -142,7 +171,7 @@ public class OrderlyController : MonoBehaviour
             interactionActions.Add(CurrentOrder.GetInteractionAction());
         }
         
-        interactionActions.AddRange(MouseInputController.GetAllInteractionActions());
+        interactionActions.AddRange(GetAllInteractionActions());
 
         if (interactionActions.Any())
         {
@@ -152,27 +181,14 @@ public class OrderlyController : MonoBehaviour
             {
                 float Xpos = 0;
 
-                //if (counter <= MaxVisibleIcons)
-                //{
-                //    Xpos = (UIWidth / Mathf.Clamp(interactionActions.Count() + 1, 0, MaxVisibleIcons) * counter);
-
-                //}
-                //else
-                //{
-                //    float startXValue = (UIWidth / (MaxVisibleIcons + 1)) * MaxVisibleIcons;
-                //    Xpos = startXValue + ((UIWidth - startXValue) / (((interactionActions.Count() + 1) - MaxVisibleIcons) * counter));
-                //}
-
                 Xpos = ((UIWidth / (interactionActions.Count + 1)) * counter);
 
                 var icon = Instantiate(action.GetActionIcon(), new Vector3(0, 0, 0), QueueUI.transform.rotation, QueueUI.transform);
                 icon.transform.localPosition = new Vector3(Xpos - (UIWidth / 2), 0, 0);
                 icon.transform.SetSiblingIndex(interactionActions.Count - 1);
-                //icon.transform.position = iconSpawnPos;
                 QueueIcons.Add(icon);
                 counter++;
             }
-        }
-        
+        }        
     }
 }
