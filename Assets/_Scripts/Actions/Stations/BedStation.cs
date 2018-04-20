@@ -111,7 +111,10 @@ public class BedStation : Actionable
     
     private void Update()
     {
-        DirtyBarUIPositionBed.position = Cam.WorldToScreenPoint(DirtyBarWorldBedPosition.position);
+        if (DirtyBarUIPositionBed != null)
+        {
+            DirtyBarUIPositionBed.position = Cam.WorldToScreenPoint(DirtyBarWorldBedPosition.position);
+        }
     }
 
     private IEnumerator LerpToUITransform(Transform pTargetTransform)
@@ -131,13 +134,19 @@ public class BedStation : Actionable
 
     public void LerpDirtyBarUIWhenPatientLeavesBed()
     {
-        DirtyBarInstance.transform.SetParent(Canvas.transform);
-        StartCoroutine(LerpToUITransform(DirtyBarUIPositionBed));
+        if (DirtyBarInstance != null)
+        {
+            DirtyBarInstance.transform.SetParent(Canvas.transform);
+            StartCoroutine(LerpToUITransform(DirtyBarUIPositionBed));
+        }
     }
 
     public void LerpDirtyBarUIWhenPatientEntersBed(GameObject pObjectToParent)
     {
-        DirtyBarUIPositionPatient = pObjectToParent.transform.Find(DirtyBarPosString).transform;
-        StartCoroutine(LerpToUITransform(DirtyBarUIPositionPatient));
+        if (DirtyBarInstance != null)
+        {
+            DirtyBarUIPositionPatient = pObjectToParent.transform.Find(DirtyBarPosString).transform;
+            StartCoroutine(LerpToUITransform(DirtyBarUIPositionPatient));
+        }
     }
 }
