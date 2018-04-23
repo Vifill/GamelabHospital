@@ -14,10 +14,9 @@ public class ToolController : MonoBehaviour
     public UnityEvent OnToolSet;
     public UnityEvent OnToolRemove;
 
-
     public ToolName GetCurrentToolName()
     {
-        return CurrentTool?.GetComponent<ToolBase>()?.ToolName ?? ToolName.NoTool; 
+        return CurrentTool?.GetComponent<ToolBase>()?.ToolName ?? ToolName.NoTool;
     }
 
     internal void DestroyTool()
