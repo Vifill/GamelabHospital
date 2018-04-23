@@ -60,6 +60,7 @@ public class OrderlyController : MonoBehaviour
         {
             CurrentAction = null;
             CurrentOrder = null;
+            CheckOrderQueue();
         }
         else
         {
@@ -78,9 +79,8 @@ public class OrderlyController : MonoBehaviour
 
     private void CheckOrderQueue()
     {
-        if (OrderQueue.Count > 0)
+        if (OrderQueue.Count > 0 && CurrentAction == null)
         {
-            var nextOrder = OrderQueue.First();
             StartOrder(OrderQueue.Dequeue());
         }
     }
@@ -126,11 +126,6 @@ public class OrderlyController : MonoBehaviour
             EmissionModule.enabled = false;
         }
     }
-
-    //private IEnumerator ActionableCoroutine()
-    //{
-    //    StartCoroutine(ProgressAction);
-    //}
 
     // Update is called once per frame
     private void Update () 
