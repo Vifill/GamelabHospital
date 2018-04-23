@@ -11,6 +11,7 @@ public class MovementController : MonoBehaviour {
     public float RotSpeed = 1;
     public float YOffset = 1f;
     public bool CanMove;
+    public bool CanDash;
     public bool IsDashing;
     public float WindUpTime = 5;
 
@@ -20,6 +21,7 @@ public class MovementController : MonoBehaviour {
     // Use this for initialization
     private void Start ()
     {
+        CanDash = true;
         CanMove = true;
         Animator = GetComponentInChildren<Animator>();
         if (MovementParticle != null)
@@ -33,14 +35,13 @@ public class MovementController : MonoBehaviour {
 	// Update is called once per frame
 	private void Update ()
     {
-        if (CanMove && Input.GetKeyDown(KeyCode.LeftShift))
+        if (CanDash && CanMove && Input.GetKeyDown(KeyCode.LeftShift))
         {
             Dash();
         }
-
         if (CanMove)
         {
-            WalkInput();            
+            WalkInput();
         }
         else
         {
@@ -49,6 +50,11 @@ public class MovementController : MonoBehaviour {
                 Animator.SetBool("IsWalking", false);
                 EmissionModule.enabled = false;
             }
+        }
+
+        if (IsDashing && !EmissionModule.enabled)
+        {
+            EmissionModule.enabled = true;
         }
     }
 
@@ -62,9 +68,12 @@ public class MovementController : MonoBehaviour {
             {
                 Direction.Normalize();
             }
-
-            transform.GetComponent<CharacterController>().Move(Direction * Time.deltaTime * Speed);
-            transform.position = new Vector3(transform.position.x, YOffset, transform.position.z);
+            if (!IsDashing)
+            {
+                transform.GetComponent<CharacterController>().Move(Direction * Time.deltaTime * Speed);
+                transform.position = new Vector3(transform.position.x, YOffset, transform.position.z);
+            }
+           
 
             if (Direction.magnitude >= 0.1)
             {
@@ -88,7 +97,9 @@ public class MovementController : MonoBehaviour {
 
     private void Dash()
     {
-        CanMove = false;
+        IsDashing = true;
+        //CanMove = false;
+        CanDash = false;
         CharacterController charController = GetComponent<CharacterController>();
         StartCoroutine(DashTo(charController));
     }
@@ -114,11 +125,15 @@ public class MovementController : MonoBehaviour {
             dashTimer += Time.deltaTime;
             yield return null;
         }
-        CanMove = true;
+        //CanMove = true;
+        IsDashing = false;
         if (particlesystem != null)
         {
-            Destroy(particlesystem);
+            Destroy(particlesystem, 3f);
         }
+
+        yield return new WaitForSeconds(.5f);
+        CanDash = true;
     }
 
     private void StartWalkingAnimation()
