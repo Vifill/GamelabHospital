@@ -15,6 +15,7 @@ public class OrderlyController : MonoBehaviour
     public GameObject QueueUIPrefab;
     public float YUIOffset;
     public float MaxVisibleIcons = 4;
+    public GameObject SelectionParticleEffect;
 
     private bool HasParticleSystem;
     private GameObject QueueUI;

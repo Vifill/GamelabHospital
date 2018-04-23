@@ -14,7 +14,10 @@ public class MouseInputController : MonoBehaviour
 	private void Start () 
 	{
         Orderlies = new List<OrderlyController>(FindObjectsOfType<OrderlyController>());
-        CurrentOrderly = Orderlies[0] ?? null;
+        if(Orderlies[0] != null)
+        {
+            SelectOrderly(Orderlies[0]);
+        }
     }
 	
 	// Update is called once per frame
@@ -41,17 +44,24 @@ public class MouseInputController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            CurrentOrderly = Orderlies[0];
+            SelectOrderly(Orderlies[0]);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            CurrentOrderly = Orderlies[1];
+            SelectOrderly(Orderlies[1]);
         }
 
         if (Input.GetMouseButtonDown(1) && !GameController.InMenuScreen)
         {
             CurrentOrderly?.CurrentAction?.CancelOrder();
         }        
+    }
+
+    private void SelectOrderly(OrderlyController pOrderlyController)
+    {
+        CurrentOrderly?.SelectionParticleEffect.SetActive(false);
+        CurrentOrderly = pOrderlyController;
+        pOrderlyController.SelectionParticleEffect.SetActive(true);
     }
 
     private OrderlyController GetNearestAvailableOrderly(OrderlyOrder pNextOrder)
