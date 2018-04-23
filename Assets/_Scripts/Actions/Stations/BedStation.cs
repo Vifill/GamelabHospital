@@ -66,7 +66,7 @@ public class BedStation : Actionable
         DirtyBarInstance = Instantiate(DirtyBarPrefab, DirtyBarUIPositionBed);
         DirtyBarInstance.transform.localPosition = Vector3.zero;
 
-        BarFill = DirtyBarInstance.transform.GetChild(0).GetComponent<Image>();      
+        BarFill = DirtyBarInstance.transform.GetChild(1).GetComponent<Image>();      
     }
 
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
