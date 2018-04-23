@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class Datalogic
 {
-    private readonly int TestingPeriod = 1;
+    //private readonly int TestingPeriod = 1;
 
     public void Initialize()
     {

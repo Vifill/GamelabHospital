@@ -6,7 +6,7 @@ public class WashingStation : Actionable
 {
     public GameObject DocWashedParticlePrefab;
     private float OriginalStartingTime;
-    private GameObject ObjectActioning;
+    //private GameObject ObjectActioning;
 
     protected override void Initialize()
     {
@@ -29,7 +29,7 @@ public class WashingStation : Actionable
     public override void OnStartAction(GameObject pObjectActioning)
     {
         //ActionTime += pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel / 100;
-        ObjectActioning = pObjectActioning;
+        //ObjectActioning = pObjectActioning;
     }
 
     public override void OnStopAction()

@@ -6,13 +6,14 @@ using UnityEngine;
 public class TutorialUtility : MonoBehaviour 
 {
     private PatientSpawner PatientSpawner;
-    private float OriginalSpawnRate;
+    //private float OriginalSpawnRate;
     private List<BedController> UnreservedBeds;
+    public bool TimeFreeze = false;
 
 	private void Start() 
 	{
         PatientSpawner = FindObjectOfType<PatientSpawner>();
-        OriginalSpawnRate = PatientSpawner.SpawnConfig.SpawnRate;
+        //OriginalSpawnRate = PatientSpawner.SpawnConfig.SpawnRate;
 	}
 	
 	private void Update() 
@@ -41,7 +42,6 @@ public class TutorialUtility : MonoBehaviour
 
     public void SetSpawnFreeze(bool pState)
     {
-        var patientSpawner = FindObjectOfType<PatientSpawner>();
         
         if (pState)
         {
@@ -138,6 +138,24 @@ public class TutorialUtility : MonoBehaviour
                 controller.DirtynessClampMin = controller.MinDirtyness;
                 controller.DirtynessClampMax = controller.MaxDirtyness;
             }
+        }
+    }
+
+    public void SetTimeFreeze(bool pState)
+    {
+        var levelManager = FindObjectOfType<LevelManager>();
+
+        if (pState)
+        {
+            TimeFreeze = true;
+            levelManager.TimerClampMin = levelManager.Timer;
+            levelManager.TimerClampMax = levelManager.Timer;
+        }
+        else
+        {
+            TimeFreeze = false;
+            levelManager.TimerClampMin = 0;
+            levelManager.TimerClampMax = levelManager.StartTime;
         }
     }
 }

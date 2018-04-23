@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScreenManager : MonoBehaviour
 {
-    private AsyncOperation Async;
+    //private AsyncOperation Async;
 
     public static void LoadSceneId(int pSceneId)
     {
@@ -14,7 +14,7 @@ public class LoadingScreenManager : MonoBehaviour
 
     public void Initialize(string pSceneToLoad)
     {
-         Async = SceneManager.LoadSceneAsync(pSceneToLoad);
+         //Async = SceneManager.LoadSceneAsync(pSceneToLoad);
     }
 
 }

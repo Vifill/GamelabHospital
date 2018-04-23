@@ -15,7 +15,7 @@ public class BedStation : Actionable
     public float DirtynessClampMin;
 
     private BedController BedController;
-    private GameController GC;
+    //private GameController GC;
 
     public ToolName RequiredTool;
 
@@ -42,8 +42,8 @@ public class BedStation : Actionable
         LevelManager = FindObjectOfType<LevelManager>();
         DirtynessClampMax = MaxDirtyness;
         DirtynessClampMin = MinDirtyness;
-        BedController = GetComponent<BedController>();
-        GC = FindObjectOfType<GameController>();
+        //BedController = GetComponent<BedController>();
+        //GC = FindObjectOfType<GameController>();
         Canvas = GameObject.Find("MainCanvas");
         
         //UI Stuff
@@ -66,7 +66,7 @@ public class BedStation : Actionable
         DirtyBarInstance = Instantiate(DirtyBarPrefab, DirtyBarUIPositionBed);
         DirtyBarInstance.transform.localPosition = Vector3.zero;
 
-        BarFill = DirtyBarInstance.transform.GetChild(0).GetComponent<Image>();      
+        BarFill = DirtyBarInstance.transform.GetChild(1).GetComponent<Image>();      
     }
 
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)

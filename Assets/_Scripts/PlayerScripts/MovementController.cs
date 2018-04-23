@@ -31,6 +31,11 @@ public class MovementController : MonoBehaviour {
 	// Update is called once per frame
 	private void Update ()
     {
+        if (CanMove && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Dash();
+        }
+
         if (CanMove)
         {
             WalkInput();            
@@ -77,6 +82,32 @@ public class MovementController : MonoBehaviour {
                 StopWalkingAnimation();
             }
         }
+    }
+
+    private void Dash()
+    {
+        CanMove = false;
+        CharacterController charController = GetComponent<CharacterController>();
+        StartCoroutine(DashTo(charController));
+    }
+
+    private IEnumerator DashTo(CharacterController pCharController)
+    {
+        float dashTimer = 0;
+        float SpeedMultiplier = 9f;
+        float DashDuration = .2f;
+
+        while (dashTimer < DashDuration)
+        {
+           
+            float currentSpeedMultiplier = -Mathf.Pow((dashTimer / DashDuration) * (1 - (-1)) + (-1), 4) + 1; // -(ratio * (max+min) + min) + 1 // y = x^4 + 1
+            print(currentSpeedMultiplier);
+            //SpeedMultiplier = Mathf.Lerp(SpeedMultiplier, 1, );
+            pCharController.Move(transform.forward * Time.deltaTime * (Speed + (currentSpeedMultiplier * SpeedMultiplier)));
+            dashTimer += Time.deltaTime;
+            yield return null;
+        }
+        CanMove = true;
     }
 
     private void StartWalkingAnimation()
