@@ -148,7 +148,6 @@ public class TutorialUtility : MonoBehaviour
 
         if (pState)
         {
-            //TODO: make this a bool function? complete freezing time
             TimeFreeze = true;
             levelManager.TimerClampMin = levelManager.Timer;
             levelManager.TimerClampMax = levelManager.Timer;
@@ -159,16 +158,5 @@ public class TutorialUtility : MonoBehaviour
             levelManager.TimerClampMin = 0;
             levelManager.TimerClampMax = levelManager.StartTime;
         }
-    }
-
-    // test below, remove later
-    public void FreezeTime()
-    {
-        SetTimeFreeze(true);
-    }
-
-    public void UnFreezeTime()
-    {
-        SetTimeFreeze(false);
     }
 }
