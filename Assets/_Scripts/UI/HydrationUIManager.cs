@@ -75,24 +75,16 @@ public class HydrationUIManager : MonoBehaviour
 
     private void SetHydrationWarning(bool pValue)
     {
-        HydrationAnimator.SetBool("IsPulsating", pValue);
+        HydrationAnimator.SetBool("IsPulsatingHydration", pValue);
+    }
+
+    private void SetHealthWarning(bool pValue)
+    {
+        HydrationAnimator.SetBool("IsPulsatingHP", pValue);
     }
 
     private void SetSeverityColor()
     {
-        //if (SeveretyMeterUI.fillAmount <= 0.25)
-        //{
-        //    SeveretyMeterUI.color = StatusColorConfig.StatusRed;
-        //}
-        //else if (SeveretyMeterUI.fillAmount <= 0.45)
-        //{
-        //    SeveretyMeterUI.color = StatusColorConfig.StatusYellow;
-        //}
-        //else
-        //{
-        //    SeveretyMeterUI.color = StatusColorConfig.StatusGreen;
-        //}
-
         if (HealthMeterUI.fillAmount >= 0.45)
         {
             HealthMeterUI.color = StatusColorConfig.StatusGreen;
