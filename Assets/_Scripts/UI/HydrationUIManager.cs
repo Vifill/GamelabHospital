@@ -18,7 +18,7 @@ public class HydrationUIManager : MonoBehaviour
     private bool IsWarning;
 
     private HealthController HealthController;
-    private Transform Patient;
+    //private Transform Patient;
     public GameObject WarningIconInstance;
     
 
@@ -30,7 +30,7 @@ public class HydrationUIManager : MonoBehaviour
     public void InitializeHydrationUI(HealthController pHealthController)
     {
         HealthController = pHealthController;
-        Patient = pHealthController.transform;
+        //Patient = pHealthController.transform;
 
         // Make sure UI starts at right fill amount
 

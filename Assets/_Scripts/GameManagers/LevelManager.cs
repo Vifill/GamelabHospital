@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
 
     private int Points;
 
-    private Datalogic DataLogic = new Datalogic();
+    //private Datalogic DataLogic = new Datalogic();
 
     private PlayerDataController PlayerDataController = new PlayerDataController();
 
