@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
     public GameObject LoadingScreen;
     private Transform Canvas;
     private SceneFading Fader;
-    private GameObject LoadingScreenObject;
+    //private GameObject LoadingScreenObject;
     private bool LoadingScreenReady = false;
 
     private void Start()
@@ -20,7 +20,7 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator LoadSceneCoroutine(string asyncOperation, bool pWithLoadingScreen)
     {
-        float fadeTime = Fader.BeginFade(1, 0.15f);
+        //float fadeTime = Fader.BeginFade(1, 0.15f);
         if (pWithLoadingScreen)
         {
             LoadingScreenReady = false;
@@ -52,7 +52,8 @@ public class SceneLoader : MonoBehaviour
     private IEnumerator InstantiateLoadinScreen()
     {
         yield return new WaitForSecondsRealtime(0.1f);
-        LoadingScreenObject = Instantiate(LoadingScreen, Canvas);
+        //LoadingScreenObject = Instantiate(LoadingScreen, Canvas);
+        Instantiate(LoadingScreen, Canvas);
         Fader.BeginFade(-1, 0.15f);
         yield return new WaitForSecondsRealtime(0.1f);
         LoadingScreenReady = true;
