@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour {
+    public GameObject DashParticles;
     public GameObject MovementParticle;
     private Animator Animator;
     private ParticleSystem.EmissionModule EmissionModule;
@@ -10,6 +11,7 @@ public class MovementController : MonoBehaviour {
     public float RotSpeed = 1;
     public float YOffset = 1f;
     public bool CanMove;
+    public bool IsDashing;
     public float WindUpTime = 5;
 
     private Vector3 Direction;
@@ -93,6 +95,11 @@ public class MovementController : MonoBehaviour {
 
     private IEnumerator DashTo(CharacterController pCharController)
     {
+        GameObject particlesystem = null;
+        if (DashParticles != null)
+        {
+           particlesystem = (GameObject)Instantiate(DashParticles, transform.position, transform.rotation, transform);
+        }
         float dashTimer = 0;
         float SpeedMultiplier = 9f;
         float DashDuration = .2f;
@@ -108,6 +115,10 @@ public class MovementController : MonoBehaviour {
             yield return null;
         }
         CanMove = true;
+        if (particlesystem != null)
+        {
+            Destroy(particlesystem);
+        }
     }
 
     private void StartWalkingAnimation()
