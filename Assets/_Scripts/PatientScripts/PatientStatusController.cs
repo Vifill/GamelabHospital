@@ -37,7 +37,6 @@ public class PatientStatusController : MonoBehaviour
     private StretchersController StretchersController;
     private LevelManager LevelManager;
 
-
     // Use this for initialization
     private void Start()
     {

@@ -8,7 +8,6 @@ public class MouseInputController : MonoBehaviour
 {
     private List<OrderlyController> Orderlies;
     private OrderlyController CurrentOrderly;
-    //private Queue<OrderlyOrder> Orders = new Queue<OrderlyOrder>();
 
 	// Use this for initialization
 	private void Start () 
@@ -54,7 +53,7 @@ public class MouseInputController : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && !GameController.InMenuScreen)
         {
             CurrentOrderly?.CurrentAction?.CancelOrder();
-        }        
+        }
     }
 
     private void SelectOrderly(OrderlyController pOrderlyController)
