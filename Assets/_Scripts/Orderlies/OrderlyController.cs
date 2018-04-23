@@ -179,10 +179,15 @@ public class OrderlyController : MonoBehaviour
 
                 Xpos = ((UIWidth / (interactionActions.Count + 1)) * counter);
 
-                var icon = Instantiate(action.GetActionIcon(), new Vector3(0, 0, 0), QueueUI.transform.rotation, QueueUI.transform);
-                icon.transform.localPosition = new Vector3(Xpos - (UIWidth / 2), 0, 0);
-                icon.transform.SetSiblingIndex(interactionActions.Count - 1);
-                QueueIcons.Add(icon);
+                if (action.GetActionIcon() != null && QueueUI != null)
+                {
+                    var icon = Instantiate(action.GetActionIcon(), new Vector3(0, 0, 0), QueueUI.transform.rotation, QueueUI.transform);
+                    icon.transform.localPosition = new Vector3(Xpos - (UIWidth / 2), 0, 0);
+                    icon.transform.SetSiblingIndex(interactionActions.Count - 1);
+                    //icon.transform.position = iconSpawnPos;
+                    QueueIcons.Add(icon);
+                }
+                
                 counter++;
             }
         }        

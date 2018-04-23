@@ -15,7 +15,7 @@ public class OptionMenuManager : MonoBehaviour
 
     private GameObject PauseMenu;
     private Resolution[] Resolutions;
-    private bool Fullscreen;
+    //private bool Fullscreen;
     private int ResolutionIndex;
     private int QualityIndex;
 
@@ -40,7 +40,7 @@ public class OptionMenuManager : MonoBehaviour
     private void GetGraphicQualityIndexes()
     {
         QualityIndex = QualitySettings.GetQualityLevel();
-        Fullscreen = Screen.fullScreen;
+        //Fullscreen = Screen.fullScreen;
     }
 
     private void GetResolutions()

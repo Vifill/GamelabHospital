@@ -6,7 +6,7 @@ public class TutorialPatientManager : MonoBehaviour
 {
     private PatientStatusController StatusCtrl;
     private TutorialUIController TutorialUI;
-    private ToolController ToolCtrl;
+    //private ToolController ToolCtrl;
     private GameObject SpaceBarImg;
     public Vector3 UIOffset = new Vector3();
 
@@ -15,7 +15,7 @@ public class TutorialPatientManager : MonoBehaviour
 	{
         StatusCtrl = GetComponent<PatientStatusController>();
         TutorialUI = FindObjectOfType<TutorialUIController>();
-        ToolCtrl = FindObjectOfType<ToolController>();
+        //ToolCtrl = FindObjectOfType<ToolController>();
         SpaceBarImg = Instantiate(TutorialUI.HoldSpaceImg, FindObjectOfType<Canvas>().transform);
         SpaceBarImg.SetActive(false);
 	}

@@ -10,8 +10,6 @@ public class CameraFollow : MonoBehaviour
 		public float maxX = float.MinValue;
 		public float minZ = float.MaxValue;
 		public float maxZ = float.MinValue;
-
-		public Vector3 center;
 	}
 
 	[SerializeField]

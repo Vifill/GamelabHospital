@@ -32,6 +32,7 @@ public abstract class Actionable : MonoBehaviour
     public bool NeedsSanitizedTool;
     public bool ConsumesTool;
     public bool MakesPlayerDirty;
+    public bool IsBeingActioned;
 
     public GameObject ActionIcon;
 
@@ -52,7 +53,7 @@ public abstract class Actionable : MonoBehaviour
     public bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         bool canUseTool = pCurrentTool == ToolName.NoTool || !NeedsSanitizedTool || (NeedsSanitizedTool && !pObjectActioning.GetComponent<ToolController>().GetToolBase().IsDirty);
-        return canUseTool && CanBeActionedExtended(pCurrentTool, pObjectActioning);
+        return canUseTool && CanBeActionedExtended(pCurrentTool, pObjectActioning) && !IsBeingActioned;
     }
 
     private void Start()

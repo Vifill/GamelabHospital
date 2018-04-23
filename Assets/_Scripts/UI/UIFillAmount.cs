@@ -50,7 +50,7 @@ public class UIFillAmount : MonoBehaviour{
 
 	void SetFillAmount(float pFill)
     {
-        MaterialPropertyBlock props = new MaterialPropertyBlock();
+        //MaterialPropertyBlock props = new MaterialPropertyBlock();
         if (Image != null)
         {
             Image.material.SetFloat("_BucketFillAmount", pFill);

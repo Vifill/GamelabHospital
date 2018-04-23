@@ -79,27 +79,30 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        var healthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
-
-        if (healthIncrease > 0)
+        if (!LevelManager.TimeOver)
         {
-            Health += healthIncrease * Time.deltaTime;
-        }
+            var healthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
 
-        if (!PatientStatusController.IsHealed && Health >= 100)
-        {
-            PatientStatusController.IsHealed = true;
-        }
-
-        if (!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
-        {
-            HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime;
-            Health += ConstantHealing * Time.deltaTime;
-
-            if (!PatientStatusController.IsDead && HydrationMeter <= 0)
+            if (healthIncrease > 0)
             {
-                PatientStatusController.Death();
+                Health = Mathf.Clamp(Health += healthIncrease * Time.deltaTime, HealthClampMin, HealthClampMax);
+            }
 
+            if (!PatientStatusController.IsHealed && Health >= 100)
+            {
+                PatientStatusController.IsHealed = true;
+                HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
+            }
+
+            if (!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
+            {
+                HydrationMeter = Mathf.Clamp(HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime, HydrationClampMin, HydrationClampMax);
+                Health = Mathf.Clamp(Health += ConstantHealing * Time.deltaTime, HealthClampMin, HealthClampMax);
+
+                if (!PatientStatusController.IsDead && HydrationMeter <= 0)
+                {
+                    PatientStatusController.Death();
+                }
             }
         }
     }
@@ -123,8 +126,7 @@ public class HealthController : MonoBehaviour
             if(inBed != null)
             {
                 var healthDecrease = BedSanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.HealthDecreasePerSecond ?? 0;
-                Health -= healthDecrease;
-                Health = Mathf.Clamp(Health, 0, 100);
+                Health = Mathf.Clamp(Health -= healthDecrease, HealthClampMin, HealthClampMax);
             }
         }
     }
@@ -148,20 +150,26 @@ public class HealthController : MonoBehaviour
 
     private void StartFeelingSick()
     {
-        HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
+        if (!PatientStatusController.IsHealed)
+        {
+            HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
 
-        Invoke("Excrete", 5);
+            Invoke("Excrete", 5);
+        }
     }
 
     private void Excrete()
     {
-        ReduceHydration();
-        IncreaseHealthWhenExcreting();
-        MakeBedDirty();
-        StartPukingAnimation();
-        HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
+        if (!PatientStatusController.IsHealed)
+        {
+            ReduceHydration();
+            IncreaseHealthWhenExcreting();
+            MakeBedDirty();
+            StartPukingAnimation();
+            HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
 
-        Debug.Log($"I'M PUKING!");
+            Debug.Log($"I'M PUKING!");
+        }
     }
 
     private void StartPukingAnimation()
@@ -172,7 +180,7 @@ public class HealthController : MonoBehaviour
 
     private void IncreaseHealthWhenExcreting()
     {
-        Health += CholeraConfig.ExcreteHealthIncrease;
+        Health = Mathf.Clamp(Health += CholeraConfig.ExcreteHealthIncrease, HealthClampMin, HealthClampMax);
     }
 
     private void ReduceHydration()
@@ -184,7 +192,7 @@ public class HealthController : MonoBehaviour
 
     private void MakeBedDirty()
     {
-        var beds = BedManagerInstance?.Beds;
+        //var beds = BedManagerInstance?.Beds;
             
         var patientInBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);        
 
