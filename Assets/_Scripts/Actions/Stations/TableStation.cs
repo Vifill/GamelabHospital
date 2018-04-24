@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,7 +66,7 @@ public class TableStation : Actionable
 
     private void PlaceTool()
     {
-        TableObject.transform.SetParent(transform.Find("Highlightable"));
+        TableObject.transform.SetParent(transform.Find(Constants.Highlightable));
         TableObject.transform.localRotation = Quaternion.Euler(TableObject.GetComponent<Pickupable>().StationaryRotation);
         TableObject.transform.localPosition = TableObject.GetComponent<Pickupable>().StationaryOffsetPosition;
         ChangeObjectLayer(TableObject.transform, "Ignore Raycast");

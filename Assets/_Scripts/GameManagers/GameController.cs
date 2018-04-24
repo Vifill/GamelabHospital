@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(CurrentUIScreen);
         }
-
+        
         Time.timeScale = 0;
         InMenuScreen = true;
         InPauseMenu = true;

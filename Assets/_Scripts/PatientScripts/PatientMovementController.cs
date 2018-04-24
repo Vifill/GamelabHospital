@@ -85,7 +85,7 @@ public class PatientMovementController : MonoBehaviour
 
         var patientPlacement = TargetBed.transform.Find("PatientPlacement");
         transform.SetPositionAndRotation(patientPlacement.position, patientPlacement.rotation);
-        transform.SetParent(TargetBed.transform.Find("Highlightable"));
+        transform.SetParent(TargetBed.transform.Find(Constants.Highlightable));
 
         PatientBucket.SetActive(true);
 

@@ -64,9 +64,12 @@ public class HydrationController : Actionable
         }
         CurrentHydrations.Add(CurrentHydrationModel, StartCoroutine(HydrationCoroutine(CurrentHydrationModel)));
         ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().Sanitation);
-        
+
         // start animation
-        PatientAnimator.SetTrigger(CurrentHydrationModel.PatientAnimationParameter);
+        if (!string.IsNullOrEmpty(CurrentHydrationModel.PatientAnimationParameter))
+        {
+            PatientAnimator.SetTrigger(CurrentHydrationModel.PatientAnimationParameter);
+        }
 
         if (LevelManager == null)
         {
