@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TutorialUtility : MonoBehaviour 
+public class TutorialUtility : MonoBehaviour
 {
-    private PatientSpawner PatientSpawner;
-    //private float OriginalSpawnRate;
-    private List<BedController> UnreservedBeds;
-    public bool TimeFreeze = false;
+    public static bool TimeFreeze = false;
 
 	private void Start() 
 	{
-        PatientSpawner = FindObjectOfType<PatientSpawner>();
-        //OriginalSpawnRate = PatientSpawner.SpawnConfig.SpawnRate;
+
 	}
 	
 	private void Update() 
@@ -21,7 +17,7 @@ public class TutorialUtility : MonoBehaviour
 		
 	}
 
-    public void SetHydrationFreeze(bool pState)
+    public static void SetHydrationFreeze(bool pState)
     {
         var healthControllers = FindObjectsOfType<HealthController>();
 
@@ -40,9 +36,10 @@ public class TutorialUtility : MonoBehaviour
         }
     }
 
-    public void SetSpawnFreeze(bool pState)
+    public static void SetSpawnFreeze(bool pState)
     {
-        
+        var patientSpawner = FindObjectOfType<PatientSpawner>();
+
         if (pState)
         {
             //UnreservedBeds = new List<BedController>(FindObjectsOfType<BedController>().Where(a => !a.IsReserved));
@@ -52,7 +49,7 @@ public class TutorialUtility : MonoBehaviour
             //    bed.IsReserved = true;
             //}
             Debug.Log("freeze spawn " + pState);
-            PatientSpawner.StopSpawning();
+            patientSpawner.StopSpawning();
         }
         else
         {
@@ -61,18 +58,18 @@ public class TutorialUtility : MonoBehaviour
             //    bed.IsReserved = false;
             //}
             Debug.Log("freeze spawn " + pState);
-            PatientSpawner.StartSpawnCoroutine();
+            patientSpawner.StartSpawnCoroutine();
         }
     }
 
-    public void SetExcretionFreeze(bool pState)
+    public static void SetExcretionFreeze(bool pState)
     {
         var patientsInScene = FindObjectsOfType<HealthController>();
         if (pState)
         {
             foreach (var patient in patientsInScene)
             {
-                StopCoroutine(patient.GetSickCoroutine());
+                patient.StopCoroutine(patient.GetSickCoroutine());
             }
         }
         else
@@ -84,7 +81,7 @@ public class TutorialUtility : MonoBehaviour
         }
     }
 
-    public void SetHealthFreeze(bool pState)
+    public static void SetHealthFreeze(bool pState)
     {
         var healthControllers = FindObjectsOfType<HealthController>();
 
@@ -103,7 +100,7 @@ public class TutorialUtility : MonoBehaviour
         }
     }
 
-    public void SetPlayerSanitationFreeze(bool pState)
+    public static void SetPlayerSanitationFreeze(bool pState)
     {
         var sanitationControllers = FindObjectsOfType<SanitationController>();
 
@@ -122,7 +119,7 @@ public class TutorialUtility : MonoBehaviour
         }
     }
 
-    public void SetBedSanitationFreeze(bool pState)
+    public static void SetBedSanitationFreeze(bool pState)
     {
         var bedStations = FindObjectsOfType<BedStation>();
 
@@ -141,7 +138,7 @@ public class TutorialUtility : MonoBehaviour
         }
     }
 
-    public void SetTimeFreeze(bool pState)
+    public static void SetTimeFreeze(bool pState)
     {
         var levelManager = FindObjectOfType<LevelManager>();
 
@@ -157,5 +154,12 @@ public class TutorialUtility : MonoBehaviour
             levelManager.TimerClampMin = 0;
             levelManager.TimerClampMax = levelManager.StartTime;
         }
+    }
+
+    public static void ForcePatientExcretion()
+    {
+        var patient = FindObjectOfType<HealthController>();
+
+        patient.ForceExcretion();
     }
 }

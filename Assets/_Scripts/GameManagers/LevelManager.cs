@@ -30,7 +30,8 @@ public class LevelManager : MonoBehaviour
     public GameObject ShiftDoctor;
     public int PatientsHealed { get; private set; } = 0;
     public int PatientDeaths { get; private set; } = 0;
-    public float Timer { get; private set; }
+    //public float Timer { get; private set; }
+    public float Timer;
 
     public GameObject ShiftOverCanvas;
 

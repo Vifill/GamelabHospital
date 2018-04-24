@@ -205,4 +205,9 @@ public class HealthController : MonoBehaviour
            // print("<color=magenta> puked but was not in bed </color>");
         }
     }
+
+    public void ForceExcretion()
+    {
+        Excrete();
+    }
 }

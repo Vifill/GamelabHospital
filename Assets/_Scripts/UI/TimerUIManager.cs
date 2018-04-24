@@ -17,7 +17,6 @@ public class TimerUIManager : MonoBehaviour
 
     public void Initialize(LevelManager pManager, float pStartTime)
     {
-        TutorialUtility = FindObjectOfType<TutorialUtility>();
         LvlManager = pManager;
         LvlConfig = LvlManager.LevelConfig;
         ClockHand = transform.GetChild(0).GetComponent<Image>();
@@ -28,7 +27,7 @@ public class TimerUIManager : MonoBehaviour
     // Update is called once per frame
     private void Update ()  
 	{
-        if (TutorialUtility == null || !TutorialUtility.TimeFreeze)
+        if (!TutorialUtility.TimeFreeze)
         {
             if (LvlManager.Timer < TimeToPulsate && !LvlManager.TimeOver)
             {
