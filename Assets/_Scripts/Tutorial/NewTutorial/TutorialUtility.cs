@@ -7,16 +7,6 @@ public class TutorialUtility : MonoBehaviour
 {
     public static bool TimeFreeze = false;
 
-	private void Start() 
-	{
-
-	}
-	
-	private void Update() 
-	{
-		
-	}
-
     public static void SetHydrationFreeze(bool pState)
     {
         var healthControllers = FindObjectsOfType<HealthController>();
@@ -161,5 +151,22 @@ public class TutorialUtility : MonoBehaviour
         var patient = FindObjectOfType<HealthController>();
 
         patient.ForceExcretion();
+    }
+
+    public static void SetPatientHydration(float pHydrationAmount)
+    {
+        var patients = FindObjectsOfType<HealthController>();
+
+        foreach (var patient in patients)
+        {
+            patient.HydrationMeter = pHydrationAmount;
+        }
+    }
+
+    public static void SetTimerUIAsActive(bool pState)
+    {
+        var timerUI = FindObjectOfType<TimerUIManager>().gameObject;
+
+        timerUI.SetActive(pState);
     }
 }

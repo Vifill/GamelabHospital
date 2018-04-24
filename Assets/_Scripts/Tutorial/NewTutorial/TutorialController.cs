@@ -83,6 +83,7 @@ public class TutorialController : MonoBehaviour
     {
         TutorialUtility.SetHydrationFreeze(false);
         TutorialUtility.SetHealthFreeze(false);
+        //instantiate infoscreen explaining how the hydration and health system works
     }
 
     private void OnWalkingDoneEvent()
@@ -92,13 +93,29 @@ public class TutorialController : MonoBehaviour
         TutorialUtility.SetHydrationFreeze(true);
     }
 
+    private void OnCheckOutDoneEvent()
+    {
+        StartCoroutine(SpawnNewPatient());
+    }
+
+    private IEnumerator SpawnNewPatient()
+    {
+        TutorialUtility.SetSpawnFreeze(false);
+
+        yield return new WaitForSeconds(5f);
+
+        TutorialUtility.SetSpawnFreeze(true);
+    }
+
     private IEnumerator TutorialStart()
     {
         TutorialUtility.SetTimeFreeze(true);
+        TutorialUtility.SetTimerUIAsActive(false);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
 
         TutorialUtility.SetSpawnFreeze(true);
+        TutorialUtility.SetPatientHydration(100);
         TutorialUtility.SetHydrationFreeze(true);
         TutorialUtility.SetHealthFreeze(true);
     }
