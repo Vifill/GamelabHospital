@@ -12,6 +12,7 @@ public class PatientMovementController : MonoBehaviour
     public WaitingRoomSlotManager SlotManager;
     private GameObject ExitPoint;
     public GameObject TargetBed;
+    public GameObject PatientBucket;
     private NavMeshAgent NavMeshAgent;
     private PatientStatusController PatientStatus;
     private StretchersController StretchersController;
@@ -23,6 +24,7 @@ public class PatientMovementController : MonoBehaviour
         PatientStatus = GetComponent<PatientStatusController>();
         StretchersController = GetComponent<StretchersController>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
+        PatientBucket.SetActive(false);
 
         if (BedManager.GetAvailableBeds().Any())
         {
@@ -75,6 +77,8 @@ public class PatientMovementController : MonoBehaviour
         transform.SetPositionAndRotation(patientPlacement.position, patientPlacement.rotation);
         transform.SetParent(TargetBed.transform.Find("Highlightable"));
 
+        PatientBucket.SetActive(true);
+
         PatientStatus.IsInBed = true;
         TargetBed.GetComponent<BedController>().PatientInBed = gameObject;
 
@@ -90,6 +94,8 @@ public class PatientMovementController : MonoBehaviour
         transform.SetParent(null);
         var patientPlacement = new Vector3(TargetBed.transform.position.x, TargetBed.transform.position.y, TargetBed.transform.position.z + 2f);
         transform.SetPositionAndRotation(patientPlacement, TargetBed.transform.rotation);
+
+        PatientBucket.SetActive(false);
 
         TargetBed.GetComponent<BedController>().IsReserved = false;
         TargetBed.GetComponent<BedController>().PatientInBed = null;
