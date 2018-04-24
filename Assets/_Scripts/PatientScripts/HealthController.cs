@@ -56,9 +56,11 @@ public class HealthController : MonoBehaviour
     private Transform MainCanvasTransform;
 
     private Coroutine CurrentCoroutineSick;
+    private Animator PatientAnimator;
 
     private void Start()
     {
+        StartCoroutine(GetPatientAnimator());
         LevelManager = FindObjectOfType<LevelManager>();
         HydrationClampMax = MaxHydration;
         HydrationClampMin = MinHydration;
@@ -70,6 +72,13 @@ public class HealthController : MonoBehaviour
         HydrationController = GetComponent<HydrationController>();
         StartSickCoroutine();
         StartCoroutine(BedSanitationCheckCoroutine());
+    }
+
+    private IEnumerator GetPatientAnimator()
+    {
+        yield return new WaitForEndOfFrame();
+
+        PatientAnimator = transform.Find(Constants.Highlightable).GetComponentInChildren<Animator>();
     }
 
     private void SpawnHydrationUI()
@@ -169,6 +178,7 @@ public class HealthController : MonoBehaviour
             StartPukingAnimation();
             HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
             // puke animation trigger
+            PatientAnimator.SetTrigger(AnimationParameters.PatientPuke);
             Debug.Log($"I'M PUKING!");
         }
     }

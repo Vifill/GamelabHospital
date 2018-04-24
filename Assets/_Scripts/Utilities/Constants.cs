@@ -12,8 +12,8 @@ namespace Assets._Scripts.Utilities
         public static string SceneNamePrefix = "Midterms_Level";
         public static string MainMenu = "MainMenu";
         public static string ArrowPlacementTag = "ArrowPlacement";
+        public static string Highlightable = "Highlightable";
 
-        public static AnimationParameters AnimationParameters;
     }
 
     public class AnimationParameters
