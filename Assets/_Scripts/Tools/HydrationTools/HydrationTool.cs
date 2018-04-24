@@ -17,7 +17,6 @@ public class HydrationModel
     public GameObject DisplayPrefab;
     public AudioClip HydrationSound;
 
-
     public override bool Equals(object obj)
     {
         var modelToCompare = (HydrationModel)obj;
