@@ -20,7 +20,6 @@ public class HydrationUIManager : MonoBehaviour
     private HealthController HealthController;
     //private Transform Patient;
     public GameObject WarningIconInstance;
-    
 
     public void SetExcreteWarning(bool pValue)
     {
@@ -30,12 +29,7 @@ public class HydrationUIManager : MonoBehaviour
     public void InitializeHydrationUI(HealthController pHealthController)
     {
         HealthController = pHealthController;
-        //Patient = pHealthController.transform;
 
-        // Make sure UI starts at right fill amount
-
-        // For testing HydrationMeterUI_v2, switch lines for v1
-        //HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
         HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
         HealthMeterUI.fillAmount = HealthController.Health / 100;
 
