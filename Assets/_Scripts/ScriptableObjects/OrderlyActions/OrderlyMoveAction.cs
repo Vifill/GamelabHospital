@@ -20,7 +20,6 @@ public class OrderlyMoveAction : OrderlyAction
 
     public OrderlyMoveAction(Transform pPosition, float pDistanceToStop = 0, float pDistanceWhenCloseEnough = 2)
     {
-        
         Target = pPosition;
         DistanceToStop = pDistanceToStop;
         DistanceWhenCloseEnough = pDistanceWhenCloseEnough;
@@ -61,19 +60,19 @@ public class OrderlyMoveAction : OrderlyAction
         NavAgent.isStopped = false;
 
         NavAgent.SetDestination(PositionToMoveTo);
+        var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        obj.transform.position = PositionToMoveTo;
         NavAgent.stoppingDistance = DistanceToStop;
     }
 
     protected override void OnStopAction()
     {
-
         NavAgent = OrderlyObject.GetComponent<NavMeshAgent>();
         NavAgent.isStopped = true;
 
         if (Animator.GetBool("IsWalking"))
         {
             Animator.SetBool("IsWalking", false);
-            //EmissionModule.enabled = true;
         }
 
         OrderlyObject.GetComponent<OrderlyController>().DisableMovementParticle();
@@ -81,7 +80,7 @@ public class OrderlyMoveAction : OrderlyAction
 
     private Vector3 GetTargetPoint(Transform actionable)
     {
-        var parentTransform = actionable.Find(Constants.GuidePoints);
+        var parentTransform = actionable.root.Find(Constants.GuidePoints);
         Vector3 closestPoint = actionable.position;
         if (parentTransform != null)
         {
