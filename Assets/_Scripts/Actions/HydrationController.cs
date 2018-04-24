@@ -15,9 +15,11 @@ public class HydrationController : Actionable
     private PatientMovementController MovementController;
     private Dictionary<HydrationModel, Coroutine> CurrentHydrations = new Dictionary<HydrationModel, Coroutine>();
     private LevelManager LevelManager;
+    private Animator PatientAnimator;
 
     protected override void Initialize()
     {
+        PatientAnimator = GetComponentInChildren<Animator>();
         HealthCtrl = GetComponent<HealthController>();
         DoctorSanitationThresholdConfig = HealthCtrl.DoctorSanitationThresholdConfig;
         MovementController = GetComponent<PatientMovementController>();
@@ -49,9 +51,14 @@ public class HydrationController : Actionable
         {
             StopCoroutine(CurrentHydrations[CurrentHydrationModel]);
             CurrentHydrations.Remove(CurrentHydrationModel);
+            // Stop animation and restart if giving new water
+            PatientAnimator.ResetTrigger(CurrentHydrationModel.AnimationParameter);
         }
         CurrentHydrations.Add(CurrentHydrationModel, StartCoroutine(HydrationCoroutine(CurrentHydrationModel)));
         ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().Sanitation);
+        
+        // start animation
+        PatientAnimator.SetTrigger(CurrentHydrationModel.AnimationParameter);
 
         if (LevelManager == null)
         {

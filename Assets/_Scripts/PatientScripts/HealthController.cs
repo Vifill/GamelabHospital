@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -167,7 +168,7 @@ public class HealthController : MonoBehaviour
             MakeBedDirty();
             StartPukingAnimation();
             HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
-
+            // puke animation trigger
             Debug.Log($"I'M PUKING!");
         }
     }

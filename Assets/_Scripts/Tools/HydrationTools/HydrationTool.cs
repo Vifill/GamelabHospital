@@ -16,7 +16,7 @@ public class HydrationModel
     public float ActionTime;
     public GameObject DisplayPrefab;
     public AudioClip HydrationSound;
-
+    public string AnimationParameter;
 
     public override bool Equals(object obj)
     {

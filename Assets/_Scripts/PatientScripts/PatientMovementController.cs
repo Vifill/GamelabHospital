@@ -20,6 +20,7 @@ public class PatientMovementController : MonoBehaviour
 	// Use this for initialization
 	private void Start()
 	{
+        GetComponentInChildren<Animator>().SetBool("IsPatient", true);
         ExitPoint = GameObject.Find("Exit");
         PatientStatus = GetComponent<PatientStatusController>();
         StretchersController = GetComponent<StretchersController>();
