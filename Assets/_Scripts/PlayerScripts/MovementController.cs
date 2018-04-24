@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour {
+    public AudioClip DashSound;
     public GameObject DashParticles;
     public GameObject MovementParticle;
     private Animator Animator;
+    private AudioSource AudioSource;
     private ParticleSystem.EmissionModule EmissionModule;
     public float Speed = 10;
     public float RotSpeed = 1;
@@ -24,6 +26,8 @@ public class MovementController : MonoBehaviour {
         CanDash = true;
         CanMove = true;
         Animator = GetComponentInChildren<Animator>();
+        AudioSource = GetComponent<AudioSource>();
+
         if (MovementParticle != null)
         {
             GameObject tempParticle = ((GameObject)Instantiate(MovementParticle, new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z), transform.rotation, transform));
@@ -97,6 +101,7 @@ public class MovementController : MonoBehaviour {
 
     private void Dash()
     {
+
         IsDashing = true;
         //CanMove = false;
         CanDash = false;
@@ -107,6 +112,10 @@ public class MovementController : MonoBehaviour {
     private IEnumerator DashTo(CharacterController pCharController)
     {
         GameObject particlesystem = null;
+        if (DashSound != null)
+        {
+            AudioSource?.PlayOneShot(DashSound);
+        }
         if (DashParticles != null)
         {
            particlesystem = (GameObject)Instantiate(DashParticles, transform.position, transform.rotation, transform);
@@ -119,7 +128,7 @@ public class MovementController : MonoBehaviour {
         {
            
             float currentSpeedMultiplier = -Mathf.Pow((dashTimer / DashDuration) * (1 - (-1)) + (-1), 4) + 1; // -(ratio * (max+min) + min) + 1 // y = x^4 + 1
-            print(currentSpeedMultiplier);
+            //print(currentSpeedMultiplier);
             //SpeedMultiplier = Mathf.Lerp(SpeedMultiplier, 1, );
             pCharController.Move(transform.forward * Time.deltaTime * (Speed + (currentSpeedMultiplier * SpeedMultiplier)));
             dashTimer += Time.deltaTime;
