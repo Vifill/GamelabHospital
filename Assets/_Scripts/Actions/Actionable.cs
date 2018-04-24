@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -110,7 +111,7 @@ public abstract class Actionable : MonoBehaviour
 
     public void SetHighlight(Shader pHighlightShader, Color? pColor = null)
     {
-        var renderers = transform.Find("Highlightable")?.GetComponentsInChildren<Renderer>();
+        var renderers = transform.Find(Constants.Highlightable)?.GetComponentsInChildren<Renderer>();
         if (renderers != null)
         {
             List<Material> mats = new List<Material>();
@@ -149,7 +150,7 @@ public abstract class Actionable : MonoBehaviour
             return;
         }
 
-        var renderers = transform?.Find("Highlightable")?.GetComponentsInChildren<Renderer>();
+        var renderers = transform?.Find(Constants.Highlightable)?.GetComponentsInChildren<Renderer>();
         if (renderers != null)
         {
             List<Material> mats = new List<Material>();

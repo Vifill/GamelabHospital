@@ -16,10 +16,12 @@ public class PatientMovementController : MonoBehaviour
     private NavMeshAgent NavMeshAgent;
     private PatientStatusController PatientStatus;
     private StretchersController StretchersController;
+    private Animator PatientAnimator;
 
 	// Use this for initialization
 	private void Start()
 	{
+        StartCoroutine(GetAnimatorComponents());
         ExitPoint = GameObject.Find("Exit");
         PatientStatus = GetComponent<PatientStatusController>();
         StretchersController = GetComponent<StretchersController>();
@@ -41,6 +43,14 @@ public class PatientMovementController : MonoBehaviour
             NavMeshAgent.SetDestination(slotScript.transform.position);            
         }
 	}
+
+    private IEnumerator GetAnimatorComponents()
+    {
+        yield return new WaitForEndOfFrame();
+
+        PatientAnimator = transform.Find(Constants.Highlightable).GetComponentInChildren<Animator>();
+        PatientAnimator.SetBool(AnimationParameters.IsPatient, true);
+    }
 
     private Vector3 GetGuidePoint(GameObject targetBed)
     {
@@ -75,7 +85,7 @@ public class PatientMovementController : MonoBehaviour
 
         var patientPlacement = TargetBed.transform.Find("PatientPlacement");
         transform.SetPositionAndRotation(patientPlacement.position, patientPlacement.rotation);
-        transform.SetParent(TargetBed.transform.Find("Highlightable"));
+        transform.SetParent(TargetBed.transform.Find(Constants.Highlightable));
 
         PatientBucket.SetActive(true);
 
@@ -87,7 +97,7 @@ public class PatientMovementController : MonoBehaviour
 
     public void GetOutOfBed()
     {
-        GetComponentInChildren<Animator>().SetBool("IsWalking", true);
+        PatientAnimator.SetBool(AnimationParameters.CharacterIsWalking, true);
         NavMeshAgent.enabled = true;
         PatientStatus.IsInBed = false;
 
