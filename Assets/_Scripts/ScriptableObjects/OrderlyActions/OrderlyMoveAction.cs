@@ -60,8 +60,6 @@ public class OrderlyMoveAction : OrderlyAction
         NavAgent.isStopped = false;
 
         NavAgent.SetDestination(PositionToMoveTo);
-        var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        obj.transform.position = PositionToMoveTo;
         NavAgent.stoppingDistance = DistanceToStop;
     }
 

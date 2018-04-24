@@ -30,8 +30,8 @@ public class LevelManager : MonoBehaviour
     public GameObject ShiftDoctor;
     public int PatientsHealed { get; private set; } = 0;
     public int PatientDeaths { get; private set; } = 0;
-    //public float Timer { get; private set; }
-    public float Timer;
+    public float Timer { get; private set; }
+    public bool InEndScreen;
 
     public GameObject ShiftOverCanvas;
 
@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        InEndScreen = false;
         Player = FindObjectOfType<PlayerActionController>()?.gameObject;
         Time.timeScale = 1;
         UICanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
@@ -241,6 +242,7 @@ public class LevelManager : MonoBehaviour
         PlayerDataController.SaveLevelData(new LevelModel(LevelConfig.LevelNumber, Points));
         Time.timeScale = 0;
         endscreen.GetComponent<EndScreenUIManager>().InitializeUI(LevelConfig.StarConfig, PatientsHealed, Points, PatientDeaths, true);
+        InEndScreen = true;
     }
     private void LevelFailed()
     {
@@ -248,5 +250,6 @@ public class LevelManager : MonoBehaviour
 
         Time.timeScale = 0;
         endscreen.GetComponent<EndScreenUIManager>().InitializeUI(LevelConfig.StarConfig, PatientsHealed, Points, PatientDeaths, false);
+        InEndScreen = true;
     }
 }

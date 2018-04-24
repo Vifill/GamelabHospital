@@ -7,10 +7,12 @@ public class GeneralInputs : MonoBehaviour
     private LevelController LevelController;
     private GameController GC;
     private OptionMenuManager OptionMenuManager;
+    private LevelManager LevelManager;
     private PlayerDataController DataCtrl = new PlayerDataController();
 
     private void Start() 
 	{
+        LevelManager = FindObjectOfType<LevelManager>();
         LevelController = new LevelController(FindObjectOfType<SceneLoader>());
         GC = FindObjectOfType<GameController>();
     }
@@ -29,7 +31,7 @@ public class GeneralInputs : MonoBehaviour
                 OptionMenuManager = FindObjectOfType<OptionMenuManager>();
                 OptionMenuManager.ButtonBack();
             }
-            else if (!GameController.InPauseMenu)
+            else if (!GameController.InPauseMenu && !LevelManager.InEndScreen)
             {
                 GC.PauseGame(GC.PauseMenuPrefab);
             }
