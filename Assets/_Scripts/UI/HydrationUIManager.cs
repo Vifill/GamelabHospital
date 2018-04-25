@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -75,12 +76,12 @@ public class HydrationUIManager : MonoBehaviour
 
     private void SetHydrationWarning(bool pValue)
     {
-        HydrationAnimator.SetBool("IsPulsatingHydration", pValue);
+        HydrationAnimator.SetBool(AnimationParameters.IsPulsatingHydration, pValue);
     }
 
     private void SetHealthWarning(bool pValue)
     {
-        HydrationAnimator.SetBool("IsPulsatingHP", pValue);
+        HydrationAnimator.SetBool(AnimationParameters.IsPulsatingHP, pValue);
     }
 
     private void SetSeverityColor()
