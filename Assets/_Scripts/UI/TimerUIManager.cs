@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,7 @@ public class TimerUIManager : MonoBehaviour
         {
             if (LvlManager.Timer < TimeToPulsate && !LvlManager.TimeOver)
             {
-                ClockAnimator.SetBool("IsPulsating", true);
+                ClockAnimator.SetBool(AnimationParameters.IsPulsating, true);
             }
             if (LvlManager.Timer > 0)
             {
@@ -42,7 +43,7 @@ public class TimerUIManager : MonoBehaviour
             }
             if (LvlManager.TimeOver)
             {
-                ClockAnimator.SetBool("IsPulsating", false);
+                ClockAnimator.SetBool(AnimationParameters.IsPulsating, false);
             }
         }
         
