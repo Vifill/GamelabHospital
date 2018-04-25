@@ -163,10 +163,34 @@ public class TutorialUtility : MonoBehaviour
         }
     }
 
+    public static void SetPatientHealth(float pHealthAmount)
+    {
+        var patients = FindObjectsOfType<HealthController>();
+
+        foreach (var patient in patients)
+        {
+            patient.Health = pHealthAmount;
+        }
+    }
+
     public static void SetTimerUIAsActive(bool pState)
     {
         var timerUI = FindObjectOfType<TimerUIManager>().gameObject;
 
         timerUI.SetActive(pState);
+    }
+
+    public static void SetPlayerMovementFreeze(bool pState)
+    {
+        var player = FindObjectOfType<MovementController>();
+
+        if (pState)
+        {
+            player.StopMovement();
+        }
+        else
+        {
+            player.StartMovement();
+        }
     }
 }

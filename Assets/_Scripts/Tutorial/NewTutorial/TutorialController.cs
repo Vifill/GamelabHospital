@@ -35,6 +35,13 @@ public class TutorialController : MonoBehaviour
     {
         EventActions.Add(EventManager.EventCodes.DoneWalking, OnWalkingDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneHydration, OnHydrateDoneEvent);
+        EventActions.Add(EventManager.EventCodes.DoneCheckOut, OnCheckOutDoneEvent);
+        EventActions.Add(EventManager.EventCodes.DonePatientDeath, OnPatientDeath);
+    }
+
+    private void OnPatientDeath()
+    {
+        //end level?
     }
 
     private void StartNewObjective(Objective pNextObjective)
@@ -102,9 +109,24 @@ public class TutorialController : MonoBehaviour
     {
         TutorialUtility.SetSpawnFreeze(false);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(0.1f);
 
         TutorialUtility.SetSpawnFreeze(true);
+        TutorialUtility.SetPatientHydration(10);
+        TutorialUtility.SetPatientHealth(5);
+        TutorialUtility.SetHydrationFreeze(true);
+        TutorialUtility.SetHealthFreeze(true);
+        TutorialUtility.SetExcretionFreeze(true);
+
+        yield return new WaitForSeconds(0.2f);
+
+        TutorialUtility.SetPlayerMovementFreeze(true);
+
+        yield return new WaitForSeconds(6);
+
+        TutorialUtility.SetHydrationFreeze(false);
+        TutorialUtility.ForcePatientExcretion();
+
     }
 
     private IEnumerator TutorialStart()
@@ -118,6 +140,7 @@ public class TutorialController : MonoBehaviour
         TutorialUtility.SetPatientHydration(100);
         TutorialUtility.SetHydrationFreeze(true);
         TutorialUtility.SetHealthFreeze(true);
+        TutorialUtility.SetExcretionFreeze(true);
     }
 
 }
