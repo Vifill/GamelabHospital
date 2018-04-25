@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +16,22 @@ public class HydrationController : Actionable
     private PatientMovementController MovementController;
     private Dictionary<HydrationModel, Coroutine> CurrentHydrations = new Dictionary<HydrationModel, Coroutine>();
     private LevelManager LevelManager;
+    private Animator PatientAnimator;
 
     protected override void Initialize()
     {
+        StartCoroutine(GetPatientAnimator());
         HealthCtrl = GetComponent<HealthController>();
         DoctorSanitationThresholdConfig = HealthCtrl.DoctorSanitationThresholdConfig;
         MovementController = GetComponent<PatientMovementController>();
         LevelManager = FindObjectOfType<LevelManager>();
+    }
+
+    private IEnumerator GetPatientAnimator()
+    {
+        yield return new WaitForEndOfFrame();
+
+        PatientAnimator = transform.Find(Constants.Highlightable).GetComponentInChildren<Animator>();
     }
 
     public override ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
@@ -49,9 +59,17 @@ public class HydrationController : Actionable
         {
             StopCoroutine(CurrentHydrations[CurrentHydrationModel]);
             CurrentHydrations.Remove(CurrentHydrationModel);
+            // Stop animation and restart if giving new water
+            PatientAnimator.ResetTrigger(CurrentHydrationModel.PatientAnimationParameter);
         }
         CurrentHydrations.Add(CurrentHydrationModel, StartCoroutine(HydrationCoroutine(CurrentHydrationModel)));
         ResolveSanitationEffect(pObjectActioning.GetComponent<SanitationController>().Sanitation);
+
+        // start animation
+        if (!string.IsNullOrEmpty(CurrentHydrationModel.PatientAnimationParameter))
+        {
+            PatientAnimator.SetTrigger(CurrentHydrationModel.PatientAnimationParameter);
+        }
 
         if (LevelManager == null)
         {
