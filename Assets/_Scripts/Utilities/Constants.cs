@@ -18,12 +18,27 @@ namespace Assets._Scripts.Utilities
 
     public class AnimationParameters
     {
+        // Character / Patient
+        public const string CharacterHoldingBandage = "HoldingBandage";
+        public const string CharacterHoldingSyringe = "HoldingSyringe";
+        public const string CharacterHoldingSaw = "HoldingSaw";
         public const string CharacterIsWalking = "IsWalking";
         public const string CharacterHoldingWater = "HoldingWater";
         public const string CharacterHoldingIVBag = "HoldingIVBag";
+        public const string CharacterIsActioning = "Actioning";
         public const string IsPatient = "IsPatient";
         public const string PatientPuke = "PatientPuke";
         public const string PatientDrinkWater = "PatientDrink";
         public const string PatientIVBag = "PatientIVBag";
+
+        // UI
+        public const string IsPulsatingUI = "IsPulsatingUI";
+        public const string IsPulsatingHydration = "IsPulsatingHydration";
+        public const string IsPulsatingHP = "IsPulsatingHP";
+        public const string IsPulsating = "IsPulsating";
+        public const string GivingPoints = "GivingPoints";
+
+        // Floats
+        public const string Speed = "Speed";
     }
 }
