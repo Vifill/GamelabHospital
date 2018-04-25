@@ -70,13 +70,21 @@ public class LevelManager : MonoBehaviour
         
         if (Timer <= 0 && !TimeOver)
         {
-            TimeOver = true;
-            FindObjectOfType<PatientSpawner>().StopSpawning();
-            StartCoroutine(ShiftOver());
+            //TimeOver = true;
+            //FindObjectOfType<PatientSpawner>().StopSpawning();
+            //StartCoroutine(ShiftOver());
+            EndLevel();
             //CheckIfAllPatientsAreDone();
             //DayNightCycle.StopPlayback();
             //CheckIfPassed();
         }
+    }
+
+    public void EndLevel ()
+    {
+        TimeOver = true;
+        FindObjectOfType<PatientSpawner>().StopSpawning();
+        StartCoroutine(ShiftOver());
     }
 
     public void AddPoints (int pPoints, Vector3 pPosition)

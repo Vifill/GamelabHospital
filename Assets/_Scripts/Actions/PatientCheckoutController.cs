@@ -39,7 +39,7 @@ public class PatientCheckoutController : Actionable
 
             if(TutorialScreenController != null)
             {
-                TutorialScreenController.DisplayCheckoutScreen();
+                
                 EventManager.TriggerEvent(EventManager.EventCodes.DoneWaitingForHealed);
             }
 

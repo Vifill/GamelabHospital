@@ -193,4 +193,11 @@ public class TutorialUtility : MonoBehaviour
             player.StartMovement();
         }
     }
+
+    public static void ForceEndLevel()
+    {
+        var levelManager = FindObjectOfType<LevelManager>();
+
+        levelManager.EndLevel();
+    }
 }

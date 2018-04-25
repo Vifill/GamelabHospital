@@ -16,7 +16,14 @@ public class ActionableActionerTutorial : ActionableActioner
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneHydration);
         }
-        else if(CurrentAction is PatientCheckoutController)
+        
+    }
+
+    public override void StopAction()
+    {
+        base.StopAction();
+
+        if (CurrentAction is PatientCheckoutController)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneCheckOut);
         }
