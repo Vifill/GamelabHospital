@@ -85,6 +85,11 @@ public class EventManager : MonoBehaviour
         DoneHydration,
         DoneWaitingForHealed,
         DoneCheckOut,
-        DonePatientDeath
+        DonePatientDeath,
+        DoneGetBucket,
+        DoneCleanBed,
+        DoneCleanBucket,
+        DoneReturnBucket,
+        DoneCleanDoctor
     }
 }

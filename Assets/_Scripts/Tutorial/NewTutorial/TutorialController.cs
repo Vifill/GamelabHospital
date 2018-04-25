@@ -33,10 +33,42 @@ public class TutorialController : MonoBehaviour
 
     private void AddActionsToEvents()
     {
+        // Tutorial Level 1
         EventActions.Add(EventManager.EventCodes.DoneWalking, OnWalkingDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneHydration, OnHydrateDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCheckOut, OnCheckOutDoneEvent);
         EventActions.Add(EventManager.EventCodes.DonePatientDeath, OnPatientDeath);
+        // Tutorial Level 2
+        EventActions.Add(EventManager.EventCodes.DoneGetBucket, OnGetBucketDoneEvent);
+        EventActions.Add(EventManager.EventCodes.DoneCleanBed, OnCleanBedDoneEvent);
+        EventActions.Add(EventManager.EventCodes.DoneCleanBucket, OnCleanBucketDoneEvent);
+        EventActions.Add(EventManager.EventCodes.DoneReturnBucket, OnReturnBucketDoneEvent);
+        EventActions.Add(EventManager.EventCodes.DoneCleanDoctor, OnCleanDoctorDoneEvent);
+    }
+
+    private void OnCleanDoctorDoneEvent()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnCleanBucketDoneEvent()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnReturnBucketDoneEvent()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnCleanBedDoneEvent()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnGetBucketDoneEvent()
+    {
+        throw new NotImplementedException();
     }
 
     private void OnPatientDeath()
