@@ -41,18 +41,20 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DoneHydration, OnHydrateDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCheckOut, OnCheckOutDoneEvent);
         EventActions.Add(EventManager.EventCodes.DonePatientDeath, OnPatientDeath);
+<<<<<<< HEAD
         EventActions.Add(EventManager.EventCodes.DoneWaitingForHealed, OnWaitingForHealDone);
+    }
+
+    private void OnWaitingForHealDone()
+    {
+        TutorialScreenController?.DisplayCheckoutScreen();
+=======
         // Tutorial Level 2
         EventActions.Add(EventManager.EventCodes.DoneGetBucket, OnGetBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanBed, OnCleanBedDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanBucket, OnCleanBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneReturnBucket, OnReturnBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanDoctor, OnCleanDoctorDoneEvent);
-    }
-
-    private void OnWaitingForHealDone()
-    {
-        TutorialScreenController?.DisplayCheckoutScreen();
     }
 
     private void OnCleanDoctorDoneEvent()
@@ -78,6 +80,7 @@ public class TutorialController : MonoBehaviour
     private void OnGetBucketDoneEvent()
     {
         throw new NotImplementedException();
+>>>>>>> 48e3a9fe0311bee954a917eb5c3370a3d124b804
     }
 
     private void OnPatientDeath()
