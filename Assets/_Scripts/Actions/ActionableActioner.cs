@@ -158,7 +158,7 @@ public class ActionableActioner : MonoBehaviour
         }
     }
 
-    public void StopAction()
+    public virtual void StopAction()
     {
         if (ActionableParticles != null)
         {

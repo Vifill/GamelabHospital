@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Level1TutorialScreenController : MonoBehaviour 
 {
-    private bool HasBeenShown = false;
+    private bool CheckoutHasBeenShown = false;
+    private bool HydrationHasBeenShown = false;
 
     private InfoScreenController InfoScreenController;
+    public GameObject HydrationScreenPrefab;
     public GameObject CheckoutScreenPrefab;
 
     private void Start()
@@ -16,10 +18,19 @@ public class Level1TutorialScreenController : MonoBehaviour
 
     public void DisplayCheckoutScreen()
     {
-        if(!HasBeenShown)
+        if(!CheckoutHasBeenShown)
         {
-            HasBeenShown = true;
+            CheckoutHasBeenShown = true;
             InfoScreenController.InstantiateInfoScreen(CheckoutScreenPrefab);
+        }
+    }
+
+    public void DisplayHydrationScreen()
+    {
+        if (!HydrationHasBeenShown)
+        {
+            HydrationHasBeenShown = true;
+            InfoScreenController.InstantiateInfoScreen(HydrationScreenPrefab);
         }
     }
 }

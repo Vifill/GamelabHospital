@@ -16,6 +16,7 @@ public class TutorialController : MonoBehaviour
     private Dictionary<EventManager.EventCodes, UnityAction> EventActions = new Dictionary<EventManager.EventCodes, UnityAction>();
     private int ObjectiveIndex = 0;
     private List<GameObject> CurrentArrows = new List<GameObject>();
+    private Level1TutorialScreenController TutorialScreenController;
 
     private void Start()
     {
@@ -29,6 +30,8 @@ public class TutorialController : MonoBehaviour
                 StartNewObjective(Objectives[0]);
             }
         }
+
+        TutorialScreenController = FindObjectOfType<Level1TutorialScreenController>() ?? null;
     }
 
     private void AddActionsToEvents()
@@ -37,11 +40,24 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DoneHydration, OnHydrateDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCheckOut, OnCheckOutDoneEvent);
         EventActions.Add(EventManager.EventCodes.DonePatientDeath, OnPatientDeath);
+        EventActions.Add(EventManager.EventCodes.DoneWaitingForHealed, OnWaitingForHealDone);
+    }
+
+    private void OnWaitingForHealDone()
+    {
+        TutorialScreenController?.DisplayCheckoutScreen();
     }
 
     private void OnPatientDeath()
     {
         //end level?
+        StartCoroutine(EndLevelCoroutine());
+    }
+
+    private IEnumerator EndLevelCoroutine()
+    {
+        yield return new WaitForSeconds(3);
+        TutorialUtility.ForceEndLevel();
     }
 
     private void StartNewObjective(Objective pNextObjective)
@@ -91,6 +107,7 @@ public class TutorialController : MonoBehaviour
         TutorialUtility.SetHydrationFreeze(false);
         TutorialUtility.SetHealthFreeze(false);
         //instantiate infoscreen explaining how the hydration and health system works
+        TutorialScreenController?.DisplayHydrationScreen();
     }
 
     private void OnWalkingDoneEvent()
@@ -118,9 +135,9 @@ public class TutorialController : MonoBehaviour
         TutorialUtility.SetHealthFreeze(true);
         TutorialUtility.SetExcretionFreeze(true);
 
-        yield return new WaitForSeconds(0.2f);
+        //yield return new WaitForSeconds(0.2f);
 
-        TutorialUtility.SetPlayerMovementFreeze(true);
+        //TutorialUtility.SetPlayerMovementFreeze(true);
 
         yield return new WaitForSeconds(6);
 

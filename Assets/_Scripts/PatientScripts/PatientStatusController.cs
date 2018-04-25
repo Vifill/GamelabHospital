@@ -59,7 +59,7 @@ public class PatientStatusController : MonoBehaviour
         }
     }
 
-    public void Death()
+    public virtual void Death()
     {
         PlayDeathParticles();
         IsDead = true;
