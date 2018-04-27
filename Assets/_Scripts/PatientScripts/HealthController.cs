@@ -10,11 +10,6 @@ public class HealthController : MonoBehaviour
     public float Health;
     public float HydrationMeter { get; private set; }
 
-    public float MaxHealthIncresePerSecond;
-    public float ComboBonusAmount;
-    public float ComboBonusTime;
-    public float ComboRedemptionTime;
-
     public float MaxHydration = 100;
     public float MinHydration = 0;
 
@@ -66,7 +61,13 @@ public class HealthController : MonoBehaviour
 
     private float HealthIncrease;
 
-    private void Start()
+    [Header("Hydration Combo Parameters")]
+    public float MaxHealthIncresePerSecond;
+    public float ComboBonusAmount;
+    public float ComboBonusTime;
+    public float ComboRedemptionTime;
+
+    public void Initialize()
     {
         //HydrationMeter = 100;
         StartCoroutine(GetPatientAnimator());
@@ -232,22 +233,27 @@ public class HealthController : MonoBehaviour
 
     public void SetHydration (float pValue)
     {
+        var prevHydration = HydrationMeter;
+
+        HydrationMeter = Mathf.Clamp(pValue, HydrationClampMin, HydrationClampMax);
+
         var threshold = HydrationHealingConfig.ListOfThresholds.LastOrDefault().ThresholdOfActivation;
-        if (HydrationMeter >= threshold && pValue < threshold)
+
+        if (prevHydration >= threshold && HydrationMeter < threshold)
         {
             //StartCoroutine(ComboRedemptionCheck());
-            StartCoroutine(ComboBonus(ComboRedemptionTime, -ComboBonusAmount));
+            StartCoroutine(ComboBonusSetter(ComboRedemptionTime, -ComboBonusAmount));
         }
-        else if (HydrationMeter < threshold && pValue >= threshold)
+        else if (prevHydration < threshold && HydrationMeter >= threshold)
         {
-            StartCoroutine(ComboBonus(ComboBonusTime, ComboBonusAmount));
+            StartCoroutine(ComboBonusSetter(ComboBonusTime, ComboBonusAmount));
         }
-        else
+        else if (prevHydration < threshold && HydrationMeter < threshold)
         {
             HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
         }
 
-        HydrationMeter = Mathf.Clamp(pValue, HydrationClampMin, HydrationClampMax);
+        
     }
 
     //private IEnumerator ComboRedemptionCheck()
@@ -262,7 +268,7 @@ public class HealthController : MonoBehaviour
     //    }
     //}
 
-    private IEnumerator ComboBonus(float pTime, float pAmount)
+    private IEnumerator ComboBonusSetter(float pTime, float pAmount)
     {
         while (true)
         {
@@ -279,7 +285,7 @@ public class HealthController : MonoBehaviour
             }
 
             HealthIncrease = Mathf.Clamp(HealthIncrease + pAmount, minHPS, MaxHealthIncresePerSecond);
-            print("healthincrease is now = " + HealthIncrease);
+            print("healthincrease is now = " + HealthIncrease + " for " + gameObject);
         }
     }
 
