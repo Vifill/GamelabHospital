@@ -97,7 +97,7 @@ public class PatientMovementController : MonoBehaviour
 
     public void GetOutOfBed()
     {
-        PatientAnimator.SetBool(Constants.AnimationParameters.CharacterIsWalking, true);
+        PatientAnimator?.SetBool(Constants.AnimationParameters.CharacterIsWalking, true);
         NavMeshAgent.enabled = true;
         PatientStatus.IsInBed = false;
 

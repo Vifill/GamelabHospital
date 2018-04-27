@@ -6905,7 +6905,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
-  HydrationMeter: 75
+  MaxHealthIncresePerSecond: 4
+  ComboBonusAmount: 0.5
+  ComboBonusTime: 3
+  ComboRedemptionTime: 5
   MaxHydration: 100
   MinHydration: 0
   MaxHealth: 100

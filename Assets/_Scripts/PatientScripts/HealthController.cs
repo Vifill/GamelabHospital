@@ -8,7 +8,7 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     public float Health;
-    public float HydrationMeter { get; private set; } = 100;
+    public float HydrationMeter { get; private set; }
 
     public float MaxHealthIncresePerSecond;
     public float ComboBonusAmount;
@@ -22,13 +22,13 @@ public class HealthController : MonoBehaviour
     public float MinHealth = 0;
 
     [HideInInspector]
-    public float HydrationClampMax;
+    public float HydrationClampMax = 100;
     [HideInInspector]
-    public float HydrationClampMin;
+    public float HydrationClampMin = 0;
     [HideInInspector]
-    public float HealthClampMax;
+    public float HealthClampMax = 100;
     [HideInInspector]
-    public float HealthClampMin;
+    public float HealthClampMin = 0;
 
 
     [HideInInspector]
@@ -68,6 +68,7 @@ public class HealthController : MonoBehaviour
 
     private void Start()
     {
+        //HydrationMeter = 100;
         StartCoroutine(GetPatientAnimator());
         LevelManager = FindObjectOfType<LevelManager>();
         HydrationClampMax = MaxHydration;
