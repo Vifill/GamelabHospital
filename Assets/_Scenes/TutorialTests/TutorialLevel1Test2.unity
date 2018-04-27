@@ -7097,12 +7097,12 @@ Prefab:
     - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_EffectColor.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_EffectColor.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
@@ -7112,17 +7112,37 @@ Prefab:
     - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
+        type: 2}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
+        type: 2}
+      propertyPath: m_UseGraphicAlpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
+        type: 2}
+      propertyPath: m_EffectColor.g
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
+        type: 2}
+      propertyPath: m_EffectColor.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee5d545326b20ce4c9bd96025698691f, type: 2}
