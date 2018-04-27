@@ -77,7 +77,8 @@ public class PatientSpawner : MonoBehaviour
         var patientModel = PatientsToSpawn[index];
 
         healthController.Health = UnityEngine.Random.Range(SpawnConfig.CholeraSeverityRange.x, SpawnConfig.CholeraSeverityRange.y);
-        healthController.HydrationMeter = UnityEngine.Random.Range(SpawnConfig.HydrationRange.x, SpawnConfig.HydrationRange.y);
+        //healthController.HydrationMeter = UnityEngine.Random.Range(SpawnConfig.HydrationRange.x, SpawnConfig.HydrationRange.y);
+        healthController.SetHydration(UnityEngine.Random.Range(SpawnConfig.HydrationRange.x, SpawnConfig.HydrationRange.y));
         healthController.HydrationConfig = patientModel.HydrationConfig;
         healthController.CholeraConfig = patientModel.CholeraConfig;
         healthController.ThresholdOddsConfig = patientModel.ThresholdOddsConfig;
