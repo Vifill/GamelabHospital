@@ -46,9 +46,9 @@ public class OrderlyMoveAction : OrderlyAction
     {
         Animator = OrderlyObject.GetComponentInChildren<Animator>();
 
-        if (!Animator.GetBool(AnimationParameters.CharacterIsWalking))
+        if (!Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
         {
-            Animator.SetBool(AnimationParameters.CharacterIsWalking, true);
+            Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, true);
             //EmissionModule.enabled = true;
         }
 
@@ -68,9 +68,9 @@ public class OrderlyMoveAction : OrderlyAction
         NavAgent = OrderlyObject.GetComponent<NavMeshAgent>();
         NavAgent.isStopped = true;
 
-        if (Animator.GetBool(AnimationParameters.CharacterIsWalking))
+        if (Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
         {
-            Animator.SetBool(AnimationParameters.CharacterIsWalking, false);
+            Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, false);
         }
 
         OrderlyObject.GetComponent<OrderlyController>().DisableMovementParticle();

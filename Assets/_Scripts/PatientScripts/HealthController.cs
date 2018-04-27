@@ -189,7 +189,7 @@ public class HealthController : MonoBehaviour
             StartPukingAnimation();
             HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
             // puke animation trigger
-            PatientAnimator.SetTrigger(AnimationParameters.PatientPuke);
+            PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
             //PatientPrefabAnimator.SetTrigger(AnimationParameters.PatientPuke);
             Debug.Log($"I'M PUKING!");
         }

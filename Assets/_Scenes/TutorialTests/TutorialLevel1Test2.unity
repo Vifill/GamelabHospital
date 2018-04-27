@@ -7097,12 +7097,12 @@ Prefab:
     - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_EffectColor.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_EffectColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
@@ -7112,37 +7112,17 @@ Prefab:
     - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
-        type: 2}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
-        type: 2}
-      propertyPath: m_UseGraphicAlpha
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
-        type: 2}
-      propertyPath: m_EffectColor.g
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
-        type: 2}
-      propertyPath: m_EffectColor.a
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee5d545326b20ce4c9bd96025698691f, type: 2}
@@ -7834,6 +7814,12 @@ Prefab:
       propertyPath: DoctorSanitationConfig
       value: 
       objectReference: {fileID: 11400000, guid: 7fea9c0bfdafd7f4894e66a1bcd0e7e2,
+        type: 2}
+    - target: {fileID: 114148671757538956, guid: 5c4315246dbe1b24f8c57968b3b99056,
+        type: 2}
+      propertyPath: EndScreenPrefab
+      value: 
+      objectReference: {fileID: 1610231225011098, guid: 5cd54265060eaec498d8ca9b81abd728,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c4315246dbe1b24f8c57968b3b99056, type: 2}
@@ -11045,8 +11031,16 @@ Prefab:
         type: 2}
       propertyPath: InfoScreenPrefab
       value: 
-      objectReference: {fileID: 1408889068899914, guid: d9b5d586e339f984c93207944c7cb12b,
+      objectReference: {fileID: 0}
+    - target: {fileID: 114033039906414242, guid: 3a893c006f4b7e446abd8da7054cd8d2,
         type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849654616949224, guid: 3a893c006f4b7e446abd8da7054cd8d2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a893c006f4b7e446abd8da7054cd8d2, type: 2}
   m_IsPrefabParent: 0
@@ -11066,8 +11060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa68c5b45f370fe43827c6fbf60d8bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HydrationScreenPrefab: {fileID: 1963143480192948, guid: ab2f357c68fc88a46baf919fcbbfb47e,
-    type: 2}
+  HydrationScreenPrefab: {fileID: 0}
   CheckoutScreenPrefab: {fileID: 1367113349825654, guid: 793e6b872a11e2c42b3d26d6d60e6570,
     type: 2}
 --- !u!1001 &1561662475
