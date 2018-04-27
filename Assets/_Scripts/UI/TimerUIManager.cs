@@ -14,7 +14,6 @@ public class TimerUIManager : MonoBehaviour
     private LevelConfig LvlConfig;
     private float ClockHandAngle;
     private float TimeToPulsate;
-    private TutorialUtility TutorialUtility;
 
     public void Initialize(LevelManager pManager, float pStartTime)
     {
@@ -32,7 +31,7 @@ public class TimerUIManager : MonoBehaviour
         {
             if (LvlManager.Timer < TimeToPulsate && !LvlManager.TimeOver)
             {
-                ClockAnimator.SetBool(AnimationParameters.IsPulsating, true);
+                ClockAnimator.SetBool(Constants.AnimationParameters.IsPulsating, true);
             }
             if (LvlManager.Timer > 0)
             {
@@ -42,7 +41,7 @@ public class TimerUIManager : MonoBehaviour
             }
             if (LvlManager.TimeOver)
             {
-                ClockAnimator.SetBool(AnimationParameters.IsPulsating, false);
+                ClockAnimator.SetBool(Constants.AnimationParameters.IsPulsating, false);
             }
         }
         
