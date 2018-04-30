@@ -13,7 +13,7 @@ public class MouseInputController : MonoBehaviour
 	private void Start () 
 	{
         Orderlies = new List<OrderlyController>(FindObjectsOfType<OrderlyController>());
-        if(Orderlies[0] != null)
+        if(Orderlies.Any())
         {
             SelectOrderly(Orderlies[0]);
         }

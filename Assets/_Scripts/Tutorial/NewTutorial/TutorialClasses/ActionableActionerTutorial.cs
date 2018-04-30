@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ActionableActionerTutorial : ActionableActioner
 {
-
     protected override void OnSuccess()
     {
         base.OnSuccess();
@@ -16,19 +15,9 @@ public class ActionableActionerTutorial : ActionableActioner
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneHydration);
         }
-        
-    }
-
-    public override void StopAction()
-    {
-        base.StopAction();
-
         if (CurrentAction is PatientCheckoutController)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneCheckOut);
         }
     }
-
-
-
 }
