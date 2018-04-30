@@ -11,18 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab68c388fb66d4f4a8094f299b0c086f, type: 3}
   m_Name: Test1ThresholdOddsConfigReversed
   m_EditorClassIdentifier: 
+  RandomRangeOffset: 1.5
   ListOfThresholds:
   - ThresholdOfActivation: 0
-    OddsOfExcretion: 20
+    TimeToExcrete: 5
   - ThresholdOfActivation: 5
-    OddsOfExcretion: 16
+    TimeToExcrete: 6.5
   - ThresholdOfActivation: 10
-    OddsOfExcretion: 14
+    TimeToExcrete: 8
   - ThresholdOfActivation: 20
-    OddsOfExcretion: 9
+    TimeToExcrete: 9.5
   - ThresholdOfActivation: 40
-    OddsOfExcretion: 7
+    TimeToExcrete: 11
   - ThresholdOfActivation: 60
-    OddsOfExcretion: 4
+    TimeToExcrete: 13
   - ThresholdOfActivation: 80
-    OddsOfExcretion: 3
+    TimeToExcrete: 15

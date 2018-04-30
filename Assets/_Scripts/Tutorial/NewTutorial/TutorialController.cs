@@ -11,6 +11,7 @@ public class TutorialController : MonoBehaviour
     public List<Objective> Objectives;
     public GameObject ArrowPrefab;
     public Text ObjectiveTextUIObject;
+    public TutorialCoroutineStartLogic StartLogic;
 
     private Objective CurrentObjective;
     private Dictionary<EventManager.EventCodes, UnityAction> EventActions = new Dictionary<EventManager.EventCodes, UnityAction>();
@@ -18,9 +19,11 @@ public class TutorialController : MonoBehaviour
     private List<GameObject> CurrentArrows = new List<GameObject>();
     private Level1TutorialScreenController TutorialScreenController;
 
+
+
     private void Start()
     {
-        StartCoroutine(TutorialStart());
+        StartCoroutine(StartLogic.TutorialStartCoroutine());
         AddActionsToEvents();
         
         if(Objectives?.Any() ?? false)
@@ -128,7 +131,7 @@ public class TutorialController : MonoBehaviour
         }
 
         ObjectiveIndex++;
-        if(Objectives[ObjectiveIndex] != null)
+        if(Objectives.Count > ObjectiveIndex)
         {
             StartNewObjective(Objectives[ObjectiveIndex]);
         }
@@ -165,7 +168,7 @@ public class TutorialController : MonoBehaviour
         TutorialUtility.SetPatientHealth(5);
         TutorialUtility.SetHydrationFreeze(true);
         TutorialUtility.SetHealthFreeze(true);
-        TutorialUtility.SetExcretionFreeze(true);
+        TutorialUtility.SetFreezeExcretion(true);
 
         //yield return new WaitForSeconds(0.2f);
 
@@ -178,18 +181,4 @@ public class TutorialController : MonoBehaviour
 
     }
 
-    private IEnumerator TutorialStart()
-    {
-        TutorialUtility.SetTimeFreeze(true);
-        TutorialUtility.SetTimerUIAsActive(false);
-
-        yield return new WaitForSeconds(0.1f);
-
-        TutorialUtility.SetSpawnFreeze(true);
-        TutorialUtility.SetPatientHydration(100);
-        TutorialUtility.SetHydrationFreeze(true);
-        TutorialUtility.SetHealthFreeze(true);
-        TutorialUtility.SetExcretionFreeze(true);
     }
-
-}
