@@ -27,7 +27,7 @@ public class TimerUIManager : MonoBehaviour
     // Update is called once per frame
     private void Update ()  
 	{
-        if (!TutorialUtility.TimeFreeze)
+        if (!TutorialUtility.instance?.TimeFreeze ?? true)
         {
             if (LvlManager.Timer < TimeToPulsate && !LvlManager.TimeOver)
             {
