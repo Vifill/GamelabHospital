@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     public float Health;
-    public float HydrationMeter;
+    public float HydrationMeter { get; private set; }
 
     public float MaxHydration = 100;
     public float MinHydration = 0;
@@ -16,13 +17,13 @@ public class HealthController : MonoBehaviour
     public float MinHealth = 0;
 
     [HideInInspector]
-    public float HydrationClampMax;
+    public float HydrationClampMax = 100;
     [HideInInspector]
-    public float HydrationClampMin;
+    public float HydrationClampMin = 0;
     [HideInInspector]
-    public float HealthClampMax;
+    public float HealthClampMax = 100;
     [HideInInspector]
-    public float HealthClampMin;
+    public float HealthClampMin = 0;
 
 
     [HideInInspector]
@@ -55,9 +56,21 @@ public class HealthController : MonoBehaviour
     private Transform MainCanvasTransform;
 
     private Coroutine CurrentCoroutineSick;
+    private Animator PatientAnimator;
+    private Animator PatientPrefabAnimator;
 
-    private void Start()
+    private float HealthIncrease;
+
+    [Header("Hydration Combo Parameters")]
+    public float MaxHealthIncresePerSecond;
+    public float ComboBonusAmount;
+    public float ComboBonusTime;
+    public float ComboRedemptionTime;
+
+    public void Initialize()
     {
+        //HydrationMeter = 100;
+        StartCoroutine(GetPatientAnimator());
         LevelManager = FindObjectOfType<LevelManager>();
         HydrationClampMax = MaxHydration;
         HydrationClampMin = MinHydration;
@@ -71,6 +84,14 @@ public class HealthController : MonoBehaviour
         StartCoroutine(BedSanitationCheckCoroutine());
     }
 
+    private IEnumerator GetPatientAnimator()
+    {
+        yield return new WaitForEndOfFrame();
+
+        PatientAnimator = transform.Find(Constants.Highlightable).GetComponentInChildren<Animator>();
+        PatientPrefabAnimator = GetComponent<Animator>();
+    }
+
     private void SpawnHydrationUI()
     {
         HydrationUI = Instantiate(HydrationUIPrefab, MainCanvasTransform);
@@ -81,11 +102,11 @@ public class HealthController : MonoBehaviour
     {
         if (!LevelManager.TimeOver)
         {
-            var healthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
+            //var HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
 
-            if (healthIncrease > 0)
+            if (HealthIncrease > 0)
             {
-                Health = Mathf.Clamp(Health += healthIncrease * Time.deltaTime, HealthClampMin, HealthClampMax);
+                Health = Mathf.Clamp(Health += HealthIncrease * Time.deltaTime, HealthClampMin, HealthClampMax);
             }
 
             if (!PatientStatusController.IsHealed && Health >= 100)
@@ -96,7 +117,9 @@ public class HealthController : MonoBehaviour
 
             if (!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
             {
-                HydrationMeter = Mathf.Clamp(HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime, HydrationClampMin, HydrationClampMax);
+                //HydrationMeter = Mathf.Clamp(HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime, HydrationClampMin, HydrationClampMax);
+                SetHydration(HydrationMeter - (ConstantDehydrationSpeed * Time.deltaTime));
+
                 Health = Mathf.Clamp(Health += ConstantHealing * Time.deltaTime, HealthClampMin, HealthClampMax);
 
                 if (!PatientStatusController.IsDead && HydrationMeter <= 0)
@@ -167,7 +190,9 @@ public class HealthController : MonoBehaviour
             MakeBedDirty();
             StartPukingAnimation();
             HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
-
+            // puke animation trigger
+            PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
+            //PatientPrefabAnimator.SetTrigger(AnimationParameters.PatientPuke);
             Debug.Log($"I'M PUKING!");
         }
     }
@@ -204,5 +229,68 @@ public class HealthController : MonoBehaviour
         {
            // print("<color=magenta> puked but was not in bed </color>");
         }
+    }
+
+    public void SetHydration (float pValue)
+    {
+        var prevHydration = HydrationMeter;
+
+        HydrationMeter = Mathf.Clamp(pValue, HydrationClampMin, HydrationClampMax);
+
+        var threshold = HydrationHealingConfig.ListOfThresholds.LastOrDefault().ThresholdOfActivation;
+
+        if (prevHydration >= threshold && HydrationMeter < threshold)
+        {
+            //StartCoroutine(ComboRedemptionCheck());
+            StartCoroutine(ComboBonusSetter(ComboRedemptionTime, -ComboBonusAmount));
+        }
+        else if (prevHydration < threshold && HydrationMeter >= threshold)
+        {
+            StartCoroutine(ComboBonusSetter(ComboBonusTime, ComboBonusAmount));
+        }
+        else if (prevHydration < threshold && HydrationMeter < threshold)
+        {
+            HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
+        }
+
+        
+    }
+
+    //private IEnumerator ComboRedemptionCheck()
+    //{
+    //    yield return new WaitForSeconds(ComboRedemptionTime);
+
+    //    var threshold = HydrationHealingConfig.ListOfThresholds.LastOrDefault().ThresholdOfActivation;
+
+    //    if (HydrationMeter < threshold)
+    //    {
+    //        HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
+    //    }
+    //}
+
+    private IEnumerator ComboBonusSetter(float pTime, float pAmount)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(pTime);
+            var minHPS = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
+
+            if (pAmount < 0)
+            {
+                pTime -= 1;
+            }
+            else if (pAmount > 0)
+            {
+                pTime += 1;
+            }
+
+            HealthIncrease = Mathf.Clamp(HealthIncrease + pAmount, minHPS, MaxHealthIncresePerSecond);
+            print("healthincrease is now = " + HealthIncrease + " for " + gameObject);
+        }
+    }
+
+    public void ForceExcretion()
+    {
+        Excrete();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,9 @@ public class TimerUIManager : MonoBehaviour
     private LevelConfig LvlConfig;
     private float ClockHandAngle;
     private float TimeToPulsate;
-    private TutorialUtility TutorialUtility;
 
     public void Initialize(LevelManager pManager, float pStartTime)
     {
-        TutorialUtility = FindObjectOfType<TutorialUtility>();
         LvlManager = pManager;
         LvlConfig = LvlManager.LevelConfig;
         ClockHand = transform.GetChild(0).GetComponent<Image>();
@@ -28,11 +27,11 @@ public class TimerUIManager : MonoBehaviour
     // Update is called once per frame
     private void Update ()  
 	{
-        if (TutorialUtility == null || !TutorialUtility.TimeFreeze)
+        if (!TutorialUtility.TimeFreeze)
         {
             if (LvlManager.Timer < TimeToPulsate && !LvlManager.TimeOver)
             {
-                ClockAnimator.SetBool("IsPulsating", true);
+                ClockAnimator.SetBool(Constants.AnimationParameters.IsPulsating, true);
             }
             if (LvlManager.Timer > 0)
             {
@@ -42,7 +41,7 @@ public class TimerUIManager : MonoBehaviour
             }
             if (LvlManager.TimeOver)
             {
-                ClockAnimator.SetBool("IsPulsating", false);
+                ClockAnimator.SetBool(Constants.AnimationParameters.IsPulsating, false);
             }
         }
         

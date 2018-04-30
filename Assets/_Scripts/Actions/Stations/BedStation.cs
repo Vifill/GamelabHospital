@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,12 @@ public class BedStation : Actionable
     public GameObject DirtyBarPrefab;
     public GameObject DirtyBarInstance;
     private Camera Cam;
+<<<<<<< .merge_file_a11144
     public Image BarFill;
+=======
+    private Image BarFill;
+    private Animator DirtyBarAnimator;
+>>>>>>> .merge_file_a04060
     public Transform DirtyBarWorldBedPosition;
 
     private Transform DirtyBarUIPositionBed;
@@ -66,7 +72,8 @@ public class BedStation : Actionable
         DirtyBarInstance = Instantiate(DirtyBarPrefab, DirtyBarUIPositionBed);
         DirtyBarInstance.transform.localPosition = Vector3.zero;
 
-        BarFill = DirtyBarInstance.transform.GetChild(1).GetComponent<Image>();      
+        BarFill = DirtyBarInstance.transform.GetChild(1).GetComponent<Image>();
+        DirtyBarAnimator = DirtyBarInstance.GetComponent<Animator>();
     }
 
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
@@ -85,6 +92,11 @@ public class BedStation : Actionable
     {
         SetClean();
         LevelManager.AddPoints(50, transform.position);
+    }
+
+    private void SetDirtyBarWarning(bool pValue)
+    {
+        DirtyBarAnimator.SetBool(Constants.AnimationParameters.IsPulsatingUI, pValue);
     }
 
     public void IncreaseDirtyMeter(float pValue)
@@ -106,6 +118,15 @@ public class BedStation : Actionable
         if (DirtyBarInstance != null)
         {
             BarFill.fillAmount = DirtyMeter / 100;
+
+            if (BarFill.fillAmount >= 0.80)
+            {
+                SetDirtyBarWarning(true);
+            }
+            else
+            {
+                SetDirtyBarWarning(false);
+            }
         }
     }
     

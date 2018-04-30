@@ -46,9 +46,9 @@ public class OrderlyMoveAction : OrderlyAction
     {
         Animator = OrderlyObject.GetComponentInChildren<Animator>();
 
-        if (!Animator.GetBool("IsWalking"))
+        if (!Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
         {
-            Animator.SetBool("IsWalking", true);
+            Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, true);
             //EmissionModule.enabled = true;
         }
 
@@ -60,8 +60,6 @@ public class OrderlyMoveAction : OrderlyAction
         NavAgent.isStopped = false;
 
         NavAgent.SetDestination(PositionToMoveTo);
-        var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        obj.transform.position = PositionToMoveTo;
         NavAgent.stoppingDistance = DistanceToStop;
     }
 
@@ -70,9 +68,9 @@ public class OrderlyMoveAction : OrderlyAction
         NavAgent = OrderlyObject.GetComponent<NavMeshAgent>();
         NavAgent.isStopped = true;
 
-        if (Animator.GetBool("IsWalking"))
+        if (Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
         {
-            Animator.SetBool("IsWalking", false);
+            Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, false);
         }
 
         OrderlyObject.GetComponent<OrderlyController>().DisableMovementParticle();

@@ -50,11 +50,15 @@ public class GameController : MonoBehaviour
 
     public void PauseGame(GameObject pUIScreen)
     {
+        if(pUIScreen == null)
+        {
+            return;
+        }
         if (CurrentUIScreen != null)
         {
             Destroy(CurrentUIScreen);
         }
-
+        
         Time.timeScale = 0;
         InMenuScreen = true;
         InPauseMenu = true;

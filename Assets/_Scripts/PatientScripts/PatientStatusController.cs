@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,7 +60,7 @@ public class PatientStatusController : MonoBehaviour
         }
     }
 
-    public void Death()
+    public virtual void Death()
     {
         PlayDeathParticles();
         IsDead = true;

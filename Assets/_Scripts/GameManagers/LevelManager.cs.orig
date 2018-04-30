@@ -4,14 +4,18 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour 
+public class LevelManager : MonoBehaviour
 {
     
     private PointsUIManager UIManager;
     private Canvas UICanvas;
     private Animator DayNightCycle;
-    private float StartTime;
-
+    [HideInInspector]
+    public float StartTime;
+    [HideInInspector]
+    public float TimerClampMin = 0;
+    [HideInInspector]
+    public float TimerClampMax;
    
 
     public bool DebugDatagathering;
@@ -26,7 +30,13 @@ public class LevelManager : MonoBehaviour
     public GameObject ShiftDoctor;
     public int PatientsHealed { get; private set; } = 0;
     public int PatientDeaths { get; private set; } = 0;
+<<<<<<< HEAD
+    //public float Timer { get; private set; }
+    public float Timer;
+=======
     public float Timer { get; private set; }
+    public bool InEndScreen;
+>>>>>>> 2c98aef6bbe17906579ed0ae0ab7e1332f4a88bc
 
     public GameObject ShiftOverCanvas;
 
@@ -34,12 +44,13 @@ public class LevelManager : MonoBehaviour
 
     private int Points;
 
-    private Datalogic DataLogic = new Datalogic();
+    //private Datalogic DataLogic = new Datalogic();
 
     private PlayerDataController PlayerDataController = new PlayerDataController();
 
     private void Start()
     {
+        InEndScreen = false;
         Player = FindObjectOfType<PlayerActionController>()?.gameObject;
         Time.timeScale = 1;
         UICanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
@@ -50,6 +61,7 @@ public class LevelManager : MonoBehaviour
         UIManager.Initialize();
         UIManager.UpdateUI(PatientsHealed, Vector3.zero);
         StartTime = LevelConfig.LevelTimeSecs;
+        TimerClampMax = StartTime;
         Timer = StartTime;
         var sun = Instantiate(SunPrefab);
         DayNightCycle = sun.GetComponent<Animator>();
@@ -59,8 +71,7 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        Timer -= Time.deltaTime;
-        Mathf.Clamp(Timer, 0, StartTime);
+        Timer = Mathf.Clamp(Timer -= Time.deltaTime, TimerClampMin, TimerClampMax);
         
         if (Timer <= 0 && !TimeOver)
         {
@@ -137,15 +148,20 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1.5f;
 
         //Orderly
-        OrderlyController ordelyController = FindObjectOfType<OrderlyController>();
-        if (ordelyController != null && Player != null)
+        OrderlyController orderlyController = FindObjectOfType<OrderlyController>();
+        
+        if (orderlyController != null && Player != null)
         {
+            orderlyController.GetComponent<ActionableActioner>().StopAction();
+            orderlyController.CurrentAction?.CancelOrder();
             OrderlyOrder orderlyOrder = new OrderlyOrder(exit.position);
             orderlyOrder.AddAction(new OrderlyMoveAction(exit));
-            ordelyController.StartOrder(orderlyOrder);
+            orderlyController.StartOrder(orderlyOrder);
         }
-        else if (ordelyController != null && Player == null)
+        else if (orderlyController != null && Player == null)
         {
+            orderlyController.GetComponent<ActionableActioner>().StopAction();
+            orderlyController.CurrentAction?.CancelOrder();
             OrderlyOrder order = new OrderlyOrder(exit.position);
             if (checkouts.Count > 0)
             {
@@ -159,7 +175,7 @@ public class LevelManager : MonoBehaviour
             }
             order.AddAction(new OrderlyMoveAction(exit));
 
-            ordelyController.StartOrder(order);
+            orderlyController.StartOrder(order);
         }
         
 
@@ -183,53 +199,13 @@ public class LevelManager : MonoBehaviour
         OrderlyController shiftDoctorController = shiftDoctorGO.GetComponent<OrderlyController>();
         OrderlyOrder shiftOrder = new OrderlyOrder(bedToMoveTo.transform.position);
         shiftOrder.AddAction(new OrderlyMoveAction(bedToMoveTo.transform));
-<<<<<<< HEAD
-
-=======
->>>>>>> 5914c1f949cb66d4868cf685430cecf33d7c9599
 
         OrderlyController playerController = null;
         //Player
-<<<<<<< HEAD
-        if (Player == null)
-        {
-            GameObject CheckoutPlayer = Instantiate(PlayerAI, Player.transform.position, Player.transform.rotation);
-            Destroy(Player);
-
-
-            var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>()).Where(a => a.GetComponent<PatientStatusController>().IsHealed).ToList();
-            var playerController = CheckoutPlayer.GetComponent<OrderlyController>();
-            OrderlyOrder order = new OrderlyOrder(exit.position);
-            if (checkouts.Count > 0)
-            {
-                order = new OrderlyOrder(checkouts[0].transform.position);
-            }
-
-            for (int i = 0; i < checkouts.Count; i++)
-            {
-                order.AddAction(new OrderlyMoveAction(checkouts[i].transform));
-                order.AddAction(new OrderlyInteractionAction(checkouts[i]));
-            }
-            order.AddAction(new OrderlyMoveAction(exit));
-
-            shiftDoctorController.StartOrder(shiftOrder);
-            playerController.StartOrder(order);
-
-            Time.timeScale = 1.5f;
-
-            while (playerController.CurrentOrder != null || shiftDoctorController.CurrentOrder != null)
-            {
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(0.5f);
-            Destroy(UIGO);
-            LevelPassed();
-        }
-=======
         if (Player != null)
         {
             GameObject CheckoutPlayer = Instantiate(PlayerAI, Player.transform.position, Player.transform.rotation);
+            Player.GetComponent<ActionableActioner>().StopAction();
             Destroy(Player);
             playerController = CheckoutPlayer.GetComponent<OrderlyController>();
             OrderlyOrder order = new OrderlyOrder(exit.position);
@@ -251,7 +227,7 @@ public class LevelManager : MonoBehaviour
 
 
 
-        while (playerController?.CurrentOrder != null || shiftDoctorController?.CurrentOrder != null || ordelyController?.CurrentOrder != null)
+        while (playerController?.CurrentOrder != null || shiftDoctorController?.CurrentOrder != null || orderlyController?.CurrentOrder != null)
         {
             yield return null;
         }
@@ -262,7 +238,6 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Destroy(UIGO);
         LevelPassed();
->>>>>>> 5914c1f949cb66d4868cf685430cecf33d7c9599
     }
 
     private void LevelPassed()
@@ -272,6 +247,7 @@ public class LevelManager : MonoBehaviour
         PlayerDataController.SaveLevelData(new LevelModel(LevelConfig.LevelNumber, Points));
         Time.timeScale = 0;
         endscreen.GetComponent<EndScreenUIManager>().InitializeUI(LevelConfig.StarConfig, PatientsHealed, Points, PatientDeaths, true);
+        InEndScreen = true;
     }
     private void LevelFailed()
     {
@@ -279,5 +255,6 @@ public class LevelManager : MonoBehaviour
 
         Time.timeScale = 0;
         endscreen.GetComponent<EndScreenUIManager>().InitializeUI(LevelConfig.StarConfig, PatientsHealed, Points, PatientDeaths, false);
+        InEndScreen = true;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,6 @@ public class HydrationUIManager : MonoBehaviour
     private HealthController HealthController;
     //private Transform Patient;
     public GameObject WarningIconInstance;
-    
 
     public void SetExcreteWarning(bool pValue)
     {
@@ -30,12 +30,7 @@ public class HydrationUIManager : MonoBehaviour
     public void InitializeHydrationUI(HealthController pHealthController)
     {
         HealthController = pHealthController;
-        //Patient = pHealthController.transform;
 
-        // Make sure UI starts at right fill amount
-
-        // For testing HydrationMeterUI_v2, switch lines for v1
-        //HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
         HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
         HealthMeterUI.fillAmount = HealthController.Health / 100;
 
@@ -75,12 +70,12 @@ public class HydrationUIManager : MonoBehaviour
 
     private void SetHydrationWarning(bool pValue)
     {
-        HydrationAnimator.SetBool("IsPulsatingHydration", pValue);
+        HydrationAnimator.SetBool(Constants.AnimationParameters.IsPulsatingHydration, pValue);
     }
 
     private void SetHealthWarning(bool pValue)
     {
-        HydrationAnimator.SetBool("IsPulsatingHP", pValue);
+        HydrationAnimator.SetBool(Constants.AnimationParameters.IsPulsatingHP, pValue);
     }
 
     private void SetSeverityColor()

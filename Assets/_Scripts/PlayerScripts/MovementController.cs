@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets._Scripts.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,9 +50,9 @@ public class MovementController : MonoBehaviour {
         }
         else
         {
-            if (Animator.GetBool("IsWalking"))
+            if (Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
             {
-                Animator.SetBool("IsWalking", false);
+                Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, false);
                 EmissionModule.enabled = false;
             }
         }
@@ -83,7 +84,7 @@ public class MovementController : MonoBehaviour {
                 var lookRot = Quaternion.LookRotation(Direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, RotSpeed * Time.deltaTime);
 
-                if (!Animator.GetBool("IsWalking"))
+                if (!Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
                 {
                     StartWalkingAnimation();
                 }
@@ -91,7 +92,7 @@ public class MovementController : MonoBehaviour {
         }
         else
         {
-            if (Animator.GetBool("IsWalking"))
+            if (Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
             {
                 StopWalkingAnimation();
             }
@@ -146,13 +147,13 @@ public class MovementController : MonoBehaviour {
 
     private void StartWalkingAnimation()
     {
-        Animator.SetBool("IsWalking", true);
+        Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, true);
         EmissionModule.enabled = true;
     }
 
     private void StopWalkingAnimation()
     {
-        Animator.SetBool("IsWalking", false);
+        Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, false);
         EmissionModule.enabled = false;
     }
 

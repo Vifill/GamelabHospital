@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets._Scripts.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,6 @@ public class PatientModelController : MonoBehaviour
 	private void Start () 
 	{
         var modelPrefabToUse = ModelsConfig.PatientModels[Random.Range(0, ModelsConfig.PatientModels.Count)];
-        Instantiate(modelPrefabToUse, transform.Find("Highlightable").transform);
+        Instantiate(modelPrefabToUse, transform.Find(Constants.Highlightable).transform);
 	}
 }
