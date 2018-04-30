@@ -22,10 +22,13 @@ public class BedStation : Actionable
 
     // UI Stuff
     public GameObject DirtyBarPrefab;
-    private GameObject DirtyBarInstance;
+    public GameObject DirtyBarInstance;
     private Camera Cam;
-    private Image BarFill;
+    public Image BarFill;
+
+    //private Image BarFill;
     private Animator DirtyBarAnimator;
+
     public Transform DirtyBarWorldBedPosition;
 
     private Transform DirtyBarUIPositionBed;
@@ -92,7 +95,7 @@ public class BedStation : Actionable
 
     private void SetDirtyBarWarning(bool pValue)
     {
-        DirtyBarAnimator.SetBool(AnimationParameters.IsPulsatingUI, pValue);
+        DirtyBarAnimator.SetBool(Constants.AnimationParameters.IsPulsatingUI, pValue);
     }
 
     public void IncreaseDirtyMeter(float pValue)
@@ -141,7 +144,7 @@ public class BedStation : Actionable
         DirtyBarInstance.transform.SetParent(pTargetTransform);
         //DirtyBarInstance.transform.position = oldParent.position;
 
-        while (Vector3.Distance(DirtyBarInstance.transform.position, pTargetTransform.position) > 1)
+        while ((DirtyBarInstance.transform.position - pTargetTransform.position).sqrMagnitude > 1)
         {
             DirtyBarInstance.transform.position = Vector3.Lerp(DirtyBarInstance.transform.position, pTargetTransform.transform.position, Time.deltaTime * LerpSpeed);
             yield return null;

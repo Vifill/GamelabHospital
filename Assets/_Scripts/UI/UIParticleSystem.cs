@@ -246,7 +246,7 @@ public class UIParticleSystem : MaskableGraphic
         if (Application.isPlaying)
         {
             // unscaled animation within UI
-            _particleSystem.Simulate(Time.unscaledDeltaTime, false, false);
+            _particleSystem.Simulate(Time.deltaTime, false, false);
 
             SetAllDirty();
         }

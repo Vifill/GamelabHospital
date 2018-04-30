@@ -34,11 +34,11 @@ public class PickupStationController : Actionable
     {
         if (ActionProgress == 0)
         {
-            Animator?.SetBool(AnimationParameters.CharacterIsActioning, false);
+            Animator?.SetBool(Constants.AnimationParameters.CharacterIsActioning, false);
         }
         else
         {
-            Animator?.SetFloat(AnimationParameters.Speed, 0);
+            Animator?.SetFloat(Constants.AnimationParameters.Speed, 0);
         }
         //var progressRatio = ActionProgress / ActionTime;
         //if (progressRatio < 1 && progressRatio > 0)
@@ -56,12 +56,12 @@ public class PickupStationController : Actionable
     {
         if (ActionProgress == 0)
         {
-            Animator?.SetBool(AnimationParameters.CharacterIsActioning, true);
-            Animator?.SetFloat(AnimationParameters.Speed, 1);
+            Animator?.SetBool(Constants.AnimationParameters.CharacterIsActioning, true);
+            Animator?.SetFloat(Constants.AnimationParameters.Speed, 1);
         }
         else
         {
-            Animator?.SetFloat(AnimationParameters.Speed, 1);
+            Animator?.SetFloat(Constants.AnimationParameters.Speed, 1);
         }
         //var progressRatio = ActionProgress / ActionTime;
         //if (progressRatio == 0)

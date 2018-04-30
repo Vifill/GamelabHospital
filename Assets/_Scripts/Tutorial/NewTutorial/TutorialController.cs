@@ -22,7 +22,7 @@ public class TutorialController : MonoBehaviour
     {
         StartCoroutine(TutorialStart());
         AddActionsToEvents();
-
+        
         if(Objectives?.Any() ?? false)
         {
             if(Objectives[0] != null)
@@ -52,7 +52,7 @@ public class TutorialController : MonoBehaviour
 
     private void OnWaitingForHealDone()
     {
-        TutorialScreenController?.DisplayCheckoutScreen();
+        //TutorialScreenController?.DisplayCheckoutScreen();
     }
 
     private void OnCleanDoctorDoneEvent()

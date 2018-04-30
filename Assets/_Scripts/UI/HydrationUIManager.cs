@@ -70,12 +70,12 @@ public class HydrationUIManager : MonoBehaviour
 
     private void SetHydrationWarning(bool pValue)
     {
-        HydrationAnimator.SetBool(AnimationParameters.IsPulsatingHydration, pValue);
+        HydrationAnimator.SetBool(Constants.AnimationParameters.IsPulsatingHydration, pValue);
     }
 
     private void SetHealthWarning(bool pValue)
     {
-        HydrationAnimator.SetBool(AnimationParameters.IsPulsatingHP, pValue);
+        HydrationAnimator.SetBool(Constants.AnimationParameters.IsPulsatingHP, pValue);
     }
 
     private void SetSeverityColor()

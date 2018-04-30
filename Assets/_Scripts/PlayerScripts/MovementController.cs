@@ -40,7 +40,7 @@ public class MovementController : MonoBehaviour {
 	// Update is called once per frame
 	private void Update ()
     {
-        if (CanDash && CanMove && Input.GetKeyDown(KeyCode.LeftShift))
+        if (CanDash && CanMove && Input.GetButtonDown("Fire3"))
         {
             Dash();
         }
@@ -50,9 +50,9 @@ public class MovementController : MonoBehaviour {
         }
         else
         {
-            if (Animator.GetBool(AnimationParameters.CharacterIsWalking))
+            if (Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
             {
-                Animator.SetBool(AnimationParameters.CharacterIsWalking, false);
+                Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, false);
                 EmissionModule.enabled = false;
             }
         }
@@ -65,10 +65,9 @@ public class MovementController : MonoBehaviour {
 
     protected virtual void WalkInput()
     {
-        if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
+        if (Input.GetAxis ("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
             Direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            //Debug.Log(Direction);
             if (Direction.magnitude > 1)
             {
                 Direction.Normalize();
@@ -85,7 +84,7 @@ public class MovementController : MonoBehaviour {
                 var lookRot = Quaternion.LookRotation(Direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, RotSpeed * Time.deltaTime);
 
-                if (!Animator.GetBool(AnimationParameters.CharacterIsWalking))
+                if (!Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
                 {
                     StartWalkingAnimation();
                 }
@@ -93,7 +92,7 @@ public class MovementController : MonoBehaviour {
         }
         else
         {
-            if (Animator.GetBool(AnimationParameters.CharacterIsWalking))
+            if (Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
             {
                 StopWalkingAnimation();
             }
@@ -148,13 +147,13 @@ public class MovementController : MonoBehaviour {
 
     private void StartWalkingAnimation()
     {
-        Animator.SetBool(AnimationParameters.CharacterIsWalking, true);
+        Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, true);
         EmissionModule.enabled = true;
     }
 
     private void StopWalkingAnimation()
     {
-        Animator.SetBool(AnimationParameters.CharacterIsWalking, false);
+        Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, false);
         EmissionModule.enabled = false;
     }
 
