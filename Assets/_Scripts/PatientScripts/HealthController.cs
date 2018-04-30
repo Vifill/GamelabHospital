@@ -25,6 +25,8 @@ public class HealthController : MonoBehaviour
     [HideInInspector]
     public float HealthClampMin = 0;
 
+    [HideInInspector]
+    public bool FreezePuke;
 
     [HideInInspector]
     public HydrationConfig HydrationConfig;
@@ -58,6 +60,8 @@ public class HealthController : MonoBehaviour
     private Coroutine CurrentCoroutineSick;
     private Animator PatientAnimator;
     private Animator PatientPrefabAnimator;
+
+    private float ExcreteTimeOffset;
 
     private float HealthIncrease;
 
@@ -156,18 +160,20 @@ public class HealthController : MonoBehaviour
 
     private IEnumerator SickCoroutine()
     {
-        while(true)
+        ExcreteTimeOffset = UnityEngine.Random.Range(-ThresholdOddsConfig.RandomRangeOffset, ThresholdOddsConfig.RandomRangeOffset);
+        float timeCounter = 0;
+
+        while (true)
         {
-            float odds = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= Health)?.OddsOfExcretion ?? 0.0f;
-            if(UnityEngine.Random.Range(0,100) < odds && HydrationController.IsActionActive)
+            float targetTime = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= Health)?.TimeToExcrete ?? 0.0f;
+            targetTime += ExcreteTimeOffset;
+            timeCounter += Time.deltaTime;
+            if(timeCounter >= targetTime)
             {
                 StartFeelingSick();
-                yield return new WaitForSeconds(CholeraConfig.ExcreteCooldown);
+                break;
             }
-            else if (!(UnityEngine.Random.Range(0,100) < odds))
-            {
-                yield return new WaitForSeconds(CholeraConfig.CholeraCheckRate);
-            }
+            yield return null;
         }
     }
 
@@ -176,7 +182,6 @@ public class HealthController : MonoBehaviour
         if (!PatientStatusController.IsHealed)
         {
             HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
-
             Invoke("Excrete", 5);
         }
     }
@@ -192,9 +197,10 @@ public class HealthController : MonoBehaviour
             HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
             // puke animation trigger
             PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
-            //PatientPrefabAnimator.SetTrigger(AnimationParameters.PatientPuke);
+            PatientPrefabAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
             Debug.Log($"I'M PUKING!");
         }
+        StartCoroutine(SickCoroutine());
     }
 
     private void StartPukingAnimation()

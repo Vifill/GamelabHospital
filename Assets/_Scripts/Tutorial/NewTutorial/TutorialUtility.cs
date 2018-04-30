@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,6 +7,34 @@ using UnityEngine;
 public class TutorialUtility : MonoBehaviour
 {
     public static bool TimeFreeze = false;
+    private static TutorialUtility tutorialEntity;
+
+    public static TutorialUtility instance
+    {
+        get
+        {
+            if (!tutorialEntity)
+            {
+                tutorialEntity = FindObjectOfType(typeof(TutorialUtility)) as TutorialUtility;
+
+                if (!tutorialEntity)
+                {
+                    Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
+                }
+                else
+                {
+                    tutorialEntity.Initialize();
+                }
+            }
+
+            return tutorialEntity;
+        }
+    }
+
+    private void Initialize()
+    {
+
+    }
 
     public static void SetHydrationFreeze(bool pState)
     {
@@ -52,8 +81,14 @@ public class TutorialUtility : MonoBehaviour
         }
     }
 
-    public static void SetExcretionFreeze(bool pState)
+    public static void SetFreezeExcretion(bool pState)
     {
+        instance.StartCoroutine("FreezeExcretion", pState);
+    }
+    
+    private IEnumerator FreezeExcretion(bool pState)
+    {
+        yield return new WaitForEndOfFrame();
         var patientsInScene = FindObjectsOfType<HealthController>();
         if (pState)
         {
@@ -70,6 +105,7 @@ public class TutorialUtility : MonoBehaviour
             }
         }
     }
+
 
     public static void SetHealthFreeze(bool pState)
     {
