@@ -175,6 +175,7 @@ public class HealthController : MonoBehaviour
             }
             yield return null;
         }
+        yield return null;
     }
 
     private void StartFeelingSick()
@@ -200,7 +201,7 @@ public class HealthController : MonoBehaviour
             PatientPrefabAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
             Debug.Log($"I'M PUKING!");
         }
-        StartCoroutine(SickCoroutine());
+        StartSickCoroutine();
     }
 
     private void StartPukingAnimation()
