@@ -75,7 +75,7 @@ public class PointsUIManager : MonoBehaviour
 
             if ((pGO.transform.position - DisplayedScoreText.transform.position).sqrMagnitude < 1000)
             {
-                ScoreAnimator.SetBool(AnimationParameters.GivingPoints, true);
+                ScoreAnimator.SetBool(Constants.AnimationParameters.GivingPoints, true);
             }
 
             if (BezierCurve.Count <= 0)
@@ -86,7 +86,7 @@ public class PointsUIManager : MonoBehaviour
         }
         DisplayedScore += pPoints;
         DisplayedScoreText.text = DisplayedScore.ToString();
-        ScoreAnimator.SetBool(AnimationParameters.GivingPoints, false);
+        ScoreAnimator.SetBool(Constants.AnimationParameters.GivingPoints, false);
         Destroy(pText.gameObject);
         if (pGO?.GetComponent<ParticleSystem>() != null)
         {

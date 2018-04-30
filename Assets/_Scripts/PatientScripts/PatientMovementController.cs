@@ -49,7 +49,7 @@ public class PatientMovementController : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         PatientAnimator = transform.Find(Constants.Highlightable).GetComponentInChildren<Animator>();
-        PatientAnimator.SetBool(AnimationParameters.IsPatient, true);
+        PatientAnimator.SetBool(Constants.AnimationParameters.IsPatient, true);
     }
 
     private Vector3 GetGuidePoint(GameObject targetBed)
@@ -97,7 +97,7 @@ public class PatientMovementController : MonoBehaviour
 
     public void GetOutOfBed()
     {
-        PatientAnimator.SetBool(AnimationParameters.CharacterIsWalking, true);
+        PatientAnimator?.SetBool(Constants.AnimationParameters.CharacterIsWalking, true);
         NavMeshAgent.enabled = true;
         PatientStatus.IsInBed = false;
 

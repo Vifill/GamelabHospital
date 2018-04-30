@@ -73,38 +73,27 @@ public class ToolController : MonoBehaviour
             switch(GetCurrentToolName())
             {
                 case ToolName.Bandage:
-                    Animator.SetBool(AnimationParameters.CharacterHoldingBandage, true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingBandage, true);
                     break;
                 case ToolName.AnaestheticSyringe:
-                    Animator.SetBool(AnimationParameters.CharacterHoldingSyringe, true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingSyringe, true);
                     break;
                 case ToolName.VaccinationSyringe:
-                    Animator.SetBool(AnimationParameters.CharacterHoldingSyringe, true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingSyringe, true);
                     break;
                 case ToolName.Saw:
-                    Animator.SetBool(AnimationParameters.CharacterHoldingSaw, true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingSaw, true);
                     break;
                 case ToolName.Bucket:
-                    Animator.SetBool(AnimationParameters.CharacterHoldingBandage, true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingBandage, true);
                     break;
                 case ToolName.Water:
-                    Animator.SetBool(AnimationParameters.CharacterHoldingWater, true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingWater, true);
                     break;
                 case ToolName.IVBag:
-                    Animator.SetBool(AnimationParameters.CharacterHoldingIVBag, true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingIVBag, true);
                     break;
             }
-
-
-
-            //if (GetCurrentToolName() == ToolName.Bandage)
-            //{
-            //    Animator.SetBool("HoldingBandage", true);
-            //}
-            //else if(GetCurrentToolName)
-            //{
-            //    Animator.SetBool("HoldingBandage", false);
-            //}
         }         
     }
 

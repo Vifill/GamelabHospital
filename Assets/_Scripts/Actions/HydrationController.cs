@@ -43,7 +43,7 @@ public class HydrationController : Actionable
             actionTime = CurrentHydrationModel.ActionTime;
             ActionSoundEvent = CurrentHydrationModel.HydrationSound;
         }
-
+        
         return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = actionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles, MakesPlayerDirty = MakesPlayerDirty};
 
     }
@@ -99,8 +99,8 @@ public class HydrationController : Actionable
 
         while(counter <= pHmodel.TimeItTakes)
         {
-            HealthCtrl.HydrationMeter = Mathf.Clamp(HealthCtrl.HydrationMeter + (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime, HealthCtrl.MinHydration, HealthCtrl.MaxHydration);
-
+            //HealthCtrl.HydrationMeter = Mathf.Clamp(HealthCtrl.HydrationMeter + (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime, HealthCtrl.MinHydration, HealthCtrl.MaxHydration);
+            HealthCtrl.SetHydration(HealthCtrl.HydrationMeter + ((CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime));
             counter += Time.deltaTime;
             yield return null;
         }

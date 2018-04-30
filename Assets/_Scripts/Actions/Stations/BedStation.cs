@@ -92,7 +92,7 @@ public class BedStation : Actionable
 
     private void SetDirtyBarWarning(bool pValue)
     {
-        DirtyBarAnimator.SetBool(AnimationParameters.IsPulsatingUI, pValue);
+        DirtyBarAnimator.SetBool(Constants.AnimationParameters.IsPulsatingUI, pValue);
     }
 
     public void IncreaseDirtyMeter(float pValue)
