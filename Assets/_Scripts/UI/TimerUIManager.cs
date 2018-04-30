@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,19 +27,23 @@ public class TimerUIManager : MonoBehaviour
     // Update is called once per frame
     private void Update ()  
 	{
-        if (LvlManager.Timer < TimeToPulsate && !LvlManager.TimeOver)
+        if (!TutorialUtility.TimeFreeze)
         {
-            ClockAnimator.SetBool("IsPulsating", true);
+            if (LvlManager.Timer < TimeToPulsate && !LvlManager.TimeOver)
+            {
+                ClockAnimator.SetBool(Constants.AnimationParameters.IsPulsating, true);
+            }
+            if (LvlManager.Timer > 0)
+            {
+                float clockHandRotation = ClockHandAngle * Time.deltaTime;
+                //Debug.Log(clockHandRotation);
+                ClockHand.rectTransform.Rotate(new Vector3(0, 0, -clockHandRotation));
+            }
+            if (LvlManager.TimeOver)
+            {
+                ClockAnimator.SetBool(Constants.AnimationParameters.IsPulsating, false);
+            }
         }
-        if (LvlManager.Timer > 0)
-        {
-            float clockHandRotation = ClockHandAngle * Time.deltaTime;
-            //Debug.Log(clockHandRotation);
-            ClockHand.rectTransform.Rotate(new Vector3(0, 0, -clockHandRotation));
-        }
-        if (LvlManager.TimeOver)
-        {
-            ClockAnimator.SetBool("IsPulsating", false);
-        }
+        
     }
 }

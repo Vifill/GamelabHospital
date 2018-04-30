@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ public abstract class Actionable : MonoBehaviour
     public bool NeedsSanitizedTool;
     public bool ConsumesTool;
     public bool MakesPlayerDirty;
+    public bool IsBeingActioned;
 
     public GameObject ActionIcon;
 
@@ -52,7 +54,7 @@ public abstract class Actionable : MonoBehaviour
     public bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
     {
         bool canUseTool = pCurrentTool == ToolName.NoTool || !NeedsSanitizedTool || (NeedsSanitizedTool && !pObjectActioning.GetComponent<ToolController>().GetToolBase().IsDirty);
-        return canUseTool && CanBeActionedExtended(pCurrentTool, pObjectActioning);
+        return canUseTool && CanBeActionedExtended(pCurrentTool, pObjectActioning) && !IsBeingActioned;
     }
 
     private void Start()
@@ -109,7 +111,7 @@ public abstract class Actionable : MonoBehaviour
 
     public void SetHighlight(Shader pHighlightShader, Color? pColor = null)
     {
-        var renderers = transform.Find("Highlightable")?.GetComponentsInChildren<Renderer>();
+        var renderers = transform.Find(Constants.Highlightable)?.GetComponentsInChildren<Renderer>();
         if (renderers != null)
         {
             List<Material> mats = new List<Material>();
@@ -148,7 +150,7 @@ public abstract class Actionable : MonoBehaviour
             return;
         }
 
-        var renderers = transform?.Find("Highlightable")?.GetComponentsInChildren<Renderer>();
+        var renderers = transform?.Find(Constants.Highlightable)?.GetComponentsInChildren<Renderer>();
         if (renderers != null)
         {
             List<Material> mats = new List<Material>();

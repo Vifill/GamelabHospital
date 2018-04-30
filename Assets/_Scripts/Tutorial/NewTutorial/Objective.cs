@@ -8,6 +8,7 @@ public class Objective : ScriptableObject
 {
     public string ObjectiveDescription;
     public EventManager.EventCodes OnFinishEvent;
+
     private List<Transform> ArrowPositions;
 
     public List<Transform> GetArrowPositions()

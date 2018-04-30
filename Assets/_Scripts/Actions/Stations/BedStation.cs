@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,15 +16,19 @@ public class BedStation : Actionable
     public float DirtynessClampMin;
 
     private BedController BedController;
-    private GameController GC;
+    //private GameController GC;
 
     public ToolName RequiredTool;
 
     // UI Stuff
     public GameObject DirtyBarPrefab;
-    private GameObject DirtyBarInstance;
+    public GameObject DirtyBarInstance;
     private Camera Cam;
-    private Image BarFill;
+    public Image BarFill;
+
+    //private Image BarFill;
+    private Animator DirtyBarAnimator;
+
     public Transform DirtyBarWorldBedPosition;
 
     private Transform DirtyBarUIPositionBed;
@@ -42,8 +47,8 @@ public class BedStation : Actionable
         LevelManager = FindObjectOfType<LevelManager>();
         DirtynessClampMax = MaxDirtyness;
         DirtynessClampMin = MinDirtyness;
-        BedController = GetComponent<BedController>();
-        GC = FindObjectOfType<GameController>();
+        //BedController = GetComponent<BedController>();
+        //GC = FindObjectOfType<GameController>();
         Canvas = GameObject.Find("MainCanvas");
         
         //UI Stuff
@@ -66,7 +71,8 @@ public class BedStation : Actionable
         DirtyBarInstance = Instantiate(DirtyBarPrefab, DirtyBarUIPositionBed);
         DirtyBarInstance.transform.localPosition = Vector3.zero;
 
-        BarFill = DirtyBarInstance.transform.GetChild(0).GetComponent<Image>();      
+        BarFill = DirtyBarInstance.transform.GetChild(1).GetComponent<Image>();
+        DirtyBarAnimator = DirtyBarInstance.GetComponent<Animator>();
     }
 
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
@@ -85,6 +91,11 @@ public class BedStation : Actionable
     {
         SetClean();
         LevelManager.AddPoints(50, transform.position);
+    }
+
+    private void SetDirtyBarWarning(bool pValue)
+    {
+        DirtyBarAnimator.SetBool(Constants.AnimationParameters.IsPulsatingUI, pValue);
     }
 
     public void IncreaseDirtyMeter(float pValue)
@@ -106,12 +117,24 @@ public class BedStation : Actionable
         if (DirtyBarInstance != null)
         {
             BarFill.fillAmount = DirtyMeter / 100;
+
+            if (BarFill.fillAmount >= 0.80)
+            {
+                SetDirtyBarWarning(true);
+            }
+            else
+            {
+                SetDirtyBarWarning(false);
+            }
         }
     }
     
     private void Update()
     {
-        DirtyBarUIPositionBed.position = Cam.WorldToScreenPoint(DirtyBarWorldBedPosition.position);
+        if (DirtyBarUIPositionBed != null)
+        {
+            DirtyBarUIPositionBed.position = Cam.WorldToScreenPoint(DirtyBarWorldBedPosition.position);
+        }
     }
 
     private IEnumerator LerpToUITransform(Transform pTargetTransform)
@@ -121,7 +144,7 @@ public class BedStation : Actionable
         DirtyBarInstance.transform.SetParent(pTargetTransform);
         //DirtyBarInstance.transform.position = oldParent.position;
 
-        while (Vector3.Distance(DirtyBarInstance.transform.position, pTargetTransform.position) > 1)
+        while ((DirtyBarInstance.transform.position - pTargetTransform.position).sqrMagnitude > 1)
         {
             DirtyBarInstance.transform.position = Vector3.Lerp(DirtyBarInstance.transform.position, pTargetTransform.transform.position, Time.deltaTime * LerpSpeed);
             yield return null;
@@ -131,13 +154,19 @@ public class BedStation : Actionable
 
     public void LerpDirtyBarUIWhenPatientLeavesBed()
     {
-        DirtyBarInstance.transform.SetParent(Canvas.transform);
-        StartCoroutine(LerpToUITransform(DirtyBarUIPositionBed));
+        if (DirtyBarInstance != null)
+        {
+            DirtyBarInstance.transform.SetParent(Canvas.transform);
+            StartCoroutine(LerpToUITransform(DirtyBarUIPositionBed));
+        }
     }
 
     public void LerpDirtyBarUIWhenPatientEntersBed(GameObject pObjectToParent)
     {
-        DirtyBarUIPositionPatient = pObjectToParent.transform.Find(DirtyBarPosString).transform;
-        StartCoroutine(LerpToUITransform(DirtyBarUIPositionPatient));
+        if (DirtyBarInstance != null)
+        {
+            DirtyBarUIPositionPatient = pObjectToParent.transform.Find(DirtyBarPosString).transform;
+            StartCoroutine(LerpToUITransform(DirtyBarUIPositionPatient));
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Assets._Scripts.Utilities;
 
 public class PointsUIManager : MonoBehaviour 
 {
@@ -74,7 +75,7 @@ public class PointsUIManager : MonoBehaviour
 
             if ((pGO.transform.position - DisplayedScoreText.transform.position).sqrMagnitude < 1000)
             {
-                ScoreAnimator.SetBool("GivingPoints", true);
+                ScoreAnimator.SetBool(Constants.AnimationParameters.GivingPoints, true);
             }
 
             if (BezierCurve.Count <= 0)
@@ -85,7 +86,7 @@ public class PointsUIManager : MonoBehaviour
         }
         DisplayedScore += pPoints;
         DisplayedScoreText.text = DisplayedScore.ToString();
-        ScoreAnimator.SetBool("GivingPoints", false);
+        ScoreAnimator.SetBool(Constants.AnimationParameters.GivingPoints, false);
         Destroy(pText.gameObject);
         if (pGO?.GetComponent<ParticleSystem>() != null)
         {

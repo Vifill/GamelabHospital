@@ -45,10 +45,12 @@ public class UIParticleSystem : MaskableGraphic
         {
             _transform = transform;
         }
+
+        ParticleSystem.MainModule main;
         if (_particleSystem == null)
         {
             _particleSystem = GetComponent<ParticleSystem>();
-
+            main = _particleSystem.main;
             if (_particleSystem == null)
             {
                 return false;
@@ -78,13 +80,15 @@ public class UIParticleSystem : MaskableGraphic
 #endif
 
             // automatically set scaling
-            _particleSystem.scalingMode = ParticleSystemScalingMode.Hierarchy;
+
+            
+            main.scalingMode = ParticleSystemScalingMode.Hierarchy;
 
             _particles = null;
         }
         if (_particles == null)
         {
-            _particles = new ParticleSystem.Particle[_particleSystem.maxParticles];
+            _particles = new ParticleSystem.Particle[main.maxParticles];
         }
 
         // prepare uvs
@@ -140,20 +144,20 @@ public class UIParticleSystem : MaskableGraphic
 
         // iterate through current particles
         int count = _particleSystem.GetParticles(_particles);
-
+        ParticleSystem.MainModule main = _particleSystem.main;
         for (int i = 0; i < count; ++i)
         {
             ParticleSystem.Particle particle = _particles[i];
 
             // get particle properties
-            Vector2 position = (_particleSystem.simulationSpace == ParticleSystemSimulationSpace.Local ? particle.position : _transform.InverseTransformPoint(particle.position));
+            Vector2 position = (main.simulationSpace == ParticleSystemSimulationSpace.Local ? particle.position : _transform.InverseTransformPoint(particle.position));
             float rotation = -particle.rotation * Mathf.Deg2Rad;
             float rotation90 = rotation + Mathf.PI / 2;
             Color32 color = particle.GetCurrentColor(_particleSystem);
             float size = particle.GetCurrentSize(_particleSystem) * 0.5f;
 
             // apply scale
-            if (_particleSystem.scalingMode == ParticleSystemScalingMode.Shape)
+            if (main.scalingMode == ParticleSystemScalingMode.Shape)
             {
                 position /= canvas.scaleFactor;
             }
@@ -242,7 +246,7 @@ public class UIParticleSystem : MaskableGraphic
         if (Application.isPlaying)
         {
             // unscaled animation within UI
-            _particleSystem.Simulate(Time.unscaledDeltaTime, false, false);
+            _particleSystem.Simulate(Time.deltaTime, false, false);
 
             SetAllDirty();
         }

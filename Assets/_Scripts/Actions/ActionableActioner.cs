@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Assets._Scripts.Utilities;
 
 public class ActionableActioner : MonoBehaviour 
 {
@@ -19,6 +20,8 @@ public class ActionableActioner : MonoBehaviour
     public AudioClip DropSound;
     public AudioClip InvalidActionSound;
     public Animator Animator;
+    public GameObject ParticlePrefab;
+
 
     private float TotalTime;
     private float CurrentTime { get { return CurrentAction.ActionProgress; } set { CurrentAction.ActionProgress = value; } }
@@ -71,6 +74,7 @@ public class ActionableActioner : MonoBehaviour
 
     protected virtual void OnSuccess()
     {
+        TransferReasource();
         PlayParticleEffects(CurrentAction.GetActionableParameters().ActionSuccessParticles, CurrentAction.transform);
 
         CurrentTime = 0;
@@ -80,6 +84,9 @@ public class ActionableActioner : MonoBehaviour
         ActionAfterFinishing?.Invoke(gameObject);
         ExternalActionWhenSuccessful?.Invoke();
         CurrentAction.PlayFinishedActionSFX();
+
+
+      
     }
 
     private void ProcessToolAfterSuccess()
@@ -137,6 +144,7 @@ public class ActionableActioner : MonoBehaviour
         ProgressBar = progressBar.transform.GetChild(0).GetComponent<Image>();
         TotalTime = parameters.TimeToTakeAction;
         IsActioning = true;
+        pAction.IsBeingActioned = true;
         MovementController?.StopMovement();
     }
 
@@ -157,7 +165,7 @@ public class ActionableActioner : MonoBehaviour
         }
     }
 
-    public void StopAction()
+    public virtual void StopAction()
     {
         if (ActionableParticles != null)
         {
@@ -169,6 +177,10 @@ public class ActionableActioner : MonoBehaviour
         CurrentAction?.OnStopAction();
 
         IsActioning = false;
+        if (CurrentAction != null)
+        {
+            CurrentAction.IsBeingActioned = false;
+        }
         DestroyProgressBar();
         MovementController?.StartMovement();
 
@@ -236,4 +248,132 @@ public class ActionableActioner : MonoBehaviour
         //}
         HighlightedActions.Clear();
     }
+
+    private void TransferReasource()
+    {
+
+        if (ParticlePrefab == null)
+        {
+            return;
+        }
+
+        if (CurrentAction is HydrationController)
+        {
+            int transferAmount = /*(int)UnityEngine.Random.Range(5, 10)*/ 1;
+            Image hydrationMeter = CurrentAction.GetComponent<HealthController>().HydrationUI.GetComponent<HydrationUIManager>().HydrationMeterUI;
+            Vector3 target = hydrationMeter.transform.position;
+            Color color = hydrationMeter.color;
+            for (int i = 0; i < transferAmount; i++)
+            {
+                StartCoroutine(TransferItemCoroutine(i / 10.0f, hydrationMeter.transform, true, transform, false, color));
+            }
+        }
+        else if (CurrentAction is BedStation)
+        {
+            int transferAmount = /*(int)UnityEngine.Random.Range(5, 10)*/ 1;
+            Image dirtyMeter = CurrentAction.GetComponent<BedStation>().BarFill;
+            Vector3 start = dirtyMeter.transform.position;
+            Color color = dirtyMeter.color;
+            for (int i = 0; i < transferAmount; i++)
+            {
+                StartCoroutine(TransferItemCoroutine(i / 10.0f, transform, false, dirtyMeter.transform, true, color));
+            }
+        }
+        else
+        {
+            return;
+        }
+       
+    }
+
+    private IEnumerator TransferItemCoroutine(float pDelay, Transform pTargetTrans, bool pTargetIsUI, Transform pStartTrans, bool pStartIsUI, Color pColor)
+    {
+        yield return new WaitForSeconds(pDelay);
+     
+
+        GameObject ParticleInstance = Instantiate(ParticlePrefab, Canvas.transform);
+        ParticleInstance.GetComponent<Image>().color = pColor;
+        if (pTargetIsUI)
+        {
+            ParticleSystem.MainModule main = ParticleInstance.GetComponentInChildren<ParticleSystem>().main;
+            main.startColor = FieldColor.Blue;
+        }
+        else
+        {
+            ParticleSystem.MainModule main = ParticleInstance.GetComponentInChildren<ParticleSystem>().main;
+            main.startColor = FieldColor.Brown;
+        }
+        List<Vector3> BezierCurve = GetBezierApproximation(CalculateControlPoints(pTargetTrans, pTargetIsUI, pStartTrans, pStartIsUI), 5);
+        ParticleInstance.transform.position = BezierCurve[0];
+        
+        while ((ParticleInstance.transform.position - BezierCurve.Last()).sqrMagnitude > 1)
+        {
+
+            ParticleInstance.transform.position = Vector3.MoveTowards(ParticleInstance.transform.position, BezierCurve[0], Time.deltaTime * Screen.height * .5f );
+            if ((ParticleInstance.transform.position - BezierCurve[0]).sqrMagnitude < 2)
+            {
+                BezierCurve.Remove(BezierCurve[0]);
+            }
+      
+            if (BezierCurve.Count <= 0)
+            {
+                break;
+            }
+            yield return null;
+        }
+        ParticleSystem.EmissionModule emission = ParticleInstance.GetComponentInChildren<ParticleSystem>().emission;
+        emission.enabled = false;
+        Destroy(ParticleInstance, 3);
+    }
+
+    Vector3[] CalculateControlPoints(Transform pTargetTrans, bool pTargetIsUI, Transform pStartTrans, bool pStartIsUI)
+    {
+        Vector3 uiTargetPos = Camera.main.WorldToScreenPoint(pTargetTrans.position);
+        Vector3 uiStartPos = Camera.main.WorldToScreenPoint(pStartTrans.position);
+        if (pTargetIsUI)
+        {
+            uiTargetPos = pTargetTrans.position;
+        }
+        if (pStartIsUI)
+        {
+            uiStartPos = pStartTrans.position;
+        }
+
+        Vector3 secondPoint = new Vector3(uiTargetPos.x + 2 * (Screen.height/10 * Math.Sign(uiStartPos.x - uiTargetPos.x)), uiTargetPos.y, 0);
+        if (pStartIsUI)
+        {
+            secondPoint = new Vector3(uiStartPos.x + 2 * (Screen.height / 10 * Math.Sign(uiStartPos.x - uiTargetPos.x)), uiStartPos.y, 0);
+        }
+        Vector3[] controlPoints = { uiStartPos, secondPoint, uiTargetPos };
+        return controlPoints;
+    }
+
+    List<Vector3> GetBezierApproximation(Vector3[] controlPoints, int outputSegmentCount)
+    {
+        Vector3[] points = new Vector3[outputSegmentCount + 1];
+        for (int i = 0; i <= outputSegmentCount; i++)
+        {
+            float t = (float)i / outputSegmentCount;
+            points[i] = GetBezierPoint(t, controlPoints, 0, controlPoints.Length);
+        }
+        return points.ToList();
+    }
+
+    Vector3 GetBezierPoint(float t, Vector3[] controlPoints, int index, int count)
+    {
+        if (count == 1)
+            return controlPoints[index];
+
+        var P0 = GetBezierPoint(t, controlPoints, index, count - 1);
+        var P1 = GetBezierPoint(t, controlPoints, index + 1, count - 1);
+        return new Vector3((1 - t) * P0.x + t * P1.x, (1 - t) * P0.y + t * P1.y, 0);
+    }
+
+    //Vector2 WorldToCanvas(Vector3 pVector)
+    //{
+    //    RectTransform CanvasRect =  Canvas.GetComponent<RectTransform>();
+    //    Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(pVector);
+    //    return new Vector2(((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
+    //                       ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)));
+    //}
 }

@@ -20,7 +20,6 @@ public class OrderlyMoveAction : OrderlyAction
 
     public OrderlyMoveAction(Transform pPosition, float pDistanceToStop = 0, float pDistanceWhenCloseEnough = 2)
     {
-        
         Target = pPosition;
         DistanceToStop = pDistanceToStop;
         DistanceWhenCloseEnough = pDistanceWhenCloseEnough;
@@ -47,9 +46,9 @@ public class OrderlyMoveAction : OrderlyAction
     {
         Animator = OrderlyObject.GetComponentInChildren<Animator>();
 
-        if (!Animator.GetBool("IsWalking"))
+        if (!Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
         {
-            Animator.SetBool("IsWalking", true);
+            Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, true);
             //EmissionModule.enabled = true;
         }
 
@@ -66,14 +65,12 @@ public class OrderlyMoveAction : OrderlyAction
 
     protected override void OnStopAction()
     {
-
         NavAgent = OrderlyObject.GetComponent<NavMeshAgent>();
         NavAgent.isStopped = true;
 
-        if (Animator.GetBool("IsWalking"))
+        if (Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
         {
-            Animator.SetBool("IsWalking", false);
-            //EmissionModule.enabled = true;
+            Animator.SetBool(Constants.AnimationParameters.CharacterIsWalking, false);
         }
 
         OrderlyObject.GetComponent<OrderlyController>().DisableMovementParticle();
@@ -81,7 +78,7 @@ public class OrderlyMoveAction : OrderlyAction
 
     private Vector3 GetTargetPoint(Transform actionable)
     {
-        var parentTransform = actionable.Find(Constants.GuidePoints);
+        var parentTransform = actionable.root.Find(Constants.GuidePoints);
         Vector3 closestPoint = actionable.position;
         if (parentTransform != null)
         {

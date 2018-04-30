@@ -10,8 +10,14 @@ public class MovementControllerTutorial : MovementController
 
         if(CanMove && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
         {
-            EventManager.TriggerEvent(EventManager.EventCodes.DoneWalking);
+            StartCoroutine(DoneWalking());
         }
     }
 
+    private IEnumerator DoneWalking()
+    {
+        yield return new WaitForSeconds(5);
+
+        EventManager.TriggerEvent(EventManager.EventCodes.DoneWalking);
+    }
 }

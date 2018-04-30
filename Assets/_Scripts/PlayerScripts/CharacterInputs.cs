@@ -28,7 +28,7 @@ public class CharacterInputs : MonoBehaviour
                 ActionableActioner.AttemptAction(action, GetComponent<MovementController>());
             }
             
-            if (action != null && !action.CanBeActioned(GetCurrentTool(), gameObject))
+            else if (action != null && !action.CanBeActioned(GetCurrentTool(), gameObject))
             {
                 //error sound
                 ActionController.Asource.PlayOneShot(ActionController.InvalidActionSound);

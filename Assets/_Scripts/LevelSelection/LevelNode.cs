@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,8 +47,8 @@ public class LevelNode : MonoBehaviour
         UIPos = GameObject.FindGameObjectWithTag("UIPos").transform;
         StandardShader = Shader.Find("Standard");
         ActivateSparkParticleEffect();
-
-        var highlightable = transform.Find("Highlightable");
+        
+        var highlightable = transform.Find(Constants.Highlightable);
         foreach (var renderer in highlightable.GetComponentsInChildren<Renderer>())
         {
             HighlightMaterials.AddRange(renderer.materials);
@@ -94,7 +95,7 @@ public class LevelNode : MonoBehaviour
             {
                 mat.shader = HighlightShader;
             }
-            var pos = Camera.main.WorldToScreenPoint(transform.position) + UIOffset;
+            //var pos = Camera.main.WorldToScreenPoint(transform.position) + UIOffset;
             PopUpUI = Instantiate(LevelSelectionUIPrefab, UIPos.position, Quaternion.identity, MainCanvas);
             PopUpUI.GetComponent<LevelSelectionUI>().Initialize(LevelConfig, LevelNo, LevelMdl);
             CursorCtrl.SetCursorToClickable();

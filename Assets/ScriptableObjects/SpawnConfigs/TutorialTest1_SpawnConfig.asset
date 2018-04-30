@@ -11,20 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8a85a70c76f5c4e9babb749f623453, type: 3}
   m_Name: TutorialTest1_SpawnConfig
   m_EditorClassIdentifier: 
-  SpawnRate: 15
+  SpawnRate: 7
   RandomVariance: 0
-  CholeraSeverityRange: {x: 85, y: 85}
+  CholeraSeverityRange: {x: 80, y: 80}
   HydrationRange: {x: 70, y: 70}
-  PatientPrefab: {fileID: 1976841698954826, guid: fac5642152ea58440ad2a425bc07ac0c,
+  PatientPrefab: {fileID: 1976841698954826, guid: 9f55d4b19ad1a134aa94226ee17050de,
     type: 2}
   ListOfPatientConfigs:
   - HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
     CholeraConfig: {fileID: 11400000, guid: ed86ee7c68dabf0429209d10a8fcd045, type: 2}
-    ThresholdOddsConfig: {fileID: 11400000, guid: a9a967e65765b9d4891827c2ea524fe3,
+    ThresholdOddsConfig: {fileID: 11400000, guid: d15afb944f518f24295a0ec094b49666,
       type: 2}
     BedSanitationThresholdConfig: {fileID: 11400000, guid: 79bb8956573112f49b04d3ee7b778a25,
       type: 2}
-    HydrationHealingConfig: {fileID: 11400000, guid: 50deca0eeca8726428e77195ed34b9ac,
+    HydrationHealingConfig: {fileID: 11400000, guid: 3cbd5c110f05f3a4f9108cfa12d03ef6,
       type: 2}
     DoctorSanitationThresholdConfig: {fileID: 11400000, guid: 8e5cf8227361e3f49abdfeaf9aea8402,
       type: 2}

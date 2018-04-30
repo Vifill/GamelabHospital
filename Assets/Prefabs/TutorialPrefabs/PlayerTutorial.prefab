@@ -3483,7 +3483,7 @@ Animator:
   m_GameObject: {fileID: 1310790600503824}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: affdd970fcd258d408437719aa83a068, type: 3}
-  m_Controller: {fileID: 9100000, guid: aa975262c6be63b4382e6ce4c46a9c8f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 030556435c63b8a4e9a7edf84d1d08cf, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3547,12 +3547,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75fd5a3372c635428eaa3f554404ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DashParticles: {fileID: 1424130610902414, guid: 58f3c0b377337b64cb16e00d280c69a0,
+    type: 2}
   MovementParticle: {fileID: 1280083263524546, guid: 61a58eee84a23084f9cb49a6045fd95b,
     type: 2}
   Speed: 8.65
   RotSpeed: 16
   YOffset: 1
   CanMove: 0
+  CanDash: 0
+  IsDashing: 0
   WindUpTime: 5
 --- !u!114 &114680177855136460
 MonoBehaviour:
@@ -3596,6 +3600,16 @@ MonoBehaviour:
   ToolPosition: {fileID: 4598210816594972}
   DropPosition: {fileID: 4307994074260400}
   Animator: {fileID: 95512023688566692}
+  OnToolSet:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnToolRemove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!136 &136154828841442732
 CapsuleCollider:
   m_ObjectHideFlags: 1

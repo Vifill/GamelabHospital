@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4839183511745572}
   - component: {fileID: 33516396632079694}
   - component: {fileID: 23995545539770698}
-  - component: {fileID: 95381015042299300}
   m_Layer: 0
   m_Name: IVBag (2)
   m_TagString: Untagged
@@ -39,7 +38,6 @@ GameObject:
   - component: {fileID: 4580426107322534}
   - component: {fileID: 33606369823378096}
   - component: {fileID: 23751115190750112}
-  - component: {fileID: 95781591012041616}
   m_Layer: 0
   m_Name: IVBag
   m_TagString: Untagged
@@ -90,7 +88,6 @@ GameObject:
   - component: {fileID: 4210200376429374}
   - component: {fileID: 33669369520670640}
   - component: {fileID: 23083434219658076}
-  - component: {fileID: 95241960740206954}
   m_Layer: 0
   m_Name: IVBag (1)
   m_TagString: Untagged
@@ -108,7 +105,6 @@ GameObject:
   - component: {fileID: 4947112967758128}
   - component: {fileID: 33176679491460650}
   - component: {fileID: 23322046260156556}
-  - component: {fileID: 95247420448852624}
   m_Layer: 0
   m_Name: IVStation_v2
   m_TagString: Untagged
@@ -461,74 +457,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &95241960740206954
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1793559885747386}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 3037572b6e42c8446b861d2b59fabde1, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95247420448852624
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1905947795154594}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bb5e0f892a8c7fd4d89e591d29e0f03a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95381015042299300
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1062542026858542}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 3037572b6e42c8446b861d2b59fabde1, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95781591012041616
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1585610212361728}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 3037572b6e42c8446b861d2b59fabde1, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114911574390403110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -554,6 +482,7 @@ MonoBehaviour:
   NeedsSanitizedTool: 0
   ConsumesTool: 0
   MakesPlayerDirty: 0
+  IsBeingActioned: 0
   ActionIcon: {fileID: 1722825242517722, guid: dc414ceb762507443b3f4d710ab3a214, type: 2}
   ActionProgress: 0
   ToolObject: {fileID: 1240736790147530, guid: f8f1727c4c6ee9d4e8a8394c43af63af, type: 2}

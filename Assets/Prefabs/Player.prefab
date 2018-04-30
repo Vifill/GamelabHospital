@@ -2265,7 +2265,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1206070611663440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 1.5, z: 0}
+  m_LocalPosition: {x: 2.86, y: 1.5, z: 1.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4273150563344518}
@@ -3669,12 +3669,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9399745eeb2c64ca5084f7f282679f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DashSound: {fileID: 8300000, guid: 9482282f0c5ec2d4f8e177594aeddfa2, type: 3}
+  DashParticles: {fileID: 1424130610902414, guid: 58f3c0b377337b64cb16e00d280c69a0,
+    type: 2}
   MovementParticle: {fileID: 1280083263524546, guid: 61a58eee84a23084f9cb49a6045fd95b,
     type: 2}
   Speed: 8.65
   RotSpeed: 16
   YOffset: 1
   CanMove: 0
+  CanDash: 0
+  IsDashing: 0
   WindUpTime: 5
 --- !u!114 &114680177855136460
 MonoBehaviour:
@@ -3687,8 +3692,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e72b482cdd50e74b815be5c85980c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentSanitationLevel: 0
-  MaxSanitationLevel: 100
+  Sanitation: 0
+  MaxSanitation: 100
+  MinSanitation: 0
+  SanitationClampMax: 0
+  SanitationClampMin: 0
   SanitationBarUIPrefab: {fileID: 1979533752814144, guid: d612a684194c25f4a8f54fb4a299f5df,
     type: 2}
   UIPosition: P1PortraitPos
@@ -3713,6 +3721,16 @@ MonoBehaviour:
   ToolPosition: {fileID: 4598210816594972}
   DropPosition: {fileID: 4307994074260400}
   Animator: {fileID: 95512023688566692}
+  OnToolSet:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnToolRemove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!136 &136154828841442732
 CapsuleCollider:
   m_ObjectHideFlags: 1

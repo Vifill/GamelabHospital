@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,11 +34,11 @@ public class PickupStationController : Actionable
     {
         if (ActionProgress == 0)
         {
-            Animator?.SetBool("Actioning", false);
+            Animator?.SetBool(Constants.AnimationParameters.CharacterIsActioning, false);
         }
         else
         {
-            Animator?.SetFloat("Speed", 0);
+            Animator?.SetFloat(Constants.AnimationParameters.Speed, 0);
         }
         //var progressRatio = ActionProgress / ActionTime;
         //if (progressRatio < 1 && progressRatio > 0)
@@ -55,12 +56,12 @@ public class PickupStationController : Actionable
     {
         if (ActionProgress == 0)
         {
-            Animator?.SetBool("Actioning", true);
-            Animator?.SetFloat("Speed", 1);
+            Animator?.SetBool(Constants.AnimationParameters.CharacterIsActioning, true);
+            Animator?.SetFloat(Constants.AnimationParameters.Speed, 1);
         }
         else
         {
-            Animator?.SetFloat("Speed", 1);
+            Animator?.SetFloat(Constants.AnimationParameters.Speed, 1);
         }
         //var progressRatio = ActionProgress / ActionTime;
         //if (progressRatio == 0)

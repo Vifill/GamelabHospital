@@ -142,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 1230556889992956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 4951524021880454}
   m_Father: {fileID: 0}
@@ -283,6 +283,8 @@ MonoBehaviour:
   NeedsSanitizedTool: 0
   ConsumesTool: 0
   MakesPlayerDirty: 0
+  IsBeingActioned: 0
+  ActionIcon: {fileID: 0}
   ActionProgress: 0
   PickupRotation: {x: 0, y: 0, z: 0}
   StationaryRotation: {x: 0, y: 0, z: 0}
@@ -310,3 +312,4 @@ MonoBehaviour:
     ActionTime: 1
     DisplayPrefab: {fileID: 0}
     HydrationSound: {fileID: 8300000, guid: 0fe150a76c6fce54286ccb27eddfe948, type: 3}
+    PatientAnimationParameter: PatientDrink

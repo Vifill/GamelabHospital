@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,10 +15,9 @@ public class ToolController : MonoBehaviour
     public UnityEvent OnToolSet;
     public UnityEvent OnToolRemove;
 
-
     public ToolName GetCurrentToolName()
     {
-        return CurrentTool?.GetComponent<ToolBase>()?.ToolName ?? ToolName.NoTool; 
+        return CurrentTool?.GetComponent<ToolBase>()?.ToolName ?? ToolName.NoTool;
     }
 
     internal void DestroyTool()
@@ -73,38 +73,27 @@ public class ToolController : MonoBehaviour
             switch(GetCurrentToolName())
             {
                 case ToolName.Bandage:
-                    Animator.SetBool("HoldingBandage", true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingBandage, true);
                     break;
                 case ToolName.AnaestheticSyringe:
-                    Animator.SetBool("HoldingSyringe", true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingSyringe, true);
                     break;
                 case ToolName.VaccinationSyringe:
-                    Animator.SetBool("HoldingSyringe", true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingSyringe, true);
                     break;
                 case ToolName.Saw:
-                    Animator.SetBool("HoldingSaw", true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingSaw, true);
                     break;
                 case ToolName.Bucket:
-                    Animator.SetBool("HoldingBandage", true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingBandage, true);
                     break;
                 case ToolName.Water:
-                    Animator.SetBool("HoldingWater", true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingWater, true);
                     break;
                 case ToolName.IVBag:
-                    Animator.SetBool("HoldingIVBag", true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingIVBag, true);
                     break;
             }
-
-
-
-            //if (GetCurrentToolName() == ToolName.Bandage)
-            //{
-            //    Animator.SetBool("HoldingBandage", true);
-            //}
-            //else if(GetCurrentToolName)
-            //{
-            //    Animator.SetBool("HoldingBandage", false);
-            //}
         }         
     }
 
