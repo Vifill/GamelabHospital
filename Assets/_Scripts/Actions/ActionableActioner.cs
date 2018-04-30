@@ -265,7 +265,7 @@ public class ActionableActioner : MonoBehaviour
             Color color = hydrationMeter.color;
             for (int i = 0; i < transferAmount; i++)
             {
-                StartCoroutine(TransferItemCoroutine(i / 10.0f, hydrationMeter.transform, true, transform, false, color));
+                StartCoroutine(TransferItemCoroutine(i / 10.0f, hydrationMeter.transform, true, transform, false, Constants.Colors.Blue));
             }
         }
         else if (CurrentAction is BedStation)
@@ -276,7 +276,7 @@ public class ActionableActioner : MonoBehaviour
             Color color = dirtyMeter.color;
             for (int i = 0; i < transferAmount; i++)
             {
-                StartCoroutine(TransferItemCoroutine(i / 10.0f, transform, false, dirtyMeter.transform, true, color));
+                StartCoroutine(TransferItemCoroutine(i / 10.0f, transform, false, dirtyMeter.transform, true, Constants.Colors.Brown));
             }
         }
         else
@@ -296,12 +296,12 @@ public class ActionableActioner : MonoBehaviour
         if (pTargetIsUI)
         {
             ParticleSystem.MainModule main = ParticleInstance.GetComponentInChildren<ParticleSystem>().main;
-            main.startColor = FieldColor.Blue;
+            main.startColor = pColor;
         }
         else
         {
             ParticleSystem.MainModule main = ParticleInstance.GetComponentInChildren<ParticleSystem>().main;
-            main.startColor = FieldColor.Brown;
+            main.startColor = pColor;
         }
         List<Vector3> BezierCurve = GetBezierApproximation(CalculateControlPoints(pTargetTrans, pTargetIsUI, pStartTrans, pStartIsUI), 5);
         ParticleInstance.transform.position = BezierCurve[0];
@@ -368,12 +368,4 @@ public class ActionableActioner : MonoBehaviour
         var P1 = GetBezierPoint(t, controlPoints, index + 1, count - 1);
         return new Vector3((1 - t) * P0.x + t * P1.x, (1 - t) * P0.y + t * P1.y, 0);
     }
-
-    //Vector2 WorldToCanvas(Vector3 pVector)
-    //{
-    //    RectTransform CanvasRect =  Canvas.GetComponent<RectTransform>();
-    //    Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(pVector);
-    //    return new Vector2(((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
-    //                       ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)));
-    //}
 }
