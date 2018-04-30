@@ -24,12 +24,11 @@ public class BedStation : Actionable
     public GameObject DirtyBarPrefab;
     public GameObject DirtyBarInstance;
     private Camera Cam;
-<<<<<<< .merge_file_a11144
     public Image BarFill;
-=======
-    private Image BarFill;
+
+    //private Image BarFill;
     private Animator DirtyBarAnimator;
->>>>>>> .merge_file_a04060
+
     public Transform DirtyBarWorldBedPosition;
 
     private Transform DirtyBarUIPositionBed;
