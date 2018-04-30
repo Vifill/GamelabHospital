@@ -99,8 +99,8 @@ public class HydrationController : Actionable
 
         while(counter <= pHmodel.TimeItTakes)
         {
-            HealthCtrl.HydrationMeter = Mathf.Clamp(HealthCtrl.HydrationMeter + (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime, HealthCtrl.MinHydration, HealthCtrl.MaxHydration);
-
+            //HealthCtrl.HydrationMeter = Mathf.Clamp(HealthCtrl.HydrationMeter + (CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime, HealthCtrl.MinHydration, HealthCtrl.MaxHydration);
+            HealthCtrl.SetHydration(HealthCtrl.HydrationMeter + ((CurrentHydrationModel.HydrationReplenished / CurrentHydrationModel.TimeItTakes) * Time.deltaTime));
             counter += Time.deltaTime;
             yield return null;
         }

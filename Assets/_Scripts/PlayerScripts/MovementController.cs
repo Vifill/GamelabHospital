@@ -40,7 +40,7 @@ public class MovementController : MonoBehaviour {
 	// Update is called once per frame
 	private void Update ()
     {
-        if (CanDash && CanMove && Input.GetKeyDown(KeyCode.LeftShift))
+        if (CanDash && CanMove && Input.GetButtonDown("Fire3"))
         {
             Dash();
         }
@@ -65,10 +65,9 @@ public class MovementController : MonoBehaviour {
 
     protected virtual void WalkInput()
     {
-        if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
+        if (Input.GetAxis ("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
             Direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            //Debug.Log(Direction);
             if (Direction.magnitude > 1)
             {
                 Direction.Normalize();

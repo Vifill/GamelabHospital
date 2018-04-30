@@ -195,7 +195,8 @@ public class TutorialUtility : MonoBehaviour
 
         foreach (var patient in patients)
         {
-            patient.HydrationMeter = pHydrationAmount;
+            //patient.HydrationMeter = pHydrationAmount;
+            patient.SetHydration(pHydrationAmount);
         }
     }
 

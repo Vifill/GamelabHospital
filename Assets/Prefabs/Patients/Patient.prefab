@@ -6905,7 +6905,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
-  HydrationMeter: 75
   MaxHydration: 100
   MinHydration: 0
   MaxHealth: 100
@@ -6932,6 +6931,10 @@ MonoBehaviour:
   ConstantHealing: 0
   BedManagerInstance: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
   HydrationUI: {fileID: 0}
+  MaxHealthIncresePerSecond: 4
+  ComboBonusAmount: 0.5
+  ComboBonusTime: 3
+  ComboRedemptionTime: 5
 --- !u!114 &114501508067448934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7030,7 +7033,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1976841698954826}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
