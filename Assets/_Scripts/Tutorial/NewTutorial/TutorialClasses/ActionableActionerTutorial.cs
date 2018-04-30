@@ -5,6 +5,11 @@ public class ActionableActionerTutorial : ActionableActioner
 {
     protected override void OnSuccess()
     {
+        if (CurrentAction is TableStation && (CurrentAction as TableStation).TableObject.GetComponent<BucktetTool>().ToolName == ToolName.Bucket)
+        {
+            EventManager.TriggerEvent(EventManager.EventCodes.DoneGetBucket);
+        }
+
         base.OnSuccess();
 
         if(CurrentAction is PickupStationController && (CurrentAction as PickupStationController).ToolObject.GetComponent<ToolBase>().ToolName == ToolName.Water)
@@ -19,5 +24,6 @@ public class ActionableActionerTutorial : ActionableActioner
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneCheckOut);
         }
+        
     }
 }
