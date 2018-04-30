@@ -253,6 +253,7 @@ public class HealthController : MonoBehaviour
         }
         else if (prevHydration < threshold && HydrationMeter >= threshold)
         {
+            HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
             StartCoroutine(ComboBonusSetter(ComboBonusTime, ComboBonusAmount));
         }
         else if (prevHydration < threshold && HydrationMeter < threshold)

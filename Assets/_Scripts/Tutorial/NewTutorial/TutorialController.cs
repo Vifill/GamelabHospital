@@ -60,27 +60,27 @@ public class TutorialController : MonoBehaviour
 
     private void OnCleanDoctorDoneEvent()
     {
-        throw new NotImplementedException();
+        Debug.Log("Doctor Cleaned, event triggered.");
     }
 
     private void OnCleanBucketDoneEvent()
     {
-        throw new NotImplementedException();
+        Debug.Log("Buckets Cleaned, event triggered.");
     }
 
     private void OnReturnBucketDoneEvent()
     {
-        throw new NotImplementedException();
+        Debug.Log("Buckets Returned, event triggered.");
     }
 
     private void OnCleanBedDoneEvent()
     {
-        throw new NotImplementedException();
+        Debug.Log("Bed Cleaned, event triggered.");
     }
 
     private void OnGetBucketDoneEvent()
     {
-        throw new NotImplementedException();
+        Debug.Log("Buckets picked up, event triggered.");
     }
 
     private void OnPatientDeath()
