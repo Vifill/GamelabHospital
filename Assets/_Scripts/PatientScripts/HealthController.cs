@@ -182,9 +182,15 @@ public class HealthController : MonoBehaviour
     {
         if (!PatientStatusController.IsHealed)
         {
-            HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
+            SetExcreteWarning();
             Invoke("Excrete", 5);
         }
+    }
+
+    private void SetExcreteWarning()
+    {
+        HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
+        PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPukeWarning);
     }
 
     private void Excrete()
