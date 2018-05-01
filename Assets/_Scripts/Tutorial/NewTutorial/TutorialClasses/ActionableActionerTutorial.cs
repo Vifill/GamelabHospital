@@ -9,6 +9,10 @@ public class ActionableActionerTutorial : ActionableActioner
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneGetBucket);
         }
+        if (CurrentAction is TableStation && (CurrentAction as TableStation).TableObject == null && GetComponent<ToolController>().GetCurrentToolName() == ToolName.Bucket)
+        {
+            EventManager.TriggerEvent(EventManager.EventCodes.DoneReturnBucket);
+        }
 
         base.OnSuccess();
 
@@ -23,6 +27,18 @@ public class ActionableActionerTutorial : ActionableActioner
         if (CurrentAction is PatientCheckoutController)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneCheckOut);
+        }
+        if (CurrentAction is BedStation)
+        {
+            EventManager.TriggerEvent(EventManager.EventCodes.DoneCleanBed);
+        }
+        if (CurrentAction is CleaningStation)
+        {
+            EventManager.TriggerEvent(EventManager.EventCodes.DoneCleanBucket);
+        }
+        if (CurrentAction is WashingStation)
+        {
+            EventManager.TriggerEvent(EventManager.EventCodes.DoneCleanDoctor);
         }
         
     }
