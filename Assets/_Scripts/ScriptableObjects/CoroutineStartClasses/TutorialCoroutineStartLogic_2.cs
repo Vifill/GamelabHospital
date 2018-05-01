@@ -6,8 +6,9 @@ public class TutorialCoroutineStartLogic_2 : TutorialCoroutineStartLogic
 {
     public override IEnumerator TutorialStartCoroutine()
     {
+        yield return new WaitForEndOfFrame();
         TutorialUtility.SetTimeFreeze(true);
-        //TutorialUtility.SetTimerUIAsActive(false);
+        TutorialUtility.SetTimerUIAsActive(false);
 
         yield return new WaitForSeconds(0.1f);
 
@@ -16,7 +17,7 @@ public class TutorialCoroutineStartLogic_2 : TutorialCoroutineStartLogic
         TutorialUtility.SetPatientHydration(50);
         TutorialUtility.SetPatientHealth(50);
         TutorialUtility.SetHydrationFreeze(true);
-        TutorialUtility.SetHealthFreeze(false);
+        TutorialUtility.SetHealthFreeze(true);
         TutorialUtility.SetFreezeExcretion(true);
     }
 }
