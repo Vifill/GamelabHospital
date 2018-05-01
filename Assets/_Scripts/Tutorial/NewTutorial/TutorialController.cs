@@ -157,7 +157,7 @@ public class TutorialController : MonoBehaviour
     private void OnWalkingDoneEvent()
     {
         TutorialUtility.SetHydrationFreeze(false);
-        TutorialUtility.ForcePatientExcretion();
+        TutorialUtility.ForcePatientSickness();
         TutorialUtility.SetHydrationFreeze(true);
     }
 

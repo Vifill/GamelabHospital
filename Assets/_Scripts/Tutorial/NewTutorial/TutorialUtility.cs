@@ -236,4 +236,11 @@ public class TutorialUtility : MonoBehaviour
 
         levelManager.EndLevel();
     }
+
+    public static void ForcePatientSickness()
+    {
+        var patient = FindObjectOfType<HealthController>();
+
+        patient.ForceSickness();
+    }
 }

@@ -307,4 +307,9 @@ public class HealthController : MonoBehaviour
     {
         Excrete();
     }
+
+    public void ForceSickness()
+    {
+        StartFeelingSick();
+    }
 }
