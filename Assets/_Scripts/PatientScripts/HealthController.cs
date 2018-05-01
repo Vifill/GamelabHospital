@@ -34,8 +34,8 @@ public class HealthController : MonoBehaviour
     public CholeraConfig CholeraConfig;
     [HideInInspector]
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
-    [HideInInspector]
-    public SanitationThresholdConfig BedSanitationConfig;
+    //[HideInInspector]
+    //public SanitationThresholdConfig BedSanitationConfig;
     [HideInInspector]
     public HydrationHealingConfig HydrationHealingConfig;
     [HideInInspector]
@@ -149,10 +149,10 @@ public class HealthController : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(1);
-            var inBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);            
-            if(inBed != null)
+            var bed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject)?.GetComponent<BedStation>();            
+            if(bed != null)
             {
-                var healthDecrease = BedSanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.HealthDecreasePerSecond ?? 0;
+                var healthDecrease = bed.BedSanitationThresholds.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= bed.DirtyMeter)?.HealthDecreasePerSecond ?? 0;
                 Health = Mathf.Clamp(Health -= healthDecrease, HealthClampMin, HealthClampMax);
             }
         }
@@ -175,6 +175,7 @@ public class HealthController : MonoBehaviour
             }
             yield return null;
         }
+        yield return null;
     }
 
     private void StartFeelingSick()
@@ -200,7 +201,7 @@ public class HealthController : MonoBehaviour
             PatientPrefabAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
             Debug.Log($"I'M PUKING!");
         }
-        StartCoroutine(SickCoroutine());
+        StartSickCoroutine();
     }
 
     private void StartPukingAnimation()
@@ -292,7 +293,7 @@ public class HealthController : MonoBehaviour
             }
 
             HealthIncrease = Mathf.Clamp(HealthIncrease + pAmount, minHPS, MaxHealthIncresePerSecond);
-            print("healthincrease is now = " + HealthIncrease + " for " + gameObject);
+            //print("healthincrease is now = " + HealthIncrease + " for " + gameObject);
         }
     }
 

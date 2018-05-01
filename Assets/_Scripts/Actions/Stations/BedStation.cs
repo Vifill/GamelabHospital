@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,7 @@ public class BedStation : Actionable
     public float DirtynessClampMax;
     [HideInInspector]
     public float DirtynessClampMin;
+    public SanitationThresholdConfig BedSanitationThresholds;
 
     private BedController BedController;
     //private GameController GC;
@@ -71,8 +73,13 @@ public class BedStation : Actionable
         DirtyBarInstance = Instantiate(DirtyBarPrefab, DirtyBarUIPositionBed);
         DirtyBarInstance.transform.localPosition = Vector3.zero;
 
-        BarFill = DirtyBarInstance.transform.GetChild(1).GetComponent<Image>();
+        BarFill = DirtyBarInstance.transform.Find("MeterFill").GetComponent<Image>();
+        BarFill.fillAmount = 0;
         DirtyBarAnimator = DirtyBarInstance.GetComponent<Animator>();
+
+        var thresholdLine = DirtyBarInstance.transform.Find("ThresholdLine").GetComponent<RectTransform>();
+        var xPos = BedSanitationThresholds.ListOfThresholds.FirstOrDefault().ThresholdOfActivation + 1;
+        thresholdLine.anchoredPosition = new Vector2(xPos, thresholdLine.anchoredPosition.y);
     }
 
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
