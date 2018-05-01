@@ -8,6 +8,7 @@ public class TutorialUtility : MonoBehaviour
 {
     public bool TimeFreeze = false;
     private static TutorialUtility tutorialEntity;
+    public GameObject TimerUI;
 
     public static TutorialUtility instance
     {
@@ -129,6 +130,16 @@ public class TutorialUtility : MonoBehaviour
         }
     }
 
+    public static void SetPlayerSanitation(float pValue)
+    {
+        var sanitationControllers = FindObjectsOfType<SanitationController>();
+
+        foreach (var controller in sanitationControllers)
+        {
+            controller.MakePlayerDirty(pValue);
+        }
+    }
+
     public static void SetBedSanitationFreeze(bool pState)
     {
         var bedStations = FindObjectsOfType<BedStation>();
@@ -196,9 +207,13 @@ public class TutorialUtility : MonoBehaviour
 
     public static void SetTimerUIAsActive(bool pState)
     {
-        var timerUI = FindObjectOfType<TimerUIManager>().gameObject;
+        if (!pState)
+        {
+            instance.TimerUI = FindObjectOfType<TimerUIManager>().gameObject;
+        }
+        //var timerUI = FindObjectOfType<TimerUIManager>().gameObject;
 
-        timerUI.SetActive(pState);
+        instance.TimerUI?.SetActive(pState);
     }
 
     public static void SetPlayerMovementFreeze(bool pState)

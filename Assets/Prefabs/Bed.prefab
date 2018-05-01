@@ -275,7 +275,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816757247161776}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.1299999, y: 0, z: 6.84}
+  m_LocalPosition: {x: 2.9, y: 0, z: 6.7700005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4632487164283986}
@@ -604,9 +604,13 @@ MonoBehaviour:
   MinDirtyness: 0
   DirtynessClampMax: 0
   DirtynessClampMin: 0
+  BedSanitationThresholds: {fileID: 11400000, guid: 79bb8956573112f49b04d3ee7b778a25,
+    type: 2}
   RequiredTool: 4
   DirtyBarPrefab: {fileID: 1154615503781104, guid: 10fa7efb3641afe48b8bab47653a2f1a,
     type: 2}
+  DirtyBarInstance: {fileID: 0}
+  BarFill: {fileID: 0}
   DirtyBarWorldBedPosition: {fileID: 4796624274203654}
   LerpSpeed: 5
 --- !u!114 &114788812090140734

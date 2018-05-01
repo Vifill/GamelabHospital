@@ -580,7 +580,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 71785105}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -5.8, y: 3.2, z: 4.08}
+  m_LocalPosition: {x: -5.8, y: 3.73, z: 3.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930041721}
@@ -805,6 +805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a6141a8fb1fe048980d63aeef56f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeFreeze: 0
+  TimerUI: {fileID: 0}
 --- !u!1001 &118000408
 Prefab:
   m_ObjectHideFlags: 0
@@ -7963,7 +7965,7 @@ Prefab:
         type: 2}
       propertyPath: DoctorSanitationConfig
       value: 
-      objectReference: {fileID: 11400000, guid: be9fae72ce2545145be56a55c8008d0c,
+      objectReference: {fileID: 11400000, guid: 3bc9a17cd6ba36240a12079fe0a49bc4,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c4315246dbe1b24f8c57968b3b99056, type: 2}
@@ -15063,7 +15065,7 @@ Prefab:
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
       propertyPath: Objectives.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4471104362058194, guid: 08dc7095f218bdf48bd81a2bdc75cfaa, type: 2}
       propertyPath: m_LocalPosition.x
@@ -15142,7 +15144,7 @@ Prefab:
         type: 2}
       propertyPath: Objectives.Array.data[6]
       value: 
-      objectReference: {fileID: 11400000, guid: 6571b26544efb1641b15ec1d8b22b7b3,
+      objectReference: {fileID: 11400000, guid: 46f7be64a6701444696461e67b8dcfb0,
         type: 2}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
