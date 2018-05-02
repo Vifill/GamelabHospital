@@ -69,20 +69,22 @@ public class BarFillFalloff : MonoBehaviour {
     
     public void VisualGain(float pFillAmount)
     {
+        if (OverlayImage == null)
+        {
+            return;
+        }
         IsGaining = true;
-        OverlayImage.color = Constants.Colors.GetColor("#006400");/*Constants.Colors.Green;*/
+        OverlayImage.color = Constants.Colors.Green;
         OverlayImage.fillAmount = pFillAmount;
         StartCoroutine(GainCoroutine(pFillAmount));
     }
   
     private IEnumerator GainCoroutine (float pFillAmount)
     {
-        print("lolwat: " + pFillAmount);
         yield return new WaitForSeconds(.75f);
 
         while (Image.fillAmount < pFillAmount)
 	    {
-            print("run");
             Image.fillAmount = Mathf.MoveTowards(Image.fillAmount, pFillAmount, Time.deltaTime/2);
             yield return null;
 	    }

@@ -49,7 +49,7 @@ namespace Assets._Scripts.Utilities
             public static Color Blue => GetColor("#004D7DFF");
             public static Color Brown => GetColor("#6C5300FF");
             public static Color Red => GetColor("#B22222");
-            public static Color Green => GetColor("#00FA9A");
+            public static Color Green => GetColor("#006400");
 
 
             public static Color GetColor(string pHexString)
