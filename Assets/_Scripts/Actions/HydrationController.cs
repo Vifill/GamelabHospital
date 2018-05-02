@@ -39,9 +39,12 @@ public class HydrationController : Actionable
         float actionTime = 0;
         if(pObjectActioning != null)
         {
-            CurrentHydrationModel = (pObjectActioning.GetComponent<ToolController>().GetToolBase() as HydrationTool).HydrationModel;
-            actionTime = CurrentHydrationModel.ActionTime;
-            ActionSoundEvent = CurrentHydrationModel.HydrationSound;
+            CurrentHydrationModel = (pObjectActioning.GetComponent<ToolController>().GetToolBase() as HydrationTool)?.HydrationModel;
+            if (CurrentHydrationModel != null)
+            {
+                actionTime = CurrentHydrationModel.ActionTime;
+                ActionSoundEvent = CurrentHydrationModel.HydrationSound;
+            }
         }
         
         return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = actionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles, MakesPlayerDirty = MakesPlayerDirty};
@@ -75,7 +78,7 @@ public class HydrationController : Actionable
         {
             print("POP2");
         }
-        LevelManager.AddPoints(20, transform.position);
+        LevelManager?.AddPoints(20, transform.position);
     }
 
     private void ResolveSanitationEffect(float pDirtyStatus)

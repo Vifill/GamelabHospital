@@ -19,8 +19,8 @@ public class MouseInputController : MonoBehaviour
         }
     }
 	
-	// Update is called once per frame
-	private void Update () 
+	//Update is called once per frame
+	private void Update ()
 	{
         if (Input.GetMouseButtonDown(0) && !GameController.InMenuScreen)
         {
@@ -37,7 +37,7 @@ public class MouseInputController : MonoBehaviour
 
                     CurrentOrderly.AddQueue(order);
                 }
-                Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
+                Debug.Log("You selected the " + hit.transform.name); //ensure you picked right object
             }
         }
 
@@ -61,10 +61,5 @@ public class MouseInputController : MonoBehaviour
         CurrentOrderly?.SelectionParticleEffect.SetActive(false);
         CurrentOrderly = pOrderlyController;
         pOrderlyController.SelectionParticleEffect.SetActive(true);
-    }
-
-    private OrderlyController GetNearestAvailableOrderly(OrderlyOrder pNextOrder)
-    {
-        return Orderlies.Where(a => a.CurrentOrder == null).OrderBy(a=> Vector3.Distance(a.transform.position, pNextOrder.FirstActionPosition)).FirstOrDefault();
     }
 }
