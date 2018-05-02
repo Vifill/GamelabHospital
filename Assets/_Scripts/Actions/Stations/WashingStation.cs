@@ -23,7 +23,9 @@ public class WashingStation : Actionable
     {
         var toolbase = pObjectActioning.GetComponent<ToolController>().GetToolBase();
 
-        return toolbase == null && IsActionActive;
+        //return toolbase?.ToolName != ToolName.Bucket && IsActionActive;
+        return !toolbase?.IsDirty ?? true && IsActionActive;
+
     }
 
     public override void OnStartAction(GameObject pObjectActioning)

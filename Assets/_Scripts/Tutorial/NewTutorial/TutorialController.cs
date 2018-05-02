@@ -11,6 +11,7 @@ public class TutorialController : MonoBehaviour
     public List<Objective> Objectives;
     public GameObject ArrowPrefab;
     public Text ObjectiveTextUIObject;
+    public TutorialCoroutineStartLogic StartLogic;
 
     private Objective CurrentObjective;
     private Dictionary<EventManager.EventCodes, UnityAction> EventActions = new Dictionary<EventManager.EventCodes, UnityAction>();
@@ -18,9 +19,11 @@ public class TutorialController : MonoBehaviour
     private List<GameObject> CurrentArrows = new List<GameObject>();
     private Level1TutorialScreenController TutorialScreenController;
 
+
+
     private void Start()
     {
-        StartCoroutine(TutorialStart());
+        StartCoroutine(StartLogic.TutorialStartCoroutine());
         AddActionsToEvents();
         
         if(Objectives?.Any() ?? false)
@@ -57,27 +60,36 @@ public class TutorialController : MonoBehaviour
 
     private void OnCleanDoctorDoneEvent()
     {
-        throw new NotImplementedException();
+        Debug.Log("Doctor Cleaned, event triggered.");
+        TutorialUtility.SetTimeFreeze(false);
+        TutorialUtility.SetTimerUIAsActive(true);
+
+        TutorialUtility.SetSpawnFreeze(false);
+
+        TutorialUtility.SetHydrationFreeze(false);
+        TutorialUtility.SetHealthFreeze(false);
+        TutorialUtility.SetFreezeExcretion(false);
     }
 
     private void OnCleanBucketDoneEvent()
     {
-        throw new NotImplementedException();
+        Debug.Log("Buckets Cleaned, event triggered.");
+        TutorialUtility.SetPlayerSanitation(75);
     }
 
     private void OnReturnBucketDoneEvent()
     {
-        throw new NotImplementedException();
+        Debug.Log("Buckets Returned, event triggered.");
     }
 
     private void OnCleanBedDoneEvent()
     {
-        throw new NotImplementedException();
+        Debug.Log("Bed Cleaned, event triggered.");
     }
 
     private void OnGetBucketDoneEvent()
     {
-        throw new NotImplementedException();
+        Debug.Log("Buckets picked up, event triggered.");
     }
 
     private void OnPatientDeath()
@@ -128,7 +140,7 @@ public class TutorialController : MonoBehaviour
         }
 
         ObjectiveIndex++;
-        if(Objectives[ObjectiveIndex] != null)
+        if(Objectives.Count > ObjectiveIndex)
         {
             StartNewObjective(Objectives[ObjectiveIndex]);
         }
@@ -165,7 +177,7 @@ public class TutorialController : MonoBehaviour
         TutorialUtility.SetPatientHealth(5);
         TutorialUtility.SetHydrationFreeze(true);
         TutorialUtility.SetHealthFreeze(true);
-        TutorialUtility.SetExcretionFreeze(true);
+        TutorialUtility.SetFreezeExcretion(true);
 
         //yield return new WaitForSeconds(0.2f);
 
@@ -178,18 +190,4 @@ public class TutorialController : MonoBehaviour
 
     }
 
-    private IEnumerator TutorialStart()
-    {
-        TutorialUtility.SetTimeFreeze(true);
-        TutorialUtility.SetTimerUIAsActive(false);
-
-        yield return new WaitForSeconds(0.1f);
-
-        TutorialUtility.SetSpawnFreeze(true);
-        TutorialUtility.SetPatientHydration(100);
-        TutorialUtility.SetHydrationFreeze(true);
-        TutorialUtility.SetHealthFreeze(true);
-        TutorialUtility.SetExcretionFreeze(true);
     }
-
-}

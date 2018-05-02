@@ -13,6 +13,7 @@ public class BedController : MonoBehaviour
             return PatientInBed != null;
         }
     }
+    //public SanitationThresholdConfig BedSanitationThresholds;
 
     private GameObject mPatientInBed;
     public GameObject PatientInBed

@@ -25,6 +25,8 @@ public class HealthController : MonoBehaviour
     [HideInInspector]
     public float HealthClampMin = 0;
 
+    [HideInInspector]
+    public bool FreezePuke;
 
     [HideInInspector]
     public HydrationConfig HydrationConfig;
@@ -32,8 +34,8 @@ public class HealthController : MonoBehaviour
     public CholeraConfig CholeraConfig;
     [HideInInspector]
     public CholeraThresholdOddsConfig ThresholdOddsConfig;
-    [HideInInspector]
-    public SanitationThresholdConfig BedSanitationConfig;
+    //[HideInInspector]
+    //public SanitationThresholdConfig BedSanitationConfig;
     [HideInInspector]
     public HydrationHealingConfig HydrationHealingConfig;
     [HideInInspector]
@@ -59,6 +61,8 @@ public class HealthController : MonoBehaviour
     private Animator PatientAnimator;
     private Animator PatientPrefabAnimator;
 
+    private float ExcreteTimeOffset;
+    private float HydrationChangeModifier { get { return HydrationConfig.HydrationLossModifier.Evaluate(HydrationMeter / 100); } }
     private float HealthIncrease;
 
     [Header("Hydration Combo Parameters")]
@@ -66,6 +70,7 @@ public class HealthController : MonoBehaviour
     public float ComboBonusAmount;
     public float ComboBonusTime;
     public float ComboRedemptionTime;
+
 
     public void Initialize()
     {
@@ -102,8 +107,6 @@ public class HealthController : MonoBehaviour
     {
         if (!LevelManager.TimeOver)
         {
-            //var HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
-
             if (HealthIncrease > 0)
             {
                 Health = Mathf.Clamp(Health += HealthIncrease * Time.deltaTime, HealthClampMin, HealthClampMax);
@@ -117,8 +120,7 @@ public class HealthController : MonoBehaviour
 
             if (!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
             {
-                //HydrationMeter = Mathf.Clamp(HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime, HydrationClampMin, HydrationClampMax);
-                SetHydration(HydrationMeter - (ConstantDehydrationSpeed * Time.deltaTime));
+                SetHydration(HydrationMeter - (ConstantDehydrationSpeed * HydrationChangeModifier * Time.deltaTime));
 
                 Health = Mathf.Clamp(Health += ConstantHealing * Time.deltaTime, HealthClampMin, HealthClampMax);
 
@@ -145,10 +147,10 @@ public class HealthController : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(1);
-            var inBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);            
-            if(inBed != null)
+            var bed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject)?.GetComponent<BedStation>();            
+            if(bed != null)
             {
-                var healthDecrease = BedSanitationConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= inBed.GetComponent<BedStation>().DirtyMeter)?.HealthDecreasePerSecond ?? 0;
+                var healthDecrease = bed.BedSanitationThresholds.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= bed.DirtyMeter)?.HealthDecreasePerSecond ?? 0;
                 Health = Mathf.Clamp(Health -= healthDecrease, HealthClampMin, HealthClampMax);
             }
         }
@@ -156,29 +158,37 @@ public class HealthController : MonoBehaviour
 
     private IEnumerator SickCoroutine()
     {
-        while(true)
+        ExcreteTimeOffset = UnityEngine.Random.Range(-ThresholdOddsConfig.RandomRangeOffset, ThresholdOddsConfig.RandomRangeOffset);
+        float timeCounter = 0;
+
+        while (true)
         {
-            float odds = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= Health)?.OddsOfExcretion ?? 0.0f;
-            if(UnityEngine.Random.Range(0,100) < odds && HydrationController.IsActionActive)
+            float targetTime = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= Health)?.TimeToExcrete ?? 0.0f;
+            targetTime += ExcreteTimeOffset;
+            timeCounter += Time.deltaTime;
+            if(timeCounter >= targetTime)
             {
                 StartFeelingSick();
-                yield return new WaitForSeconds(CholeraConfig.ExcreteCooldown);
+                break;
             }
-            else if (!(UnityEngine.Random.Range(0,100) < odds))
-            {
-                yield return new WaitForSeconds(CholeraConfig.CholeraCheckRate);
-            }
+            yield return null;
         }
+        yield return null;
     }
 
     private void StartFeelingSick()
     {
         if (!PatientStatusController.IsHealed)
         {
-            HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
-
+            SetExcreteWarning();
             Invoke("Excrete", 5);
         }
+    }
+
+    private void SetExcreteWarning()
+    {
+        HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
+        PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPukeWarning);
     }
 
     private void Excrete()
@@ -192,9 +202,10 @@ public class HealthController : MonoBehaviour
             HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(false);
             // puke animation trigger
             PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
-            //PatientPrefabAnimator.SetTrigger(AnimationParameters.PatientPuke);
+            PatientPrefabAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
             Debug.Log($"I'M PUKING!");
         }
+        StartSickCoroutine();
     }
 
     private void StartPukingAnimation()
@@ -210,15 +221,13 @@ public class HealthController : MonoBehaviour
 
     private void ReduceHydration()
     {
-        float randomVariance = UnityEngine.Random.Range(CholeraConfig.ExcreteHydrationLossVariance, CholeraConfig.ExcreteHydrationLossVariance*2);
-        float hydrationLossModifier = HydrationConfig.HydrationLowerThreshold >= HydrationMeter ? HydrationConfig.HydrationLowerThresholdModifier : 1;
-        HydrationMeter = Mathf.Clamp(HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier, HydrationClampMin, HydrationClampMax);
+        var loss = CholeraConfig.ExcreteHydrationLoss * HydrationChangeModifier;
+        print(loss);
+        SetHydration(HydrationMeter - loss);
     }
 
     private void MakeBedDirty()
     {
-        //var beds = BedManagerInstance?.Beds;
-            
         var patientInBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);        
 
         if (patientInBed != null)
@@ -246,28 +255,15 @@ public class HealthController : MonoBehaviour
         }
         else if (prevHydration < threshold && HydrationMeter >= threshold)
         {
+            HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
             StartCoroutine(ComboBonusSetter(ComboBonusTime, ComboBonusAmount));
         }
         else if (prevHydration < threshold && HydrationMeter < threshold)
         {
             HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
         }
-
-        
     }
-
-    //private IEnumerator ComboRedemptionCheck()
-    //{
-    //    yield return new WaitForSeconds(ComboRedemptionTime);
-
-    //    var threshold = HydrationHealingConfig.ListOfThresholds.LastOrDefault().ThresholdOfActivation;
-
-    //    if (HydrationMeter < threshold)
-    //    {
-    //        HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
-    //    }
-    //}
-
+    
     private IEnumerator ComboBonusSetter(float pTime, float pAmount)
     {
         while (true)
@@ -285,7 +281,7 @@ public class HealthController : MonoBehaviour
             }
 
             HealthIncrease = Mathf.Clamp(HealthIncrease + pAmount, minHPS, MaxHealthIncresePerSecond);
-            print("healthincrease is now = " + HealthIncrease + " for " + gameObject);
+            //print("healthincrease is now = " + HealthIncrease + " for " + gameObject);
         }
     }
 

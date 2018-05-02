@@ -5,6 +5,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Configs/Patient/CholeraThresholdOddsConfig")]
 public class CholeraThresholdOddsConfig : ScriptableObject
 {
+    public float RandomRangeOffset = 1.5f;
     public List<CholeraThresholdOddModel> ListOfThresholds;
 }
 
@@ -12,5 +13,5 @@ public class CholeraThresholdOddsConfig : ScriptableObject
 public class CholeraThresholdOddModel
 {
     public float ThresholdOfActivation;
-    public float OddsOfExcretion;
+    public float TimeToExcrete;
 }

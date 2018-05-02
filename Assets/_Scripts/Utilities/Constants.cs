@@ -15,15 +15,6 @@ namespace Assets._Scripts.Utilities
         public static string ArrowPlacementTag = "ArrowPlacement";
         public static string Highlightable = "Highlightable";
 
-        public static Color Blue { get { return GetColor("#0000ff"); } }
-
-        public static Color GetColor(string pHexString)
-        {
-            Color ret = Color.magenta;
-            ColorUtility.TryParseHtmlString(pHexString, out ret);
-            return ret;
-        }
-
         public class AnimationParameters
         {
             // Character / Patient
@@ -38,6 +29,7 @@ namespace Assets._Scripts.Utilities
             public const string PatientPuke = "PatientPuke";
             public const string PatientDrinkWater = "PatientDrink";
             public const string PatientIVBag = "PatientIVBag";
+            public const string PatientPukeWarning = "PatientPukeWarning";
 
             // UI
             public const string IsPulsatingUI = "IsPulsatingUI";
@@ -49,9 +41,20 @@ namespace Assets._Scripts.Utilities
             // Floats
             public const string Speed = "Speed";
         }
+
+        public class Colors
+        {
+            
+            public static Color Blue { get { return GetColor("#004D7DFF"); } }
+            public static Color Brown { get { return GetColor("#6C5300FF"); } }
+            public static Color Red { get { return GetColor("#B22222"); } }
+
+            public static Color GetColor(string pHexString)
+            {
+                Color col = Color.magenta;
+                ColorUtility.TryParseHtmlString(pHexString, out col);
+                return col;
+            }
+        }
     }
-
-    
-
-
 }
