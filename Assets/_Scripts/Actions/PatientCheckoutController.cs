@@ -30,6 +30,7 @@ public class PatientCheckoutController : Actionable
         PatientStatusController.CheckOut();
         Destroy(CanBeCheckedOutParticleInstance);
         IsActionActive = false;
+        GetComponent<HealthController>().HydrationUI.SetActive(false);
     }
 
     private void Update()

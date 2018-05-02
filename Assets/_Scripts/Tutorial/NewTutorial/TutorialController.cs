@@ -41,6 +41,7 @@ public class TutorialController : MonoBehaviour
     {
         // Tutorial Level 1
         EventActions.Add(EventManager.EventCodes.DoneWalking, OnWalkingDoneEvent);
+        EventActions.Add(EventManager.EventCodes.DonePuking, OnPukingDone);
         EventActions.Add(EventManager.EventCodes.DoneHydration, OnHydrateDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCheckOut, OnCheckOutDoneEvent);
         EventActions.Add(EventManager.EventCodes.DonePatientDeath, OnPatientDeath);
@@ -51,6 +52,13 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DoneCleanBucket, OnCleanBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneReturnBucket, OnReturnBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanDoctor, OnCleanDoctorDoneEvent);
+    }
+
+    private void OnPukingDone()
+    {
+        TutorialUtility.SetHydrationFreeze(true);
+        TutorialUtility.SetHealthFreeze(true);
+        TutorialUtility.SetFreezeExcretion(true);
     }
 
     private void OnWaitingForHealDone()
@@ -156,9 +164,11 @@ public class TutorialController : MonoBehaviour
 
     private void OnWalkingDoneEvent()
     {
+        TutorialUtility.SetConstantDehydrationFreeze(true);
+        //TutorialUtility.SetHealthFreeze(false);
         TutorialUtility.SetHydrationFreeze(false);
-        TutorialUtility.ForcePatientExcretion();
-        TutorialUtility.SetHydrationFreeze(true);
+        TutorialUtility.ForcePatientSickness();
+        //TutorialUtility.SetHydrationFreeze(true);
     }
 
     private void OnCheckOutDoneEvent()
