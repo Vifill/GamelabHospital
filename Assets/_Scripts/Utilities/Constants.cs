@@ -24,6 +24,7 @@ namespace Assets._Scripts.Utilities
             public const string CharacterIsWalking = "IsWalking";
             public const string CharacterHoldingWater = "HoldingWater";
             public const string CharacterHoldingIVBag = "HoldingIVBag";
+            public const string CharacterHoldingBucket = "HoldingBucket";
             public const string CharacterIsActioning = "Actioning";
             public const string IsPatient = "IsPatient";
             public const string PatientPuke = "PatientPuke";

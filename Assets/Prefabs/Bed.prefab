@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 4887661990322384}
   - component: {fileID: 33345216199868970}
   - component: {fileID: 23885673660296642}
+  - component: {fileID: 64136477248334248}
   m_Layer: 0
   m_Name: IVStand
   m_TagString: Untagged
@@ -467,6 +468,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1794016095147928}
   m_Mesh: {fileID: 4300000, guid: ae005c1857293054baea0a225bfcaa31, type: 3}
+--- !u!64 &64136477248334248
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975126439794160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 1ab466a34eb714845b9afaf386bd2516, type: 3}
 --- !u!65 &65105722371421456
 BoxCollider:
   m_ObjectHideFlags: 1

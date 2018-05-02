@@ -77,8 +77,8 @@ public class BedStation : Actionable
         BarFill.fillAmount = 0;
         DirtyBarAnimator = DirtyBarInstance.GetComponent<Animator>();
 
-        var thresholdLine = DirtyBarInstance.transform.Find("ThresholdLine").GetComponent<RectTransform>();
-        var xPos = BedSanitationThresholds.ListOfThresholds.FirstOrDefault().ThresholdOfActivation + 1;
+        var thresholdLine = BarFill.transform.GetChild(0).GetComponent<RectTransform>();
+        var xPos = BedSanitationThresholds.ListOfThresholds.FirstOrDefault().ThresholdOfActivation - 1;
         thresholdLine.anchoredPosition = new Vector2(xPos, thresholdLine.anchoredPosition.y);
     }
 
