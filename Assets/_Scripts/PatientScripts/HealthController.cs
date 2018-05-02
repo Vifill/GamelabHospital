@@ -46,7 +46,7 @@ public class HealthController : MonoBehaviour
     public Transform PukePosition;
     
     public float ConstantDehydrationSpeed;
-    public float ConstantHealing;
+    //public float ConstantHealing;
 
     public BedManager BedManagerInstance;
 
@@ -122,7 +122,7 @@ public class HealthController : MonoBehaviour
             {
                 SetHydration(HydrationMeter - (ConstantDehydrationSpeed * HydrationChangeModifier * Time.deltaTime));
 
-                Health = Mathf.Clamp(Health += ConstantHealing * Time.deltaTime, HealthClampMin, HealthClampMax);
+                //Health = Mathf.Clamp(Health += ConstantHealing * Time.deltaTime, HealthClampMin, HealthClampMax);
 
                 if (!PatientStatusController.IsDead && HydrationMeter <= 0)
                 {
@@ -191,7 +191,7 @@ public class HealthController : MonoBehaviour
         PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPukeWarning);
     }
 
-    private void Excrete()
+    protected virtual void Excrete()
     {
         if (!PatientStatusController.IsHealed)
         {
@@ -288,5 +288,10 @@ public class HealthController : MonoBehaviour
     public void ForceExcretion()
     {
         Excrete();
+    }
+
+    public void ForceSickness()
+    {
+        StartFeelingSick();
     }
 }
