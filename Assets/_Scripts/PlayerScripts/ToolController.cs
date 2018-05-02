@@ -85,7 +85,7 @@ public class ToolController : MonoBehaviour
                     Animator.SetBool(Constants.AnimationParameters.CharacterHoldingSaw, true);
                     break;
                 case ToolName.Bucket:
-                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingBandage, true);
+                    Animator.SetBool(Constants.AnimationParameters.CharacterHoldingBucket, true);
                     break;
                 case ToolName.Water:
                     Animator.SetBool(Constants.AnimationParameters.CharacterHoldingWater, true);
