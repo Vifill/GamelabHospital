@@ -11,5 +11,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c5991148cdeda47901a0533111371d, type: 3}
   m_Name: Test1HydrationConfig
   m_EditorClassIdentifier: 
-  HydrationLowerThreshold: 30
-  HydrationLowerThresholdModifier: 0.5
+  HydrationLossModifier:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: -0.00000424264
+      value: 0.60020655
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.4206384
+      value: 0.99999815
+      inSlope: 2.0447516
+      outSlope: 2.0447516
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.42728117
+      value: 0.9999792
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.75109535
+      value: 0.99966383
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7559356
+      value: 0.9996079
+      inSlope: -0.0808981
+      outSlope: -0.0808981
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1.0031776
+      value: 1.273647
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
