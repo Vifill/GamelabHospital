@@ -10,7 +10,7 @@ public class HydrationUIManager : MonoBehaviour
 {
     public Animator HydrationAnimator;
 
-    public RectTransform HydrationThresholdLine;
+    private RectTransform HydrationThresholdLine;
     public Image HydrationMeterUI;
     public Image HealthMeterUI;
     public PatientStatusColorConfig StatusColorConfig; // Use same color config as for the patient status
@@ -37,7 +37,8 @@ public class HydrationUIManager : MonoBehaviour
         HealthMeterUI.fillAmount = HealthController.Health / 100;
 
         var thresholdLineXpos = HealthController.HydrationHealingConfig.ListOfThresholds.LastOrDefault().ThresholdOfActivation;
-        HydrationThresholdLine.anchoredPosition = new Vector2(thresholdLineXpos + 1, HydrationThresholdLine.anchoredPosition.y);
+        HydrationThresholdLine = HydrationMeterUI.transform.GetChild(0).GetComponent<RectTransform>();
+        HydrationThresholdLine.anchoredPosition = new Vector2(thresholdLineXpos - 1, HydrationThresholdLine.anchoredPosition.y);
         // UI position
         transform.position = Camera.main.WorldToScreenPoint(HealthController.transform.position + new Vector3(0, UIOffset, UIOffset));
     }
