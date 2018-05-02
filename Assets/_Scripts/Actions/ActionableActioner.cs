@@ -44,8 +44,8 @@ public class ActionableActioner : MonoBehaviour
         GC = FindObjectOfType<GameController>();
         ToolController = GetComponent<ToolController>();
 
-        ToolController.OnToolSet.AddListener(HighlightPossibleActions);
-        ToolController.OnToolRemove.AddListener(RemoveHiglightedPossibleActions);
+        //ToolController.OnToolSet.AddListener(HighlightPossibleActions);
+        //ToolController.OnToolRemove.AddListener(RemoveHiglightedPossibleActions);
     }
 
     // Update is called once per frame

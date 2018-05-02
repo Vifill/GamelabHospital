@@ -50,6 +50,8 @@ public class HydrationUIManager : MonoBehaviour
             //HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
             HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
             var barfillController = HealthMeterUI?.GetComponentInChildren<BarFillFalloff>();
+           
+
             if (barfillController != null && (HealthMeterUI != null && (HealthController.Health / 100 > HealthMeterUI.fillAmount + 0.05f && !barfillController.IsGaining)))
             {
                 barfillController.VisualGain(HealthController.Health / 100);
