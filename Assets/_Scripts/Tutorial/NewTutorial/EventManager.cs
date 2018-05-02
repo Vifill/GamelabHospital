@@ -82,7 +82,9 @@ public class EventManager : MonoBehaviour
         NoEvent,
         DoneWalking,
         DoneGetWater,
+        DoneGetWaterLvl2,
         DoneHydration,
+        DoneHydrationLvl2,
         DoneWaitingForHealed,
         DoneCheckOut,
         DonePatientDeath,
@@ -91,6 +93,7 @@ public class EventManager : MonoBehaviour
         DoneCleanBucket,
         DoneReturnBucket,
         DoneCleanDoctor,
+        DoneFinishingTutorialQueue,
         DonePuking
     }
 }

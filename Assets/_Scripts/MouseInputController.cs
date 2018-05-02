@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class MouseInputController : MonoBehaviour 
 {
-    private List<OrderlyController> Orderlies;
-    private OrderlyController CurrentOrderly;
+    [HideInInspector]
+    public List<OrderlyController> Orderlies;
+    [HideInInspector]
+    public OrderlyController CurrentOrderly;
 
 	// Use this for initialization
-	private void Start () 
+	public virtual void Start () 
 	{
         Orderlies = new List<OrderlyController>(FindObjectsOfType<OrderlyController>());
         if(Orderlies.Any())
@@ -19,25 +21,15 @@ public class MouseInputController : MonoBehaviour
         }
     }
 	
-	//Update is called once per frame
-	private void Update ()
+	// Update is called once per frame
+	public virtual void Update () 
 	{
         if (Input.GetMouseButtonDown(0) && !GameController.InMenuScreen)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 1000.0f))
-            {                
-                var actionable = hit.transform.root.GetComponent<Actionable>();
-                if(actionable != null && actionable.IsActionActive)
-                {
-                    var order = new OrderlyOrder(actionable.transform.position);
-                    order.AddAction(new OrderlyMoveAction(actionable.transform));
-                    order.AddAction(new OrderlyInteractionAction(actionable));
-
-                    CurrentOrderly.AddQueue(order);
-                }
-                Debug.Log("You selected the " + hit.transform.name); //ensure you picked right object
+            OrderlyOrder order = GetOrderFromMouse();
+            if(order != null)
+            {
+                CurrentOrderly.AddQueue(order);
             }
         }
 
@@ -54,6 +46,25 @@ public class MouseInputController : MonoBehaviour
         {
             CurrentOrderly?.CurrentAction?.CancelOrder();
         }
+    }
+
+    protected OrderlyOrder GetOrderFromMouse()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, 1000.0f))
+        {
+            var actionable = hit.transform.root.GetComponent<Actionable>();
+            if (actionable != null && actionable.IsActionActive)
+            {
+                var order = new OrderlyOrder(actionable.transform.position);
+                order.AddAction(new OrderlyMoveAction(actionable.transform));
+                order.AddAction(new OrderlyInteractionAction(actionable));
+                return order;
+            }
+            Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
+        }
+        return null;
     }
 
     private void SelectOrderly(OrderlyController pOrderlyController)

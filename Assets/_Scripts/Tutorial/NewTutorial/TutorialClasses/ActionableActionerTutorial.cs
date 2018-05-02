@@ -5,13 +5,9 @@ public class ActionableActionerTutorial : ActionableActioner
 {
     protected override void OnSuccess()
     {
-        if (CurrentAction is TableStation && (CurrentAction as TableStation).TableObject != null && (CurrentAction as TableStation).TableObject.GetComponent<ToolBase>().ToolName == ToolName.Bucket)
+        if(CurrentAction is TableStation && (CurrentAction as TableStation).TableObject == null && GetComponent<ToolController>().GetCurrentToolName() == ToolName.Bucket)
         {
-            EventManager.TriggerEvent(EventManager.EventCodes.DoneGetBucket);
-        }
-        if (CurrentAction is TableStation && (CurrentAction as TableStation).TableObject == null && GetComponent<ToolController>().GetCurrentToolName() == ToolName.Bucket)
-        {
-            EventManager.TriggerEvent(EventManager.EventCodes.DoneReturnBucket);
+            EventManager.TriggerEvent(EventManager.EventCodes.DoneFinishingTutorialQueue);
         }
 
         base.OnSuccess();
@@ -19,22 +15,16 @@ public class ActionableActionerTutorial : ActionableActioner
         if(CurrentAction is PickupStationController && (CurrentAction as PickupStationController).ToolObject.GetComponent<ToolBase>().ToolName == ToolName.Water)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneGetWater);
+            EventManager.TriggerEvent(EventManager.EventCodes.DoneGetWaterLvl2);
         }
         if(CurrentAction is HydrationController)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneHydration);
+            EventManager.TriggerEvent(EventManager.EventCodes.DoneHydrationLvl2);
         }
         if (CurrentAction is PatientCheckoutController)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneCheckOut);
-        }
-        if (CurrentAction is BedStation)
-        {
-            EventManager.TriggerEvent(EventManager.EventCodes.DoneCleanBed);
-        }
-        if (CurrentAction is CleaningStation)
-        {
-            EventManager.TriggerEvent(EventManager.EventCodes.DoneCleanBucket);
         }
         if (CurrentAction is WashingStation)
         {
