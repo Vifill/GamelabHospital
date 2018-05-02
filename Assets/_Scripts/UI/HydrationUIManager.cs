@@ -42,7 +42,7 @@ public class HydrationUIManager : MonoBehaviour
         transform.position = Camera.main.WorldToScreenPoint(HealthController.transform.position + new Vector3(0, UIOffset, UIOffset));
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (HealthController != null)
         {
