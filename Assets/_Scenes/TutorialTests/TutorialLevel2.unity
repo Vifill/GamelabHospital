@@ -807,6 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeFreeze: 0
   TimerUI: {fileID: 0}
+  ConstDehydration: 0
 --- !u!114 &111093968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1747,6 +1748,36 @@ Prefab:
     - target: {fileID: 224339303238554108, guid: ee5d545326b20ce4c9bd96025698691f,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
+        type: 2}
+      propertyPath: m_EffectColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
+        type: 2}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665451828835120, guid: ee5d545326b20ce4c9bd96025698691f,
+        type: 2}
+      propertyPath: m_EffectColor.b
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
