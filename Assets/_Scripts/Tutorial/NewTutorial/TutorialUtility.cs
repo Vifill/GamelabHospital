@@ -8,6 +8,7 @@ public class TutorialUtility : MonoBehaviour
 {
     public bool TimeFreeze = false;
     private static TutorialUtility tutorialEntity;
+    [HideInInspector]
     public GameObject TimerUI;
 
     public static TutorialUtility instance

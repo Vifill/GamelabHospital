@@ -13,7 +13,7 @@ public class TutorialController : MonoBehaviour
     public Text ObjectiveTextUIObject;
     public TutorialCoroutineStartLogic StartLogic;
 
-    private Objective CurrentObjective;
+    public Objective CurrentObjective { private set; get; }
     private Dictionary<EventManager.EventCodes, UnityAction> EventActions = new Dictionary<EventManager.EventCodes, UnityAction>();
     private int ObjectiveIndex = 0;
     private List<GameObject> CurrentArrows = new List<GameObject>();
@@ -46,11 +46,31 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DonePatientDeath, OnPatientDeath);
         EventActions.Add(EventManager.EventCodes.DoneWaitingForHealed, OnWaitingForHealDone);
         // Tutorial Level 2
+        EventActions.Add(EventManager.EventCodes.DoneGetWaterLvl2, OnDoneGetWaterLvl2Event);
+        EventActions.Add(EventManager.EventCodes.DoneHydrationLvl2, OnDoneHydrationLvl2Event);
         EventActions.Add(EventManager.EventCodes.DoneGetBucket, OnGetBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanBed, OnCleanBedDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanBucket, OnCleanBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneReturnBucket, OnReturnBucketDoneEvent);
+        EventActions.Add(EventManager.EventCodes.DoneFinishingTutorialQueue, DoneFinishingTutorialQueueEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanDoctor, OnCleanDoctorDoneEvent);
+    }
+
+    private void DoneFinishingTutorialQueueEvent()
+    {
+        Debug.Log("DoneTutorialQueue, event triggered.");
+        TutorialUtility.SetPlayerSanitation(55);
+    }
+
+    private void OnDoneHydrationLvl2Event()
+    {
+        Debug.Log("DoneHydrationLvl2, event triggered.");
+        Time.timeScale = 0;
+    }
+
+    private void OnDoneGetWaterLvl2Event()
+    {
+        Debug.Log("DoneGetWaterLvl2, event triggered.");
     }
 
     private void OnWaitingForHealDone()
@@ -74,12 +94,12 @@ public class TutorialController : MonoBehaviour
     private void OnCleanBucketDoneEvent()
     {
         Debug.Log("Buckets Cleaned, event triggered.");
-        TutorialUtility.SetPlayerSanitation(75);
     }
 
     private void OnReturnBucketDoneEvent()
     {
         Debug.Log("Buckets Returned, event triggered.");
+        Time.timeScale = 1;
     }
 
     private void OnCleanBedDoneEvent()

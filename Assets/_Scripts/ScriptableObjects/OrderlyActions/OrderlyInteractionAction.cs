@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrderlyInteractionAction : OrderlyAction
 {
-    private Actionable Action;
+    public Actionable Action { private set; get; }
     private Vector3 ActionPosition;
     private const float OrderlyLookAtSpeed = 3;
 
