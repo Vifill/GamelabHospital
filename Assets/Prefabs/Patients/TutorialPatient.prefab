@@ -2500,7 +2500,7 @@ GameObject:
   - component: {fileID: 82929273122270710}
   - component: {fileID: 114178381946047798}
   - component: {fileID: 82596395373070156}
-  - component: {fileID: 114213634877675612}
+  - component: {fileID: 114865414501926704}
   - component: {fileID: 114881950544257098}
   - component: {fileID: 95665090854243642}
   - component: {fileID: 114785509309924714}
@@ -6877,48 +6877,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModelsConfig: {fileID: 11400000, guid: 07170cdb494239a45ab8c5b29d70219f, type: 2}
---- !u!114 &114213634877675612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1976841698954826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5478d1b215af014ea2a5961b88510b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 0
-  MaxHydration: 100
-  MinHydration: 0
-  MaxHealth: 100
-  MinHealth: 0
-  HydrationClampMax: 0
-  HydrationClampMin: 0
-  HealthClampMax: 0
-  HealthClampMin: 0
-  HydrationConfig: {fileID: 11400000, guid: e0bca203288b4c14488dd5a35c60335a, type: 2}
-  CholeraConfig: {fileID: 11400000, guid: 1a29015937cb12d4e890d61c0b4ed1bd, type: 2}
-  ThresholdOddsConfig: {fileID: 11400000, guid: a9a967e65765b9d4891827c2ea524fe3,
-    type: 2}
-  BedSanitationConfig: {fileID: 11400000, guid: 79bb8956573112f49b04d3ee7b778a25,
-    type: 2}
-  HydrationHealingConfig: {fileID: 11400000, guid: 50deca0eeca8726428e77195ed34b9ac,
-    type: 2}
-  DoctorSanitationThresholdConfig: {fileID: 0}
-  HydrationUIPrefab: {fileID: 1616167897932710, guid: b7949735eb46de94fb1ead26b5f0fd93,
-    type: 2}
-  PukeParticleEffectPrefab: {fileID: 1532283546104660, guid: 3e962117722c1bb4793a51bab55c24ed,
-    type: 2}
-  PukePosition: {fileID: 4928286199856396}
-  ConstantDehydrationSpeed: 0.5
-  ConstantHealing: 0
-  BedManagerInstance: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
-  HydrationUI: {fileID: 0}
-  MaxHealthIncresePerSecond: 4
-  ComboBonusAmount: 0.5
-  ComboBonusTime: 3
-  ComboRedemptionTime: 5
 --- !u!114 &114501508067448934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6999,6 +6957,44 @@ MonoBehaviour:
   LyingPosition: {fileID: 4672368023882596}
   OnStretchers: 0
   IsDead: 0
+--- !u!114 &114865414501926704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976841698954826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d97552d2f403a4eb4bc4dc12d91db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  MaxHydration: 100
+  MinHydration: 0
+  MaxHealth: 100
+  MinHealth: 0
+  HydrationClampMax: 100
+  HydrationClampMin: 0
+  HealthClampMax: 100
+  HealthClampMin: 0
+  FreezePuke: 0
+  HydrationConfig: {fileID: 0}
+  CholeraConfig: {fileID: 0}
+  ThresholdOddsConfig: {fileID: 0}
+  HydrationHealingConfig: {fileID: 0}
+  DoctorSanitationThresholdConfig: {fileID: 0}
+  HydrationUIPrefab: {fileID: 1616167897932710, guid: b7949735eb46de94fb1ead26b5f0fd93,
+    type: 2}
+  PukeParticleEffectPrefab: {fileID: 1532283546104660, guid: 3e962117722c1bb4793a51bab55c24ed,
+    type: 2}
+  PukePosition: {fileID: 4928286199856396}
+  ConstantDehydrationSpeed: 0.5
+  BedManagerInstance: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
+  HydrationUI: {fileID: 0}
+  MaxHealthIncresePerSecond: 4
+  ComboBonusAmount: 0.5
+  ComboBonusTime: 3
+  ComboRedemptionTime: 5
 --- !u!114 &114881950544257098
 MonoBehaviour:
   m_ObjectHideFlags: 1

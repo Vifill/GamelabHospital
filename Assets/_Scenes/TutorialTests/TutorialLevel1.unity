@@ -1070,6 +1070,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
+        type: 2}
+      propertyPath: Objectives.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4471104362058194, guid: 08dc7095f218bdf48bd81a2bdc75cfaa, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.7465982
@@ -1112,6 +1117,42 @@ Prefab:
       propertyPath: StartLogic
       value: 
       objectReference: {fileID: 11400000, guid: b71a2d88fb21bb6478dc595b4528bb12,
+        type: 2}
+    - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
+        type: 2}
+      propertyPath: Objectives.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e65e7ce44fee7e4ba9747e87b4e29fe,
+        type: 2}
+    - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
+        type: 2}
+      propertyPath: Objectives.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: e8d712555b028754bb9a424bb7d2f64c,
+        type: 2}
+    - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
+        type: 2}
+      propertyPath: Objectives.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b1c859d47970e14c9d755a1e5442673,
+        type: 2}
+    - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
+        type: 2}
+      propertyPath: Objectives.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 943d56ac8d8f9ed44b05e96642e5113a,
+        type: 2}
+    - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
+        type: 2}
+      propertyPath: Objectives.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3fa6c6fe1bc25794c83e9b3b1b68555c,
+        type: 2}
+    - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
+        type: 2}
+      propertyPath: Objectives.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: c1603cbc3ca600443bda8e16a39dcd2d,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08dc7095f218bdf48bd81a2bdc75cfaa, type: 2}
@@ -1827,7 +1868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 233169522}
   m_Layer: 0
-  m_Name: 1.3 Hydrate Patient 2
+  m_Name: 1.4 Hydrate Patient 2
   m_TagString: ArrowPlacement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5143,7 +5184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 734729601}
   m_Layer: 0
-  m_Name: 1.2 GetWater
+  m_Name: 1.3 GetWater
   m_TagString: ArrowPlacement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5539,6 +5580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeFreeze: 0
   TimerUI: {fileID: 0}
+  ConstDehydration: 0
 --- !u!1001 &771481516
 Prefab:
   m_ObjectHideFlags: 0
@@ -6370,7 +6412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 899991422}
   m_Layer: 0
-  m_Name: 1.3 Hydrate Patient 1
+  m_Name: 1.4 Hydrate Patient 1
   m_TagString: ArrowPlacement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

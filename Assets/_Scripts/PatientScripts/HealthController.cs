@@ -46,7 +46,7 @@ public class HealthController : MonoBehaviour
     public Transform PukePosition;
     
     public float ConstantDehydrationSpeed;
-    public float ConstantHealing;
+    //public float ConstantHealing;
 
     public BedManager BedManagerInstance;
 
@@ -124,7 +124,7 @@ public class HealthController : MonoBehaviour
                 //HydrationMeter = Mathf.Clamp(HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime, HydrationClampMin, HydrationClampMax);
                 SetHydration(HydrationMeter - (ConstantDehydrationSpeed * Time.deltaTime));
 
-                Health = Mathf.Clamp(Health += ConstantHealing * Time.deltaTime, HealthClampMin, HealthClampMax);
+                //Health = Mathf.Clamp(Health += ConstantHealing * Time.deltaTime, HealthClampMin, HealthClampMax);
 
                 if (!PatientStatusController.IsDead && HydrationMeter <= 0)
                 {
@@ -193,7 +193,7 @@ public class HealthController : MonoBehaviour
         PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPukeWarning);
     }
 
-    private void Excrete()
+    protected virtual void Excrete()
     {
         if (!PatientStatusController.IsHealed)
         {
@@ -225,7 +225,8 @@ public class HealthController : MonoBehaviour
     {
         float randomVariance = UnityEngine.Random.Range(CholeraConfig.ExcreteHydrationLossVariance, CholeraConfig.ExcreteHydrationLossVariance*2);
         float hydrationLossModifier = HydrationConfig.HydrationLowerThreshold >= HydrationMeter ? HydrationConfig.HydrationLowerThresholdModifier : 1;
-        HydrationMeter = Mathf.Clamp(HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier, HydrationClampMin, HydrationClampMax);
+        //HydrationMeter = Mathf.Clamp(HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier, HydrationClampMin, HydrationClampMax);
+        SetHydration(HydrationMeter - (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier);
     }
 
     private void MakeBedDirty()

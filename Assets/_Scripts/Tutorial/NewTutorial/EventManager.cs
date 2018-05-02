@@ -90,6 +90,7 @@ public class EventManager : MonoBehaviour
         DoneCleanBed,
         DoneCleanBucket,
         DoneReturnBucket,
-        DoneCleanDoctor
+        DoneCleanDoctor,
+        DonePuking
     }
 }

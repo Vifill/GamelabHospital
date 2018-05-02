@@ -75,7 +75,7 @@ public class PatientSpawner : MonoBehaviour
 
         var healthController = patient.GetComponent<HealthController>();
         var patientModel = PatientsToSpawn[index];
-
+        healthController.HydrationHealingConfig = patientModel.HydrationHealingConfig;
         healthController.ThresholdOddsConfig = patientModel.ThresholdOddsConfig;
         healthController.Initialize();
         healthController.Health = UnityEngine.Random.Range(SpawnConfig.CholeraSeverityRange.x, SpawnConfig.CholeraSeverityRange.y);
@@ -84,7 +84,6 @@ public class PatientSpawner : MonoBehaviour
         healthController.HydrationConfig = patientModel.HydrationConfig;
         healthController.CholeraConfig = patientModel.CholeraConfig;
         //healthController.BedSanitationConfig = patientModel.BedSanitationThresholdConfig;
-        healthController.HydrationHealingConfig = patientModel.HydrationHealingConfig;
         healthController.DoctorSanitationThresholdConfig = patientModel.DoctorSanitationThresholdConfig;
 
         //Remove that patient
