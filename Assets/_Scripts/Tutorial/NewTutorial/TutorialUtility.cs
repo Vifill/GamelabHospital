@@ -10,6 +10,8 @@ public class TutorialUtility : MonoBehaviour
     private static TutorialUtility tutorialEntity;
     [HideInInspector]
     public GameObject TimerUI;
+    [HideInInspector]
+    public float ConstDehydration;
 
     public static TutorialUtility instance
     {
@@ -236,5 +238,29 @@ public class TutorialUtility : MonoBehaviour
         var levelManager = FindObjectOfType<LevelManager>();
 
         levelManager.EndLevel();
+    }
+
+    public static void ForcePatientSickness()
+    {
+        var patient = FindObjectOfType<HealthController>();
+
+        patient.ForceSickness();
+    }
+
+    public static void SetConstantDehydrationFreeze(bool pState)
+    {
+        var patient = FindObjectOfType<HealthController>();
+
+        if (pState)
+        {
+            instance.ConstDehydration = patient.ConstantDehydrationSpeed;
+
+            patient.ConstantDehydrationSpeed = 0;
+        }
+
+        else
+        {
+            patient.ConstantDehydrationSpeed = instance.ConstDehydration;
+        }
     }
 }

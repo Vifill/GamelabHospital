@@ -46,7 +46,7 @@ public class HealthController : MonoBehaviour
     public Transform PukePosition;
     
     public float ConstantDehydrationSpeed;
-    public float ConstantHealing;
+    //public float ConstantHealing;
 
     public BedManager BedManagerInstance;
 
@@ -62,7 +62,7 @@ public class HealthController : MonoBehaviour
     private Animator PatientPrefabAnimator;
 
     private float ExcreteTimeOffset;
-
+    private float HydrationChangeModifier { get { return HydrationConfig.HydrationLossModifier.Evaluate(HydrationMeter / 100); } }
     private float HealthIncrease;
 
     [Header("Hydration Combo Parameters")]
@@ -70,6 +70,7 @@ public class HealthController : MonoBehaviour
     public float ComboBonusAmount;
     public float ComboBonusTime;
     public float ComboRedemptionTime;
+
 
     public void Initialize()
     {
@@ -106,8 +107,6 @@ public class HealthController : MonoBehaviour
     {
         if (!LevelManager.TimeOver)
         {
-            //var HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
-
             if (HealthIncrease > 0)
             {
                 Health = Mathf.Clamp(Health += HealthIncrease * Time.deltaTime, HealthClampMin, HealthClampMax);
@@ -121,10 +120,9 @@ public class HealthController : MonoBehaviour
 
             if (!PatientStatusController.IsDead && !PatientStatusController.IsHealed)
             {
-                //HydrationMeter = Mathf.Clamp(HydrationMeter -= ConstantDehydrationSpeed * Time.deltaTime, HydrationClampMin, HydrationClampMax);
-                SetHydration(HydrationMeter - (ConstantDehydrationSpeed * Time.deltaTime));
+                SetHydration(HydrationMeter - (ConstantDehydrationSpeed * HydrationChangeModifier * Time.deltaTime));
 
-                Health = Mathf.Clamp(Health += ConstantHealing * Time.deltaTime, HealthClampMin, HealthClampMax);
+                //Health = Mathf.Clamp(Health += ConstantHealing * Time.deltaTime, HealthClampMin, HealthClampMax);
 
                 if (!PatientStatusController.IsDead && HydrationMeter <= 0)
                 {
@@ -182,12 +180,18 @@ public class HealthController : MonoBehaviour
     {
         if (!PatientStatusController.IsHealed)
         {
-            HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
+            SetExcreteWarning();
             Invoke("Excrete", 5);
         }
     }
 
-    private void Excrete()
+    private void SetExcreteWarning()
+    {
+        HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
+        PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPukeWarning);
+    }
+
+    protected virtual void Excrete()
     {
         if (!PatientStatusController.IsHealed)
         {
@@ -217,15 +221,13 @@ public class HealthController : MonoBehaviour
 
     private void ReduceHydration()
     {
-        float randomVariance = UnityEngine.Random.Range(CholeraConfig.ExcreteHydrationLossVariance, CholeraConfig.ExcreteHydrationLossVariance*2);
-        float hydrationLossModifier = HydrationConfig.HydrationLowerThreshold >= HydrationMeter ? HydrationConfig.HydrationLowerThresholdModifier : 1;
-        HydrationMeter = Mathf.Clamp(HydrationMeter -= (CholeraConfig.ExcreteHydrationLoss + randomVariance) * hydrationLossModifier, HydrationClampMin, HydrationClampMax);
+        var loss = CholeraConfig.ExcreteHydrationLoss * HydrationChangeModifier;
+        print(loss);
+        SetHydration(HydrationMeter - loss);
     }
 
     private void MakeBedDirty()
     {
-        //var beds = BedManagerInstance?.Beds;
-            
         var patientInBed = BedManagerInstance?.Beds.SingleOrDefault(a => a.PatientInBed == gameObject);        
 
         if (patientInBed != null)
@@ -260,22 +262,8 @@ public class HealthController : MonoBehaviour
         {
             HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
         }
-
-        
     }
-
-    //private IEnumerator ComboRedemptionCheck()
-    //{
-    //    yield return new WaitForSeconds(ComboRedemptionTime);
-
-    //    var threshold = HydrationHealingConfig.ListOfThresholds.LastOrDefault().ThresholdOfActivation;
-
-    //    if (HydrationMeter < threshold)
-    //    {
-    //        HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
-    //    }
-    //}
-
+    
     private IEnumerator ComboBonusSetter(float pTime, float pAmount)
     {
         while (true)
@@ -300,5 +288,10 @@ public class HealthController : MonoBehaviour
     public void ForceExcretion()
     {
         Excrete();
+    }
+
+    public void ForceSickness()
+    {
+        StartFeelingSick();
     }
 }

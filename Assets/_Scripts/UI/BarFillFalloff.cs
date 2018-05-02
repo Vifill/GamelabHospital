@@ -11,9 +11,13 @@ public class BarFillFalloff : MonoBehaviour {
     private Image OverlayImage;
 
     private Color OverlayImageColor;
+    private Color GainColor;
     private float Timer;
+    public bool IsGaining;
+
     void Start ()
     {
+        GainColor = Constants.Colors.Green;
         Image = GetComponent<Image>();
         OverlayImage = Instantiate(Image, Image.transform.position, Image.transform.rotation, Image.transform.parent);
         OverlayImage.transform.SetSiblingIndex(Image.transform.GetSiblingIndex());
@@ -24,10 +28,15 @@ public class BarFillFalloff : MonoBehaviour {
         OverlayImageColor = OverlayImage.color;
         OverlayImageColor.a = 1;
         OverlayImage.color = OverlayImage.color;
+        IsGaining = false;
 	}
 
 	void LateUpdate ()
     {
+        if (IsGaining)
+        {
+            return;
+        }
         if (Mathf.Abs(Image.fillAmount - OverlayImage.fillAmount) < 0.05)
         {
             OverlayImage.fillAmount = Mathf.MoveTowards(OverlayImage.fillAmount, Image.fillAmount, Time.deltaTime / 2);
@@ -57,4 +66,26 @@ public class BarFillFalloff : MonoBehaviour {
             }
         }
 	}
+    
+    public void VisualGain(float pFillAmount)
+    {
+        IsGaining = true;
+        OverlayImage.color = Constants.Colors.GetColor("#006400");/*Constants.Colors.Green;*/
+        OverlayImage.fillAmount = pFillAmount;
+        StartCoroutine(GainCoroutine(pFillAmount));
+    }
+  
+    private IEnumerator GainCoroutine (float pFillAmount)
+    {
+        print("lolwat: " + pFillAmount);
+        yield return new WaitForSeconds(.75f);
+
+        while (Image.fillAmount < pFillAmount)
+	    {
+            print("run");
+            Image.fillAmount = Mathf.MoveTowards(Image.fillAmount, pFillAmount, Time.deltaTime/2);
+            yield return null;
+	    }
+        IsGaining = false;
+    }
 }

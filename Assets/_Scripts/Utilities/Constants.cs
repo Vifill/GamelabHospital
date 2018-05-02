@@ -24,11 +24,13 @@ namespace Assets._Scripts.Utilities
             public const string CharacterIsWalking = "IsWalking";
             public const string CharacterHoldingWater = "HoldingWater";
             public const string CharacterHoldingIVBag = "HoldingIVBag";
+            public const string CharacterHoldingBucket = "HoldingBucket";
             public const string CharacterIsActioning = "Actioning";
             public const string IsPatient = "IsPatient";
             public const string PatientPuke = "PatientPuke";
             public const string PatientDrinkWater = "PatientDrink";
             public const string PatientIVBag = "PatientIVBag";
+            public const string PatientPukeWarning = "PatientPukeWarning";
 
             // UI
             public const string IsPulsatingUI = "IsPulsatingUI";
@@ -44,9 +46,11 @@ namespace Assets._Scripts.Utilities
         public class Colors
         {
             
-            public static Color Blue { get { return GetColor("#004D7DFF"); } }
-            public static Color Brown { get { return GetColor("#6C5300FF"); } }
-            public static Color Red { get { return GetColor("#B22222"); } }
+            public static Color Blue => GetColor("#004D7DFF");
+            public static Color Brown => GetColor("#6C5300FF");
+            public static Color Red => GetColor("#B22222");
+            public static Color Green => GetColor("#00FA9A");
+
 
             public static Color GetColor(string pHexString)
             {

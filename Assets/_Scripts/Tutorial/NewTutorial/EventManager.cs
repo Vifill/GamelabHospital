@@ -94,5 +94,6 @@ public class EventManager : MonoBehaviour
         DoneReturnBucket,
         DoneCleanDoctor,
         DoneFinishingTutorialQueue
+        DonePuking
     }
 }

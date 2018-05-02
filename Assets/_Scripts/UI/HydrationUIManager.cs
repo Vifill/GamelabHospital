@@ -42,14 +42,23 @@ public class HydrationUIManager : MonoBehaviour
         transform.position = Camera.main.WorldToScreenPoint(HealthController.transform.position + new Vector3(0, UIOffset, UIOffset));
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (HealthController != null)
         {
             // For testing HydrationMeterUI_v2, switch lines for v1
             //HydrationMeterUI.GetComponent<UIFillAmount>().FillAmount = HealthController.HydrationMeter / 100;
             HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
-            HealthMeterUI.fillAmount = HealthController.Health / 100;
+            var barfillController = HealthMeterUI?.GetComponentInChildren<BarFillFalloff>();
+            if (barfillController != null && (HealthMeterUI != null && (HealthController.Health / 100 > HealthMeterUI.fillAmount + 0.05f && !barfillController.IsGaining)))
+            {
+                barfillController.VisualGain(HealthController.Health / 100);
+            }
+            else if (!barfillController?.IsGaining ?? true)
+            {
+                HealthMeterUI.fillAmount = HealthController.Health / 100;
+            }
+            
 
             SetSeverityColor();
             SetHydrationWarning();
