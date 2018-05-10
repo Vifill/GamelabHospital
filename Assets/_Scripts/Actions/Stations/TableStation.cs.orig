@@ -33,8 +33,13 @@ public class TableStation : Actionable
 
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
+<<<<<<< HEAD
+        //Can only be actioned if player is holding a tool and table empty or player empty handed and tool on table
+        return (pCurrentTool == ToolName.NoTool && TableObject != null) || (pCurrentTool != ToolName.NoTool);
+=======
         //Can only be actioned if player is holding a tool and table empty or player empty handed and tool on table or Player is holding tool and table has tool (switch items)
         return (pCurrentTool == ToolName.NoTool && TableObject != null) || (pCurrentTool != ToolName.NoTool && TableObject == null || (pCurrentTool != ToolName.NoTool && TableObject != null));
+>>>>>>> 9fdf75e20d53ba950970b17b90c022c1d64c3560
     }
 
     public override void OnFinishedAction(GameObject pObjectActioning = null)
@@ -53,6 +58,7 @@ public class TableStation : Actionable
             ActionFinishedSoundEvent = PickUpSound;
             PlayFinishedActionSFX();            
         }
+<<<<<<< HEAD
         else if (pCurrentTool != ToolName.NoTool && TableObject != null) //swapping tools on the table
         {
             ToolBase pToolOnTable = TableObject.GetComponent<ToolBase>();
@@ -72,6 +78,9 @@ public class TableStation : Actionable
             PlayFinishedActionSFX();
         }
         else if (pCurrentTool != ToolName.NoTool && TableObject == null) // if player holding tool & table empty
+=======
+        else if (pCurrentTool != ToolName.NoTool && TableObject == null) // If player holding tool & table empty
+>>>>>>> 9fdf75e20d53ba950970b17b90c022c1d64c3560
         {
             ToolBase pTool = toolController.GetToolBase();
             TableObject = pTool.gameObject;
