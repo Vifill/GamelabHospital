@@ -44,8 +44,13 @@ public class MouseInputController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && !GameController.InMenuScreen)
         {
-            CurrentOrderly?.CurrentAction?.CancelOrder();
+            CancelOrder();
         }
+    }
+
+    protected virtual void CancelOrder()
+    {
+        CurrentOrderly?.CurrentAction?.CancelOrder();
     }
 
     protected OrderlyOrder GetOrderFromMouse()
