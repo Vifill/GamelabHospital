@@ -13,6 +13,18 @@ public class MouseInputControllerTutorial : MouseInputController
         TutorialController = FindObjectOfType<TutorialController>();
     }
 
+    protected override void CancelOrder()
+    {
+        if (TutorialController.CurrentObjective.OnFinishEvent == EventManager.EventCodes.DoneFinishingTutorialQueue)
+        {
+            // do nothing
+        }
+        else
+        {
+            base.CancelOrder();
+        }
+    }
+
     public override void Update()
     {
         if (Time.timeScale == 0 && !GameController.InMenuScreen)
