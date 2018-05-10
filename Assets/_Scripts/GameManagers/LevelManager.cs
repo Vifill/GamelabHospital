@@ -58,10 +58,10 @@ public class LevelManager : MonoBehaviour
         StartTime = LevelConfig.LevelTimeSecs;
         TimerClampMax = StartTime;
         Timer = StartTime;
-        var sun = Instantiate(SunPrefab);
-        DayNightCycle = sun.GetComponent<Animator>();
+        //var sun = Instantiate(SunPrefab);
+        //DayNightCycle = sun.GetComponent<Animator>();
         var multiplier = 1 / (StartTime / 60);
-        DayNightCycle.SetFloat("SpeedMultiplier", multiplier);//endre
+        //DayNightCycle.SetFloat("SpeedMultiplier", multiplier);//endre
     }
 
     private void Update()
