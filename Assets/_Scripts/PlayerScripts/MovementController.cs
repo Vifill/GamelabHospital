@@ -79,7 +79,18 @@ public class MovementController : MonoBehaviour {
             }
            
 
-            if (Direction.magnitude >= 0.1)
+            //if (Direction.magnitude >= 0.1)
+            //{
+            //    var lookRot = Quaternion.LookRotation(Direction);
+            //    transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, RotSpeed * Time.deltaTime);
+
+            //    if (!Animator.GetBool(Constants.AnimationParameters.CharacterIsWalking))
+            //    {
+            //        StartWalkingAnimation();
+            //    }
+            //}
+
+            if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
             {
                 var lookRot = Quaternion.LookRotation(Direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, RotSpeed * Time.deltaTime);

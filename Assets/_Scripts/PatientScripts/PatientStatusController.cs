@@ -20,7 +20,7 @@ public class PatientStatusController : MonoBehaviour
         set
         {
             mIsHealed = value;
-            if (LevelManager?.TimeOver ?? false)
+            if (LevelManager.TimeOver)
             {
                 LevelManager.CheckIfAllPatientsAreDone();
             }
