@@ -78,9 +78,4 @@ public class MouseInputController : MonoBehaviour
         CurrentOrderly = pOrderlyController;
         pOrderlyController.SelectionParticleEffect.SetActive(true);
     }
-
-    private OrderlyController GetNearestAvailableOrderly(OrderlyOrder pNextOrder)
-    {
-        return Orderlies.Where(a => a.CurrentOrder == null).OrderBy(a=> Vector3.Distance(a.transform.position, pNextOrder.FirstActionPosition)).FirstOrDefault();
-    }
 }
