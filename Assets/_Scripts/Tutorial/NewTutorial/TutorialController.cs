@@ -45,7 +45,7 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DoneHydration, OnHydrateDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCheckOut, OnCheckOutDoneEvent);
         EventActions.Add(EventManager.EventCodes.DonePatientDeath, OnPatientDeath);
-        EventActions.Add(EventManager.EventCodes.DoneWaitingForHealed, OnWaitingForHealDone);
+        EventActions.Add(EventManager.EventCodes.FinishLevel, OnFinishLevel);
         // Tutorial Level 2
         EventActions.Add(EventManager.EventCodes.DoneGetWaterLvl2, OnDoneGetWaterLvl2Event);
         EventActions.Add(EventManager.EventCodes.DoneHydrationLvl2, OnDoneHydrationLvl2Event);
@@ -55,6 +55,11 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DoneReturnBucket, OnReturnBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneFinishingTutorialQueue, DoneFinishingTutorialQueueEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanDoctor, OnCleanDoctorDoneEvent);
+    }
+
+    private void OnFinishLevel()
+    {
+        StartCoroutine(EndLevelCoroutine(1));
     }
 
     private void OnPukingDone()
@@ -78,11 +83,6 @@ public class TutorialController : MonoBehaviour
     private void OnDoneGetWaterLvl2Event()
     {
         Debug.Log("DoneGetWaterLvl2, event triggered.");
-    }
-
-    private void OnWaitingForHealDone()
-    {
-        //TutorialScreenController?.DisplayCheckoutScreen();
     }
 
     private void OnCleanDoctorDoneEvent()
@@ -121,13 +121,13 @@ public class TutorialController : MonoBehaviour
 
     private void OnPatientDeath()
     {
-        //end level?
-        StartCoroutine(EndLevelCoroutine());
+        //StartCoroutine(EndLevelCoroutine());
+        TutorialUtility.SetSpawnFreeze(false);
     }
 
-    private IEnumerator EndLevelCoroutine()
+    private IEnumerator EndLevelCoroutine(float pDelay)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(pDelay);
         TutorialUtility.ForceEndLevel();
     }
 
@@ -219,4 +219,4 @@ public class TutorialController : MonoBehaviour
 
     }
 
-    }
+}
