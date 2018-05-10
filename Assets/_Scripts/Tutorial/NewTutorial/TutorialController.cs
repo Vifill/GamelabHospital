@@ -14,10 +14,13 @@ public class TutorialController : MonoBehaviour
     public TutorialCoroutineStartLogic StartLogic;
 
     public Objective CurrentObjective { private set; get; }
+   
+
     private Dictionary<EventManager.EventCodes, UnityAction> EventActions = new Dictionary<EventManager.EventCodes, UnityAction>();
     private int ObjectiveIndex = 0;
     private List<GameObject> CurrentArrows = new List<GameObject>();
     private Level1TutorialScreenController TutorialScreenController;
+    private bool CanEndLevel;
 
 
 
@@ -35,6 +38,23 @@ public class TutorialController : MonoBehaviour
         }
 
         TutorialScreenController = FindObjectOfType<Level1TutorialScreenController>() ?? null;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return) && CanEndLevel)
+        {
+            EventManager.TriggerEvent(EventManager.EventCodes.FinishLevel);
+        }
+
+        if (GameController.InMenuScreen && ObjectiveTextUIObject.gameObject.activeSelf || LevelManager.TimeOver && ObjectiveTextUIObject.gameObject.activeSelf)
+        {
+            ObjectiveTextUIObject.gameObject.SetActive(false);
+        }
+        else if (!GameController.InMenuScreen && !ObjectiveTextUIObject.gameObject.activeSelf && !LevelManager.TimeOver)
+        {
+            ObjectiveTextUIObject.gameObject.SetActive(true);
+        }
     }
 
     private void AddActionsToEvents()
@@ -59,11 +79,12 @@ public class TutorialController : MonoBehaviour
 
     private void OnFinishLevel()
     {
-        StartCoroutine(EndLevelCoroutine(1));
+        StartCoroutine(EndLevelCoroutine(0));
     }
 
     private void OnPukingDone()
     {
+        TutorialUtility.SetActionablesActive(true);
         TutorialUtility.SetHydrationFreeze(true);
         TutorialUtility.SetHealthFreeze(true);
         TutorialUtility.SetFreezeExcretion(true);
@@ -121,8 +142,8 @@ public class TutorialController : MonoBehaviour
 
     private void OnPatientDeath()
     {
-        //StartCoroutine(EndLevelCoroutine());
         TutorialUtility.SetSpawnFreeze(false);
+        CanEndLevel = true;
     }
 
     private IEnumerator EndLevelCoroutine(float pDelay)
