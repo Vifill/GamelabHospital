@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.17427094, g: 0.2179385, b: 0.30015507, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -56,13 +56,13 @@ LightmapSettings:
   m_LightmapEditorSettings:
     serializedVersion: 9
     m_Resolution: 2
-    m_BakeResolution: 40
-    m_TextureWidth: 1024
+    m_BakeResolution: 30
+    m_TextureWidth: 256
     m_TextureHeight: 1024
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
-    m_CompAOExponentDirect: 0
+    m_CompAOExponentDirect: 1
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000002, guid: 5114cf64e8bc6b845ad79cf2e8d12c0f,
+  m_LightingDataAsset: {fileID: 112000336, guid: aa26e3987af5c584e9d5e950a20d0cb9,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -130,7 +130,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &13080491
 Transform:
@@ -224,7 +224,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &33224495
 Transform:
@@ -292,6 +292,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.64184815
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -354,6 +358,10 @@ Prefab:
     - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
       propertyPath: m_Name
       value: PillJar (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -428,6 +436,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1245408349165860, guid: d7e9c780713a1be4ea5611f179a7e40b, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7e9c780713a1be4ea5611f179a7e40b, type: 2}
   m_IsPrefabParent: 0
@@ -450,7 +462,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &73628354
 Transform:
@@ -587,6 +599,10 @@ Prefab:
       propertyPath: m_Name
       value: Bandage (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
@@ -604,7 +620,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &93488028
 Transform:
@@ -690,7 +706,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &97746733
 Transform:
@@ -792,6 +808,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -849,6 +869,10 @@ Prefab:
     - target: {fileID: 100000, guid: b1e71b0a5cadbfc46a6944e133c0d854, type: 3}
       propertyPath: m_Name
       value: Grass_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b1e71b0a5cadbfc46a6944e133c0d854, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1e71b0a5cadbfc46a6944e133c0d854, type: 3}
@@ -908,6 +932,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -964,7 +992,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1089018276908680, guid: b2d902c654fd38c43a9e2be43a203dc5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1089018276908680, guid: b2d902c654fd38c43a9e2be43a203dc5, type: 2}
       propertyPath: m_NavMeshLayer
@@ -1139,6 +1167,10 @@ Prefab:
       propertyPath: m_Name
       value: PillJar (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -1202,6 +1234,10 @@ Prefab:
       propertyPath: m_Name
       value: WallLamp (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a42041c97a1f29489a34287282637c7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a42041c97a1f29489a34287282637c7, type: 3}
   m_IsPrefabParent: 0
@@ -1260,6 +1296,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -1305,6 +1345,10 @@ Prefab:
     - target: {fileID: 400000, guid: 74c244ca1d45e0545816c266403b3065, type: 3}
       propertyPath: m_RootOrder
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 74c244ca1d45e0545816c266403b3065, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74c244ca1d45e0545816c266403b3065, type: 3}
@@ -1364,6 +1408,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -1386,7 +1434,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &199085916
 BoxCollider:
@@ -1418,7 +1466,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &203218155
 Transform:
@@ -1545,6 +1593,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -1662,6 +1714,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -1678,7 +1734,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &217276765
 Transform:
@@ -1748,6 +1804,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
   m_IsPrefabParent: 0
@@ -1795,7 +1855,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &235958108
 Transform:
@@ -1899,6 +1959,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: e949c60c6342270478e0aac73fcbce6a, type: 2}
+    - target: {fileID: 100000, guid: fdf39d83d3c089e4e9a4895b7280f4fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fdf39d83d3c089e4e9a4895b7280f4fa, type: 3}
   m_IsPrefabParent: 0
@@ -1919,7 +1983,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &250230438
 Transform:
@@ -1981,6 +2045,10 @@ Prefab:
       propertyPath: m_Name
       value: Grass_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b1e71b0a5cadbfc46a6944e133c0d854, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1e71b0a5cadbfc46a6944e133c0d854, type: 3}
   m_IsPrefabParent: 0
@@ -2039,6 +2107,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -2061,7 +2133,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &257610330
 Transform:
@@ -2208,6 +2280,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -2232,7 +2308,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4281601883957898, guid: 007f683f02f197242aeadf425a60465e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10.4
+      value: 9.39
       objectReference: {fileID: 0}
     - target: {fileID: 4281601883957898, guid: 007f683f02f197242aeadf425a60465e, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2240,38 +2316,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4281601883957898, guid: 007f683f02f197242aeadf425a60465e, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.7975816
       objectReference: {fileID: 0}
     - target: {fileID: 4281601883957898, guid: 007f683f02f197242aeadf425a60465e, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4281601883957898, guid: 007f683f02f197242aeadf425a60465e, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4281601883957898, guid: 007f683f02f197242aeadf425a60465e, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.6032111
       objectReference: {fileID: 0}
     - target: {fileID: 4281601883957898, guid: 007f683f02f197242aeadf425a60465e, type: 2}
       propertyPath: m_RootOrder
       value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 108373581657888644, guid: 007f683f02f197242aeadf425a60465e,
-        type: 2}
-      propertyPath: m_Range
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 108373581657888644, guid: 007f683f02f197242aeadf425a60465e,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 1.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 108937640162048708, guid: 007f683f02f197242aeadf425a60465e,
-        type: 2}
-      propertyPath: m_Intensity
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 007f683f02f197242aeadf425a60465e, type: 2}
@@ -2331,6 +2392,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: e949c60c6342270478e0aac73fcbce6a, type: 2}
+    - target: {fileID: 100000, guid: fdf39d83d3c089e4e9a4895b7280f4fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fdf39d83d3c089e4e9a4895b7280f4fa, type: 3}
   m_IsPrefabParent: 0
@@ -2393,6 +2458,10 @@ Prefab:
       propertyPath: m_Name
       value: Bandage (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
@@ -2429,7 +2498,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &341587229
 Transform:
@@ -2500,6 +2569,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.0000005
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
   m_IsPrefabParent: 0
@@ -2516,7 +2589,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &358099232
 Transform:
@@ -2582,6 +2655,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.2722683
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: efe4bbdc745478041b240f30c751262c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efe4bbdc745478041b240f30c751262c, type: 3}
   m_IsPrefabParent: 0
@@ -2632,6 +2709,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b775d5a5860042442ab820276c32ed98, type: 2}
+    - target: {fileID: 100000, guid: 29d7bd84c61ef6f439fff85a1682297f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29d7bd84c61ef6f439fff85a1682297f, type: 3}
   m_IsPrefabParent: 0
@@ -2689,6 +2770,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
       propertyPath: m_Name
       value: Sidewalk_Tile (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
@@ -2807,6 +2892,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -2827,7 +2916,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &414432382
 Transform:
@@ -2860,7 +2949,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &428449298
 Transform:
@@ -2902,7 +2991,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &444180518
 Transform:
@@ -2978,6 +3067,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 79.662
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7632e0b65b19e2f498b4b3dfa7b4185e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7632e0b65b19e2f498b4b3dfa7b4185e, type: 3}
   m_IsPrefabParent: 0
@@ -3048,6 +3141,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -3102,6 +3199,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a3bda1bfc78634c409b8535a6612cef3, type: 2}
+    - target: {fileID: 100000, guid: e19b371e877b08a468419600284bf849, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e19b371e877b08a468419600284bf849, type: 3}
   m_IsPrefabParent: 0
@@ -3152,6 +3253,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall_Solid_01 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -3168,7 +3273,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &484319616
 Transform:
@@ -3196,7 +3301,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &491503767
 Transform:
@@ -3294,6 +3399,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e199782809a33c442b7246caf47c2c5d, type: 2}
+    - target: {fileID: 100000, guid: ea3ef1e90f865f944b135ffe6098e0fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea3ef1e90f865f944b135ffe6098e0fe, type: 3}
   m_IsPrefabParent: 0
@@ -3351,6 +3460,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
       propertyPath: m_Name
       value: Sidewalk_Tile (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
@@ -3410,6 +3523,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e199782809a33c442b7246caf47c2c5d, type: 2}
+    - target: {fileID: 100000, guid: ea3ef1e90f865f944b135ffe6098e0fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea3ef1e90f865f944b135ffe6098e0fe, type: 3}
   m_IsPrefabParent: 0
@@ -3460,6 +3577,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall_Solid_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -3483,7 +3604,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &511466566
 Transform:
@@ -3546,7 +3667,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &523358432
 Transform:
@@ -3614,6 +3735,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7632e0b65b19e2f498b4b3dfa7b4185e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7632e0b65b19e2f498b4b3dfa7b4185e, type: 3}
   m_IsPrefabParent: 0
@@ -3672,6 +3797,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -3697,7 +3826,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &561642374
 Transform:
@@ -3773,6 +3902,10 @@ Prefab:
       propertyPath: m_Name
       value: Bandage (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
@@ -3836,6 +3969,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
       propertyPath: m_Name
       value: Sidewalk_Tile (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
@@ -3907,6 +4044,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bf17be27ade711f4e813c6d45bdf2a22, type: 2}
+    - target: {fileID: 100000, guid: b7d8eb8d5f6263244b10f32b0f500249, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7d8eb8d5f6263244b10f32b0f500249, type: 3}
   m_IsPrefabParent: 0
@@ -3928,7 +4069,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &659802552
 Transform:
@@ -4028,6 +4169,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -19.314001
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -4046,7 +4191,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &689601895
 Transform:
@@ -4122,6 +4267,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -4192,6 +4341,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
   m_IsPrefabParent: 0
@@ -4250,6 +4403,10 @@ Prefab:
       propertyPath: m_Name
       value: PillJar (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -4292,6 +4449,10 @@ Prefab:
     - target: {fileID: 400000, guid: d0990481c38938749ac69c169419c57c, type: 3}
       propertyPath: m_RootOrder
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d0990481c38938749ac69c169419c57c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0990481c38938749ac69c169419c57c, type: 3}
@@ -4350,6 +4511,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
       propertyPath: m_Name
       value: Sidewalk_Tile (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
@@ -4428,6 +4593,10 @@ Prefab:
     - target: {fileID: 100000, guid: 74c244ca1d45e0545816c266403b3065, type: 3}
       propertyPath: m_Name
       value: Trashcan_Outside (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 74c244ca1d45e0545816c266403b3065, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74c244ca1d45e0545816c266403b3065, type: 3}
@@ -4509,6 +4678,10 @@ Prefab:
       propertyPath: m_Name
       value: Bandage (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
@@ -4560,6 +4733,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7a702fa3d4811734f9fad9d96713df05, type: 2}
+    - target: {fileID: 100000, guid: b1e71b0a5cadbfc46a6944e133c0d854, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1e71b0a5cadbfc46a6944e133c0d854, type: 3}
   m_IsPrefabParent: 0
@@ -4622,6 +4799,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -4643,7 +4824,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &756897537
 Transform:
@@ -4714,6 +4895,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
       propertyPath: m_Name
       value: Sidewalk_Tile (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
@@ -4814,6 +4999,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -4875,6 +5064,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
       propertyPath: m_Name
       value: Sidewalk_Tile (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
@@ -4956,6 +5149,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -5026,7 +5223,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &816088631
 Transform:
@@ -5086,6 +5283,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -5144,6 +5345,10 @@ Prefab:
       propertyPath: m_Name
       value: PillJar (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -5169,7 +5374,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &865402747
 Transform:
@@ -5235,7 +5440,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &873896740
 Transform:
@@ -5410,6 +5615,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -5471,6 +5680,10 @@ Prefab:
     - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
       propertyPath: m_Name
       value: PillJar (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -5576,6 +5789,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
       propertyPath: m_Name
       value: Sidewalk_Tile (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
@@ -5725,7 +5942,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &997000242
 Transform:
@@ -5839,6 +6056,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e199782809a33c442b7246caf47c2c5d, type: 2}
+    - target: {fileID: 100000, guid: ea3ef1e90f865f944b135ffe6098e0fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea3ef1e90f865f944b135ffe6098e0fe, type: 3}
   m_IsPrefabParent: 0
@@ -6024,6 +6245,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 33
       objectReference: {fileID: 0}
+    - target: {fileID: 1530413578978034, guid: 43dd9eb1ed017d345b3e5f36a2523ac7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43dd9eb1ed017d345b3e5f36a2523ac7, type: 2}
   m_IsPrefabParent: 0
@@ -6074,6 +6299,22 @@ Prefab:
     - target: {fileID: 1395156671498228, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
       propertyPath: m_Name
       value: TableStation (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395156671498228, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426283363478116, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741997646084932, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000412622951042, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
@@ -6141,6 +6382,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
   m_IsPrefabParent: 0
@@ -6158,7 +6403,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1077864423
 Transform:
@@ -6231,6 +6476,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5472be79278782248aa9aeb62152988d, type: 2}
+    - target: {fileID: 100000, guid: a0b510b1c0e9a7d488b5d34ee2da218b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0b510b1c0e9a7d488b5d34ee2da218b, type: 3}
   m_IsPrefabParent: 0
@@ -6292,6 +6541,38 @@ Prefab:
     - target: {fileID: 1365085275275332, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
       propertyPath: m_NavMeshLayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968860176664478, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482969306336156, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1944913333739446, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899909370311928, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154569477029560, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135410968667960, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647772143939644, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1985969002063268, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0fc54341e2483964d92f3fab647fbfe2, type: 2}
@@ -6359,6 +6640,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
   m_IsPrefabParent: 0
@@ -6408,6 +6693,10 @@ Prefab:
     - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
       propertyPath: m_Name
       value: Wall_Solid_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
@@ -6592,6 +6881,10 @@ Prefab:
       propertyPath: m_Name
       value: PillJar (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -6660,6 +6953,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -6683,7 +6980,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1188690801
 Transform:
@@ -6750,7 +7047,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1191163581
 Transform:
@@ -6788,7 +7085,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1194587425
 Transform:
@@ -6914,6 +7211,10 @@ Prefab:
       propertyPath: m_Name
       value: Grass_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b1e71b0a5cadbfc46a6944e133c0d854, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1e71b0a5cadbfc46a6944e133c0d854, type: 3}
   m_IsPrefabParent: 0
@@ -6963,6 +7264,10 @@ Prefab:
     - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
       propertyPath: m_Name
       value: Wall_Solid_01 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
@@ -7016,7 +7321,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1089018276908680, guid: b2d902c654fd38c43a9e2be43a203dc5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1089018276908680, guid: b2d902c654fd38c43a9e2be43a203dc5, type: 2}
       propertyPath: m_NavMeshLayer
@@ -7085,6 +7390,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -7134,6 +7443,22 @@ Prefab:
     - target: {fileID: 1395156671498228, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
       propertyPath: m_Name
       value: TableStation (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000412622951042, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741997646084932, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426283363478116, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395156671498228, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
@@ -7201,6 +7526,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
   m_IsPrefabParent: 0
@@ -7267,6 +7596,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -7329,6 +7662,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -7382,6 +7719,10 @@ Prefab:
     - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
       propertyPath: m_Name
       value: Wall_Solid_01 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
@@ -7441,6 +7782,10 @@ Prefab:
       propertyPath: m_Name
       value: PillJar (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -7489,7 +7834,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1268573331
 Transform:
@@ -7638,6 +7983,10 @@ Prefab:
       propertyPath: m_Name
       value: Bandage (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
@@ -7705,6 +8054,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -55.31
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7632e0b65b19e2f498b4b3dfa7b4185e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7632e0b65b19e2f498b4b3dfa7b4185e, type: 3}
   m_IsPrefabParent: 0
@@ -7726,7 +8079,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1290567620
 Transform:
@@ -7798,6 +8151,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -7819,7 +8176,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1297024075
 Transform:
@@ -7882,6 +8239,10 @@ Prefab:
     - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
       propertyPath: m_Name
       value: Wall_Solid_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
@@ -7954,6 +8315,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1830983191983176, guid: 14715d8a93ba7c14782a91b82c4d655c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14715d8a93ba7c14782a91b82c4d655c, type: 2}
   m_IsPrefabParent: 0
@@ -7999,6 +8364,10 @@ Prefab:
     - target: {fileID: 400000, guid: abd979e98355edc4eb968c6925995f5c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: abd979e98355edc4eb968c6925995f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: abd979e98355edc4eb968c6925995f5c, type: 3}
@@ -8062,6 +8431,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
       propertyPath: m_Name
       value: Sidewalk_Tile (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
@@ -8153,6 +8526,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall_Solid_01 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -8225,6 +8602,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: e949c60c6342270478e0aac73fcbce6a, type: 2}
+    - target: {fileID: 100000, guid: fdf39d83d3c089e4e9a4895b7280f4fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fdf39d83d3c089e4e9a4895b7280f4fa, type: 3}
   m_IsPrefabParent: 0
@@ -8283,6 +8664,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 139.76901
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
@@ -8334,6 +8719,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall_Solid_01 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -8355,7 +8744,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1385487997
 Transform:
@@ -8435,7 +8824,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1425596004
 Transform:
@@ -8503,6 +8892,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall_Solid_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -8524,7 +8917,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1435309081
 Transform:
@@ -8669,6 +9062,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -8734,6 +9131,10 @@ Prefab:
     - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
       propertyPath: m_Name
       value: Bandage (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
@@ -8936,6 +9337,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
   m_IsPrefabParent: 0
@@ -8957,7 +9362,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1485173616
 Transform:
@@ -9027,6 +9432,10 @@ Prefab:
       propertyPath: m_Name
       value: PillJar (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -9050,7 +9459,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1491981663
 Transform:
@@ -9183,6 +9592,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
   m_IsPrefabParent: 0
@@ -9202,7 +9615,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1521413183
 Transform:
@@ -9403,6 +9816,10 @@ Prefab:
       propertyPath: m_Name
       value: PillJar (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -9421,7 +9838,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1567853663
 Transform:
@@ -9524,6 +9941,10 @@ Prefab:
       propertyPath: m_Name
       value: Bandage (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
@@ -9578,6 +9999,10 @@ Prefab:
     - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
       propertyPath: m_Name
       value: Wall_Solid_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
@@ -9637,6 +10062,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -9693,7 +10122,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1622967314
 Transform:
@@ -9771,6 +10200,10 @@ Prefab:
       propertyPath: m_Name
       value: PillJar (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -9789,7 +10222,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1638074340
 Transform:
@@ -9870,6 +10303,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1830983191983176, guid: 14715d8a93ba7c14782a91b82c4d655c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14715d8a93ba7c14782a91b82c4d655c, type: 2}
   m_IsPrefabParent: 0
@@ -9889,7 +10326,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1640725605
 Transform:
@@ -10011,6 +10448,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall_Solid_01 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -10069,6 +10510,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -10123,6 +10568,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall_Solid_01 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -10144,7 +10593,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1666864826
 Transform:
@@ -10293,6 +10742,10 @@ Prefab:
       propertyPath: m_Name
       value: Bandage (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
@@ -10348,6 +10801,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bf17be27ade711f4e813c6d45bdf2a22, type: 2}
+    - target: {fileID: 100000, guid: b7d8eb8d5f6263244b10f32b0f500249, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7d8eb8d5f6263244b10f32b0f500249, type: 3}
   m_IsPrefabParent: 0
@@ -10418,6 +10875,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -10479,6 +10940,10 @@ Prefab:
     - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
       propertyPath: m_Name
       value: PillJar (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -10592,6 +11057,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 27.219002
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7632e0b65b19e2f498b4b3dfa7b4185e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7632e0b65b19e2f498b4b3dfa7b4185e, type: 3}
   m_IsPrefabParent: 0
@@ -10610,7 +11079,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1704371648
 Transform:
@@ -10735,6 +11204,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -10841,6 +11314,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.1958529
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: efe4bbdc745478041b240f30c751262c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efe4bbdc745478041b240f30c751262c, type: 3}
   m_IsPrefabParent: 0
@@ -10895,6 +11372,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
   m_IsPrefabParent: 0
@@ -10944,6 +11425,10 @@ Prefab:
     - target: {fileID: 400000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
@@ -11003,6 +11488,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -11041,7 +11530,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1783708489
 Transform:
@@ -11110,6 +11599,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
       propertyPath: m_Name
       value: Sidewalk_Tile (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
@@ -11260,6 +11753,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
   m_IsPrefabParent: 0
@@ -11330,6 +11827,10 @@ Prefab:
     - target: {fileID: 400000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
@@ -11407,6 +11908,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -11477,6 +11982,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bf17be27ade711f4e813c6d45bdf2a22, type: 2}
+    - target: {fileID: 100000, guid: b7d8eb8d5f6263244b10f32b0f500249, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7d8eb8d5f6263244b10f32b0f500249, type: 3}
   m_IsPrefabParent: 0
@@ -11547,7 +12056,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294966783
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -11613,7 +12122,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1849993278
 Transform:
@@ -11698,6 +12207,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1830983191983176, guid: 14715d8a93ba7c14782a91b82c4d655c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14715d8a93ba7c14782a91b82c4d655c, type: 2}
   m_IsPrefabParent: 0
@@ -11717,7 +12230,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1858713229
 Transform:
@@ -11850,7 +12363,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1864476964
 Transform:
@@ -11972,6 +12485,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall_Solid_01 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -12013,6 +12530,10 @@ Prefab:
     - target: {fileID: 400000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
@@ -12076,6 +12597,10 @@ Prefab:
       propertyPath: m_Name
       value: Bandage (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ca7eb487284ba4f4ca6ff5d8d3dbbe2d, type: 3}
@@ -12132,7 +12657,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1900641957
 Transform:
@@ -12204,6 +12729,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -12262,6 +12791,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -12307,6 +12840,10 @@ Prefab:
     - target: {fileID: 400000, guid: 214b370d78477fc4b81a70b7c4aa933f, type: 3}
       propertyPath: m_RootOrder
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 214b370d78477fc4b81a70b7c4aa933f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 214b370d78477fc4b81a70b7c4aa933f, type: 3}
@@ -12370,6 +12907,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -12393,7 +12934,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &1926828137
 MeshRenderer:
@@ -12482,6 +13023,10 @@ Prefab:
       propertyPath: m_Name
       value: Trashcan_Outside (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 74c244ca1d45e0545816c266403b3065, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74c244ca1d45e0545816c266403b3065, type: 3}
   m_IsPrefabParent: 0
@@ -12499,7 +13044,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1936997129
 Transform:
@@ -12662,6 +13207,50 @@ Prefab:
       propertyPath: m_Name
       value: Bed (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1367339296516460, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204839356724352, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294050685811890, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432145258744064, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767154080004150, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229857338834298, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794016095147928, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186084464187320, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975126439794160, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808493033215334, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816757247161776, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
   m_IsPrefabParent: 0
@@ -12679,7 +13268,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1976660169
 Transform:
@@ -12751,6 +13340,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -12813,6 +13406,10 @@ Prefab:
       propertyPath: m_Name
       value: PillJar (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 3f86aeb93139d6548a2f486e4e216193, type: 3}
@@ -12864,6 +13461,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall_Solid_01 (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -12881,7 +13482,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1996082145
 Transform:
@@ -12953,6 +13554,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -12976,7 +13581,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2001920551
 Transform:
@@ -13092,7 +13697,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1089018276908680, guid: b2d902c654fd38c43a9e2be43a203dc5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1089018276908680, guid: b2d902c654fd38c43a9e2be43a203dc5, type: 2}
       propertyPath: m_NavMeshLayer
@@ -13176,6 +13781,10 @@ Prefab:
     - target: {fileID: 4003573292268434, guid: 2bebb46bc415ca74faf3ef7db02678eb, type: 2}
       propertyPath: m_LocalScale.z
       value: 65.216576
+      objectReference: {fileID: 0}
+    - target: {fileID: 1111489516147944, guid: 2bebb46bc415ca74faf3ef7db02678eb, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2bebb46bc415ca74faf3ef7db02678eb, type: 2}
@@ -13290,6 +13899,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -13368,6 +13981,10 @@ Prefab:
       propertyPath: m_Name
       value: WorldObject_Canister (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1530413578978034, guid: 43dd9eb1ed017d345b3e5f36a2523ac7, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43dd9eb1ed017d345b3e5f36a2523ac7, type: 2}
   m_IsPrefabParent: 0
@@ -13393,7 +14010,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2091839872
 Transform:
@@ -13514,7 +14131,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1089018276908680, guid: b2d902c654fd38c43a9e2be43a203dc5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1089018276908680, guid: b2d902c654fd38c43a9e2be43a203dc5, type: 2}
       propertyPath: m_NavMeshLayer
@@ -13580,7 +14197,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1367339296516460, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1367339296516460, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
       propertyPath: m_NavMeshLayer
@@ -13590,6 +14207,46 @@ Prefab:
         type: 2}
       propertyPath: DirtyMeter
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294050685811890, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204839356724352, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808493033215334, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1432145258744064, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794016095147928, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229857338834298, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767154080004150, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186084464187320, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975126439794160, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816757247161776, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df84c631f07c13e40b25d36d1879e142, type: 2}
@@ -13648,6 +14305,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
       propertyPath: m_Name
       value: Sidewalk_Tile (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
@@ -13748,6 +14409,10 @@ Prefab:
       propertyPath: m_Name
       value: Sidewalk_Tile (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a460803001efaf4cad6cbf2c962fe3a, type: 3}
   m_IsPrefabParent: 0
@@ -13804,7 +14469,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1089018276908680, guid: b2d902c654fd38c43a9e2be43a203dc5, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1089018276908680, guid: b2d902c654fd38c43a9e2be43a203dc5, type: 2}
       propertyPath: m_NavMeshLayer
@@ -13865,6 +14530,10 @@ Prefab:
       propertyPath: m_Name
       value: Wall_Solid_01 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfcd80600ca875f449a1bf84e87fcf16, type: 3}
   m_IsPrefabParent: 0
@@ -13886,7 +14555,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2144915878
 Transform:
@@ -13917,7 +14586,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2145842345
 Transform:
@@ -13996,6 +14665,10 @@ Prefab:
     - target: {fileID: 400000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dde30be8b7281d45b46992bb9d09049, type: 3}
