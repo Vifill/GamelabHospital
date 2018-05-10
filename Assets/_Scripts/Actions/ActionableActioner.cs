@@ -6,8 +6,9 @@ using UnityEngine.UI;
 using System.Linq;
 using Assets._Scripts.Utilities;
 
-public class ActionableActioner : MonoBehaviour 
+public class ActionableActioner : MonoBehaviour
 {
+    public GameObject FloatingTextPrefab;
     protected Actionable CurrentAction;
     private GameObject ActionableParticles;
     private Image ProgressBar;
@@ -84,9 +85,6 @@ public class ActionableActioner : MonoBehaviour
         ActionAfterFinishing?.Invoke(gameObject);
         ExternalActionWhenSuccessful?.Invoke();
         CurrentAction.PlayFinishedActionSFX();
-
-
-      
     }
 
     private void ProcessToolAfterSuccess()
@@ -249,6 +247,11 @@ public class ActionableActioner : MonoBehaviour
         HighlightedActions.Clear();
     }
 
+    public void SpawnFloatingText()
+    {
+
+    }
+
     private void TransferReasource()
     {
 
@@ -283,13 +286,11 @@ public class ActionableActioner : MonoBehaviour
         {
             return;
         }
-       
     }
 
     private IEnumerator TransferItemCoroutine(float pDelay, Transform pTargetTrans, bool pTargetIsUI, Transform pStartTrans, bool pStartIsUI, Color pColor)
     {
         yield return new WaitForSeconds(pDelay);
-     
 
         GameObject ParticleInstance = Instantiate(ParticlePrefab, Canvas.transform);
         ParticleInstance.GetComponent<Image>().color = pColor;
