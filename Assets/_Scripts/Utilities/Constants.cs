@@ -10,7 +10,7 @@ namespace Assets._Scripts.Utilities
     public static class Constants
     {
         public static string GuidePoints = "Navmesh Guidepoints";
-        public static string SceneNamePrefix = "Midterms_Level";
+        public static string SceneNamePrefix = "Level";
         public static string MainMenu = "MainMenu";
         public static string ArrowPlacementTag = "ArrowPlacement";
         public static string Highlightable = "Highlightable";
