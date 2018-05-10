@@ -232,7 +232,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1194696074187054}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 11.350507, y: 0.5, z: 4.6445575}
+  m_LocalPosition: {x: 11.350507, y: 0.06999999, z: 5.57}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4823950850723354}
@@ -518,7 +518,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RadiusOfActivation: 2
   ActionTime: 1
-  ActionParticles: {fileID: 0}
+  ActionParticles: {fileID: 1316601496903372, guid: 1b174c3fc96089e4b9247d51f9ce00a3,
+    type: 2}
   ActionSuccessParticles: {fileID: 1056199771017028, guid: 82a445cee909d1f4faffc41578c01e64,
     type: 2}
   ActionSoundEvent: {fileID: 8300000, guid: 7570ab45ee0645c49931cf0137f40a62, type: 3}
@@ -530,6 +531,7 @@ MonoBehaviour:
   NeedsSanitizedTool: 0
   ConsumesTool: 0
   MakesPlayerDirty: 0
+  IsBeingActioned: 0
   ActionIcon: {fileID: 1722825242517722, guid: ea6583a314bb6164b9a7635f8f145a46, type: 2}
   ActionProgress: 0
   DocWashedParticlePrefab: {fileID: 1636012692957450, guid: 2f0125d4ad00b444a93d09a670b516af,
@@ -547,7 +549,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RadiusOfActivation: 2
   ActionTime: 1.5
-  ActionParticles: {fileID: 0}
+  ActionParticles: {fileID: 1316601496903372, guid: 1b174c3fc96089e4b9247d51f9ce00a3,
+    type: 2}
   ActionSuccessParticles: {fileID: 1056199771017028, guid: 82a445cee909d1f4faffc41578c01e64,
     type: 2}
   ActionSoundEvent: {fileID: 8300000, guid: 7570ab45ee0645c49931cf0137f40a62, type: 3}
@@ -559,6 +562,7 @@ MonoBehaviour:
   NeedsSanitizedTool: 0
   ConsumesTool: 0
   MakesPlayerDirty: 0
+  IsBeingActioned: 0
   ActionIcon: {fileID: 0}
   ActionProgress: 0
   CleanableTools: 0100000004000000
