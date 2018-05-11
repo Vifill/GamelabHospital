@@ -250,7 +250,7 @@ public class ActionableActioner : MonoBehaviour
 
     public void SpawnFloatingText(string pInputText = "I need empty hands to do this")
     {
-        if (HasSpawnedFloatingText )
+        if (HasSpawnedFloatingText || FloatingTextPrefab == null)
         {
             return;
         }
