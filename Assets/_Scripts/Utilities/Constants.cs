@@ -9,6 +9,7 @@ namespace Assets._Scripts.Utilities
 {
     public static class Constants
     {
+
         public static string GuidePoints = "Navmesh Guidepoints";
         public static string SceneNamePrefix = "Level";
         public static string MainMenu = "MainMenu";
@@ -45,12 +46,10 @@ namespace Assets._Scripts.Utilities
 
         public class Colors
         {
-            
             public static Color Blue => GetColor("#004D7DFF");
             public static Color Brown => GetColor("#6C5300FF");
             public static Color Red => GetColor("#B22222");
             public static Color Green => GetColor("#006400");
-
 
             public static Color GetColor(string pHexString)
             {

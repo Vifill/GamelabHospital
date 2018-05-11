@@ -29,6 +29,11 @@ public class OrderlyOrder
         return ActionQueue.FirstOrDefault(a => a is OrderlyInteractionAction) as OrderlyInteractionAction;
     }
 
+    public bool IsMoveAction()
+    {
+        return !ActionQueue.Any(a => a is OrderlyInteractionAction);
+    }
+
     internal void AddAction(OrderlyAction pOrderlyAction)
     {
         ActionQueue.Enqueue(pOrderlyAction);
