@@ -137,6 +137,10 @@ public class ActionableActioner : MonoBehaviour
 
         pAction.OnStartAction(gameObject);
         var progressBar = Instantiate(ProgressBarPrefab);
+        if (pAction.ActionIcon != null)
+        {
+            progressBar.GetComponent<Image>().sprite = pAction.ActionIcon.GetComponent<Image>().sprite;
+        }
         progressBar.transform.SetParent(Canvas.transform);
 
         DestroyProgressBar();
