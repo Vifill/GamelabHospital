@@ -149,6 +149,11 @@ public class OrderlyController : MonoBehaviour
         return OrderQueue.Select(a => a.GetInteractionAction()).ToList();
     }
 
+    private void PruneQueue()
+    {
+        OrderQueue = new Queue<OrderlyOrder>(OrderQueue.Where(a => !a.IsMoveAction()));
+    }
+
     private void InitializeQueueUI()
     {
         if (QueueIcons.Any())
