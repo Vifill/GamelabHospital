@@ -8,7 +8,7 @@ public class SanitationUI : MonoBehaviour
     public PatientStatusColorConfig SanitationStatusColorConfig; // Use same color config as for the patient status
     public Image SanitationProgressBar;
     public Image Portrait;
-    public Image ColorCode;
+    //public Image ColorCode;
     private SanitationController SanitationController;
 
     public void UpdateSanitationUI()
@@ -38,7 +38,7 @@ public class SanitationUI : MonoBehaviour
     {
         SanitationController = pSanitationController;
         Portrait.sprite = pPlayerPortrait;
-        ColorCode.color = pColorCode;
+        //ColorCode.color = pColorCode;
         var UIpos = transform.parent.Find(pUIpos).transform;
         transform.localPosition = UIpos.localPosition;
         UpdateSanitationUI();

@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
 
     public bool DebugDatagathering;
     public int TestingPeriod;
-    public bool TimeOver { get; private set; }
+    public static bool TimeOver { get; private set; }
     public GameObject ClockUIPrefab;
     public GameObject GoalUIPrefab;
     public GameObject EndScreenPrefab;
@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        TimeOver = false;
         InEndScreen = false;
         Player = FindObjectOfType<PlayerActionController>()?.gameObject;
         Time.timeScale = 1;

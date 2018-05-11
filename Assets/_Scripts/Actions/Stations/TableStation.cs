@@ -13,6 +13,7 @@ public class TableStation : Actionable
     public AudioClip DropSound;
 
     public GameObject TableObject { get; private set; }
+    private GameObject ObjectToSwitch;
 
     protected override void Initialize()
     {
@@ -32,8 +33,8 @@ public class TableStation : Actionable
 
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
-        //Can only be actioned if player is holding a tool and table empty or player empty handed and tool on table
-        return (pCurrentTool == ToolName.NoTool && TableObject != null) || (pCurrentTool != ToolName.NoTool && TableObject == null);
+        //Can only be actioned if player is holding a tool and table empty or player empty handed and tool on table or Player is holding tool and table has tool (switch items)
+        return (pCurrentTool == ToolName.NoTool && TableObject != null) || (pCurrentTool != ToolName.NoTool && TableObject == null || (pCurrentTool != ToolName.NoTool && TableObject != null));
     }
 
     public override void OnFinishedAction(GameObject pObjectActioning = null)
@@ -41,7 +42,7 @@ public class TableStation : Actionable
         var toolController = pObjectActioning.GetComponent<ToolController>();
         ToolName pCurrentTool = toolController.GetCurrentToolName();
 
-        if (pCurrentTool == ToolName.NoTool && TableObject != null) // if player empty handed and table has tool
+        if (pCurrentTool == ToolName.NoTool && TableObject != null) // If player empty handed and table has tool
         {
             ToolBase pToolOnTable = TableObject.GetComponent<ToolBase>();
             pToolOnTable.gameObject.GetComponent<Pickupable>().IsActionActive = true;
@@ -52,6 +53,24 @@ public class TableStation : Actionable
             ActionFinishedSoundEvent = PickUpSound;
             PlayFinishedActionSFX();            
         }
+        else if (pCurrentTool != ToolName.NoTool && TableObject != null) //swapping tools on the table
+        {
+            ToolBase pToolOnTable = TableObject.GetComponent<ToolBase>();
+            ToolBase pTool = toolController.GetToolBase();
+
+            pToolOnTable.gameObject.GetComponent<Pickupable>().IsActionActive = true;
+            pToolOnTable.gameObject.GetComponent<Pickupable>().RemoveHighlight();
+            toolController.RemoveTool();
+            toolController.SetTool(TableObject);
+            ChangeObjectLayer(TableObject.transform, "Default");
+
+            TableObject = pTool.gameObject;
+            pTool.gameObject.GetComponent<Pickupable>().IsActionActive = false;
+            PlaceTool();
+
+            ActionFinishedSoundEvent = PickUpSound;
+            PlayFinishedActionSFX();
+        }
         else if (pCurrentTool != ToolName.NoTool && TableObject == null) // if player holding tool & table empty
         {
             ToolBase pTool = toolController.GetToolBase();
@@ -60,6 +79,27 @@ public class TableStation : Actionable
             toolController.RemoveTool();
             PlaceTool();
             ActionFinishedSoundEvent = DropSound;
+            PlayFinishedActionSFX();
+        }
+        else if ((pCurrentTool != ToolName.NoTool && TableObject != null)) // If player holding tool & table has tool
+        {
+            // Find tool on table, assign as object to switch
+            ToolBase pToolOnTable = TableObject.GetComponent<ToolBase>();
+            pToolOnTable.gameObject.GetComponent<Pickupable>().IsActionActive = true;
+            pToolOnTable.gameObject.GetComponent<Pickupable>().RemoveHighlight();
+            ObjectToSwitch = pToolOnTable.gameObject;
+
+            // Get current tool and place it on table
+            ToolBase pTool = toolController.GetToolBase();
+            TableObject = pTool.gameObject;
+            pTool.gameObject.GetComponent<Pickupable>().IsActionActive = false;
+            toolController.RemoveTool();
+            PlaceTool();
+
+            // Pick up object
+            toolController.SetTool(ObjectToSwitch);
+
+            ActionFinishedSoundEvent = PickUpSound;
             PlayFinishedActionSFX();
         }
     }

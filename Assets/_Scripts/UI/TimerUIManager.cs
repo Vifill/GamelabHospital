@@ -29,7 +29,7 @@ public class TimerUIManager : MonoBehaviour
 	{
         if (!TutorialUtility.instance?.TimeFreeze ?? true)
         {
-            if (LvlManager.Timer < TimeToPulsate && !LvlManager.TimeOver)
+            if (LvlManager.Timer < TimeToPulsate && !LevelManager.TimeOver)
             {
                 ClockAnimator.SetBool(Constants.AnimationParameters.IsPulsating, true);
             }
@@ -39,7 +39,7 @@ public class TimerUIManager : MonoBehaviour
                 //Debug.Log(clockHandRotation);
                 ClockHand.rectTransform.Rotate(new Vector3(0, 0, -clockHandRotation));
             }
-            if (LvlManager.TimeOver)
+            if (LevelManager.TimeOver)
             {
                 ClockAnimator.SetBool(Constants.AnimationParameters.IsPulsating, false);
             }

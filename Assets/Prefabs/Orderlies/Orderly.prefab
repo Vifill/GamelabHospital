@@ -1330,7 +1330,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1418035133725950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.84, y: 1.5, z: 1.76}
+  m_LocalPosition: {x: 5.9, y: 1.5, z: 0.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4452987066295120}
@@ -2752,6 +2752,7 @@ MonoBehaviour:
   DropSound: {fileID: 8300000, guid: b485a0e6493cbab4c9eab812cff35989, type: 3}
   InvalidActionSound: {fileID: 8300000, guid: 57cb2086193889347bcc337d239a129d, type: 3}
   Animator: {fileID: 95177126971914462}
+  ParticlePrefab: {fileID: 0}
 --- !u!114 &114628700543021598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2810,10 +2811,10 @@ MonoBehaviour:
   MinSanitation: 0
   SanitationClampMax: 0
   SanitationClampMin: 0
-  SanitationBarUIPrefab: {fileID: 1979533752814144, guid: d612a684194c25f4a8f54fb4a299f5df,
+  SanitationBarUIPrefab: {fileID: 1872038840529320, guid: a2f34222fc4ef5a488c2091a8385fb33,
     type: 2}
   UIPosition: P2PortraitPos
-  SanitationUIPicture: {fileID: 21300000, guid: 37a15982f952ae7418c0b5bb20a999ab,
+  SanitationUIPicture: {fileID: 21300000, guid: a1b3ea2036c2a3c40b7777ea8a8cf9dc,
     type: 3}
   SanitationUIColor: {r: 0, g: 0, b: 1, a: 1}
   DirtyParticles50Percent: {fileID: 1352758340090686}

@@ -50,7 +50,6 @@ public class HealthController : MonoBehaviour
 
     public BedManager BedManagerInstance;
 
-    private LevelManager LevelManager;
     private HydrationController HydrationController;
     private PatientStatusController PatientStatusController;
     [HideInInspector]
@@ -76,7 +75,6 @@ public class HealthController : MonoBehaviour
     {
         //HydrationMeter = 100;
         StartCoroutine(GetPatientAnimator());
-        LevelManager = FindObjectOfType<LevelManager>();
         HydrationClampMax = MaxHydration;
         HydrationClampMin = MinHydration;
         HealthClampMax = MaxHealth;
