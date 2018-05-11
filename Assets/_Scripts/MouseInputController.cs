@@ -67,7 +67,7 @@ public class MouseInputController : MonoBehaviour
                 order.AddAction(new OrderlyInteractionAction(actionable));
                 return order;
             }
-            else if (hit.transform.name == "Floor")
+            else if (hit.transform.tag == "Floor")
             {
                 var order = new OrderlyOrder(hit.point);
                 order.AddAction(new OrderlyMoveAction(null, hit.point));

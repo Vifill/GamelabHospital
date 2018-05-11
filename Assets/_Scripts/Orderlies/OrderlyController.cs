@@ -73,8 +73,9 @@ public class OrderlyController : MonoBehaviour
 
     public void AddQueue(OrderlyOrder pOrder)
     {
-        OrderQueue.Enqueue(pOrder);
+        PruneQueue();
         CheckOrderQueue();
+        OrderQueue.Enqueue(pOrder);
         InitializeQueueUI();
     }
 
@@ -151,6 +152,11 @@ public class OrderlyController : MonoBehaviour
 
     private void PruneQueue()
     {
+
+        if (CurrentOrder != null && CurrentOrder.IsMoveAction())
+        {
+            CurrentAction.CancelOrder();
+        }
         OrderQueue = new Queue<OrderlyOrder>(OrderQueue.Where(a => !a.IsMoveAction()));
     }
 
