@@ -30,6 +30,7 @@ public class ActionableActioner : MonoBehaviour
     private Action ExternalActionWhenSuccessful;
     private Action ExternalActionWhenFailed;
     private bool IsActioning;
+    private bool HasSpawnedFloatingText;
     private MovementController MovementController;
     private SanitationController SanitationController;
     private GameController GC;
@@ -247,9 +248,26 @@ public class ActionableActioner : MonoBehaviour
         HighlightedActions.Clear();
     }
 
-    public void SpawnFloatingText()
+    public void SpawnFloatingText(string pInputText = "I need empty hands to do this")
     {
+        if (HasSpawnedFloatingText )
+        {
+            return;
+        }
 
+        HasSpawnedFloatingText = true;
+        GameObject GO = (GameObject) Instantiate(FloatingTextPrefab, FindObjectOfType<Canvas>().transform);
+        Text goText = GO.GetComponentInChildren<Text>();
+        GO.transform.position = Camera.main.WorldToScreenPoint(transform.position + transform.up * 2);
+        goText.text = pInputText;
+        Destroy(GO, 5f);
+        StartCoroutine(FloatingTextDelay());
+    }
+
+    private IEnumerator FloatingTextDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        HasSpawnedFloatingText = false;
     }
 
     private void TransferReasource()
