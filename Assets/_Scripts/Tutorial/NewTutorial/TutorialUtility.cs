@@ -263,4 +263,12 @@ public class TutorialUtility : MonoBehaviour
             patient.ConstantDehydrationSpeed = instance.ConstDehydration;
         }
     }
+
+    public static void SetActionablesActive(bool pState)
+    {
+        foreach (var actionable in FindObjectsOfType<Actionable>())
+        {
+            actionable.IsActionActive = pState;
+        }
+    }
 }

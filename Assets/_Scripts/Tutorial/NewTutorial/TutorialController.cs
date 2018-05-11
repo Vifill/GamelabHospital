@@ -14,10 +14,13 @@ public class TutorialController : MonoBehaviour
     public TutorialCoroutineStartLogic StartLogic;
 
     public Objective CurrentObjective { private set; get; }
+   
+
     private Dictionary<EventManager.EventCodes, UnityAction> EventActions = new Dictionary<EventManager.EventCodes, UnityAction>();
     private int ObjectiveIndex = 0;
     private List<GameObject> CurrentArrows = new List<GameObject>();
     private Level1TutorialScreenController TutorialScreenController;
+    private bool CanEndLevel;
 
 
 
@@ -37,6 +40,23 @@ public class TutorialController : MonoBehaviour
         TutorialScreenController = FindObjectOfType<Level1TutorialScreenController>() ?? null;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return) && CanEndLevel)
+        {
+            EventManager.TriggerEvent(EventManager.EventCodes.FinishLevel);
+        }
+
+        if (GameController.InMenuScreen && ObjectiveTextUIObject.gameObject.activeSelf || LevelManager.TimeOver && ObjectiveTextUIObject.gameObject.activeSelf)
+        {
+            ObjectiveTextUIObject.gameObject.SetActive(false);
+        }
+        else if (!GameController.InMenuScreen && !ObjectiveTextUIObject.gameObject.activeSelf && !LevelManager.TimeOver)
+        {
+            ObjectiveTextUIObject.gameObject.SetActive(true);
+        }
+    }
+
     private void AddActionsToEvents()
     {
         // Tutorial Level 1
@@ -45,7 +65,7 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DoneHydration, OnHydrateDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCheckOut, OnCheckOutDoneEvent);
         EventActions.Add(EventManager.EventCodes.DonePatientDeath, OnPatientDeath);
-        EventActions.Add(EventManager.EventCodes.DoneWaitingForHealed, OnWaitingForHealDone);
+        EventActions.Add(EventManager.EventCodes.FinishLevel, OnFinishLevel);
         // Tutorial Level 2
         EventActions.Add(EventManager.EventCodes.DoneGetWaterLvl2, OnDoneGetWaterLvl2Event);
         EventActions.Add(EventManager.EventCodes.DoneHydrationLvl2, OnDoneHydrationLvl2Event);
@@ -57,8 +77,14 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DoneCleanDoctor, OnCleanDoctorDoneEvent);
     }
 
+    private void OnFinishLevel()
+    {
+        StartCoroutine(EndLevelCoroutine(0));
+    }
+
     private void OnPukingDone()
     {
+        TutorialUtility.SetActionablesActive(true);
         TutorialUtility.SetHydrationFreeze(true);
         TutorialUtility.SetHealthFreeze(true);
         TutorialUtility.SetFreezeExcretion(true);
@@ -78,11 +104,6 @@ public class TutorialController : MonoBehaviour
     private void OnDoneGetWaterLvl2Event()
     {
         Debug.Log("DoneGetWaterLvl2, event triggered.");
-    }
-
-    private void OnWaitingForHealDone()
-    {
-        //TutorialScreenController?.DisplayCheckoutScreen();
     }
 
     private void OnCleanDoctorDoneEvent()
@@ -121,13 +142,13 @@ public class TutorialController : MonoBehaviour
 
     private void OnPatientDeath()
     {
-        //end level?
-        StartCoroutine(EndLevelCoroutine());
+        TutorialUtility.SetSpawnFreeze(false);
+        CanEndLevel = true;
     }
 
-    private IEnumerator EndLevelCoroutine()
+    private IEnumerator EndLevelCoroutine(float pDelay)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(pDelay);
         TutorialUtility.ForceEndLevel();
     }
 
@@ -219,4 +240,4 @@ public class TutorialController : MonoBehaviour
 
     }
 
-    }
+}

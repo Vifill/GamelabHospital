@@ -70,7 +70,7 @@ public class PatientSpawner : MonoBehaviour
     private void SpawnPatient()
     {
         //Pick random patient in the list to spawn.
-        int index = UnityEngine.Random.Range(0, PatientsToSpawn.Count-1);
+        int index = UnityEngine.Random.Range(0, (PatientsToSpawn.Count - 1));
         GameObject patient = (GameObject)Instantiate(SpawnConfig.PatientPrefab, SpawnPoint.position, SpawnPoint.rotation);
 
         var healthController = patient.GetComponent<HealthController>();

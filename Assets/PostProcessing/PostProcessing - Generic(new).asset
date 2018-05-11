@@ -33,7 +33,7 @@ MonoBehaviour:
     m_Settings:
       method: 0
       fxaaSettings:
-        preset: 4
+        preset: 3
       taaSettings:
         jitterSpread: 1
         sharpen: 2.9
@@ -42,8 +42,8 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 2.45
-      radius: 0.21
+      intensity: 1
+      radius: 0.5
       sampleCount: 10
       downsampling: 0
       forceForwardCompatibility: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       tonemapping:
-        tonemapper: 1
+        tonemapper: 2
         neutralBlackIn: 0.02
         neutralWhiteIn: 10
         neutralBlackOut: 0
@@ -121,11 +121,11 @@ MonoBehaviour:
         neutralWhiteClip: 10
       basic:
         postExposure: 0
-        temperature: 5.5
-        tint: 5.5
+        temperature: 27.5
+        tint: 0
         hueShift: 0
-        saturation: 1.203
-        contrast: 0.928
+        saturation: 1
+        contrast: 1.302
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -147,16 +147,16 @@ MonoBehaviour:
             serializedVersion: 2
             m_Curve:
             - serializedVersion: 2
-              time: 0.01183432
+              time: 0
               value: 0
-              inSlope: 0
+              inSlope: 1
               outSlope: 1
               tangentMode: 0
             - serializedVersion: 2
               time: 1
               value: 1
               inSlope: 1
-              outSlope: 0
+              outSlope: 1
               tangentMode: 0
             m_PreInfinity: 2
             m_PostInfinity: 2

@@ -53,7 +53,25 @@ public class TableStation : Actionable
             ActionFinishedSoundEvent = PickUpSound;
             PlayFinishedActionSFX();            
         }
-        else if (pCurrentTool != ToolName.NoTool && TableObject == null) // If player holding tool & table empty
+        else if (pCurrentTool != ToolName.NoTool && TableObject != null) //swapping tools on the table
+        {
+            ToolBase pToolOnTable = TableObject.GetComponent<ToolBase>();
+            ToolBase pTool = toolController.GetToolBase();
+
+            pToolOnTable.gameObject.GetComponent<Pickupable>().IsActionActive = true;
+            pToolOnTable.gameObject.GetComponent<Pickupable>().RemoveHighlight();
+            toolController.RemoveTool();
+            toolController.SetTool(TableObject);
+            ChangeObjectLayer(TableObject.transform, "Default");
+
+            TableObject = pTool.gameObject;
+            pTool.gameObject.GetComponent<Pickupable>().IsActionActive = false;
+            PlaceTool();
+
+            ActionFinishedSoundEvent = PickUpSound;
+            PlayFinishedActionSFX();
+        }
+        else if (pCurrentTool != ToolName.NoTool && TableObject == null) // if player holding tool & table empty
         {
             ToolBase pTool = toolController.GetToolBase();
             TableObject = pTool.gameObject;
