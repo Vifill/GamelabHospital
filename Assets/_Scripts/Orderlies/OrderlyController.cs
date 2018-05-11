@@ -152,8 +152,7 @@ public class OrderlyController : MonoBehaviour
 
     private void PruneQueue()
     {
-
-        if (CurrentOrder != null && CurrentOrder.IsMoveAction())
+        if (CurrentOrder != null && CurrentOrder.IsMoveAction() && CurrentAction is OrderlyMoveAction)
         {
             CurrentAction.CancelOrder();
         }
@@ -177,7 +176,11 @@ public class OrderlyController : MonoBehaviour
         {
             interactionActions.Add(CurrentOrder.GetInteractionAction());
         }
-        
+        if (CurrentAction is OrderlyInteractionAction)
+        {
+            interactionActions.Add(CurrentAction as OrderlyInteractionAction);
+        }
+
         interactionActions.AddRange(GetAllInteractionActions());
 
         if (interactionActions.Any())
