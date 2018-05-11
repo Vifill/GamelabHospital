@@ -73,8 +73,9 @@ public class OrderlyController : MonoBehaviour
 
     public void AddQueue(OrderlyOrder pOrder)
     {
-        OrderQueue.Enqueue(pOrder);
+        PruneQueue();
         CheckOrderQueue();
+        OrderQueue.Enqueue(pOrder);
         InitializeQueueUI();
     }
 
@@ -151,6 +152,11 @@ public class OrderlyController : MonoBehaviour
 
     private void PruneQueue()
     {
+
+        if (CurrentOrder != null && CurrentOrder.IsMoveAction())
+        {
+            CurrentAction.CancelOrder();
+        }
         OrderQueue = new Queue<OrderlyOrder>(OrderQueue.Where(a => !a.IsMoveAction()));
     }
 
@@ -184,7 +190,7 @@ public class OrderlyController : MonoBehaviour
 
                 Xpos = ((UIWidth / (interactionActions.Count + 1)) * counter);
 
-                if (action.GetActionIcon() != null && QueueUI != null)
+                if (action?.GetActionIcon() != null && QueueUI != null)
                 {
                     var icon = Instantiate(action.GetActionIcon(), new Vector3(0, 0, 0), QueueUI.transform.rotation, QueueUI.transform);
                     icon.transform.localPosition = new Vector3(Xpos - (UIWidth / 2), 0, 0);
