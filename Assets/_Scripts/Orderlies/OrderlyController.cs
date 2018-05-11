@@ -179,7 +179,7 @@ public class OrderlyController : MonoBehaviour
 
                 Xpos = ((UIWidth / (interactionActions.Count + 1)) * counter);
 
-                if (action.GetActionIcon() != null && QueueUI != null)
+                if (action?.GetActionIcon() != null && QueueUI != null)
                 {
                     var icon = Instantiate(action.GetActionIcon(), new Vector3(0, 0, 0), QueueUI.transform.rotation, QueueUI.transform);
                     icon.transform.localPosition = new Vector3(Xpos - (UIWidth / 2), 0, 0);
