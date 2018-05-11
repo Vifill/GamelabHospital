@@ -3502,6 +3502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f162d42077ffdf14da4f5640669c59ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingTextPrefab: {fileID: 0}
   ProgressBarPrefab: {fileID: 1934616767393400, guid: ca1bbd0ca8b52ef4d8531c10cce2a2c2,
     type: 2}
   ProgressBarWorldPosition: {fileID: 4070558396249290}
@@ -3510,6 +3511,7 @@ MonoBehaviour:
   DropSound: {fileID: 8300000, guid: b485a0e6493cbab4c9eab812cff35989, type: 3}
   InvalidActionSound: {fileID: 8300000, guid: 57cb2086193889347bcc337d239a129d, type: 3}
   Animator: {fileID: 95512023688566692}
+  ParticlePrefab: {fileID: 0}
 --- !u!114 &114117830681646700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3547,6 +3549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75fd5a3372c635428eaa3f554404ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DashSound: {fileID: 0}
   DashParticles: {fileID: 1424130610902414, guid: 58f3c0b377337b64cb16e00d280c69a0,
     type: 2}
   MovementParticle: {fileID: 1280083263524546, guid: 61a58eee84a23084f9cb49a6045fd95b,
@@ -3574,15 +3577,15 @@ MonoBehaviour:
   MinSanitation: 0
   SanitationClampMax: 0
   SanitationClampMin: 0
-  SanitationBarUIPrefab: {fileID: 1979533752814144, guid: d612a684194c25f4a8f54fb4a299f5df,
+  SanitationBarUIPrefab: {fileID: 1872038840529320, guid: a2f34222fc4ef5a488c2091a8385fb33,
     type: 2}
   UIPosition: P1PortraitPos
-  SanitationUIPicture: {fileID: 21300000, guid: e7a80b549c97808419ddf1a50ff0dc7e,
+  SanitationUIPicture: {fileID: 21300000, guid: 553de75104d46b548b4604128a48005a,
     type: 3}
   SanitationUIColor: {r: 0, g: 1, b: 0.04827571, a: 1}
-  DirtyParticles50Percent: {fileID: 1143854748240214, guid: 4e3d461fd4266894aa7eb01e72d536fd,
+  DirtyParticles50Percent: {fileID: 1969320731579726, guid: 0a2be9f32b61c8747bfdc88a1fb5d55e,
     type: 2}
-  DirtyParticles85Percent: {fileID: 1857356222201080, guid: 42e0afadca0515549b1118449ba293d5,
+  DirtyParticles85Percent: {fileID: 1986123472065010, guid: 0a2be9f32b61c8747bfdc88a1fb5d55e,
     type: 2}
   DoctorSanitationConfig: {fileID: 11400000, guid: 8e5cf8227361e3f49abdfeaf9aea8402,
     type: 2}

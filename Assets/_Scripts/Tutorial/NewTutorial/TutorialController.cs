@@ -109,14 +109,13 @@ public class TutorialController : MonoBehaviour
     private void OnCleanDoctorDoneEvent()
     {
         Debug.Log("Doctor Cleaned, event triggered.");
-        TutorialUtility.SetTimeFreeze(false);
-        TutorialUtility.SetTimerUIAsActive(true);
 
         TutorialUtility.SetSpawnFreeze(false);
 
         TutorialUtility.SetHydrationFreeze(false);
         TutorialUtility.SetHealthFreeze(false);
         TutorialUtility.SetFreezeExcretion(false);
+        CanEndLevel = true;
     }
 
     private void OnCleanBucketDoneEvent()

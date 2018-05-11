@@ -2787,6 +2787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f162d42077ffdf14da4f5640669c59ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingTextPrefab: {fileID: 0}
   ProgressBarPrefab: {fileID: 1934616767393400, guid: ca1bbd0ca8b52ef4d8531c10cce2a2c2,
     type: 2}
   ProgressBarWorldPosition: {fileID: 4404236415740554}
@@ -2807,6 +2808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9117cf5e2b8221b4aa691a6b07b19407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingTextPrefab: {fileID: 0}
   ProgressBarPrefab: {fileID: 1934616767393400, guid: ca1bbd0ca8b52ef4d8531c10cce2a2c2,
     type: 2}
   ProgressBarWorldPosition: {fileID: 4404236415740554}
@@ -2832,14 +2834,16 @@ MonoBehaviour:
   MinSanitation: 0
   SanitationClampMax: 0
   SanitationClampMin: 0
-  SanitationBarUIPrefab: {fileID: 1979533752814144, guid: d612a684194c25f4a8f54fb4a299f5df,
+  SanitationBarUIPrefab: {fileID: 1872038840529320, guid: a2f34222fc4ef5a488c2091a8385fb33,
     type: 2}
   UIPosition: P2PortraitPos
-  SanitationUIPicture: {fileID: 21300000, guid: 37a15982f952ae7418c0b5bb20a999ab,
+  SanitationUIPicture: {fileID: 21300000, guid: a1b3ea2036c2a3c40b7777ea8a8cf9dc,
     type: 3}
   SanitationUIColor: {r: 0, g: 0, b: 1, a: 1}
-  DirtyParticles50Percent: {fileID: 1692680654409244}
-  DirtyParticles85Percent: {fileID: 1342413350406234}
+  DirtyParticles50Percent: {fileID: 1352758340090686, guid: c55c6fc6151f2434d989209369886cfd,
+    type: 2}
+  DirtyParticles85Percent: {fileID: 1236331989180198, guid: c55c6fc6151f2434d989209369886cfd,
+    type: 2}
   DoctorSanitationConfig: {fileID: 11400000, guid: 8e5cf8227361e3f49abdfeaf9aea8402,
     type: 2}
 --- !u!136 &136212458842250598
