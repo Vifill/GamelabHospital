@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,16 +16,18 @@ public class SanitationUI : MonoBehaviour
     {
         SanitationProgressBar.fillAmount = SanitationController.Sanitation / SanitationController.MaxSanitation;
 
+        var thresholds = SanitationController.DoctorSanitationConfig.ListOfThresholds;
+
         if (SanitationController.Sanitation >= SanitationController.MaxSanitation)
         {
             SanitationController.Sanitation = SanitationController.MaxSanitation;
         }
 
-        if (SanitationProgressBar.fillAmount >= 0.75)
+        if (SanitationController.Sanitation >= thresholds.LastOrDefault().ThresholdOfActivation)
         {
             SanitationProgressBar.color = SanitationStatusColorConfig.StatusRed;
         }
-        else if (SanitationProgressBar.fillAmount >= 0.45)
+        else if (SanitationController.Sanitation >= thresholds.FirstOrDefault().ThresholdOfActivation)
         {
             SanitationProgressBar.color = SanitationStatusColorConfig.StatusYellow;
         }
