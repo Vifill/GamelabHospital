@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class OrderlyController : MonoBehaviour 
 {
@@ -205,5 +206,10 @@ public class OrderlyController : MonoBehaviour
                 counter++;
             }
         }        
+    }
+
+    public Image GetCurrentActionIcon()
+    {
+        return QueueIcons.FirstOrDefault().transform.GetChild(0).GetComponent<Image>();
     }
 }
