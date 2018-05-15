@@ -32,6 +32,7 @@ namespace Assets._Scripts.Utilities
             public const string PatientDrinkWater = "PatientDrink";
             public const string PatientIVBag = "PatientIVBag";
             public const string PatientPukeWarning = "PatientPukeWarning";
+            public const string CharacterDash = "IsDashing";
 
             // UI
             public const string IsPulsatingUI = "IsPulsatingUI";
