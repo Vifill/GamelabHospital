@@ -112,8 +112,7 @@ public class MovementController : MonoBehaviour {
 
     private void Dash()
     {
-
-        IsDashing = true;
+        SetIsDashing(true);
         //CanMove = false;
         CanDash = false;
         CharacterController charController = GetComponent<CharacterController>();
@@ -146,7 +145,7 @@ public class MovementController : MonoBehaviour {
             yield return null;
         }
         //CanMove = true;
-        IsDashing = false;
+        SetIsDashing(false);
         if (particlesystem != null)
         {
             Destroy(particlesystem, 3f);
@@ -154,6 +153,12 @@ public class MovementController : MonoBehaviour {
 
         yield return new WaitForSeconds(.5f);
         CanDash = true;
+    }
+
+    private void SetIsDashing(bool pDash)
+    {
+        IsDashing = pDash;
+        Animator.SetBool(Constants.AnimationParameters.CharacterDash, pDash);
     }
 
     private void StartWalkingAnimation()
