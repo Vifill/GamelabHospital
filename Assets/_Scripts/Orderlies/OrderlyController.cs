@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class OrderlyController : MonoBehaviour 
 {
@@ -56,6 +57,7 @@ public class OrderlyController : MonoBehaviour
 
     internal void ActionFinished()
     {
+        var prevAction = CurrentAction;
         var nextAction = CurrentOrder?.GetNextAction();
         if(nextAction == null)
         {
@@ -68,15 +70,23 @@ public class OrderlyController : MonoBehaviour
             StartAction(nextAction);
         }
 
-        InitializeQueueUI();
+        if (prevAction is OrderlyInteractionAction)
+        {
+            InitializeQueueUI();
+        }
     }
 
     public void AddQueue(OrderlyOrder pOrder)
     {
+        bool needsUIRefresh = CurrentAction is OrderlyInteractionAction;
         PruneQueue();
         CheckOrderQueue();
         OrderQueue.Enqueue(pOrder);
         InitializeQueueUI();
+        if (needsUIRefresh)
+        {
+            GetComponent<ActionableActioner>().StartOrderlyActionUI(this);
+        }
     }
 
     private void CheckOrderQueue()
@@ -205,5 +215,10 @@ public class OrderlyController : MonoBehaviour
                 counter++;
             }
         }        
+    }
+
+    public Image GetCurrentActionIcon()
+    {
+        return QueueIcons.FirstOrDefault().transform.GetChild(0).GetComponent<Image>();
     }
 }

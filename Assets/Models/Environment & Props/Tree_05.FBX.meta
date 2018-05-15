@@ -19,7 +19,17 @@ ModelImporter:
     3300002: Trunk_01_LP_v2
     4300000: Bush_02
     4300002: Trunk_01_LP_v2
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves_mat
+    second: {fileID: 2100000, guid: c41b679d520af3c42abbe47c332776cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trunk_01_mat
+    second: {fileID: 2100000, guid: 0f43d16e65625894aa2776d2003ed0b3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -49,7 +59,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 3
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
