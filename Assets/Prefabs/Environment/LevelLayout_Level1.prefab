@@ -730,6 +730,8 @@ GameObject:
   - component: {fileID: 33174426525817684}
   - component: {fileID: 23043324697850720}
   - component: {fileID: 95005362004809124}
+  - component: {fileID: 65004537444104094}
+  - component: {fileID: 114447840467148632}
   m_Layer: 0
   m_Name: Wall_Solid_Door
   m_TagString: Untagged
@@ -815,7 +817,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1384490780681268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4788015158795464}
@@ -1321,14 +1323,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1026556488772306}
-  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 6, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4892030227787004}
   m_Father: {fileID: 4493940189756404}
   m_RootOrder: 28
-  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4998686549587416
 Transform:
   m_ObjectHideFlags: 1
@@ -3352,6 +3354,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 3c845cb7f64232244ac9a3122457e86a, type: 3}
+--- !u!65 &65004537444104094
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1927253332697096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4077907, y: 1.3026233, z: 5.8164163}
+  m_Center: {x: -0.8664911, y: -0.5, z: 0.000000051646893}
 --- !u!65 &65271891303406332
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3433,7 +3447,7 @@ Animator:
   m_GameObject: {fileID: 1927253332697096}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ab7253873e6b7574ea4ba61d0056c0ad, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 02453ea7100678b4da78c6347cc24270, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3458,3 +3472,14 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114447840467148632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1927253332697096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5ac1f8d8294f14cac16e4448d389c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
