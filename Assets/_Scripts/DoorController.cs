@@ -20,7 +20,7 @@ public class DoorController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Patient")
+        if (other.tag == "Patient" || other.tag == "Player" && LevelManager.TimeOver)
         {
             print("Door trigger activated");
             Animator.SetTrigger(Constants.AnimationParameters.DoorOpen);
