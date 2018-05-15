@@ -41,6 +41,7 @@ public class OrderlyInteractionAction : OrderlyAction
 
     public GameObject GetActionIcon()
     {
+        Debug.Log(Action.ActionIcon);
         return Action.ActionIcon;
     }
 }

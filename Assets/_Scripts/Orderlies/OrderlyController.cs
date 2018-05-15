@@ -57,6 +57,7 @@ public class OrderlyController : MonoBehaviour
 
     internal void ActionFinished()
     {
+        var prevAction = CurrentAction;
         var nextAction = CurrentOrder?.GetNextAction();
         if(nextAction == null)
         {
@@ -69,15 +70,23 @@ public class OrderlyController : MonoBehaviour
             StartAction(nextAction);
         }
 
-        InitializeQueueUI();
+        if (prevAction is OrderlyInteractionAction)
+        {
+            InitializeQueueUI();
+        }
     }
 
     public void AddQueue(OrderlyOrder pOrder)
     {
+        bool needsUIRefresh = CurrentAction is OrderlyInteractionAction;
         PruneQueue();
         CheckOrderQueue();
         OrderQueue.Enqueue(pOrder);
         InitializeQueueUI();
+        if (needsUIRefresh)
+        {
+            GetComponent<ActionableActioner>().StartOrderlyActionUI(this);
+        }
     }
 
     private void CheckOrderQueue()

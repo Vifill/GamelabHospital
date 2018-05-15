@@ -81,6 +81,8 @@ public class ActionableActioner : MonoBehaviour
         }
     }
 
+
+
     private IEnumerator UpdateProgressBarOrderly()
     {
         while (IsActioning)
@@ -161,15 +163,25 @@ public class ActionableActioner : MonoBehaviour
         var orderly = GetComponent<OrderlyController>();
         if (orderly != null)
         {
-            ProgressBar = orderly.GetCurrentActionIcon();
-            StartCoroutine(UpdateProgressBarOrderly());
+            StartOrderlyActionUI(orderly);
         }
         else
         {
-            CreateProgressBar(pAction);
-            StartCoroutine(UpdateProgressBar());
+            StartDoctorActionUI(pAction);
         }
-        
+
+    }
+
+    private void StartDoctorActionUI(Actionable pAction)
+    {
+        CreateProgressBar(pAction);
+        StartCoroutine(UpdateProgressBar());
+    }
+
+    public void StartOrderlyActionUI(OrderlyController pOrderly)
+    {
+        ProgressBar = pOrderly.GetCurrentActionIcon();
+        StartCoroutine(UpdateProgressBarOrderly());
     }
 
     private void CreateProgressBar(Actionable pAction)
