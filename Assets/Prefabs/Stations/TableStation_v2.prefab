@@ -26,7 +26,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1524750477727628
 GameObject:
@@ -41,7 +41,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1533729034630372
 GameObject:
@@ -56,7 +56,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1765974685677928
 GameObject:
@@ -74,7 +74,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4217243347713340
 Transform:
@@ -290,7 +290,8 @@ MonoBehaviour:
   NeedsSanitizedTool: 0
   ConsumesTool: 0
   MakesPlayerDirty: 0
-  ActionIcon: {fileID: 1722825242517722, guid: d716b68b4794d9c4fbe26dca0e3dffdf, type: 2}
+  IsBeingActioned: 0
+  ActionIcon: {fileID: 1662821805159686, guid: d716b68b4794d9c4fbe26dca0e3dffdf, type: 2}
   ActionProgress: 0
   StartingTableObjectPrefab: {fileID: 1156897953503166, guid: 74f48cd64e5f68748a954781735ddd1d,
     type: 2}

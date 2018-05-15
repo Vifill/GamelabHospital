@@ -64,14 +64,34 @@ public class ActionableActioner : MonoBehaviour
             }
 
             CurrentTime += Time.deltaTime;
-            ProgressBar.fillAmount = CurrentTime / TotalTime;
-            ProgressBar.transform.parent.position = Camera.main.WorldToScreenPoint(ProgressBarWorldPosition.position) /*+ new Vector3(0, UIOffset)*/;
 
             if (CurrentTime >= TotalTime)
             {
                 OnSuccess();
             }
         }
+    }
+
+    private IEnumerator UpdateProgressBar()
+    {
+        while (IsActioning)
+        {
+            ProgressBar.fillAmount = CurrentTime / TotalTime;
+            ProgressBar.transform.parent.position = Camera.main.WorldToScreenPoint(ProgressBarWorldPosition.position);
+            yield return null;
+        }
+    }
+
+
+
+    private IEnumerator UpdateProgressBarOrderly()
+    {
+        while (IsActioning)
+        {
+            ProgressBar.fillAmount = CurrentTime / TotalTime;
+            yield return null;
+        }
+        //Debug.Break();
     }
 
     protected virtual void OnSuccess()
@@ -135,16 +155,48 @@ public class ActionableActioner : MonoBehaviour
         PlayAnimation();
 
         pAction.OnStartAction(gameObject);
+
+        TotalTime = parameters.TimeToTakeAction;
+        IsActioning = true;
+        pAction.IsBeingActioned = true;
+        MovementController?.StopMovement();
+
+        var orderly = GetComponent<OrderlyController>();
+        if (orderly != null)
+        {
+            StartOrderlyActionUI(orderly);
+        }
+        else
+        {
+            StartDoctorActionUI(pAction);
+        }
+
+    }
+
+    private void StartDoctorActionUI(Actionable pAction)
+    {
+        CreateProgressBar(pAction);
+        StartCoroutine(UpdateProgressBar());
+    }
+
+    public void StartOrderlyActionUI(OrderlyController pOrderly)
+    {
+        ProgressBar = pOrderly.GetCurrentActionIcon();
+        StartCoroutine(UpdateProgressBarOrderly());
+    }
+
+    private void CreateProgressBar(Actionable pAction)
+    {
         var progressBar = Instantiate(ProgressBarPrefab);
+        if (pAction.ActionIcon != null)
+        {
+            progressBar.GetComponent<Image>().sprite = pAction.ActionIcon.GetComponent<Image>().sprite;
+        }
         progressBar.transform.SetParent(Canvas.transform);
 
         DestroyProgressBar();
 
         ProgressBar = progressBar.transform.GetChild(0).GetComponent<Image>();
-        TotalTime = parameters.TimeToTakeAction;
-        IsActioning = true;
-        pAction.IsBeingActioned = true;
-        MovementController?.StopMovement();
     }
 
     private void PlayAnimation()

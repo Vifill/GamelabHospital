@@ -9,12 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dd276b07a13a4f45bc6e5286b1d8496, type: 3}
-  m_Name: Test1DoctorSanitationThresholdConfig
+  m_Name: DoctorSanitationThresholdConfig
   m_EditorClassIdentifier: 
   ListOfThresholds:
-  - ThresholdOfActivation: 50
-    HealthDecreasePerSecond: 10
-  - ThresholdOfActivation: 70
-    HealthDecreasePerSecond: 20
+  - ThresholdOfActivation: 75
+    HealthDecreasePerSecond: 15
   - ThresholdOfActivation: 90
-    HealthDecreasePerSecond: 40
+    HealthDecreasePerSecond: 25
