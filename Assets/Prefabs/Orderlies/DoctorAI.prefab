@@ -407,9 +407,10 @@ GameObject:
   - component: {fileID: 195563896951697900}
   - component: {fileID: 82740623393204120}
   - component: {fileID: 114727814052514244}
+  - component: {fileID: 54354375795934158}
   m_Layer: 0
   m_Name: DoctorAI
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3600,6 +3601,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1892978568522794}
   m_Mesh: {fileID: 4300020, guid: a8bd007f71da1c74a81ec7614f152376, type: 3}
+--- !u!54 &54354375795934158
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1268599045371048}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &82740623393204120
 AudioSource:
   m_ObjectHideFlags: 1
@@ -3712,6 +3728,16 @@ MonoBehaviour:
   ToolPosition: {fileID: 0}
   DropPosition: {fileID: 4393432833075136}
   Animator: {fileID: 95441174101145608}
+  OnToolSet:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnToolRemove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114370579176191664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3723,6 +3749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9117cf5e2b8221b4aa691a6b07b19407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FloatingTextPrefab: {fileID: 0}
   ProgressBarPrefab: {fileID: 1934616767393400, guid: ca1bbd0ca8b52ef4d8531c10cce2a2c2,
     type: 2}
   ProgressBarWorldPosition: {fileID: 4393432833075136}
@@ -3731,6 +3758,7 @@ MonoBehaviour:
   DropSound: {fileID: 8300000, guid: b485a0e6493cbab4c9eab812cff35989, type: 3}
   InvalidActionSound: {fileID: 8300000, guid: 57cb2086193889347bcc337d239a129d, type: 3}
   Animator: {fileID: 95441174101145608}
+  ParticlePrefab: {fileID: 0}
 --- !u!114 &114526310801259058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3744,6 +3772,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementParticle: {fileID: 1280083263524546, guid: 61a58eee84a23084f9cb49a6045fd95b,
     type: 2}
+  QueueUIPrefab: {fileID: 0}
+  YUIOffset: 0
+  MaxVisibleIcons: 4
+  SelectionParticleEffect: {fileID: 0}
 --- !u!114 &114727814052514244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3755,8 +3787,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e72b482cdd50e74b815be5c85980c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentSanitationLevel: 0
-  MaxSanitationLevel: 100
+  Sanitation: 0
+  MaxSanitation: 100
+  MinSanitation: 0
+  SanitationClampMax: 0
+  SanitationClampMin: 0
   SanitationBarUIPrefab: {fileID: 1979533752814144, guid: d612a684194c25f4a8f54fb4a299f5df,
     type: 2}
   UIPosition: P2PortraitPos
@@ -3800,8 +3835,8 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1268599045371048}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
