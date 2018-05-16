@@ -11,6 +11,7 @@ public class PickupStationController : Actionable
 
     private Animator Animator;
 
+
     protected override void Initialize()
     {
         Animator = GetComponentInChildren<Animator>();
@@ -28,8 +29,6 @@ public class PickupStationController : Actionable
         toolController.SetTool(toolObject);
     }
 
-    
-
     public override void OnStopAction()
     {
         if (ActionProgress == 0)
@@ -39,17 +38,7 @@ public class PickupStationController : Actionable
         else
         {
             Animator?.SetFloat(Constants.AnimationParameters.Speed, 0);
-        }
-        //var progressRatio = ActionProgress / ActionTime;
-        //if (progressRatio < 1 && progressRatio > 0)
-        //{
-            
-        //}
-        //else
-        //{
-        //    Animator.SetBool("Actioning", false);
-        //}
-        
+        }        
     }
 
     public override void OnStartAction(GameObject pObjectActioning)
@@ -63,14 +52,5 @@ public class PickupStationController : Actionable
         {
             Animator?.SetFloat(Constants.AnimationParameters.Speed, 1);
         }
-        //var progressRatio = ActionProgress / ActionTime;
-        //if (progressRatio == 0)
-        //{
-            
-        //}
-        //else if (progressRatio > 0 && Animator.GetBool("Actioning"))
-        //{
-        //    Animator.SetFloat("Speed", 1);
-        //}
     }
 }
