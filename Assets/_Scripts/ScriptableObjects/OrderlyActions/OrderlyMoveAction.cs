@@ -126,6 +126,11 @@ public class OrderlyMoveAction : OrderlyAction
     {
         var particle = OrderlyObject.GetComponent<OrderlyController>().SelectionParticleEffect;
 
+        if (particle == null)
+        {
+            return;
+        }
+
         if (!pSetParent)
         {
             particle.transform.parent = null;
