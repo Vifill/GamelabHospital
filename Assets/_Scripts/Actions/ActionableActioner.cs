@@ -78,6 +78,7 @@ public class ActionableActioner : MonoBehaviour
         {
             ProgressBar.fillAmount = CurrentTime / TotalTime;
             ProgressBar.transform.parent.position = Camera.main.WorldToScreenPoint(ProgressBarWorldPosition.position);
+
             yield return null;
         }
     }
@@ -101,11 +102,12 @@ public class ActionableActioner : MonoBehaviour
 
         CurrentTime = 0;
         StopAction();
-        ProcessPlayerSanitation();
-        ProcessToolAfterSuccess();
+        
         ActionAfterFinishing?.Invoke(gameObject);
         ExternalActionWhenSuccessful?.Invoke();
         CurrentAction.PlayFinishedActionSFX();
+        ProcessPlayerSanitation();
+        ProcessToolAfterSuccess();
     }
 
     private void ProcessToolAfterSuccess()
@@ -338,7 +340,7 @@ public class ActionableActioner : MonoBehaviour
             Color color = hydrationMeter.color;
             for (int i = 0; i < transferAmount; i++)
             {
-                StartCoroutine(TransferItemCoroutine(i / 10.0f, hydrationMeter.transform, true, transform, false, Constants.Colors.Blue));
+                StartCoroutine(TransferItemCoroutine(i / 10.0f, hydrationMeter.transform, true, transform, false, color));
             }
         }
         else if (CurrentAction is BedStation)
@@ -349,7 +351,7 @@ public class ActionableActioner : MonoBehaviour
             Color color = dirtyMeter.color;
             for (int i = 0; i < transferAmount; i++)
             {
-                StartCoroutine(TransferItemCoroutine(i / 10.0f, transform, false, dirtyMeter.transform, true, Constants.Colors.Brown));
+                StartCoroutine(TransferItemCoroutine(i / 10.0f, transform, false, dirtyMeter.transform, true, color));
             }
         }
         else
