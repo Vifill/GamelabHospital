@@ -102,11 +102,12 @@ public class ActionableActioner : MonoBehaviour
 
         CurrentTime = 0;
         StopAction();
-        ProcessPlayerSanitation();
-        ProcessToolAfterSuccess();
+        
         ActionAfterFinishing?.Invoke(gameObject);
         ExternalActionWhenSuccessful?.Invoke();
         CurrentAction.PlayFinishedActionSFX();
+        ProcessPlayerSanitation();
+        ProcessToolAfterSuccess();
     }
 
     private void ProcessToolAfterSuccess()
