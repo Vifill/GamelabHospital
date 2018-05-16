@@ -74,6 +74,9 @@ public class OrderlyMoveAction : OrderlyAction
 
         NavAgent.SetDestination(PositionToMoveTo);
         NavAgent.stoppingDistance = DistanceToStop;
+
+        Vector3 particlePos = PositionToMoveTo + new Vector3(0, 0.1f, 0);
+        SetDestinationParticle(particlePos, false);
     }
 
     protected override void OnStopAction()
@@ -87,6 +90,9 @@ public class OrderlyMoveAction : OrderlyAction
         }
 
         OrderlyObject.GetComponent<OrderlyController>().DisableMovementParticle();
+
+        Vector3 particlePos = OrderlyObject.transform.position - new Vector3(0, 1, 0);
+        SetDestinationParticle(particlePos, true);
     }
 
     private Vector3 GetTargetPoint(Transform actionable)
@@ -114,5 +120,26 @@ public class OrderlyMoveAction : OrderlyAction
         {
             return actionable.position;
         }
+    }
+
+    private void SetDestinationParticle(Vector3 pPosition, bool pSetParent)
+    {
+        var particle = OrderlyObject.GetComponent<OrderlyController>().SelectionParticleEffect;
+
+        if (particle == null)
+        {
+            return;
+        }
+
+        if (!pSetParent)
+        {
+            particle.transform.parent = null;
+        }
+        else
+        {
+            particle.transform.SetParent(OrderlyObject.transform);
+        }
+
+        particle.transform.position = pPosition;
     }
 }
