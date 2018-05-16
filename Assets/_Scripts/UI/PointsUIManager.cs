@@ -51,7 +51,7 @@ public class PointsUIManager : MonoBehaviour
         while (TempScore != pPoints)
         {
             TempScore = (int)Mathf.MoveTowards(TempScore, pPoints, t);
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime;
             tempText.text = TempScore.ToString();
             yield return null;
         }
@@ -67,7 +67,7 @@ public class PointsUIManager : MonoBehaviour
         List<Vector3> BezierCurve = GetBezierApproximation(controlPoints, 20);
         while ((pGO.transform.position - DisplayedScoreText.transform.position).sqrMagnitude > 1)
         {
-            pGO.transform.position = Vector3.Lerp(pGO.transform.position, BezierCurve[0], Time.deltaTime * Screen.height * 1.5f);
+            pGO.transform.position = Vector3.Lerp(pGO.transform.position, BezierCurve[0], Time.unscaledDeltaTime * Screen.height * 1.5f);
             if ((pGO.transform.position - BezierCurve[0]).sqrMagnitude < 2)
             {
                 BezierCurve.Remove(BezierCurve[0]);
