@@ -43,13 +43,18 @@ public class OrderlyMoveAction : OrderlyAction
             CancelOrder();
         }
 
-        if(Vector3.Distance(PositionToMoveTo, OrderlyObject.transform.position) <= DistanceWhenCloseEnough)
+        if (Vector3.Distance(PositionToMoveTo, OrderlyObject.transform.position) <= DistanceWhenCloseEnough)
         {
             NavAgent.isStopped = true;
-            
+
             ActionFinished();
-            
         }
+        //if (NavAgent.remainingDistance <= DistanceWhenCloseEnough)
+        //{
+        //    NavAgent.isStopped = true;
+
+        //    ActionFinished();
+        //}
     }
 
     protected override void OnStartAction()
