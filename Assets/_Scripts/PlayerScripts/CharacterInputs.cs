@@ -47,7 +47,15 @@ public class CharacterInputs : MonoBehaviour
         if(Input.GetButtonUp("Action"))
         {
             //Debug.Log("Action button up");
-            ActionableActioner.StopAction();
+
+            if (ActionableActioner.CurrentTime >= ActionableActioner.TotalTime - 0.1f)
+            {
+                return;
+            }
+            else
+            {
+                ActionableActioner.StopAction();
+            }
         }
 
         if (Input.GetButtonDown("Drop"))

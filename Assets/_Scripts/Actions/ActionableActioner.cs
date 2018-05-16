@@ -24,8 +24,8 @@ public class ActionableActioner : MonoBehaviour
     public GameObject ParticlePrefab;
 
 
-    private float TotalTime;
-    private float CurrentTime { get { return CurrentAction.ActionProgress; } set { CurrentAction.ActionProgress = value; } }
+    public float TotalTime { get; private set; }
+    public float CurrentTime { get { return CurrentAction.ActionProgress; } private set { CurrentAction.ActionProgress = value; } }
     private Action<GameObject> ActionAfterFinishing;
     private Action ExternalActionWhenSuccessful;
     private Action ExternalActionWhenFailed;
