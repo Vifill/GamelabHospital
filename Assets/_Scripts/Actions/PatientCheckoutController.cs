@@ -33,7 +33,7 @@ public class PatientCheckoutController : Actionable
         //IsActionActive = false;
         var actionables = GetComponents<Actionable>().ToList();
         actionables.ForEach(a => a.IsActionActive = false);
-        GetComponent<HealthController>().HydrationUI.SetActive(false);
+        //GetComponent<HealthController>().HydrationUI.SetActive(false);
     }
 
     private void Update()

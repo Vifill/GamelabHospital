@@ -37,6 +37,7 @@ public class PatientStatusController : MonoBehaviour
     private PatientMovementController MovementController;
     private StretchersController StretchersController;
     private LevelManager LevelManager;
+    private HealthController HealthConrtoller;
 
     // Use this for initialization
     private void Start()
@@ -47,6 +48,7 @@ public class PatientStatusController : MonoBehaviour
         StretchersController = GetComponent<StretchersController>();
         LevelManager = FindObjectOfType<LevelManager>();
         AudioSource = GetComponent<AudioSource>();
+        HealthConrtoller = GetComponent<HealthController>();
     }
     
     
@@ -54,6 +56,7 @@ public class PatientStatusController : MonoBehaviour
     {
         LevelManager.AddHealed();
         MovementController.GetOutOfBed();
+        HealthConrtoller.DestroyHydrationUI();
         if (LevelManager.TimeOver)
         {
             LevelManager.CheckIfAllPatientsAreDone();
@@ -65,6 +68,7 @@ public class PatientStatusController : MonoBehaviour
         PlayDeathParticles();
         IsDead = true;
         LevelManager?.AddDeath();
+        HealthConrtoller.DestroyHydrationUI();
         //LevelManager?.AddPoints(-(ailmentConfig.PointsWhenHealed));
         //AilmentUIController.CreateScorePopUpText(-(ailmentConfig.PointsWhenHealed));
         foreach (var actionable in GetComponents<Actionable>())
