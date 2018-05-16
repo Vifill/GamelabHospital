@@ -2506,7 +2506,7 @@ GameObject:
   - component: {fileID: 95665090854243642}
   m_Layer: 10
   m_Name: Patient
-  m_TagString: Untagged
+  m_TagString: Patient
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6960,7 +6960,7 @@ MonoBehaviour:
   ConsumesTool: 0
   MakesPlayerDirty: 0
   IsBeingActioned: 0
-  ActionIcon: {fileID: 1928119133711374, guid: 6c45c4503ee7f3c4d8db31bf73239332, type: 2}
+  ActionIcon: {fileID: 1722825242517722, guid: 6c45c4503ee7f3c4d8db31bf73239332, type: 2}
   ActionProgress: 0
   CanBeCheckedOutVisual: {fileID: 1595240440422196, guid: 0ebd6da55a04b9445a8ca1f9e274206d,
     type: 2}
@@ -7022,7 +7022,7 @@ MonoBehaviour:
   ConsumesTool: 1
   MakesPlayerDirty: 1
   IsBeingActioned: 0
-  ActionIcon: {fileID: 1810077393573484, guid: ac7167e48bd5f444f854628c0081def9, type: 2}
+  ActionIcon: {fileID: 1722825242517722, guid: 6c45c4503ee7f3c4d8db31bf73239332, type: 2}
   ActionProgress: 0
 --- !u!136 &136088267323064392
 CapsuleCollider:
@@ -7031,7 +7031,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1976841698954826}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

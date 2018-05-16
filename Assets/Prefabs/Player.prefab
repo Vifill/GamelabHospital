@@ -2265,7 +2265,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1206070611663440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.86, y: 1.5, z: 1.9}
+  m_LocalPosition: {x: 4.26, y: 1.5, z: -1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4273150563344518}
@@ -3650,7 +3650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9117cf5e2b8221b4aa691a6b07b19407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FloatingTextPrefab: {fileID: 0}
+  FloatingTextPrefab: {fileID: 1535330151957376, guid: 1a532c4d63ecbce4f80975cf8dc15377,
+    type: 2}
   ProgressBarPrefab: {fileID: 1460928547334156, guid: ab9bf21abad50ec4d99dab3075d9457b,
     type: 2}
   ProgressBarWorldPosition: {fileID: 4070558396249290}
@@ -3672,7 +3673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9399745eeb2c64ca5084f7f282679f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DashSound: {fileID: 8300000, guid: 9482282f0c5ec2d4f8e177594aeddfa2, type: 3}
+  DashSound: {fileID: 8300000, guid: 50a85fbb75096414e848b0593a8ad8e8, type: 3}
   DashParticles: {fileID: 1424130610902414, guid: 58f3c0b377337b64cb16e00d280c69a0,
     type: 2}
   MovementParticle: {fileID: 1280083263524546, guid: 61a58eee84a23084f9cb49a6045fd95b,

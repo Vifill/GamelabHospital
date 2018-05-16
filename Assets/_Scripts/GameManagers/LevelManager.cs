@@ -153,7 +153,7 @@ public class LevelManager : MonoBehaviour
 
         //Orderly
         OrderlyController orderlyController = FindObjectOfType<OrderlyController>();
-        
+        orderlyController?.CancelOrder();
         if (orderlyController != null && Player != null)
         {
             orderlyController.GetComponent<ActionableActioner>().StopAction();

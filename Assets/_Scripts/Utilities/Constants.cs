@@ -43,6 +43,9 @@ namespace Assets._Scripts.Utilities
 
             // Floats
             public const string Speed = "Speed";
+
+            // Environment
+            public const string DoorOpen = "DoorOpen";
         }
 
         public class Colors
