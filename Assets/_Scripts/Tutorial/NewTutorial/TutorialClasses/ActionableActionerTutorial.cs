@@ -10,14 +10,12 @@ public class ActionableActionerTutorial : ActionableActioner
             EventManager.TriggerEvent(EventManager.EventCodes.DoneFinishingTutorialQueue);
         }
 
-        base.OnSuccess();
-
-        if(CurrentAction is PickupStationController && (CurrentAction as PickupStationController).ToolObject.GetComponent<ToolBase>().ToolName == ToolName.Water)
+        if (CurrentAction is PickupStationController && (CurrentAction as PickupStationController).ToolObject.GetComponent<ToolBase>().ToolName == ToolName.Water)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneGetWater);
             EventManager.TriggerEvent(EventManager.EventCodes.DoneGetWaterLvl2);
         }
-        if(CurrentAction is HydrationController)
+        if (CurrentAction is HydrationController)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneHydration);
             EventManager.TriggerEvent(EventManager.EventCodes.DoneHydrationLvl2);
@@ -30,6 +28,7 @@ public class ActionableActionerTutorial : ActionableActioner
         {
             EventManager.TriggerEvent(EventManager.EventCodes.DoneCleanDoctor);
         }
-        
+
+        base.OnSuccess();
     }
 }
