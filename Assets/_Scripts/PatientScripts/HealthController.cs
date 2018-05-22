@@ -101,6 +101,11 @@ public class HealthController : MonoBehaviour
         HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
     }
 
+    public void DestroyHydrationUI()
+    {
+        Destroy(HydrationUI);
+    }
+
     private void Update()
     {
         if (!LevelManager.TimeOver)
@@ -164,7 +169,7 @@ public class HealthController : MonoBehaviour
             float targetTime = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= Health)?.TimeToExcrete ?? 0.0f;
             targetTime += ExcreteTimeOffset;
             timeCounter += Time.deltaTime;
-            if(timeCounter >= targetTime)
+            if(timeCounter >= targetTime && !PatientStatusController.IsDead && !PatientStatusController.IsHealed)
             {
                 StartFeelingSick();
                 break;
@@ -185,8 +190,8 @@ public class HealthController : MonoBehaviour
 
     private void SetExcreteWarning()
     {
-        HydrationUI.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
-        PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPukeWarning);
+        HydrationUI?.GetComponent<HydrationUIManager>().SetExcreteWarning(true);
+        PatientAnimator?.SetTrigger(Constants.AnimationParameters.PatientPukeWarning);
     }
 
     protected virtual void Excrete()

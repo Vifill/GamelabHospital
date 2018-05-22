@@ -48,7 +48,7 @@ public class CharacterInputs : MonoBehaviour
         {
             //Debug.Log("Action button up");
 
-            if (ActionableActioner.CurrentTime >= ActionableActioner.TotalTime - 0.1f)
+            if (ActionableActioner.IsActioning && ActionableActioner.CurrentTime >= ActionableActioner.TotalTime - 0.1f)
             {
                 return;
             }
