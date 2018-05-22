@@ -180,13 +180,19 @@ public class ActionableActioner : MonoBehaviour
     private void StartDoctorActionUI(Actionable pAction)
     {
         CreateProgressBar(pAction);
-        StartCoroutine(UpdateProgressBar());
+        if (pAction.ActionTime > 0)
+        {
+            StartCoroutine(UpdateProgressBar());
+        }
     }
 
     public void StartOrderlyActionUI(OrderlyController pOrderly)
     {
         ProgressBar = pOrderly.GetCurrentActionIcon();
-        StartCoroutine(UpdateProgressBarOrderly());
+        if (CurrentAction.ActionTime > 0)
+        {
+            StartCoroutine(UpdateProgressBarOrderly());
+        }
     }
 
     private void CreateProgressBar(Actionable pAction)
