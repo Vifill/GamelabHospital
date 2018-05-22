@@ -15,7 +15,7 @@ public class BarFillFalloff : MonoBehaviour {
     private float Timer;
     public bool IsGaining;
 
-    void Start ()
+    public void Initialize ()
     {
         GainColor = Constants.Colors.Green;
         Image = GetComponent<Image>();
@@ -23,8 +23,8 @@ public class BarFillFalloff : MonoBehaviour {
         OverlayImage.transform.SetSiblingIndex(Image.transform.GetSiblingIndex());
         Image.transform.SetParent(OverlayImage.transform);
         Destroy(OverlayImage.GetComponent<BarFillFalloff>());
+
         OverlayImage.color = Constants.Colors.Red;
-        //OverlayImage.color = new Color(OverlayImage.color.r, OverlayImage.color.g, OverlayImage.color.b,1);
         OverlayImageColor = OverlayImage.color;
         OverlayImageColor.a = 1;
         OverlayImage.color = OverlayImage.color;
@@ -33,7 +33,7 @@ public class BarFillFalloff : MonoBehaviour {
 
 	void LateUpdate ()
     {
-        if (IsGaining)
+        if (IsGaining || OverlayImage == null)
         {
             return;
         }
