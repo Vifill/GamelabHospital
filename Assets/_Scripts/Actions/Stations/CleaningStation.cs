@@ -22,6 +22,8 @@ public class CleaningStation : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        base.OnFinishedAction(pObjectActioning);
+
         pObjectActioning.GetComponent<ToolController>().GetToolBase().CleanTool();
     }
 

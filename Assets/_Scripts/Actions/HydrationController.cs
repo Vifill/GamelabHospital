@@ -58,6 +58,8 @@ public class HydrationController : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        base.OnFinishedAction(pObjectActioning);
+
         if (CurrentHydrations.ContainsKey(CurrentHydrationModel))
         {
             StopCoroutine(CurrentHydrations[CurrentHydrationModel]);

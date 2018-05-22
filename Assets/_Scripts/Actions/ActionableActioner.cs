@@ -9,7 +9,7 @@ using Assets._Scripts.Utilities;
 public class ActionableActioner : MonoBehaviour
 {
     public GameObject FloatingTextPrefab;
-    protected Actionable CurrentAction;
+    public Actionable CurrentAction { get; private set; }
     private GameObject ActionableParticles;
     private Image ProgressBar;
     private Canvas Canvas;
@@ -108,6 +108,8 @@ public class ActionableActioner : MonoBehaviour
         CurrentAction.PlayFinishedActionSFX();
         ProcessPlayerSanitation();
         ProcessToolAfterSuccess();
+
+        CurrentAction = null;
     }
 
     private void ProcessToolAfterSuccess()
@@ -178,13 +180,19 @@ public class ActionableActioner : MonoBehaviour
     private void StartDoctorActionUI(Actionable pAction)
     {
         CreateProgressBar(pAction);
-        StartCoroutine(UpdateProgressBar());
+        if (pAction.ActionTime > 0)
+        {
+            StartCoroutine(UpdateProgressBar());
+        }
     }
 
     public void StartOrderlyActionUI(OrderlyController pOrderly)
     {
         ProgressBar = pOrderly.GetCurrentActionIcon();
-        StartCoroutine(UpdateProgressBarOrderly());
+        if (CurrentAction.ActionTime > 0)
+        {
+            StartCoroutine(UpdateProgressBarOrderly());
+        }
     }
 
     private void CreateProgressBar(Actionable pAction)

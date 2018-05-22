@@ -34,11 +34,15 @@ public abstract class Actionable : MonoBehaviour
     public bool ConsumesTool;
     public bool MakesPlayerDirty;
     public bool IsBeingActioned;
+    public bool IsHighlighted { get; private set; }
 
     public GameObject ActionIcon;
 
     public abstract bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning);
-    public virtual void OnFinishedAction(GameObject pObjectActioning) { }
+    public virtual void OnFinishedAction(GameObject pObjectActioning)
+    {
+        RemoveHighlight();
+    }
     public virtual void OnStartAction(GameObject pObjectActioning) { }
     protected virtual void Initialize() { }
     public virtual void OnStopAction() { }
@@ -141,6 +145,7 @@ public abstract class Actionable : MonoBehaviour
                     mat.SetColor("_OutlineColor", new Color(0.67f, 1f, 0.184f));
                 }
             }
+            IsHighlighted = true;
         }
     }
 
@@ -171,6 +176,7 @@ public abstract class Actionable : MonoBehaviour
             {
                 mat.shader = Shader.Find("Standard");
             }
+            IsHighlighted = false;
         }
     }
 

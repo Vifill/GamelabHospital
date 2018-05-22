@@ -20,6 +20,8 @@ public class Pickupable : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        base.OnFinishedAction(pObjectActioning);
+
         var toolController = pObjectActioning.GetComponent<ToolController>();
         toolController.SetTool(gameObject);
 
