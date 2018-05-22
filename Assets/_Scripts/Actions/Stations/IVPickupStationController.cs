@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class IVPickupStationController : PickupStationController
 {
+    public GameObject CooldownProgressPrefab;
+    public Transform CooldownProgressIconPos;
     public List<GameObject> IVBags;
     public float AvailableBags;
     public float IVBagRespawnTime;
     private bool IVRespawnCoroutineIsRunning;
+    private Transform MainCanvas;
 
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
     {
@@ -28,6 +32,7 @@ public class IVPickupStationController : PickupStationController
         base.Initialize();
         IVRespawnCoroutineIsRunning = false;
         AvailableBags = 3;
+        MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
     }
 
 
@@ -55,10 +60,13 @@ public class IVPickupStationController : PickupStationController
     private IEnumerator RespawnIVBags()
     {
         IVRespawnCoroutineIsRunning = true;
+        var respawnProgress = Instantiate(CooldownProgressPrefab, MainCanvas);
         float timer = 0;
         while (AvailableBags < 3)
         {
             timer += Time.deltaTime;
+            respawnProgress.transform.position = Camera.main.WorldToScreenPoint(CooldownProgressIconPos.position);
+            respawnProgress.transform.GetChild(0).GetComponent<Image>().fillAmount = timer / IVBagRespawnTime;
 
             if (timer >= IVBagRespawnTime)
             {
@@ -68,7 +76,7 @@ public class IVPickupStationController : PickupStationController
 
             yield return null;
         }
+        Destroy(respawnProgress);
         IVRespawnCoroutineIsRunning = false;
-
     }
 }
