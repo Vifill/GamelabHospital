@@ -160,7 +160,7 @@ public class ActionableActioner : MonoBehaviour
 
         pAction.OnStartAction(gameObject);
 
-        TotalTime = parameters.TimeToTakeAction;
+        TotalTime = parameters.ActionTime;
         IsActioning = true;
         pAction.IsBeingActioned = true;
         MovementController?.StopMovement();
@@ -170,7 +170,7 @@ public class ActionableActioner : MonoBehaviour
         {
             StartOrderlyActionUI(orderly);
         }
-        else if (!(CurrentAction is TableStation))
+        else if (pAction.GetActionableParameters(gameObject).ActionTime > 0)
         {
             StartDoctorActionUI(pAction);
         }
@@ -180,19 +180,13 @@ public class ActionableActioner : MonoBehaviour
     private void StartDoctorActionUI(Actionable pAction)
     {
         CreateProgressBar(pAction);
-        if (pAction.ActionTime > 0)
-        {
-            StartCoroutine(UpdateProgressBar());
-        }
+        StartCoroutine(UpdateProgressBar());
     }
 
     public void StartOrderlyActionUI(OrderlyController pOrderly)
     {
         ProgressBar = pOrderly.GetCurrentActionIcon();
-        if (CurrentAction.ActionTime > 0)
-        {
-            StartCoroutine(UpdateProgressBarOrderly());
-        }
+        StartCoroutine(UpdateProgressBarOrderly());
     }
 
     private void CreateProgressBar(Actionable pAction)
