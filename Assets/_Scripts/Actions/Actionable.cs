@@ -52,7 +52,7 @@ public abstract class Actionable : MonoBehaviour
 
     public virtual ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
     {
-        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles, MakesPlayerDirty = MakesPlayerDirty };
+        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, ActionTime = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles, MakesPlayerDirty = MakesPlayerDirty };
     }
 
     public bool CanBeActioned(ToolName pCurrentTool, GameObject pObjectActioning)
@@ -189,6 +189,18 @@ public abstract class Actionable : MonoBehaviour
         }
     }
 
+    public void OnMouseOver()
+    {
+        if (GameController.OrderlyInScene && IsActionActive && !GameController.InMenuScreen)
+        {
+            var actionable = transform.root.GetComponent<Actionable>();
+
+            if (!actionable.IsHighlighted)
+            {
+                actionable.SetHighlight(FindObjectOfType<HighlightController>().HighlightShader, new Color(0f, 0.5f, 1f));
+            }
+        }
+    }
 
     public void OnMouseExit()
     {
@@ -213,7 +225,7 @@ public abstract class Actionable : MonoBehaviour
 public class ActionableParameters
 {
     public float RadiusOfActivation;
-    public float TimeToTakeAction;
+    public float ActionTime;
     public GameObject ActionParticles;
     public GameObject ActionSuccessParticles;
     public AudioClip ActionSoundClip;
