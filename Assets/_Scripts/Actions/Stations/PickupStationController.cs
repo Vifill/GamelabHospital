@@ -24,6 +24,8 @@ public class PickupStationController : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        base.OnFinishedAction(pObjectActioning);
+
         var toolController = pObjectActioning.GetComponent<ToolController>();
         var toolObject = Instantiate(ToolObject);
         toolController.SetTool(toolObject);

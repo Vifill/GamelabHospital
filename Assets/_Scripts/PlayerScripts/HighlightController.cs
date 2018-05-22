@@ -17,6 +17,7 @@ public class HighlightController : MonoBehaviour
     private Actionable PreviousActionable;
     private ToolController ToolCtrl;
     private Transform PlayerTransform;
+    private ActionableActioner Actioner;
 
     private List<GameObject> ItemTexts = new List<GameObject>();
 
@@ -42,6 +43,7 @@ public class HighlightController : MonoBehaviour
         PlayerTransform = FindObjectOfType<PlayerActionController>()?.transform;
         ToolCtrl = PlayerTransform?.GetComponent<ToolController>();
         rect = FindObjectOfType<Canvas>().GetComponent<RectTransform>();
+        Actioner = PlayerTransform?.GetComponent<ActionableActioner>();
     }
 	
 	// Update is called once per frame
@@ -49,7 +51,8 @@ public class HighlightController : MonoBehaviour
 	{
         if (PlayerTransform != null && ToolCtrl != null)
         {
-            var actionable = GetActionablesUtility.GetActionableForHighlight(ToolCtrl, PlayerTransform)?.GetMostRelevantAction(ToolCtrl.GetCurrentToolName(), PlayerTransform.gameObject);
+            //var actionable = GetActionablesUtility.GetActionableForHighlight(ToolCtrl, PlayerTransform)?.GetMostRelevantAction(ToolCtrl.GetCurrentToolName(), PlayerTransform.gameObject);
+            var actionable = GetActionablesUtility.GetActionableForHighlight(ToolCtrl, PlayerTransform);
 
             if (actionable == null)
             {
@@ -58,9 +61,15 @@ public class HighlightController : MonoBehaviour
                 RemoveTexts();
             }
 
-            else if (actionable != PreviousActionable)
+            else if (!actionable.IsHighlighted)
             {
-                if (actionable.CanBeActioned(ToolCtrl.GetCurrentToolName(), PlayerTransform.gameObject))
+                if (PreviousActionable != null)
+                {
+                    PreviousActionable.RemoveHighlight();
+                    RemoveTexts();
+                }
+
+                if (actionable.CanBeActioned(ToolCtrl.GetCurrentToolName(), PlayerTransform.gameObject) || actionable == Actioner.CurrentAction)
                 {
                     actionable.SetHighlight(HighlightShader);
                 }
@@ -71,11 +80,7 @@ public class HighlightController : MonoBehaviour
                 }
 
                 HighlightedObject = actionable.gameObject;
-                if (PreviousActionable != null)
-                {
-                    PreviousActionable?.RemoveHighlight();
-                    RemoveTexts();
-                }
+
                 AddText(actionable);
             }
             //if (actionable != null)

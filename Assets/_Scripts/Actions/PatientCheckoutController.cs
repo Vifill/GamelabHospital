@@ -26,6 +26,8 @@ public class PatientCheckoutController : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        base.OnFinishedAction(pObjectActioning);
+
         LevelManager.AddPoints(1000, transform.position);
         IsCheckingOut = true;
         PatientStatusController.CheckOut();
