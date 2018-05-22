@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 0f774b4931d33a04dab75f957c6c8c64
+  m_OcclusionCullingData: {fileID: 36300000, guid: 9ffb905224964ca48bd72447eb235cea,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -1046,6 +1047,10 @@ Prefab:
     - target: {fileID: 1018432855746630, guid: 26b8ac000ec10b545aec99cee62e4947, type: 2}
       propertyPath: m_NavMeshLayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1018432855746630, guid: 26b8ac000ec10b545aec99cee62e4947, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967287
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 26b8ac000ec10b545aec99cee62e4947, type: 2}

@@ -29,7 +29,7 @@ public class ActionableActioner : MonoBehaviour
     private Action<GameObject> ActionAfterFinishing;
     private Action ExternalActionWhenSuccessful;
     private Action ExternalActionWhenFailed;
-    private bool IsActioning;
+    public bool IsActioning { get; private set; }
     private bool HasSpawnedFloatingText;
     private MovementController MovementController;
     private SanitationController SanitationController;
@@ -168,7 +168,7 @@ public class ActionableActioner : MonoBehaviour
         {
             StartOrderlyActionUI(orderly);
         }
-        else
+        else if (!(CurrentAction is TableStation))
         {
             StartDoctorActionUI(pAction);
         }
