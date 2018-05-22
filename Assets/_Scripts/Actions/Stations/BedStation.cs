@@ -96,6 +96,8 @@ public class BedStation : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        base.OnFinishedAction(pObjectActioning);
+
         SetClean();
         LevelManager.AddPoints(50, transform.position);
     }

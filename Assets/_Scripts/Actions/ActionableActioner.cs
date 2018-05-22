@@ -9,7 +9,7 @@ using Assets._Scripts.Utilities;
 public class ActionableActioner : MonoBehaviour
 {
     public GameObject FloatingTextPrefab;
-    protected Actionable CurrentAction;
+    public Actionable CurrentAction { get; private set; }
     private GameObject ActionableParticles;
     private Image ProgressBar;
     private Canvas Canvas;
@@ -108,6 +108,8 @@ public class ActionableActioner : MonoBehaviour
         CurrentAction.PlayFinishedActionSFX();
         ProcessPlayerSanitation();
         ProcessToolAfterSuccess();
+
+        CurrentAction = null;
     }
 
     private void ProcessToolAfterSuccess()

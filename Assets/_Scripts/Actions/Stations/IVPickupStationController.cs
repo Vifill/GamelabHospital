@@ -17,6 +17,8 @@ public class IVPickupStationController : PickupStationController
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        base.OnFinishedAction(pObjectActioning);
+
         PickUpIVBags();
         base.OnFinishedAction(pObjectActioning);
     }
