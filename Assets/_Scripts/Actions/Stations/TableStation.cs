@@ -39,6 +39,8 @@ public class TableStation : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning = null)
     {
+        base.OnFinishedAction(pObjectActioning);
+
         var toolController = pObjectActioning.GetComponent<ToolController>();
         ToolName pCurrentTool = toolController.GetCurrentToolName();
 

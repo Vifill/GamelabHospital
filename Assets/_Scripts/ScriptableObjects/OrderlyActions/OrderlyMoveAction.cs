@@ -43,13 +43,18 @@ public class OrderlyMoveAction : OrderlyAction
             CancelOrder();
         }
 
-        if(Vector3.Distance(PositionToMoveTo, OrderlyObject.transform.position) <= DistanceWhenCloseEnough)
+        if (Vector3.Distance(PositionToMoveTo, OrderlyObject.transform.position) <= DistanceWhenCloseEnough)
         {
             NavAgent.isStopped = true;
-            
+
             ActionFinished();
-            
         }
+        //if (NavAgent.remainingDistance <= DistanceWhenCloseEnough)
+        //{
+        //    NavAgent.isStopped = true;
+
+        //    ActionFinished();
+        //}
     }
 
     protected override void OnStartAction()
@@ -74,6 +79,9 @@ public class OrderlyMoveAction : OrderlyAction
 
         NavAgent.SetDestination(PositionToMoveTo);
         NavAgent.stoppingDistance = DistanceToStop;
+
+        Vector3 particlePos = PositionToMoveTo;
+        SetDestinationParticle(particlePos, false);
     }
 
     protected override void OnStopAction()
@@ -87,6 +95,9 @@ public class OrderlyMoveAction : OrderlyAction
         }
 
         OrderlyObject.GetComponent<OrderlyController>().DisableMovementParticle();
+
+        Vector3 particlePos = OrderlyObject.transform.position;
+        SetDestinationParticle(particlePos, true);
     }
 
     private Vector3 GetTargetPoint(Transform actionable)
@@ -114,5 +125,27 @@ public class OrderlyMoveAction : OrderlyAction
         {
             return actionable.position;
         }
+    }
+
+    private void SetDestinationParticle(Vector3 pPosition, bool pSetParent)
+    {
+        var particle = OrderlyObject.GetComponent<OrderlyController>().SelectionParticleEffect;
+
+        if (particle == null)
+        {
+            return;
+        }
+
+        if (!pSetParent)
+        {
+            particle.transform.parent = null;
+        }
+        else
+        {
+            particle.transform.SetParent(OrderlyObject.transform);
+        }
+
+        var pos = pPosition - new Vector3(0, pPosition.y, 0) + new Vector3(0, 0.1f, 0);
+        particle.transform.position = pos;
     }
 }

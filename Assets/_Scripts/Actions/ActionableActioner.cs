@@ -9,7 +9,7 @@ using Assets._Scripts.Utilities;
 public class ActionableActioner : MonoBehaviour
 {
     public GameObject FloatingTextPrefab;
-    protected Actionable CurrentAction;
+    public Actionable CurrentAction { get; private set; }
     private GameObject ActionableParticles;
     private Image ProgressBar;
     private Canvas Canvas;
@@ -24,12 +24,12 @@ public class ActionableActioner : MonoBehaviour
     public GameObject ParticlePrefab;
 
 
-    private float TotalTime;
-    private float CurrentTime { get { return CurrentAction.ActionProgress; } set { CurrentAction.ActionProgress = value; } }
+    public float TotalTime { get; private set; }
+    public float CurrentTime { get { return CurrentAction.ActionProgress; } private set { CurrentAction.ActionProgress = value; } }
     private Action<GameObject> ActionAfterFinishing;
     private Action ExternalActionWhenSuccessful;
     private Action ExternalActionWhenFailed;
-    private bool IsActioning;
+    public bool IsActioning { get; private set; }
     private bool HasSpawnedFloatingText;
     private MovementController MovementController;
     private SanitationController SanitationController;
@@ -78,6 +78,7 @@ public class ActionableActioner : MonoBehaviour
         {
             ProgressBar.fillAmount = CurrentTime / TotalTime;
             ProgressBar.transform.parent.position = Camera.main.WorldToScreenPoint(ProgressBarWorldPosition.position);
+
             yield return null;
         }
     }
@@ -101,11 +102,14 @@ public class ActionableActioner : MonoBehaviour
 
         CurrentTime = 0;
         StopAction();
-        ProcessPlayerSanitation();
-        ProcessToolAfterSuccess();
+        
         ActionAfterFinishing?.Invoke(gameObject);
         ExternalActionWhenSuccessful?.Invoke();
         CurrentAction.PlayFinishedActionSFX();
+        ProcessPlayerSanitation();
+        ProcessToolAfterSuccess();
+
+        CurrentAction = null;
     }
 
     private void ProcessToolAfterSuccess()
@@ -166,7 +170,7 @@ public class ActionableActioner : MonoBehaviour
         {
             StartOrderlyActionUI(orderly);
         }
-        else
+        else if (!(CurrentAction is TableStation))
         {
             StartDoctorActionUI(pAction);
         }
@@ -338,7 +342,7 @@ public class ActionableActioner : MonoBehaviour
             Color color = hydrationMeter.color;
             for (int i = 0; i < transferAmount; i++)
             {
-                StartCoroutine(TransferItemCoroutine(i / 10.0f, hydrationMeter.transform, true, transform, false, Constants.Colors.Blue));
+                StartCoroutine(TransferItemCoroutine(i / 10.0f, hydrationMeter.transform, true, transform, false, color));
             }
         }
         else if (CurrentAction is BedStation)
@@ -349,7 +353,7 @@ public class ActionableActioner : MonoBehaviour
             Color color = dirtyMeter.color;
             for (int i = 0; i < transferAmount; i++)
             {
-                StartCoroutine(TransferItemCoroutine(i / 10.0f, transform, false, dirtyMeter.transform, true, Constants.Colors.Brown));
+                StartCoroutine(TransferItemCoroutine(i / 10.0f, transform, false, dirtyMeter.transform, true, color));
             }
         }
         else

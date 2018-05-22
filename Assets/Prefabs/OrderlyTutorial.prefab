@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 23758959927724510}
   - component: {fileID: 143698529379633288}
   - component: {fileID: 114559714135524706}
-  - component: {fileID: 114952891718775108}
   - component: {fileID: 114554914355428362}
   - component: {fileID: 195622783370759532}
   - component: {fileID: 82524692891126712}
@@ -2213,8 +2212,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1001276820246188}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.81665, y: 1, z: 3.6372027}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: 1.43, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4265989777396070}
@@ -2797,27 +2796,6 @@ MonoBehaviour:
   InvalidActionSound: {fileID: 8300000, guid: 57cb2086193889347bcc337d239a129d, type: 3}
   Animator: {fileID: 95047926547528988}
   ParticlePrefab: {fileID: 0}
---- !u!114 &114952891718775108
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1001276820246188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9117cf5e2b8221b4aa691a6b07b19407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FloatingTextPrefab: {fileID: 0}
-  ProgressBarPrefab: {fileID: 1934616767393400, guid: ca1bbd0ca8b52ef4d8531c10cce2a2c2,
-    type: 2}
-  ProgressBarWorldPosition: {fileID: 4404236415740554}
-  Asource: {fileID: 82524692891126712}
-  PickUpSound: {fileID: 8300000, guid: 44726c85aeca0594397c7e80e6387e70, type: 3}
-  DropSound: {fileID: 8300000, guid: b485a0e6493cbab4c9eab812cff35989, type: 3}
-  InvalidActionSound: {fileID: 8300000, guid: 57cb2086193889347bcc337d239a129d, type: 3}
-  Animator: {fileID: 95047926547528988}
-  ParticlePrefab: {fileID: 0}
 --- !u!114 &114960269775320796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2840,10 +2818,8 @@ MonoBehaviour:
   SanitationUIPicture: {fileID: 21300000, guid: a1b3ea2036c2a3c40b7777ea8a8cf9dc,
     type: 3}
   SanitationUIColor: {r: 0, g: 0, b: 1, a: 1}
-  DirtyParticles50Percent: {fileID: 1352758340090686, guid: c55c6fc6151f2434d989209369886cfd,
-    type: 2}
-  DirtyParticles85Percent: {fileID: 1236331989180198, guid: c55c6fc6151f2434d989209369886cfd,
-    type: 2}
+  DirtyParticles50Percent: {fileID: 1692680654409244}
+  DirtyParticles85Percent: {fileID: 1342413350406234}
   DoctorSanitationConfig: {fileID: 11400000, guid: 8e5cf8227361e3f49abdfeaf9aea8402,
     type: 2}
 --- !u!136 &136212458842250598

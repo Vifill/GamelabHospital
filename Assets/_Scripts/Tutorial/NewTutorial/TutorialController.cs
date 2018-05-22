@@ -92,7 +92,7 @@ public class TutorialController : MonoBehaviour
     private void DoneFinishingTutorialQueueEvent()
     {
         Debug.Log("DoneTutorialQueue, event triggered.");
-        TutorialUtility.SetPlayerSanitation(55);
+        TutorialUtility.SetPlayerSanitation(75);
     }
 
     private void OnDoneHydrationLvl2Event()

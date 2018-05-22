@@ -70,7 +70,7 @@ public class MouseInputController : MonoBehaviour
             else if (hit.transform.tag == "Floor")
             {
                 var order = new OrderlyOrder(hit.point);
-                order.AddAction(new OrderlyMoveAction(null, hit.point));
+                order.AddAction(new OrderlyMoveAction(null, hit.point, 0, 1.1f));
                 return order;
             }
             Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object

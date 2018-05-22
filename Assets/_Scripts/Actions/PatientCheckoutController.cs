@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 
 public class PatientCheckoutController : Actionable
 {
@@ -25,12 +26,16 @@ public class PatientCheckoutController : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        base.OnFinishedAction(pObjectActioning);
+
         LevelManager.AddPoints(1000, transform.position);
         IsCheckingOut = true;
         PatientStatusController.CheckOut();
         Destroy(CanBeCheckedOutParticleInstance);
-        IsActionActive = false;
-        GetComponent<HealthController>().HydrationUI.SetActive(false);
+        //IsActionActive = false;
+        var actionables = GetComponents<Actionable>().ToList();
+        actionables.ForEach(a => a.IsActionActive = false);
+        //GetComponent<HealthController>().HydrationUI.SetActive(false);
     }
 
     private void Update()
