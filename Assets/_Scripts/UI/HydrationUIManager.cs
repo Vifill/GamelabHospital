@@ -41,6 +41,7 @@ public class HydrationUIManager : MonoBehaviour
         HydrationThresholdLine.anchoredPosition = new Vector2(thresholdLineXpos - 1, HydrationThresholdLine.anchoredPosition.y);
         // UI position
         transform.position = Camera.main.WorldToScreenPoint(HealthController.transform.position + new Vector3(0, UIOffset, UIOffset));
+        HealthMeterUI?.GetComponentInChildren<BarFillFalloff>().Initialize();
     }
 
     private void LateUpdate()

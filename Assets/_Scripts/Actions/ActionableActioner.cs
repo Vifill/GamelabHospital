@@ -170,7 +170,7 @@ public class ActionableActioner : MonoBehaviour
         {
             StartOrderlyActionUI(orderly);
         }
-        else
+        else if (!(CurrentAction is TableStation))
         {
             StartDoctorActionUI(pAction);
         }
