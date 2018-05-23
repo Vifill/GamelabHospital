@@ -83,9 +83,12 @@ public class LevelManager : MonoBehaviour
 
     public void EndLevel ()
     {
-        TimeOver = true;
-        FindObjectOfType<PatientSpawner>().StopSpawning();
-        StartCoroutine(ShiftOver());
+        if (!TimeOver)
+        {
+            TimeOver = true;
+            FindObjectOfType<PatientSpawner>().StopSpawning();
+            StartCoroutine(ShiftOver());
+        }
     }
 
     public void AddPoints (int pPoints, Vector3 pPosition)
