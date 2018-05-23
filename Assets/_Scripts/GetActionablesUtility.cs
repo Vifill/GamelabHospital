@@ -37,9 +37,19 @@ public class GetActionablesUtility: ScriptableObject
 
     public static Actionable GetActionableForHighlight(ToolController pToolController, Transform pPlayerTransform)
     {
-        var canBeActioned = FindObjectsOfType<Actionable>().Where(a => a.gameObject != pToolController.GetToolBase()?.gameObject && a.CanBeActioned(pToolController.GetCurrentToolName(), pPlayerTransform.gameObject) && a.IsActionActive && a.IsClose(pPlayerTransform));
-        var cantBeActioned = FindObjectsOfType<Actionable>().Where(a => a.gameObject != pToolController.GetToolBase()?.gameObject && !a.CanBeActioned(pToolController.GetCurrentToolName(), pPlayerTransform.gameObject) && a.IsActionActive && a.IsClose(pPlayerTransform));
+        var actioner = pPlayerTransform.GetComponent<ActionableActioner>();
 
-        return canBeActioned?.OrderBy(a => Vector3.Distance(pPlayerTransform.position, a.transform.position)).FirstOrDefault() ?? cantBeActioned.OrderBy(a => Vector3.Distance(pPlayerTransform.position, a.transform.position)).FirstOrDefault();
+        if (actioner.IsActioning)
+        {
+            Debug.Log("is actioning highlight");
+            return actioner.CurrentAction;
+        }
+        else
+        {
+            var canBeActioned = FindObjectsOfType<Actionable>().Where(a => a.gameObject != pToolController.GetToolBase()?.gameObject && a.CanBeActioned(pToolController.GetCurrentToolName(), pPlayerTransform.gameObject) && a.IsActionActive && a.IsClose(pPlayerTransform));
+            var cantBeActioned = FindObjectsOfType<Actionable>().Where(a => a.gameObject != pToolController.GetToolBase()?.gameObject && !a.CanBeActioned(pToolController.GetCurrentToolName(), pPlayerTransform.gameObject) && a.IsActionActive && a.IsClose(pPlayerTransform));
+
+            return canBeActioned?.OrderBy(a => Vector3.Distance(pPlayerTransform.position, a.transform.position)).FirstOrDefault() ?? cantBeActioned.OrderBy(a => Vector3.Distance(pPlayerTransform.position, a.transform.position)).FirstOrDefault();
+        }
     }
 }

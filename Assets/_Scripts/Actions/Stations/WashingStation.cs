@@ -16,7 +16,7 @@ public class WashingStation : Actionable
     public override ActionableParameters GetActionableParameters(GameObject pObjectActioning = null)
     {
         ActionTime += pObjectActioning?.GetComponent<SanitationController>().Sanitation / 100 ?? 0;
-        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, TimeToTakeAction = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
+        return new ActionableParameters() { ActionParticles = ActionParticles, ActionSoundClip = ActionSoundEvent, ActionFinishedSoundClip = ActionFinishedSoundEvent, IsPickupable = IsPickupable, RadiusOfActivation = RadiusOfActivation, ActionTime = ActionTime, AnimationParameter = AnimatorParameter, ActionSuccessParticles = ActionSuccessParticles };
     }
 
     public override bool CanBeActionedExtended(ToolName pCurrentTool, GameObject pObjectActioning)
@@ -41,6 +41,8 @@ public class WashingStation : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        base.OnFinishedAction(pObjectActioning);
+
         pObjectActioning.GetComponent<SanitationController>().ClearSanitation();
         Instantiate(DocWashedParticlePrefab, pObjectActioning.transform.position, Quaternion.identity, pObjectActioning.transform);
         ActionTime = OriginalStartingTime;

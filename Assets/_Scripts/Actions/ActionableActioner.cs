@@ -9,7 +9,7 @@ using Assets._Scripts.Utilities;
 public class ActionableActioner : MonoBehaviour
 {
     public GameObject FloatingTextPrefab;
-    protected Actionable CurrentAction;
+    public Actionable CurrentAction { get; private set; }
     private GameObject ActionableParticles;
     private Image ProgressBar;
     private Canvas Canvas;
@@ -108,6 +108,8 @@ public class ActionableActioner : MonoBehaviour
         CurrentAction.PlayFinishedActionSFX();
         ProcessPlayerSanitation();
         ProcessToolAfterSuccess();
+
+        CurrentAction = null;
     }
 
     private void ProcessToolAfterSuccess()
@@ -158,7 +160,7 @@ public class ActionableActioner : MonoBehaviour
 
         pAction.OnStartAction(gameObject);
 
-        TotalTime = parameters.TimeToTakeAction;
+        TotalTime = parameters.ActionTime;
         IsActioning = true;
         pAction.IsBeingActioned = true;
         MovementController?.StopMovement();
@@ -168,7 +170,7 @@ public class ActionableActioner : MonoBehaviour
         {
             StartOrderlyActionUI(orderly);
         }
-        else if (!(CurrentAction is TableStation))
+        else if (pAction.GetActionableParameters(gameObject).ActionTime > 0)
         {
             StartDoctorActionUI(pAction);
         }
