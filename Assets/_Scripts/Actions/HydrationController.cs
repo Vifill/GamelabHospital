@@ -22,9 +22,19 @@ public class HydrationController : Actionable
     {
         StartCoroutine(GetPatientAnimator());
         HealthCtrl = GetComponent<HealthController>();
-        DoctorSanitationThresholdConfig = HealthCtrl.DoctorSanitationThresholdConfig;
+        StartCoroutine(GetDoctorSanitationThreshold());
         MovementController = GetComponent<PatientMovementController>();
         LevelManager = FindObjectOfType<LevelManager>();
+    }
+
+    private IEnumerator GetDoctorSanitationThreshold()
+    {
+        while (!HealthCtrl.IsInitialized)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        DoctorSanitationThresholdConfig = HealthCtrl.DoctorSanitationThresholdConfig;
     }
 
     private IEnumerator GetPatientAnimator()
