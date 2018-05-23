@@ -42,7 +42,7 @@ public class SanitationUI : MonoBehaviour
         SanitationController = pSanitationController;
         Portrait.sprite = pPlayerPortrait;
         //ColorCode.color = pColorCode;
-        var UIpos = transform.parent.Find(pUIpos).transform;
+        var UIpos = transform.parent.Find(pUIpos);
         transform.localPosition = UIpos.localPosition;
         UpdateSanitationUI();
     }
