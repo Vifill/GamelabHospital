@@ -19,7 +19,7 @@ public class HoverOverInfoscreens : MonoBehaviour
 	}
 	
 	void Update () {
-	    if (isActive && Input.GetMouseButtonDown(0) && Time.timeScale != 0)
+	    if (isActive && Input.GetMouseButtonDown(0) && !isPaused)
 	    {
 	        if (!hasBeenActivated)
 	        {
@@ -36,7 +36,7 @@ public class HoverOverInfoscreens : MonoBehaviour
 	    }
     }
 
-    void OnMouseOver()
+    void OnMouseEnter()
     {
         SetHighlight();
         isActive = true;
