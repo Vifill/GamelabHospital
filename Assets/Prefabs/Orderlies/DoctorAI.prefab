@@ -406,7 +406,6 @@ GameObject:
   - component: {fileID: 114325674276374554}
   - component: {fileID: 195563896951697900}
   - component: {fileID: 82740623393204120}
-  - component: {fileID: 114727814052514244}
   - component: {fileID: 54354375795934158}
   m_Layer: 0
   m_Name: DoctorAI
@@ -3776,32 +3775,6 @@ MonoBehaviour:
   YUIOffset: 0
   MaxVisibleIcons: 4
   SelectionParticleEffect: {fileID: 0}
---- !u!114 &114727814052514244
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1268599045371048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e72b482cdd50e74b815be5c85980c68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Sanitation: 0
-  MaxSanitation: 100
-  MinSanitation: 0
-  SanitationClampMax: 0
-  SanitationClampMin: 0
-  SanitationBarUIPrefab: {fileID: 1979533752814144, guid: d612a684194c25f4a8f54fb4a299f5df,
-    type: 2}
-  UIPosition: P2PortraitPos
-  SanitationUIPicture: {fileID: 21300000, guid: 37a15982f952ae7418c0b5bb20a999ab,
-    type: 3}
-  SanitationUIColor: {r: 0, g: 0, b: 1, a: 1}
-  DirtyParticles50Percent: {fileID: 1415442154130690}
-  DirtyParticles85Percent: {fileID: 1381532268923936}
-  DoctorSanitationConfig: {fileID: 11400000, guid: 8e5cf8227361e3f49abdfeaf9aea8402,
-    type: 2}
 --- !u!136 &136042702519444792
 CapsuleCollider:
   m_ObjectHideFlags: 1
