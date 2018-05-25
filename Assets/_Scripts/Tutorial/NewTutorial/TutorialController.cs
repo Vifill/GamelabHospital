@@ -100,6 +100,8 @@ public class TutorialController : MonoBehaviour
     private void OnDoneHydrationLvl2Event()
     {
         Debug.Log("DoneHydrationLvl2, event triggered.");
+        var orderly = FindObjectOfType<OrderlyController>();
+        orderly.CancelOrder();
         Time.timeScale = 0;
     }
 
