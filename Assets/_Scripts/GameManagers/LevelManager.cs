@@ -250,8 +250,8 @@ public class LevelManager : MonoBehaviour
     private void LevelPassed()
     {
         var endscreen = Instantiate(EndScreenPrefab, UICanvas.transform);
-
-        PlayerDataController.SaveLevelData(new LevelModel(LevelConfig.LevelNumber, Points));
+        var collectables = FindObjectsOfType<HoverOverInfoscreens>().OrderBy(a => a.index).Select(a => a.isFound).ToList();
+        PlayerDataController.SaveLevelData(new LevelModel(LevelConfig.LevelNumber, Points, collectables));
         Time.timeScale = 0;
         endscreen.GetComponent<EndScreenUIManager>().InitializeUI(LevelConfig.StarConfig, PatientsHealed, Points, PatientDeaths, true);
         InEndScreen = true;
