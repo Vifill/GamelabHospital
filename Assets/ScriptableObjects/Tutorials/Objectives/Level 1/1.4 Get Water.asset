@@ -9,7 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa3389b19656eb64281e193f54cbb03e, type: 3}
-  m_Name: 1.5 Wait for patient to be healed
+  m_Name: 1.4 Get Water
   m_EditorClassIdentifier: 
-  ObjectiveDescription: Wait for the patient to become healthy enough to check out
-  OnFinishEvent: 6
+  ObjectiveDescription: Your patient just puked, they will need to be re-hydrated
+    to get better. Get a glass of water from the water basin by holding SPACE BAR
+    near it
+  OnFinishEvent: 2

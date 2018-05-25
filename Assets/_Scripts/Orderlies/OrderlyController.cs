@@ -219,6 +219,6 @@ public class OrderlyController : MonoBehaviour
 
     public Image GetCurrentActionIcon()
     {
-        return QueueIcons.FirstOrDefault().transform.GetChild(0).GetComponent<Image>();
+        return QueueIcons.FirstOrDefault()?.transform.GetChild(0)?.GetComponent<Image>();
     }
 }

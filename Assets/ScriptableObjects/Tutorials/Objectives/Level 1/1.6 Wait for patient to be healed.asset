@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa3389b19656eb64281e193f54cbb03e, type: 3}
-  m_Name: 1.6 Checkout
+  m_Name: 1.6 Wait for patient to be healed
   m_EditorClassIdentifier: 
-  ObjectiveDescription: Hold SPACE BAR near the patient to check them out
-  OnFinishEvent: 7
+  ObjectiveDescription: Wait for the patient to become healthy enough to check out
+  OnFinishEvent: 6

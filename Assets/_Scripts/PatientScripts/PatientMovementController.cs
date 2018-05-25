@@ -92,7 +92,7 @@ public class PatientMovementController : MonoBehaviour
         PatientStatus.IsInBed = true;
         TargetBed.GetComponent<BedController>().PatientInBed = gameObject;
 
-        TargetBed.GetComponent<BedStation>().LerpDirtyBarUIWhenPatientEntersBed(gameObject.GetComponent<HealthController>().HydrationUI);
+        //TargetBed.GetComponent<BedStation>().LerpDirtyBarUIWhenPatientEntersBed(gameObject.GetComponent<HealthController>().HydrationUI);
     }
 
     public void GetOutOfBed()
