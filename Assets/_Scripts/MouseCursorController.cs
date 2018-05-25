@@ -7,6 +7,7 @@ public class MouseCursorController : MonoBehaviour
     public Texture2D CursorIdle;
     public Texture2D CursorHover;
     public Texture2D CursorClick;
+    public Texture2D CursorSpyglass;
     public AudioSource MouseClickAudioSource;
     public AudioClip MouseClickDownSound;
     public AudioClip MouseClickUpSound;
@@ -47,6 +48,15 @@ public class MouseCursorController : MonoBehaviour
         {
             Cursor.SetCursor(CursorHover, Vector2.zero, CursorMode.Auto);
             PreviousCursor = CursorHover;
+        }
+    }
+
+    public void SetCursorToSpyglass()
+    {
+        if (IsEnabledInLevel)
+        {
+            Cursor.SetCursor(CursorSpyglass, Vector2.zero, CursorMode.Auto);
+            PreviousCursor = CursorSpyglass;
         }
     }
 
