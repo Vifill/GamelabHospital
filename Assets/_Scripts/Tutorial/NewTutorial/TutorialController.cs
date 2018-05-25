@@ -43,7 +43,7 @@ public class TutorialController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && CanEndLevel)
+        if (Input.GetKeyDown(KeyCode.Return) && CanEndLevel && !GameController.InMenuScreen)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.FinishLevel);
         }

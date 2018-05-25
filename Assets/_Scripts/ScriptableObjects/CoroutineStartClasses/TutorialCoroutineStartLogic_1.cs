@@ -6,11 +6,10 @@ public class TutorialCoroutineStartLogic_1 : TutorialCoroutineStartLogic
 {
     public override IEnumerator TutorialStartCoroutine()
     {
-        TutorialUtility.SetSpawnFreeze(true);
-        TutorialUtility.SetTimeFreeze(true);
-
         yield return new WaitForEndOfFrame();
 
+        TutorialUtility.SetSpawnFreeze(true);
+        TutorialUtility.SetTimeFreeze(true);
         TutorialUtility.SetActionablesActive(false);
         TutorialUtility.SetTimerUIAsActive(false);
 
