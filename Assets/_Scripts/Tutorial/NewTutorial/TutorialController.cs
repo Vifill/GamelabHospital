@@ -77,6 +77,16 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DoneReturnBucket, OnReturnBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneFinishingTutorialQueue, DoneFinishingTutorialQueueEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanDoctor, OnCleanDoctorDoneEvent);
+        EventActions.Add(EventManager.EventCodes.PatientInitializedLvl2, OnPatientInitializedLvl2Event);
+    }
+
+    private void OnPatientInitializedLvl2Event()
+    {
+        TutorialUtility.SetPatientHydration(50);
+        TutorialUtility.SetPatientHealth(50);
+        TutorialUtility.SetHydrationFreeze(true);
+        TutorialUtility.SetHealthFreeze(true);
+        TutorialUtility.SetFreezeExcretion(true);
     }
 
     private void OnFinishLevel()
