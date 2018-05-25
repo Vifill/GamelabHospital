@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114065370836835360}
   - component: {fileID: 114295128852408656}
   - component: {fileID: 114086908781724214}
+  - component: {fileID: 114696514550554588}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -178,6 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f671bae31b96346ab500c3afcfc6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartTime: 0
+  TimerClampMin: 0
+  TimerClampMax: 0
   DebugDatagathering: 0
   TestingPeriod: 0
   ClockUIPrefab: {fileID: 1848971583142634, guid: ce463b9c535516c4d8bb2d3ea45f92f7,
@@ -187,10 +191,11 @@ MonoBehaviour:
   EndScreenPrefab: {fileID: 1610231225011098, guid: 5cd54265060eaec498d8ca9b81abd728,
     type: 2}
   SunPrefab: {fileID: 1159113201939540, guid: ad352ea09b6da52429f156c65d1462b7, type: 2}
-  LevelConfig: {fileID: 11400000, guid: 72955933ac36be945ac4b69cf6cab993, type: 2}
+  LevelConfig: {fileID: 11400000, guid: 0d34a1d66402afa47b3f077aeb206303, type: 2}
   PlayerAI: {fileID: 1268599045371048, guid: 6273c468a1350cb4a9103c81b5d3aa72, type: 2}
   ShiftDoctor: {fileID: 1313231252481954, guid: f79f5641ea6b722409aba2fed0264490,
     type: 2}
+  InEndScreen: 0
   ShiftOverCanvas: {fileID: 1215149326299314, guid: 14f6a945023ef2d48a8b7a490bbff6b2,
     type: 2}
 --- !u!114 &114163115634664054
@@ -204,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4724a60f38e9a9d429ac2b2c31dd7c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnConfig: {fileID: 11400000, guid: 51903e123dc59284fa276faf2304b751, type: 2}
+  SpawnConfig: {fileID: 11400000, guid: eb4f67c9610c9f54687ca0cae2e749d3, type: 2}
   SpawnPoint: {fileID: 0}
   BedManager: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
 --- !u!114 &114295128852408656
@@ -237,7 +242,7 @@ MonoBehaviour:
   BedManager: {fileID: 11400000, guid: 746189744a71e04439f3d5ceaed3e9c0, type: 2}
   PauseMenuPrefab: {fileID: 1914914731958650, guid: 192e0c2f7db78b049a8e196931c71d28,
     type: 2}
-  DoctorSanitationConfig: {fileID: 11400000, guid: 742250b55894d844c8217b748d6b2b8a,
+  DoctorSanitationConfig: {fileID: 11400000, guid: 7234f82117aefb649a86e89d87870b65,
     type: 2}
 --- !u!114 &114532227978550538
 MonoBehaviour:
@@ -250,6 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec93e909cf5d814d909fb8a98be56a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Orderlies: []
+  CurrentOrderly: {fileID: 0}
 --- !u!114 &114639089606500178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,7 +271,19 @@ MonoBehaviour:
   CursorIdle: {fileID: 2800000, guid: 98a7f15325dcdb34698ed6c63263214c, type: 3}
   CursorHover: {fileID: 2800000, guid: 3429961a5796dff4cb53392c54c6947c, type: 3}
   CursorClick: {fileID: 2800000, guid: 2d6ff08c80a90c74a85b898a3f03247d, type: 3}
+  CursorSpyglass: {fileID: 2800000, guid: 748e2c7a18c9122488e55dc2acfd297a, type: 3}
   MouseClickAudioSource: {fileID: 82534212683227708}
   MouseClickDownSound: {fileID: 8300000, guid: 02eb9d46cc7f74f418eefdf6e3464f10, type: 3}
   MouseClickUpSound: {fileID: 8300000, guid: 55680db20b7fd454e88b66755c1c723d, type: 3}
   IsEnabledInLevel: 0
+--- !u!114 &114696514550554588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809543526668006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd482ea99d53dc348ba45ccf93406f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
