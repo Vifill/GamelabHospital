@@ -471,7 +471,6 @@ GameObject:
   - component: {fileID: 114333671640697206}
   - component: {fileID: 195069032604829820}
   - component: {fileID: 82656360092160854}
-  - component: {fileID: 114643589279031328}
   - component: {fileID: 54809922960348176}
   m_Layer: 0
   m_Name: DoctorShiftChange
@@ -3810,32 +3809,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114643589279031328
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1313231252481954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e72b482cdd50e74b815be5c85980c68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Sanitation: 0
-  MaxSanitation: 100
-  MinSanitation: 0
-  SanitationClampMax: 0
-  SanitationClampMin: 0
-  SanitationBarUIPrefab: {fileID: 1979533752814144, guid: d612a684194c25f4a8f54fb4a299f5df,
-    type: 2}
-  UIPosition: P2PortraitPos
-  SanitationUIPicture: {fileID: 21300000, guid: 37a15982f952ae7418c0b5bb20a999ab,
-    type: 3}
-  SanitationUIColor: {r: 0, g: 0, b: 1, a: 1}
-  DirtyParticles50Percent: {fileID: 1593942460320992}
-  DirtyParticles85Percent: {fileID: 1843687986298396}
-  DoctorSanitationConfig: {fileID: 11400000, guid: 8e5cf8227361e3f49abdfeaf9aea8402,
-    type: 2}
 --- !u!114 &114770291441461992
 MonoBehaviour:
   m_ObjectHideFlags: 1
