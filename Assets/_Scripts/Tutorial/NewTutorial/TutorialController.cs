@@ -21,6 +21,7 @@ public class TutorialController : MonoBehaviour
     private List<GameObject> CurrentArrows = new List<GameObject>();
     private Level1TutorialScreenController TutorialScreenController;
     private bool CanEndLevel;
+    private int InitializedPatients = 0;
 
 
 
@@ -61,11 +62,10 @@ public class TutorialController : MonoBehaviour
     {
         // Tutorial Level 1
         EventActions.Add(EventManager.EventCodes.DoneWalking, OnWalkingDoneEvent);
-        EventActions.Add(EventManager.EventCodes.FirstPatientInitialized, OnFirstPatientInitialized);
+        EventActions.Add(EventManager.EventCodes.PatientInitialized, OnPatientInitialized);
         EventActions.Add(EventManager.EventCodes.DonePuking, OnPukingDone);
         EventActions.Add(EventManager.EventCodes.DoneHydration, OnHydrateDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCheckOut, OnCheckOutDoneEvent);
-        EventActions.Add(EventManager.EventCodes.SecondPatientInitialized, OnSecondPatientInitialized);
         EventActions.Add(EventManager.EventCodes.DonePatientDeath, OnPatientDeath);
         EventActions.Add(EventManager.EventCodes.FinishLevel, OnFinishLevel);
         // Tutorial Level 2
@@ -217,30 +217,39 @@ public class TutorialController : MonoBehaviour
         TutorialUtility.SetSpawnFreeze(true);
     }
 
-    private void OnFirstPatientInitialized()
+    private void OnPatientInitialized()
     {
-        TutorialUtility.SetPatientHydration(100);
-        TutorialUtility.SetPatientHealth(80);
-        TutorialUtility.SetHealthFreeze(true);
-        TutorialUtility.SetFreezeExcretion(true);
-        TutorialUtility.SetConstantDehydrationFreeze(true);
-        TutorialUtility.ForcePatientSickness();
+        InitializedPatients++;
+        switch (InitializedPatients)
+        {
+            case 1:
+                { 
+                    TutorialUtility.SetPatientHydration(100);
+                    TutorialUtility.SetPatientHealth(80);
+                    TutorialUtility.SetHealthFreeze(true);
+                    TutorialUtility.SetFreezeExcretion(true);
+                    TutorialUtility.SetConstantDehydrationFreeze(true);
+                    TutorialUtility.ForcePatientSickness();
+                }
+                break;
+            case 2:
+                {
+                    TutorialUtility.SetPatientHydration(5);
+                    TutorialUtility.SetPatientHealth(10);
+                    TutorialUtility.SetHydrationFreeze(true);
+                    TutorialUtility.SetHealthFreeze(true);
+                    TutorialUtility.SetFreezeExcretion(true);
+
+                    StartCoroutine(PatientDeathSequence());
+                }
+                break;
+        }
+        
     }
 
     private void OnCheckOutDoneEvent()
     {
         StartCoroutine(SpawnPatient());
-    }
-
-    private void OnSecondPatientInitialized()
-    {
-        TutorialUtility.SetPatientHydration(5);
-        TutorialUtility.SetPatientHealth(10);
-        TutorialUtility.SetHydrationFreeze(true);
-        TutorialUtility.SetHealthFreeze(true);
-        TutorialUtility.SetFreezeExcretion(true);
-
-        StartCoroutine(PatientDeathSequence());
     }
 
     private IEnumerator PatientDeathSequence()

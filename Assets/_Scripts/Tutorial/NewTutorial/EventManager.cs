@@ -96,7 +96,6 @@ public class EventManager : MonoBehaviour
         DoneFinishingTutorialQueue,
         DonePuking,
         FinishLevel,
-        FirstPatientInitialized,
-        SecondPatientInitialized
+        PatientInitialized
     }
 }
