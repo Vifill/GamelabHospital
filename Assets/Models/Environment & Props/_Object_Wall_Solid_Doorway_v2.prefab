@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 65739627757205284}
   - component: {fileID: 95812974765714232}
   - component: {fileID: 114981442812564418}
+  - component: {fileID: 114350782698566472}
   m_Layer: 0
   m_Name: _Object_Wall_Solid_Doorway_v2
   m_TagString: Untagged
@@ -122,7 +123,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f014c500a3211b94aac89bc30f1eaf0d, type: 2}
+  - {fileID: 2100000, guid: 40cc3011e82331348a7c137b5f5da959, type: 2}
   - {fileID: 2100000, guid: f014c500a3211b94aac89bc30f1eaf0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -288,6 +289,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114350782698566472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105239842880884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5ac1f8d8294f14cac16e4448d389c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 0}
 --- !u!114 &114981442812564418
 MonoBehaviour:
   m_ObjectHideFlags: 1

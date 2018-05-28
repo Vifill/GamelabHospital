@@ -1331,7 +1331,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1418035133725950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.84, y: 1.5, z: 1.76}
+  m_LocalPosition: {x: 5.9, y: 1.5, z: 0.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4452987066295120}
@@ -2760,7 +2760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9117cf5e2b8221b4aa691a6b07b19407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FloatingTextPrefab: {fileID: 0}
+  FloatingTextPrefab: {fileID: 1535330151957376, guid: 1a532c4d63ecbce4f80975cf8dc15377,
+    type: 2}
   ProgressBarPrefab: {fileID: 1460928547334156, guid: ab9bf21abad50ec4d99dab3075d9457b,
     type: 2}
   ProgressBarWorldPosition: {fileID: 4444496042118294}
@@ -2785,9 +2786,9 @@ MonoBehaviour:
     type: 2}
   QueueUIPrefab: {fileID: 1542787366011764, guid: 74e6fb4e424ee024c9b2e8e230b43a59,
     type: 2}
-  YUIOffset: 0
-  MaxVisibleIcons: 4
+  YUIOffset: 20
   SelectionParticleEffect: {fileID: 1565150867721580}
+  MaxItemsInQueue: 8
 --- !u!114 &114818806424198070
 MonoBehaviour:
   m_ObjectHideFlags: 1

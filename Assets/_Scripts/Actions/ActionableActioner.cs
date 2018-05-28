@@ -88,7 +88,11 @@ public class ActionableActioner : MonoBehaviour
     {
         while (IsActioning)
         {
-            ProgressBar.fillAmount = CurrentTime / TotalTime;
+            if (ProgressBar != null)
+            {
+                ProgressBar.fillAmount = CurrentTime / TotalTime;
+            }
+           
             yield return null;
         }
         //Debug.Break();

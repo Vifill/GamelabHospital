@@ -21,6 +21,7 @@ public class PlayerDataController
 
     public void SaveLevelData(LevelModel pLvlModel)
     {
+
         string levelScoreKey = LevelScoreKey + pLvlModel.LevelNo;
 
         if (PlayerPrefs.HasKey(levelScoreKey))
@@ -108,11 +109,14 @@ public class LevelModel
 {
     public int LevelNo;
     public int Score;
+    public List<bool> Collectables;
 
-    public LevelModel(int pLvlNo, int pHighScore)
+    
+    public LevelModel(int pLvlNo, int pHighScore, List<bool> pCollectables = null)
     {
         LevelNo = pLvlNo;
         Score = pHighScore;
+        Collectables = pCollectables;
     }
 
     //public static LevelModel GetDefaultModel(int pLvlNo)

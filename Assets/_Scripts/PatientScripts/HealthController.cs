@@ -64,13 +64,15 @@ public class HealthController : MonoBehaviour
     private float HydrationChangeModifier { get { return HydrationConfig.HydrationLossModifier.Evaluate(HydrationMeter / 100); } }
     private float HealthIncrease;
 
+    public bool IsInitialized { get; private set; }
+
     [Header("Hydration Combo Parameters")]
     public float MaxHealthIncresePerSecond;
     public float ComboBonusAmount;
     public float ComboBonusTime;
     public float ComboRedemptionTime;
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         //HydrationMeter = 100;
         StartCoroutine(GetPatientAnimator());
@@ -82,8 +84,11 @@ public class HealthController : MonoBehaviour
         SpawnHydrationUI();
         PatientStatusController = GetComponent<PatientStatusController>();
         HydrationController = GetComponent<HydrationController>();
+        var bed = FindObjectsOfType<BedController>().ToList().FirstOrDefault(a => a.PatientInBed == gameObject);
+        bed.GetComponent<BedStation>().LerpDirtyBarUIWhenPatientEntersBed(HydrationUI);
         StartSickCoroutine();
         StartCoroutine(BedSanitationCheckCoroutine());
+        IsInitialized = true;
     }
 
     private IEnumerator GetPatientAnimator()
@@ -107,7 +112,7 @@ public class HealthController : MonoBehaviour
 
     private void Update()
     {
-        if (!LevelManager.TimeOver)
+        if (!LevelManager.TimeOver && IsInitialized)
         {
             if (HealthIncrease > 0)
             {
