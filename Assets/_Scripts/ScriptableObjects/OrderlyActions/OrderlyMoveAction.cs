@@ -71,7 +71,7 @@ public class OrderlyMoveAction : OrderlyAction
 
         if (Target != null)
         {
-            PositionToMoveTo = Target.GetComponent<Actionable>().GetTargetPoint(OrderlyObject.transform);
+            PositionToMoveTo = Target.GetComponent<Actionable>()?.GetTargetPoint(OrderlyObject.transform) ?? Target.position;
         }
 
         NavAgent = OrderlyObject.GetComponent<NavMeshAgent>();

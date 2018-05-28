@@ -271,4 +271,9 @@ public class TutorialUtility : MonoBehaviour
             actionable.IsActionActive = pState;
         }
     }
+
+    public static void SetBedSanitationUIActive(bool pState)
+    {
+        FindObjectsOfType<BedStation>().ToList().ForEach(a => a.DirtyBarInstance.SetActive(pState));
+    }
 }
