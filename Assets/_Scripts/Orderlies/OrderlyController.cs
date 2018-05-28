@@ -15,8 +15,8 @@ public class OrderlyController : MonoBehaviour
     public GameObject MovementParticle;
     public GameObject QueueUIPrefab;
     public float YUIOffset;
-    public float MaxVisibleIcons = 4;
     public GameObject SelectionParticleEffect;
+    public int MaxItemsInQueue = 10;
 
     private bool HasParticleSystem;
     private GameObject QueueUI;
@@ -81,12 +81,17 @@ public class OrderlyController : MonoBehaviour
         bool needsUIRefresh = CurrentAction is OrderlyInteractionAction;
         PruneQueue();
         CheckOrderQueue();
-        OrderQueue.Enqueue(pOrder);
-        InitializeQueueUI();
-        if (needsUIRefresh)
+
+        if (OrderQueue.Count < MaxItemsInQueue)
         {
-            GetComponent<ActionableActioner>().StartOrderlyActionUI(this);
+            OrderQueue.Enqueue(pOrder);
+            InitializeQueueUI();
+            if (needsUIRefresh)
+            {
+                GetComponent<ActionableActioner>().StartOrderlyActionUI(this);
+            }
         }
+
     }
 
     private void CheckOrderQueue()
