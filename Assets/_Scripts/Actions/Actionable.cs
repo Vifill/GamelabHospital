@@ -220,6 +220,26 @@ public abstract class Actionable : MonoBehaviour
     {
         MouseCursorController.OnClickUp();
     }
+
+    public Vector3 GetTargetPoint(Transform pAgent)
+    {
+        var parentTransform = transform.Find(Constants.GuidePoints);
+        Vector3 closestPoint = transform.position;
+        if (parentTransform != null)
+        {
+            float closestDist = float.MaxValue;
+            foreach (Transform point in parentTransform.transform)
+            {
+                float tmpDist = Vector3.Distance(pAgent.position, point.position);
+                if (tmpDist < closestDist)
+                {
+                    closestPoint = point.position;
+                    closestDist = tmpDist;
+                }
+            }
+        }
+        return closestPoint;
+    }
 }
 
 public class ActionableParameters
