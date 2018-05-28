@@ -61,7 +61,7 @@ public class HighlightController : MonoBehaviour
                 RemoveTexts();
             }
 
-            else if (!actionable.IsHighlighted)
+            else 
             {
                 if (PreviousActionable != null)
                 {
@@ -69,15 +69,20 @@ public class HighlightController : MonoBehaviour
                     RemoveTexts();
                 }
 
-                if (actionable.CanBeActioned(ToolCtrl.GetCurrentToolName(), PlayerTransform.gameObject) || actionable == Actioner.CurrentAction)
+                if (!actionable.IsHighlighted)
                 {
-                    actionable.SetHighlight(HighlightShader);
+                    if (actionable.CanBeActioned(ToolCtrl.GetCurrentToolName(), PlayerTransform.gameObject) || actionable == Actioner.CurrentAction)
+                    {
+                        actionable.SetHighlight(HighlightShader);
+                    }
+                    else
+                    {
+                        //cant be used... RED
+                        actionable.SetHighlight(HighlightShader, new Color(0.8f, 0, 0));
+                    }
                 }
-                else
-                {
-                    //cant be used... RED
-                    actionable.SetHighlight(HighlightShader, new Color(0.8f, 0, 0));
-                }
+                
+               
 
                 HighlightedObject = actionable.gameObject;
 
