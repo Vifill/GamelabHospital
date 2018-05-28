@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(UISpawner))]
 public class CustomUISpawner : Editor 
 {
-
     public override void OnInspectorGUI()
     {
         //base.OnInspectorGUI();
