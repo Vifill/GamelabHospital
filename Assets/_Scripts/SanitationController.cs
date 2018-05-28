@@ -56,7 +56,8 @@ public class SanitationController : MonoBehaviour
     {
         if (GC.ShouldSpawnSanitationUI())
         {
-            SanitationBar = Instantiate(SanitationBarUIPrefab, MainCanvas);
+            var parent = MainCanvas.Find("PlayerUILayer");
+            SanitationBar = Instantiate(SanitationBarUIPrefab, parent);
             SanitationUI = SanitationBar.GetComponent<SanitationUI>();
             SanitationUI.Initialize(SanitationUIPicture, SanitationUIColor, this, UIPosition);
         }

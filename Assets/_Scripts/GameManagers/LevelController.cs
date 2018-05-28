@@ -1,13 +1,13 @@
 ﻿using Assets._Scripts.Utilities;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelController
 {
     private SceneLoader SceneLoader;
-
     public LevelController(SceneLoader pSceneLoader)
     {
         SceneLoader = pSceneLoader;

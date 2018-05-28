@@ -35,7 +35,7 @@ public class GeneralInputs : MonoBehaviour
             {
                 GC.PauseGame(GC.PauseMenuPrefab);
             }
-            else
+            else if (GameController.InPauseMenu)
             {
                 GC.ResumeGame();
             }
