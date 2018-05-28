@@ -24,7 +24,7 @@ public class DoorController : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            print("poopy player door enter");
+            //print("poopy player door enter");
         }
 
         if (other.tag == "Patient" || other.tag == "Player" && LevelManager.TimeOver)
@@ -42,7 +42,7 @@ public class DoorController : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            print("poopy player door exit");
+            //print("poopy player door exit");
         }
 
         if (other.tag == "Patient" || other.tag == "Player" && LevelManager.TimeOver)

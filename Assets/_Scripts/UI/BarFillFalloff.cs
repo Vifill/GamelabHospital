@@ -37,7 +37,7 @@ public class BarFillFalloff : MonoBehaviour {
         {
             return;
         }
-        if (Mathf.Abs(Image.fillAmount - OverlayImage.fillAmount) < 0.05)
+        if (Mathf.Abs(Image.fillAmount - OverlayImage.fillAmount) < 0.03)
         {
             OverlayImage.fillAmount = Mathf.MoveTowards(OverlayImage.fillAmount, Image.fillAmount, Time.deltaTime / 2);
 

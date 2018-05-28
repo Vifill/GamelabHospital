@@ -19,7 +19,7 @@ public class LevelNode : MonoBehaviour
     private List<Material> HighlightMaterials = new List<Material>();
     private GameObject PopUpUI;
     private LevelModel LevelMdl;
-    private Transform UIPos;
+    private Vector3 UIPos;
     private MouseCursorController CursorCtrl;
 
     private GameObject ArrowParticleEffect;
@@ -43,8 +43,8 @@ public class LevelNode : MonoBehaviour
         }
 
         IsActive = true;
-        MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
-        UIPos = GameObject.FindGameObjectWithTag("UIPos").transform;
+	    MainCanvas = FindObjectOfType<Canvas>().transform;
+        UIPos = Camera.main.WorldToScreenPoint(transform.position);
         StandardShader = Shader.Find("Standard");
         ActivateSparkParticleEffect();
         
@@ -58,24 +58,28 @@ public class LevelNode : MonoBehaviour
         {
             mat.color = Color.green;
         }
-	}
+
+	    PopUpUI = Instantiate(LevelSelectionUIPrefab, MainCanvas);
+	    PopUpUI.transform.position = UIPos;
+	    PopUpUI.GetComponent<LevelSelectionUI>().Initialize(LevelConfig, LevelNo, LevelMdl);
+    }
 
     private void SetParticleParent()
     {
-        ArrowParticleEffect = transform.GetChild(1)?.gameObject;
-        ArrowParticleEffect.SetActive(false);
-        SparkParticleEffect = transform.GetChild(2)?.gameObject;
-        SparkParticleEffect.SetActive(false);
+        //ArrowParticleEffect = transform.GetChild(1)?.gameObject;
+        //ArrowParticleEffect.SetActive(false);
+        //SparkParticleEffect = transform.GetChild(2)?.gameObject;
+        //SparkParticleEffect.SetActive(false);
     }
 
     internal void ActivateArrowParticleEffect()
     {
-        ArrowParticleEffect.SetActive(true);
+        //ArrowParticleEffect.SetActive(true);
     }
 
     internal void ActivateSparkParticleEffect()
     {
-        SparkParticleEffect.SetActive(true);
+        //SparkParticleEffect.SetActive(true);
     }
 
     private void Update()
@@ -96,8 +100,7 @@ public class LevelNode : MonoBehaviour
                 mat.shader = HighlightShader;
             }
             //var pos = Camera.main.WorldToScreenPoint(transform.position) + UIOffset;
-            PopUpUI = Instantiate(LevelSelectionUIPrefab, UIPos.position, Quaternion.identity, MainCanvas);
-            PopUpUI.GetComponent<LevelSelectionUI>().Initialize(LevelConfig, LevelNo, LevelMdl);
+           
             CursorCtrl.SetCursorToClickable();
         }
     }
@@ -110,7 +113,6 @@ public class LevelNode : MonoBehaviour
             {
                 mat.shader = StandardShader;
             }
-            Destroy(PopUpUI);
             CursorCtrl.SetCursorToIdle();
         }
     }

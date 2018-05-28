@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDataController
 {
+    public const string CollectableKey = "Collectable";
     public const string LevelScoreKey = "ScoreLevel";
     public const string LevelsCompletedKey = "LevelsCompleted";
     public const string PlayerIDKey = "PlayerIDKey";
@@ -21,6 +23,9 @@ public class PlayerDataController
 
     public void SaveLevelData(LevelModel pLvlModel)
     {
+       
+        PlayerPrefs.SetString(CollectableKey, JsonUtility.ToJson(pLvlModel.Collectables));
+        
 
         string levelScoreKey = LevelScoreKey + pLvlModel.LevelNo;
 
@@ -61,6 +66,11 @@ public class PlayerDataController
         {
             return null;
         }
+    }
+
+    public List<CollectableModel> GetCollectableModels()
+    {
+        return JsonUtility.FromJson<Collectables>(PlayerPrefs.GetString(PlayerDataController.CollectableKey)).CollectableList;
     }
 
     public int? GetLevelsCompleted()
@@ -109,14 +119,13 @@ public class LevelModel
 {
     public int LevelNo;
     public int Score;
-    public List<bool> Collectables;
-
+    public Collectables Collectables = new Collectables();
     
-    public LevelModel(int pLvlNo, int pHighScore, List<bool> pCollectables = null)
+    public LevelModel(int pLvlNo, int pHighScore, List<CollectableModel> pCollectables = null)
     {
         LevelNo = pLvlNo;
         Score = pHighScore;
-        Collectables = pCollectables;
+        Collectables.CollectableList = pCollectables;
     }
 
     //public static LevelModel GetDefaultModel(int pLvlNo)
@@ -124,3 +133,9 @@ public class LevelModel
     //    return new LevelModel(pLvlNo, null);
     //}
 }
+
+public class Collectables
+{
+    public List<CollectableModel> CollectableList;
+}
+

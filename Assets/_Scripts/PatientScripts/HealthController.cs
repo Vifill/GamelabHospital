@@ -211,7 +211,7 @@ public class HealthController : MonoBehaviour
             // puke animation trigger
             PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
             PatientPrefabAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
-            Debug.Log($"I'M PUKING!");
+            //Debug.Log($"I'M PUKING!");
         }
         StartSickCoroutine();
     }
@@ -230,7 +230,7 @@ public class HealthController : MonoBehaviour
     private void ReduceHydration()
     {
         var loss = CholeraConfig.ExcreteHydrationLoss * HydrationChangeModifier;
-        print(loss);
+        //print(loss);
         SetHydration(HydrationMeter - loss);
     }
 
