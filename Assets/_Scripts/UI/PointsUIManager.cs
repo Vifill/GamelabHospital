@@ -34,7 +34,6 @@ public class PointsUIManager : MonoBehaviour
        
     public IEnumerator UpdateUI(int pPoints, Vector3 pPosition)
     {
-
         GameObject GO = (GameObject)Instantiate(PopupScoreText, DisplayedScoreText.transform.parent.parent);
         RectTransform GORect = GO.GetComponent<RectTransform>();
         Text tempText = GO.GetComponentInChildren<Text>();

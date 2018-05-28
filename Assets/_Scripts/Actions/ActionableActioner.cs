@@ -77,7 +77,6 @@ public class ActionableActioner : MonoBehaviour
         while (IsActioning)
         {
             ProgressBar.fillAmount = CurrentTime / TotalTime;
-            ProgressBar.transform.parent.position = Camera.main.WorldToScreenPoint(ProgressBarWorldPosition.position);
 
             yield return null;
         }
@@ -195,13 +194,13 @@ public class ActionableActioner : MonoBehaviour
 
     private void CreateProgressBar(Actionable pAction)
     {
-        var progressBar = Instantiate(ProgressBarPrefab);
+        var progressBar = UISpawner.SpawnUIFromTransform(ProgressBarPrefab, ProgressBarWorldPosition, UIHierarchy.ProgressBars);
         if (pAction.ActionIcon != null)
         {
             progressBar.GetComponent<Image>().sprite = pAction.ActionIcon.GetComponent<Image>().sprite;
         }
-        progressBar.transform.SetParent(Canvas.transform);
 
+        //Delete old progress bar before assigning the new one
         DestroyProgressBar();
 
         ProgressBar = progressBar.transform.GetChild(0).GetComponent<Image>();
@@ -316,10 +315,13 @@ public class ActionableActioner : MonoBehaviour
         }
 
         HasSpawnedFloatingText = true;
-        GameObject GO = (GameObject) Instantiate(FloatingTextPrefab, FindObjectOfType<Canvas>().transform);
+
+        GameObject GO = UISpawner.SpawnUIFromWorldPosition(FloatingTextPrefab, transform.position + transform.up * 2, UIHierarchy.UIScreens);
+        GO.transform.localScale = new Vector3(1, 1, 1);
+
         Text goText = GO.GetComponentInChildren<Text>();
-        GO.transform.position = Camera.main.WorldToScreenPoint(transform.position + transform.up * 2);
         goText.text = pInputText;
+
         Destroy(GO, 5f);
         StartCoroutine(FloatingTextDelay());
     }

@@ -66,7 +66,7 @@ public class BedStation : Actionable
     private void InitializeDirtyBar()
     {
         DirtyBarUIPositionBed = new GameObject("DirtyBarUIPositionBed").transform;
-        DirtyBarUIPositionBed.transform.SetParent(Canvas.transform);
+        DirtyBarUIPositionBed.transform.SetParent(UISpawner.instance.UIDictionary[UIHierarchy.PatientUI].transform);
         DirtyBarUIPositionBed.localScale = new Vector3(1, 1, 1);
         DirtyBarUIPositionBed.position = Cam.WorldToScreenPoint(DirtyBarWorldBedPosition.position);
 

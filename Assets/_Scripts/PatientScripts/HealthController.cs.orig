@@ -72,7 +72,12 @@ public class HealthController : MonoBehaviour
     public float ComboBonusTime;
     public float ComboRedemptionTime;
 
+<<<<<<< HEAD
+    public void Initialize()
+=======
+
     public virtual void Initialize()
+>>>>>>> origin/Develop
     {
         //HydrationMeter = 100;
         StartCoroutine(GetPatientAnimator());
