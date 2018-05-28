@@ -21,6 +21,7 @@ public class TutorialController : MonoBehaviour
     private List<GameObject> CurrentArrows = new List<GameObject>();
     private Level1TutorialScreenController TutorialScreenController;
     private bool CanEndLevel;
+    private int InitializedPatients = 0;
 
 
 
@@ -42,7 +43,7 @@ public class TutorialController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && CanEndLevel)
+        if (Input.GetKeyDown(KeyCode.Return) && CanEndLevel && !GameController.InMenuScreen)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.FinishLevel);
         }
@@ -61,6 +62,7 @@ public class TutorialController : MonoBehaviour
     {
         // Tutorial Level 1
         EventActions.Add(EventManager.EventCodes.DoneWalking, OnWalkingDoneEvent);
+        EventActions.Add(EventManager.EventCodes.PatientInitialized, OnPatientInitialized);
         EventActions.Add(EventManager.EventCodes.DonePuking, OnPukingDone);
         EventActions.Add(EventManager.EventCodes.DoneHydration, OnHydrateDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneCheckOut, OnCheckOutDoneEvent);
@@ -75,6 +77,16 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DoneReturnBucket, OnReturnBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneFinishingTutorialQueue, DoneFinishingTutorialQueueEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanDoctor, OnCleanDoctorDoneEvent);
+        EventActions.Add(EventManager.EventCodes.PatientInitializedLvl2, OnPatientInitializedLvl2Event);
+    }
+
+    private void OnPatientInitializedLvl2Event()
+    {
+        TutorialUtility.SetPatientHydration(50);
+        TutorialUtility.SetPatientHealth(50);
+        TutorialUtility.SetHydrationFreeze(true);
+        TutorialUtility.SetHealthFreeze(true);
+        TutorialUtility.SetFreezeExcretion(true);
     }
 
     private void OnFinishLevel()
@@ -98,6 +110,8 @@ public class TutorialController : MonoBehaviour
     private void OnDoneHydrationLvl2Event()
     {
         Debug.Log("DoneHydrationLvl2, event triggered.");
+        var orderly = FindObjectOfType<OrderlyController>();
+        orderly.CancelOrder();
         Time.timeScale = 0;
     }
 
@@ -203,40 +217,59 @@ public class TutorialController : MonoBehaviour
 
     private void OnWalkingDoneEvent()
     {
-        TutorialUtility.SetConstantDehydrationFreeze(true);
-        //TutorialUtility.SetHealthFreeze(false);
-        TutorialUtility.SetHydrationFreeze(false);
-        TutorialUtility.ForcePatientSickness();
-        //TutorialUtility.SetHydrationFreeze(true);
+        StartCoroutine(SpawnPatient());
+    }
+
+    private IEnumerator SpawnPatient()
+    {
+        TutorialUtility.SetSpawnFreeze(false);
+
+        yield return new WaitForEndOfFrame();
+
+        TutorialUtility.SetSpawnFreeze(true);
+    }
+
+    private void OnPatientInitialized()
+    {
+        InitializedPatients++;
+        switch (InitializedPatients)
+        {
+            case 1:
+                { 
+                    TutorialUtility.SetPatientHydration(100);
+                    TutorialUtility.SetPatientHealth(80);
+                    TutorialUtility.SetHealthFreeze(true);
+                    TutorialUtility.SetFreezeExcretion(true);
+                    TutorialUtility.SetConstantDehydrationFreeze(true);
+                    TutorialUtility.ForcePatientSickness();
+                }
+                break;
+            case 2:
+                {
+                    TutorialUtility.SetPatientHydration(5);
+                    TutorialUtility.SetPatientHealth(10);
+                    TutorialUtility.SetHydrationFreeze(true);
+                    TutorialUtility.SetHealthFreeze(true);
+                    TutorialUtility.SetFreezeExcretion(true);
+
+                    StartCoroutine(PatientDeathSequence());
+                }
+                break;
+        }
+        
     }
 
     private void OnCheckOutDoneEvent()
     {
-        StartCoroutine(SpawnNewPatient());
+        StartCoroutine(SpawnPatient());
     }
 
-    private IEnumerator SpawnNewPatient()
+    private IEnumerator PatientDeathSequence()
     {
-        TutorialUtility.SetSpawnFreeze(false);
-
-        yield return new WaitForSeconds(0.1f);
-
-        TutorialUtility.SetSpawnFreeze(true);
-        TutorialUtility.SetPatientHydration(10);
-        TutorialUtility.SetPatientHealth(5);
-        TutorialUtility.SetHydrationFreeze(true);
-        TutorialUtility.SetHealthFreeze(true);
-        TutorialUtility.SetFreezeExcretion(true);
-
-        //yield return new WaitForSeconds(0.2f);
-
-        //TutorialUtility.SetPlayerMovementFreeze(true);
-
         yield return new WaitForSeconds(6);
 
         TutorialUtility.SetHydrationFreeze(false);
         TutorialUtility.ForcePatientExcretion();
-
     }
 
 }

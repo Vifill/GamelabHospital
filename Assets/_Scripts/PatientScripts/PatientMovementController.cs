@@ -33,7 +33,8 @@ public class PatientMovementController : MonoBehaviour
             var bedScript = BedManager.GetAvailableBeds()[0];
             bedScript.GetComponent<BedController>().IsReserved = true;
             TargetBed = bedScript.gameObject;
-            NavMeshAgent.SetDestination(GetGuidePoint(TargetBed));
+            var destination = TargetBed.GetComponent<Actionable>().GetTargetPoint(transform);
+            NavMeshAgent.SetDestination(destination);
         }
         else if (SlotManager.AvailableSlots().Any())
         {
@@ -52,10 +53,13 @@ public class PatientMovementController : MonoBehaviour
         PatientAnimator.SetBool(Constants.AnimationParameters.IsPatient, true);
     }
 
-    private Vector3 GetGuidePoint(GameObject targetBed)
-    {
-        return targetBed.transform.Find(Constants.GuidePoints).transform.position;
-    }
+    //private Vector3 GetGuidePoint(GameObject targetBed)
+    //{
+
+    //    return targetBed.transform.Find(Constants.GuidePoints).transform.position;
+    //}
+
+
 
     // Update is called once per frame
     private void Update () 
@@ -92,7 +96,7 @@ public class PatientMovementController : MonoBehaviour
         PatientStatus.IsInBed = true;
         TargetBed.GetComponent<BedController>().PatientInBed = gameObject;
 
-        TargetBed.GetComponent<BedStation>().LerpDirtyBarUIWhenPatientEntersBed(gameObject.GetComponent<HealthController>().HydrationUI);
+        //TargetBed.GetComponent<BedStation>().LerpDirtyBarUIWhenPatientEntersBed(gameObject.GetComponent<HealthController>().HydrationUI);
     }
 
     public void GetOutOfBed()

@@ -2372,6 +2372,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 23
       objectReference: {fileID: 0}
+    - target: {fileID: 1247694931783150, guid: 331fa72765979b94c8b651cc2a2c4a4c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247694931783150, guid: 331fa72765979b94c8b651cc2a2c4a4c, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247779082932596, guid: 331fa72765979b94c8b651cc2a2c4a4c, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247779082932596, guid: 331fa72765979b94c8b651cc2a2c4a4c, type: 2}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 331fa72765979b94c8b651cc2a2c4a4c, type: 2}
   m_IsPrefabParent: 0
@@ -2509,7 +2525,7 @@ Prefab:
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
       propertyPath: Objectives.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4471104362058194, guid: 08dc7095f218bdf48bd81a2bdc75cfaa, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2552,43 +2568,43 @@ Prefab:
         type: 2}
       propertyPath: Objectives.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 3b168df22f2e7604d9f0697c26829eef,
+      objectReference: {fileID: 11400000, guid: 3c143f5ee4ecff14aa56f0c55b600759,
         type: 2}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
       propertyPath: Objectives.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 972dc93f9ba90a8429d1091b2d573869,
+      objectReference: {fileID: 11400000, guid: 3b168df22f2e7604d9f0697c26829eef,
         type: 2}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
       propertyPath: Objectives.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: b9451edca05ecfc4dbd3d94082a7cd48,
+      objectReference: {fileID: 11400000, guid: 972dc93f9ba90a8429d1091b2d573869,
         type: 2}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
       propertyPath: Objectives.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 19be2d2e1dd290e4189fe89ef58688c8,
+      objectReference: {fileID: 11400000, guid: b9451edca05ecfc4dbd3d94082a7cd48,
         type: 2}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
       propertyPath: Objectives.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 7dee10315fb24694b93efc6183b1b55a,
+      objectReference: {fileID: 11400000, guid: 19be2d2e1dd290e4189fe89ef58688c8,
         type: 2}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
       propertyPath: Objectives.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: e401553b30a1d944098e9f0680d321b3,
+      objectReference: {fileID: 11400000, guid: 7dee10315fb24694b93efc6183b1b55a,
         type: 2}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
       propertyPath: Objectives.Array.data[6]
       value: 
-      objectReference: {fileID: 11400000, guid: 2cc6c321be2f370429cc3202b4ee325f,
+      objectReference: {fileID: 11400000, guid: e401553b30a1d944098e9f0680d321b3,
         type: 2}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
@@ -2600,13 +2616,13 @@ Prefab:
         type: 2}
       propertyPath: Objectives.Array.data[7]
       value: 
-      objectReference: {fileID: 11400000, guid: 42f25523d8bb506459fa2061e50d27ae,
+      objectReference: {fileID: 11400000, guid: 2cc6c321be2f370429cc3202b4ee325f,
         type: 2}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
       propertyPath: Objectives.Array.data[8]
       value: 
-      objectReference: {fileID: 11400000, guid: 46f7be64a6701444696461e67b8dcfb0,
+      objectReference: {fileID: 11400000, guid: 42f25523d8bb506459fa2061e50d27ae,
         type: 2}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
