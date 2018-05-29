@@ -188,9 +188,25 @@ public class TutorialController : MonoBehaviour
     {
         foreach(Transform position in pObjective.GetArrowPositions())
         {
-            var arrowObj = Instantiate(ArrowPrefab, position);
-            CurrentArrows.Add(arrowObj);
+            List<Tuple<Transform, Vector3>> realPoses =  GetArrowPosition(position);
+            foreach (var realPos in realPoses)
+            {
+                var arrowObj = Instantiate(ArrowPrefab, realPos.Item1);
+                arrowObj.transform.localPosition = realPos.Item2;
+                arrowObj.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+                CurrentArrows.Add(arrowObj);
+            }
         }
+    }
+
+    private List<Tuple<Transform, Vector3>> GetArrowPosition(Transform pPosition)
+    {
+        var arrowPlacement = pPosition.GetComponent<ArrowPlacement>();
+        if (arrowPlacement)
+        {
+            return arrowPlacement.TransformsToPutArrowOn.Select(a => new Tuple<Transform, Vector3>(a, arrowPlacement.Offset)).ToList();
+        }
+        return new List<Tuple<Transform, Vector3>> {new Tuple<Transform, Vector3>(pPosition, Vector3.zero)};
     }
 
     private void ObjectiveEnd()
