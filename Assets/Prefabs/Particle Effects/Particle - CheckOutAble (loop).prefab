@@ -282,7 +282,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.6275861, a: 0.822}
+      maxColor: {r: 0, g: 1, b: 0.6275861, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -343,9 +343,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.16
+      minMaxState: 0
+      scalar: 0.22
+      minScalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -384,7 +384,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -425,7 +425,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -3643,7 +3643,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.6275861, a: 0.822}
+      maxColor: {r: 0, g: 1, b: 0.6275861, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -7004,7 +7004,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.6275861, a: 0.822}
+      maxColor: {r: 0, g: 1, b: 0.6275861, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10230,7 +10230,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40e459d989e03aa4387842d827652dd8, type: 2}
+  - {fileID: 2100000, guid: bf311b57b43b6824999f8ee5c40ec243, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -10285,7 +10285,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 53196e1b61484f24d9e34b95047e3d52, type: 2}
-  - {fileID: 2100000, guid: 93c7201c4061675469c10708dadf0461, type: 2}
+  - {fileID: 2100000, guid: f84e34c4bc2e2cd42b465f42381a7213, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10339,7 +10339,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 53196e1b61484f24d9e34b95047e3d52, type: 2}
-  - {fileID: 2100000, guid: 93c7201c4061675469c10708dadf0461, type: 2}
+  - {fileID: 2100000, guid: f84e34c4bc2e2cd42b465f42381a7213, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
