@@ -60,12 +60,11 @@ public class IVPickupStationController : PickupStationController
     private IEnumerator RespawnIVBags()
     {
         IVRespawnCoroutineIsRunning = true;
-        var respawnProgress = Instantiate(CooldownProgressPrefab, MainCanvas);
+        var respawnProgress = UISpawner.SpawnUIFromTransform(CooldownProgressPrefab, CooldownProgressIconPos, UIHierarchy.ProgressBars);
         float timer = 0;
         while (AvailableBags < 3)
         {
             timer += Time.deltaTime;
-            respawnProgress.transform.position = Camera.main.WorldToScreenPoint(CooldownProgressIconPos.position);
             respawnProgress.transform.GetChild(0).GetComponent<Image>().fillAmount = timer / IVBagRespawnTime;
 
             if (timer >= IVBagRespawnTime)

@@ -22,11 +22,6 @@ public class DoorController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            print("poopy player door enter");
-        }
-
         if (other.tag == "Patient" || other.tag == "Player" && LevelManager.TimeOver)
         {
             PeopleAtDoor.Add(other.gameObject);
@@ -40,11 +35,6 @@ public class DoorController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            print("poopy player door exit");
-        }
-
         if (other.tag == "Patient" || other.tag == "Player" && LevelManager.TimeOver)
         {
             PeopleAtDoor.Remove(other.gameObject);

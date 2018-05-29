@@ -95,7 +95,7 @@ public class LevelNode : MonoBehaviour
             {
                 mat.shader = HighlightShader;
             }
-            //var pos = Camera.main.WorldToScreenPoint(transform.position) + UIOffset;
+
             PopUpUI = Instantiate(LevelSelectionUIPrefab, UIPos.position, Quaternion.identity, MainCanvas);
             PopUpUI.GetComponent<LevelSelectionUI>().Initialize(LevelConfig, LevelNo, LevelMdl);
             CursorCtrl.SetCursorToClickable();

@@ -43,7 +43,7 @@ public class TutorialController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && CanEndLevel)
+        if (Input.GetKeyDown(KeyCode.Return) && CanEndLevel && !GameController.InMenuScreen)
         {
             EventManager.TriggerEvent(EventManager.EventCodes.FinishLevel);
         }
@@ -77,6 +77,16 @@ public class TutorialController : MonoBehaviour
         EventActions.Add(EventManager.EventCodes.DoneReturnBucket, OnReturnBucketDoneEvent);
         EventActions.Add(EventManager.EventCodes.DoneFinishingTutorialQueue, DoneFinishingTutorialQueueEvent);
         EventActions.Add(EventManager.EventCodes.DoneCleanDoctor, OnCleanDoctorDoneEvent);
+        EventActions.Add(EventManager.EventCodes.PatientInitializedLvl2, OnPatientInitializedLvl2Event);
+    }
+
+    private void OnPatientInitializedLvl2Event()
+    {
+        TutorialUtility.SetPatientHydration(50);
+        TutorialUtility.SetPatientHealth(50);
+        TutorialUtility.SetHydrationFreeze(true);
+        TutorialUtility.SetHealthFreeze(true);
+        TutorialUtility.SetFreezeExcretion(true);
     }
 
     private void OnFinishLevel()
@@ -178,9 +188,25 @@ public class TutorialController : MonoBehaviour
     {
         foreach(Transform position in pObjective.GetArrowPositions())
         {
-            var arrowObj = Instantiate(ArrowPrefab, position);
-            CurrentArrows.Add(arrowObj);
+            List<Tuple<Transform, Vector3>> realPoses =  GetArrowPosition(position);
+            foreach (var realPos in realPoses)
+            {
+                var arrowObj = Instantiate(ArrowPrefab, realPos.Item1);
+                arrowObj.transform.localPosition = realPos.Item2;
+                arrowObj.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+                CurrentArrows.Add(arrowObj);
+            }
         }
+    }
+
+    private List<Tuple<Transform, Vector3>> GetArrowPosition(Transform pPosition)
+    {
+        var arrowPlacement = pPosition.GetComponent<ArrowPlacement>();
+        if (arrowPlacement)
+        {
+            return arrowPlacement.TransformsToPutArrowOn.Select(a => new Tuple<Transform, Vector3>(a, arrowPlacement.Offset)).ToList();
+        }
+        return new List<Tuple<Transform, Vector3>> {new Tuple<Transform, Vector3>(pPosition, Vector3.zero)};
     }
 
     private void ObjectiveEnd()

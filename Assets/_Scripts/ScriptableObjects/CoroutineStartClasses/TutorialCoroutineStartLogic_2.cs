@@ -14,10 +14,5 @@ public class TutorialCoroutineStartLogic_2 : TutorialCoroutineStartLogic
 
         TutorialUtility.SetBedSanitationFreeze(false);
         TutorialUtility.SetSpawnFreeze(true);
-        //TutorialUtility.SetPatientHydration(50);
-        //TutorialUtility.SetPatientHealth(50);
-        TutorialUtility.SetHydrationFreeze(true);
-        TutorialUtility.SetHealthFreeze(true);
-        TutorialUtility.SetFreezeExcretion(true);
     }
 }

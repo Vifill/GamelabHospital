@@ -19,16 +19,6 @@ public class TutorialStationManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //var ailments = GetAilmentControllersWithCondition(ConditionTrigger.name);
-        //if (ailments != null && ailments.Any())
-        //{
-        //    SpaceBarUI.transform.position = Camera.main.WorldToScreenPoint(transform.position + UIOffset);
-        //    SpaceBarUI.SetActive(true);
-        //}
-        //else if (ailments == null || !ailments.Any())
-        //{
-        //    SpaceBarUI.SetActive(false);
-        //}
     }
 
     //private List<AilmentController> GetAilmentControllersWithCondition(string pConditionName)

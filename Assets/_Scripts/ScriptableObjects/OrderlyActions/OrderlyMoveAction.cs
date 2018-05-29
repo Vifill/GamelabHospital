@@ -71,7 +71,7 @@ public class OrderlyMoveAction : OrderlyAction
 
         if (Target != null)
         {
-            PositionToMoveTo = GetTargetPoint(Target);
+            PositionToMoveTo = Target.GetComponent<Actionable>()?.GetTargetPoint(OrderlyObject.transform) ?? Target.position;
         }
 
         NavAgent = OrderlyObject.GetComponent<NavMeshAgent>();
@@ -98,33 +98,6 @@ public class OrderlyMoveAction : OrderlyAction
 
         Vector3 particlePos = OrderlyObject.transform.position;
         SetDestinationParticle(particlePos, true);
-    }
-
-    private Vector3 GetTargetPoint(Transform actionable)
-    {
-        if (actionable.GetComponent<Actionable>() != null)
-        {
-            var parentTransform = actionable.root.Find(Constants.GuidePoints);
-            Vector3 closestPoint = actionable.position;
-            if (parentTransform != null)
-            {
-                float closestDist = float.MaxValue;
-                foreach (Transform point in parentTransform.transform)
-                {
-                    float tmpDist = Vector3.Distance(OrderlyObject.transform.position, point.position);
-                    if (tmpDist < closestDist)
-                    {
-                        closestPoint = point.position;
-                        closestDist = tmpDist;
-                    }
-                }
-            }
-            return closestPoint;
-        }
-        else
-        {
-            return actionable.position;
-        }
     }
 
     private void SetDestinationParticle(Vector3 pPosition, bool pSetParent)
