@@ -126,6 +126,9 @@ public class PatientSpawner : MonoBehaviour
 
     public void StopSpawning()
     {
-        StopCoroutine(CurrentCoroutine);
+        if (CurrentCoroutine != null)
+        {
+            StopCoroutine(CurrentCoroutine);
+        }
     }
 }

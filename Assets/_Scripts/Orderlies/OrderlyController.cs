@@ -15,8 +15,8 @@ public class OrderlyController : MonoBehaviour
     public GameObject MovementParticle;
     public GameObject QueueUIPrefab;
     public float YUIOffset;
-    public float MaxVisibleIcons = 4;
     public GameObject SelectionParticleEffect;
+    public int MaxItemsInQueue = 10;
 
     private bool HasParticleSystem;
     private GameObject QueueUI;
@@ -81,12 +81,17 @@ public class OrderlyController : MonoBehaviour
         bool needsUIRefresh = CurrentAction is OrderlyInteractionAction;
         PruneQueue();
         CheckOrderQueue();
-        OrderQueue.Enqueue(pOrder);
-        InitializeQueueUI();
-        if (needsUIRefresh)
+
+        if (OrderQueue.Count < MaxItemsInQueue)
         {
-            GetComponent<ActionableActioner>().StartOrderlyActionUI(this);
+            OrderQueue.Enqueue(pOrder);
+            InitializeQueueUI();
+            if (needsUIRefresh)
+            {
+                GetComponent<ActionableActioner>().StartOrderlyActionUI(this);
+            }
         }
+
     }
 
     private void CheckOrderQueue()
@@ -103,7 +108,7 @@ public class OrderlyController : MonoBehaviour
         QueueWorldPos = GetComponent<ActionableActioner>().ProgressBarWorldPosition;
         if (QueueUIPrefab != null)
         {
-            QueueUI = Instantiate(QueueUIPrefab, QueueWorldPos.position, Quaternion.identity, FindObjectOfType<Canvas>().transform);
+            QueueUI = UISpawner.SpawnUIFromTransform(QueueUIPrefab, QueueWorldPos, UIHierarchy.ProgressBars, new Vector3(0, YUIOffset, 0));
             UIWidth = QueueUI.GetComponent<RectTransform>().rect.width;
         }
         MouseInputController = FindObjectOfType<MouseInputController>();
@@ -146,12 +151,6 @@ public class OrderlyController : MonoBehaviour
         if (CurrentAction != null)
         {
             CurrentAction.UpdateAction();
-        }
-        UIPos = Camera.main.WorldToScreenPoint(QueueWorldPos.position) + new Vector3(0, YUIOffset, 0);
-
-        if (QueueUI != null)
-        {
-            QueueUI.transform.position = UIPos;
         }
 	}
 

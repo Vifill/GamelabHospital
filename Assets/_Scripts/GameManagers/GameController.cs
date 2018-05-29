@@ -63,7 +63,8 @@ public class GameController : MonoBehaviour
         InMenuScreen = true;
         InPauseMenu = true;
         GetComponent<MouseCursorController>().SetCursorToIdle();
-        CurrentUIScreen = Instantiate(pUIScreen, MainCanvas);
+        CurrentUIScreen = UISpawner.SpawnUIWithNoPos(pUIScreen, UIHierarchy.UIScreens);
+
         CurrentUIScreen.GetComponent<PauseMenuManager>()?.Initialize(this);
     }
 
