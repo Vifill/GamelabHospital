@@ -24,7 +24,7 @@ public class MouseInputController : MonoBehaviour
 	// Update is called once per frame
 	public virtual void Update () 
 	{
-        if (Input.GetMouseButtonDown(0) && !GameController.InMenuScreen)
+        if (Input.GetMouseButtonDown(0) && !GameController.InMenuScreen && Orderlies.Any())
         {
             OrderlyOrder order = GetOrderFromMouse();
             if(order != null)

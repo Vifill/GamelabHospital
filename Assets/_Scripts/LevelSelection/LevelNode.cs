@@ -99,7 +99,7 @@ public class LevelNode : MonoBehaviour
             {
                 mat.shader = HighlightShader;
             }
-            //var pos = Camera.main.WorldToScreenPoint(transform.position) + UIOffset;
+
            
             CursorCtrl.SetCursorToClickable();
         }

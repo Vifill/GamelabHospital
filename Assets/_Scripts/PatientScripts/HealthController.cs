@@ -54,7 +54,7 @@ public class HealthController : MonoBehaviour
     private PatientStatusController PatientStatusController;
     [HideInInspector]
     public GameObject HydrationUI;
-    private Transform MainCanvasTransform;
+    private Transform UIParentTransform;
 
     private Coroutine CurrentCoroutineSick;
     private Animator PatientAnimator;
@@ -72,7 +72,6 @@ public class HealthController : MonoBehaviour
     public float ComboBonusTime;
     public float ComboRedemptionTime;
 
-
     public virtual void Initialize()
     {
         //HydrationMeter = 100;
@@ -81,7 +80,7 @@ public class HealthController : MonoBehaviour
         HydrationClampMin = MinHydration;
         HealthClampMax = MaxHealth;
         HealthClampMin = MinHealth;
-        MainCanvasTransform = GameObject.FindGameObjectWithTag("MainCanvas").transform;
+        UIParentTransform = UISpawner.instance.UIDictionary[UIHierarchy.PatientUI].transform;
         SpawnHydrationUI();
         PatientStatusController = GetComponent<PatientStatusController>();
         HydrationController = GetComponent<HydrationController>();
@@ -102,7 +101,7 @@ public class HealthController : MonoBehaviour
 
     private void SpawnHydrationUI()
     {
-        HydrationUI = Instantiate(HydrationUIPrefab, MainCanvasTransform);
+        HydrationUI = Instantiate(HydrationUIPrefab, UIParentTransform);
         HydrationUI.GetComponent<HydrationUIManager>().InitializeHydrationUI(this);
     }
 

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HealthControllerTutorial : HealthController
 {
-     
+    private TutorialController TutorialController;
+
     protected override void Excrete()
     {
         base.Excrete();
@@ -14,14 +15,20 @@ public class HealthControllerTutorial : HealthController
     public override void Initialize()
     {
         base.Initialize();
-
+        TutorialController = FindObjectOfType<TutorialController>();
         StartCoroutine(TriggerInitializedEvent());
     }
 
     private IEnumerator TriggerInitializedEvent()
     {
         yield return new WaitForEndOfFrame();
-
-        EventManager.TriggerEvent(EventManager.EventCodes.PatientInitialized);
+        if (TutorialController.CurrentObjective.OnFinishEvent == EventManager.EventCodes.PatientInitialized)
+        {
+            EventManager.TriggerEvent(EventManager.EventCodes.PatientInitialized);
+        }
+        else if (TutorialController.CurrentObjective.OnFinishEvent == EventManager.EventCodes.PatientInitializedLvl2)
+        {
+            EventManager.TriggerEvent(EventManager.EventCodes.PatientInitializedLvl2);
+        }
     }
 }
