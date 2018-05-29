@@ -8,22 +8,51 @@ using Assets._Scripts.Utilities;
 
 public class PointsUIManager : MonoBehaviour 
 {
-    public GameObject ScoreParticleSystem;
-    public GameObject PopupScoreText;
+    public GameObject ScoreParticleSystemPrefab;
+    public GameObject PopupScoreTextPrefab;
+    public GameObject StarPlacementPrefab;
     public Color ScoreTextColor;
-    private Text DisplayedScoreText;
+    public Text DisplayedScoreText;
+    public Image BarFill;
+    public float PointsLerpSpeed = 50;
+
     private int DisplayedScore;
     private int Score;
     private Animator ScoreAnimator;
+    private float MaxBarFill;
+    private float FillUnit;
+    private LevelConfig LevelCfg;
+    private List<Tuple<StarPlacementManager, float>> Stars = new List<Tuple<StarPlacementManager, float>>();
 
-    public void Initialize()
+    public void Initialize(LevelConfig pLevelCfg)
     {
         Score = 0;
         ScoreAnimator = GetComponent<Animator>();
-        DisplayedScoreText = transform.GetComponentInChildren<Text>();
+        //DisplayedScoreText = transform.GetComponentInChildren<Text>();
         DisplayedScoreText.text = "0";
         DisplayedScoreText.color = ScoreTextColor;
+        LevelCfg = pLevelCfg;
+        MaxBarFill = LevelCfg.StarConfig.PointsForGold * 1.5f;
+        FillUnit = BarFill.rectTransform.rect.width / MaxBarFill;
+        BarFill.fillAmount = 0;
+        PlaceStars();
     }
+
+    private void PlaceStars()
+    {
+        var firstStar = Instantiate(StarPlacementPrefab, BarFill.transform);
+        firstStar.GetComponent<RectTransform>().anchoredPosition = new Vector2(FillUnit * LevelCfg.StarConfig.PointsForBronze, 0);
+        Stars.Add(new Tuple<StarPlacementManager, float>(firstStar.GetComponent<StarPlacementManager>(), LevelCfg.StarConfig.PointsForBronze));
+        
+        var secondStar = Instantiate(StarPlacementPrefab, BarFill.transform);
+        secondStar.GetComponent<RectTransform>().anchoredPosition = new Vector2(FillUnit * LevelCfg.StarConfig.PointsForSilver, 0);
+        Stars.Add(new Tuple<StarPlacementManager, float>(secondStar.GetComponent<StarPlacementManager>(), LevelCfg.StarConfig.PointsForSilver));
+
+        var thirdStar = Instantiate(StarPlacementPrefab, BarFill.transform);
+        thirdStar.GetComponent<RectTransform>().anchoredPosition = new Vector2(FillUnit * LevelCfg.StarConfig.PointsForGold, 0);
+        Stars.Add(new Tuple<StarPlacementManager, float>(thirdStar.GetComponent<StarPlacementManager>(), LevelCfg.StarConfig.PointsForGold));
+    }
+
     Vector2 WorldToCanvas(Vector3 pVector)
     {
         RectTransform CanvasRect = DisplayedScoreText.transform.parent.parent.GetComponent<RectTransform>();
@@ -34,7 +63,8 @@ public class PointsUIManager : MonoBehaviour
        
     public IEnumerator UpdateUI(int pPoints, Vector3 pPosition)
     {
-        GameObject GO = (GameObject)Instantiate(PopupScoreText, DisplayedScoreText.transform.parent.parent);
+        GameObject GO = UISpawner.SpawnUIFromWorldPosition(PopupScoreTextPrefab, pPosition, UIHierarchy.LerpingPoints);
+        //GameObject GO = (GameObject)Instantiate(PopupScoreTextPrefab, DisplayedScoreText.transform.parent.parent);
         RectTransform GORect = GO.GetComponent<RectTransform>();
         Text tempText = GO.GetComponentInChildren<Text>();
         GORect.anchoredPosition = WorldToCanvas(pPosition);
@@ -84,7 +114,8 @@ public class PointsUIManager : MonoBehaviour
             yield return null;
         }
         DisplayedScore += pPoints;
-        DisplayedScoreText.text = DisplayedScore.ToString();
+        //DisplayedScoreText.text = DisplayedScore.ToString();
+        StartCoroutine(LerpToNewTotalPoints());
         ScoreAnimator.SetBool(Constants.AnimationParameters.GivingPoints, false);
         Destroy(pText.gameObject);
         if (pGO?.GetComponent<ParticleSystem>() != null)
@@ -94,13 +125,28 @@ public class PointsUIManager : MonoBehaviour
             Destroy(pGO, 2);
         }
 
-        if (ScoreParticleSystem != null)
+        if (ScoreParticleSystemPrefab != null)
         {
-            GameObject GO = Instantiate(ScoreParticleSystem, Vector3.zero, Quaternion.identity, DisplayedScoreText.transform);
+            GameObject GO = Instantiate(ScoreParticleSystemPrefab, Vector3.zero, Quaternion.identity, DisplayedScoreText.transform);
             Destroy(GO, 5);
         }
         
         yield return null;
+    }
+
+    private IEnumerator LerpToNewTotalPoints()
+    {
+        float tempPoints = Convert.ToInt32(DisplayedScoreText.text);
+        while (tempPoints != DisplayedScore)
+        {
+            tempPoints = Mathf.Lerp(tempPoints, DisplayedScore, Time.deltaTime * PointsLerpSpeed);
+            DisplayedScoreText.text = tempPoints.ToString("F0");
+            BarFill.fillAmount = 1 / MaxBarFill * tempPoints;
+
+            Stars.FirstOrDefault(a => tempPoints >= a.Item2 && !a.Item1.Filled)?.Item1.FillStar();
+
+            yield return null;
+        }
     }
 
     List<Vector3> GetBezierApproximation(Vector3[] controlPoints, int outputSegmentCount)
