@@ -14,8 +14,9 @@ public class HoverOverInfoscreens : MonoBehaviour
     private bool isActive;
     private bool isPaused;
     private bool hasBeenActivated;
+    private MouseCursorController MouseCursorController;
 	void Start () {
-		
+        MouseCursorController = FindObjectOfType<MouseCursorController>();
 	}
 	
 	void Update () {
@@ -40,12 +41,14 @@ public class HoverOverInfoscreens : MonoBehaviour
     {
         SetHighlight();
         isActive = true;
+        MouseCursorController.SetCursorToSpyglass();
     }
 
     void OnMouseExit()
     {
         RemoveHighlight();
         isActive = false;
+        MouseCursorController.SetCursorToIdle();
     }
 
     void SetHighlight()
