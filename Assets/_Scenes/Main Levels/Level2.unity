@@ -122,6 +122,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 71785106}
+  - component: {fileID: 71785107}
   m_Layer: 0
   m_Name: 2.1 Movement
   m_TagString: ArrowPlacement
@@ -135,13 +136,28 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 71785105}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 5, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930041721}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &71785107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71785105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599cbb82387a1f94d9e0ff9558b75633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransformsToPutArrowOn:
+  - {fileID: 1084693358}
+  Offset: {x: 0, y: 5, z: 0}
+  ArrowMesh: {fileID: 4300000, guid: 6a073773aa4ab68488891a0421b55346, type: 3}
 --- !u!1 &79947238
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +689,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 508036887}
+  - component: {fileID: 508036888}
   m_Layer: 0
   m_Name: 2.4 Clean Bed
   m_TagString: ArrowPlacement
@@ -686,13 +703,29 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 508036886}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2, y: 5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930041721}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &508036888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 508036886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599cbb82387a1f94d9e0ff9558b75633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransformsToPutArrowOn:
+  - {fileID: 1428473520}
+  - {fileID: 755425079}
+  Offset: {x: 0, y: 6, z: 0}
+  ArrowMesh: {fileID: 4300000, guid: 6a073773aa4ab68488891a0421b55346, type: 3}
 --- !u!1 &532429418
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,6 +734,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 532429419}
+  - component: {fileID: 532429420}
   m_Layer: 0
   m_Name: 2.3 Get Bucket
   m_TagString: ArrowPlacement
@@ -714,13 +748,28 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 532429418}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7, y: 5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930041721}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &532429420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 532429418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599cbb82387a1f94d9e0ff9558b75633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransformsToPutArrowOn:
+  - {fileID: 924924452}
+  Offset: {x: 0, y: 4.13, z: 0}
+  ArrowMesh: {fileID: 4300000, guid: 6a073773aa4ab68488891a0421b55346, type: 3}
 --- !u!4 &594619131 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4110548123970032, guid: 1c50a0278fe47a24c9fdbac93cf25e39,
@@ -734,6 +783,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 604685606}
+  - component: {fileID: 604685607}
   m_Layer: 0
   m_Name: 2.2 Hydrate Patient
   m_TagString: ArrowPlacement
@@ -747,13 +797,29 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 604685605}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2, y: 5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930041721}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &604685607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604685605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599cbb82387a1f94d9e0ff9558b75633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransformsToPutArrowOn:
+  - {fileID: 1428473520}
+  - {fileID: 755425079}
+  Offset: {x: 0, y: 6, z: 0}
+  ArrowMesh: {fileID: 4300000, guid: 6a073773aa4ab68488891a0421b55346, type: 3}
 --- !u!1 &612600199
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +828,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 612600200}
+  - component: {fileID: 612600201}
   m_Layer: 0
   m_Name: 2.5 Clean Bucket
   m_TagString: ArrowPlacement
@@ -775,41 +842,38 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 612600199}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7, y: 5, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930041721}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1 &740317742
-GameObject:
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &612600201
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 740317743}
-  m_Layer: 0
-  m_Name: 2.4 Clean Bed (1)
-  m_TagString: ArrowPlacement
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &740317743
+  m_GameObject: {fileID: 612600199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599cbb82387a1f94d9e0ff9558b75633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransformsToPutArrowOn:
+  - {fileID: 675330273}
+  Offset: {x: 0, y: 5.5, z: 0}
+  ArrowMesh: {fileID: 4300000, guid: 6a073773aa4ab68488891a0421b55346, type: 3}
+--- !u!4 &675330273 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 740317742}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1, y: 5, z: 4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 930041721}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_PrefabParentObject: {fileID: 4300461775191740, guid: fea3b5d7c87d5e84782e6c811c30934e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1363134455}
+--- !u!4 &755425079 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142,
+    type: 2}
+  m_PrefabInternal: {fileID: 242723306}
 --- !u!1 &797845326
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,34 +915,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &891487440
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 891487441}
-  m_Layer: 0
-  m_Name: 2.2 Hydrate Patient (1)
-  m_TagString: ArrowPlacement
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &891487441
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 891487440}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1, y: 5, z: 4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 930041721}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &916457152
 Prefab:
   m_ObjectHideFlags: 0
@@ -921,6 +957,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35347dff0fb7e054e8f1eefe6b7cfab9, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &924924452 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4482695539041442, guid: bc1259082fe19f34fa7b622c91f0b8be,
+    type: 2}
+  m_PrefabInternal: {fileID: 2028134222}
 --- !u!1 &930041720
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,8 +994,6 @@ Transform:
   - {fileID: 612600200}
   - {fileID: 1547234080}
   - {fileID: 1420475391}
-  - {fileID: 891487441}
-  - {fileID: 740317743}
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1392,6 +1431,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c081826e17a066c4aa799aedca8176ea, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1084693358 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4882005025328608, guid: 0fc54341e2483964d92f3fab647fbfe2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1102727164}
 --- !u!1001 &1102727164
 Prefab:
   m_ObjectHideFlags: 0
@@ -1867,6 +1911,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1420475391}
+  - component: {fileID: 1420475392}
   m_Layer: 0
   m_Name: 2.8 Clean Doctor
   m_TagString: ArrowPlacement
@@ -1880,13 +1925,33 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1420475390}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7, y: 5, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930041721}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1420475392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1420475390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599cbb82387a1f94d9e0ff9558b75633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransformsToPutArrowOn:
+  - {fileID: 675330273}
+  Offset: {x: 0, y: 5.5, z: 0}
+  ArrowMesh: {fileID: 4300000, guid: 6a073773aa4ab68488891a0421b55346, type: 3}
+--- !u!4 &1428473520 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142,
+    type: 2}
+  m_PrefabInternal: {fileID: 1291170477}
 --- !u!1 &1547234079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,6 +1960,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1547234080}
+  - component: {fileID: 1547234081}
   m_Layer: 0
   m_Name: 2.6 Return Bucket
   m_TagString: ArrowPlacement
@@ -1908,13 +1974,28 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1547234079}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7, y: 5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 930041721}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1547234081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1547234079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599cbb82387a1f94d9e0ff9558b75633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransformsToPutArrowOn:
+  - {fileID: 924924452}
+  Offset: {x: 0, y: 4.13, z: 0}
+  ArrowMesh: {fileID: 4300000, guid: 6a073773aa4ab68488891a0421b55346, type: 3}
 --- !u!1 &1698130198
 GameObject:
   m_ObjectHideFlags: 0
