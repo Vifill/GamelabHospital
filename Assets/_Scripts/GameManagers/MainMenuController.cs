@@ -17,7 +17,8 @@ public class MainMenuController : MonoBehaviour
     {
         FindObjectOfType<MusicController>().PlayButtonSound();
         //SceneLoader.LoadScene("LevelSelection");
-        SceneLoader.LoadScene(Constants.SceneNamePrefix+"1");
+        //SceneLoader.LoadScene(Constants.SceneNamePrefix+"1");
+        SceneLoader.LoadScene("LevelSelect");
     }
 
     public void Exit()

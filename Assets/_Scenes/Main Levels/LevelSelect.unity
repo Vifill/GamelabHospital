@@ -481,7 +481,67 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1758173357260448, guid: a20cc032567992e4db8874921788e2a4, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114229046319909042, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_Text
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224017083207797598, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 224938323601104758, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 224938323601104758, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 224017083207797598, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 224547439381406832, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 50.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224755544799041886, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224755544799041886, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 224164553109827958, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224833570663567656, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 224833570663567656, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224041999321860154, guid: a20cc032567992e4db8874921788e2a4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -67.72269
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a20cc032567992e4db8874921788e2a4, type: 2}
@@ -497,6 +557,8 @@ GameObject:
   - component: {fileID: 1256759891}
   - component: {fileID: 1256759894}
   - component: {fileID: 1256759893}
+  - component: {fileID: 1256759895}
+  - component: {fileID: 1256759896}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -634,6 +696,32 @@ MonoBehaviour:
   MouseClickDownSound: {fileID: 8300000, guid: 02eb9d46cc7f74f418eefdf6e3464f10, type: 3}
   MouseClickUpSound: {fileID: 8300000, guid: 55680db20b7fd454e88b66755c1c723d, type: 3}
   IsEnabledInLevel: 1
+--- !u!114 &1256759895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1256759890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875cd5e370305764d842398de72689d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadingScreen: {fileID: 1963143480192948, guid: ab2f357c68fc88a46baf919fcbbfb47e,
+    type: 2}
+--- !u!114 &1256759896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1256759890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4250d1f5d683de646a4596de3a65d28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadeOutTexture: {fileID: 2800000, guid: 2383c40c6d5493c439914b0bda480971, type: 3}
+  FadeSpeed: 0.6
 --- !u!224 &1346978153 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224074769004244164, guid: a20cc032567992e4db8874921788e2a4,

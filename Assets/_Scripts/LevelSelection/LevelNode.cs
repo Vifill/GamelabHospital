@@ -125,7 +125,9 @@ public class LevelNode : MonoBehaviour
             if (LevelNo != 0)
             {
                 //StartLoad = true;
-                SceneLoader.LoadScene("Level" + LevelNo);
+                //print(SceneManager.GetSceneAt());
+                
+                SceneLoader.LoadScene("Level" + LevelConfig.LevelNumber);
             }
             else
             {

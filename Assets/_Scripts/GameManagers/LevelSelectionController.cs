@@ -68,6 +68,15 @@ public class LevelSelectionController : MonoBehaviour
         //}
 	}
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            print("Deleted Prefs");
+            PlayerPrefs.DeleteAll();
+        }
+    }
+
     void UpdateCollectables()
     {
         Collectables collectables = new Collectables();
@@ -77,13 +86,13 @@ public class LevelSelectionController : MonoBehaviour
             collectables.CollectableList = collectables.CollectableList.Where(a => CollectablesPrefabs.Select(b=> b.CollectableModel).Contains(a)).ToList();
             var newItems = CollectablesPrefabs.Where(a => !collectables.CollectableList.Contains(a.CollectableModel)).Select(a=> a.CollectableModel);// .Contains() collectables.CollectableList.First(b => b.ID == a.CollectableModel.ID && b.Level == a.CollectableModel.Level) == null).Select(a => a.CollectableModel).ToList();
             collectables.CollectableList.AddRange(newItems);
-            collectables.CollectableList.OrderBy(a => a.Level);
-            for (int i = 0; i < collectables.CollectableList.Count; i++)
-            {
-                print("is found? " + collectables.CollectableList[i].IsFound);
-                print("ID: " + collectables.CollectableList[i].ID);
-                print("Level " + collectables.CollectableList[i].Level);
-            }
+            collectables.CollectableList.OrderByDescending(a => a.Level);
+            //for (int i = 0; i < collectables.CollectableList.Count; i++)
+            //{
+            //    print("Level: " + collectables.CollectableList[i].Level + ", ID: " + collectables.CollectableList[i].ID);
+            //    print("is found? " + collectables.CollectableList[i].IsFound);
+            //    print("Image: " + collectables.CollectableList[i].Texture2D);
+            //}
             PlayerPrefs.SetString(PlayerDataController.CollectableKey, JsonUtility.ToJson(collectables));
             print("SavedShit");
         }

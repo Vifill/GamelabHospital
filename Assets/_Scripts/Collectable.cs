@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using Assets._Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +14,6 @@ public class Collectable : MonoBehaviour
     public GameObject InfoscreenPopupPrefab;
     public Shader HighlightShader;
 
-    private GameObject Infoscreen;
     private bool isActive;
     private bool isPaused;
 
@@ -56,7 +57,6 @@ public class Collectable : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0) && isPaused)
 	    {
-	        Destroy(Infoscreen);
             FindObjectOfType<GameController>().ResumeGame();
             isPaused = false;
 	    }
@@ -147,9 +147,9 @@ public class CollectableModel
     [Header("REMEMBER TO APPLY THE PREFAB IN THE LEVELSELECT")]
     public int ID;
     public int Level;
-    public Image Image;
+    public Texture2D Texture2D;
     public bool IsFound;
-    
+
     public override bool Equals(object obj)
     {
         CollectableModel referenceModel = (CollectableModel) obj;

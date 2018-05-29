@@ -18,16 +18,16 @@ public class LevelSelectionUI : MonoBehaviour
     {
         if (pLvlNo != 0)
         {
-            LevelName.text = "Level " + pLvlNo;
+            LevelName.text = pLvlNo.ToString();
         }
         else
         {
-            LevelName.text = "Tutorial Level";
+            LevelName.text = "Main Menu";
         }
 
         if (pLvlModel != null)
         {
-            HighScoreText.text = pLvlModel.Score.ToString();
+            //HighScoreText.text = pLvlModel.Score.ToString();
             FillStars(pLvlModel.Score, pCfg);
         }
         PlayerDataController playerData = new PlayerDataController();
@@ -41,31 +41,33 @@ public class LevelSelectionUI : MonoBehaviour
                     case 0:
                         Destroy(CollectableOne.gameObject);
                         continue;
-                        break;
                     case 1:
                         Destroy(CollectableTwo.gameObject);
                         continue;
-                        break;
                     case 2:
                         Destroy(CollectableThree.gameObject);
                         continue;
+                }
+                continue;
+            }
+
+            if (collectables[i].IsFound)
+            {
+                Texture2D tex2D = collectables[i].Texture2D;
+                switch (i)
+                {
+                    case 0:
+                        CollectableOne.sprite = Sprite.Create(tex2D, new Rect(0,0,tex2D.width,tex2D.height), CollectableOne.sprite.pivot, CollectableOne.sprite.pixelsPerUnit);
+                        break;
+                    case 1:
+                        CollectableTwo.sprite = Sprite.Create(tex2D, new Rect(0, 0, tex2D.width, tex2D.height), CollectableOne.sprite.pivot, CollectableOne.sprite.pixelsPerUnit);
+                        break;
+                    case 2:
+                        CollectableThree.sprite = Sprite.Create(tex2D, new Rect(0, 0, tex2D.width, tex2D.height), CollectableOne.sprite.pivot, CollectableOne.sprite.pixelsPerUnit);
                         break;
                 }
             }
-            switch (i)
-            {
-                case 0:
-                    CollectableOne = collectables[i].Image;
-                    break;
-                case 1:
-                    CollectableTwo = collectables[i].Image;
-                    break;
-                case 2:
-                    CollectableTwo = collectables[i].Image;
-                    break;
-            }
         }
-
     }
 
     private void FillStars(int pScore, LevelConfig pCfg)
