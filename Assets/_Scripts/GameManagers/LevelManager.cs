@@ -228,10 +228,9 @@ public class LevelManager : MonoBehaviour
             }
             order.AddAction(new OrderlyMoveAction(exit));
 
-            shiftDoctorController.StartOrder(shiftOrder);
             playerController.StartOrder(order);
         }
-
+        shiftDoctorController.StartOrder(shiftOrder);
 
 
         while (playerController?.CurrentOrder != null || shiftDoctorController?.CurrentOrder != null || orderlyController?.CurrentOrder != null)
