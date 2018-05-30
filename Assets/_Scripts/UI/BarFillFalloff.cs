@@ -13,6 +13,7 @@ public class BarFillFalloff : MonoBehaviour {
     private Color OverlayImageColor;
     private Color GainColor;
     private float Timer;
+    private bool IsLoosing;
     public bool IsGaining;
 
     public void Initialize ()
@@ -37,10 +38,10 @@ public class BarFillFalloff : MonoBehaviour {
         {
             return;
         }
-        if (Mathf.Abs(Image.fillAmount - OverlayImage.fillAmount) < 0.03)
+        if (Mathf.Abs(Image.fillAmount - OverlayImage.fillAmount) < 0.01 && !IsLoosing)
         {
             OverlayImage.fillAmount = Mathf.MoveTowards(OverlayImage.fillAmount, Image.fillAmount, Time.deltaTime / 2);
-
+            //OverlayImage.transform.localScale += Vector3.one * Time.deltaTime;
             if (OverlayImage.color.a != 0)
             {
                 Timer = 0;
@@ -53,7 +54,8 @@ public class BarFillFalloff : MonoBehaviour {
             if (OverlayImage.color.a != 1)
             {
                 OverlayImageColor.a = 1;
-                OverlayImage.color = OverlayImageColor;
+                OverlayImage.color = Color.red;
+                IsLoosing = true;
             }
         }
 
@@ -63,6 +65,7 @@ public class BarFillFalloff : MonoBehaviour {
             if (Timer >= .75f)
             {
                 OverlayImage.fillAmount = Mathf.MoveTowards(OverlayImage.fillAmount, Image.fillAmount, Time.deltaTime/2);
+                IsLoosing = false;
             }
         }
 	}
