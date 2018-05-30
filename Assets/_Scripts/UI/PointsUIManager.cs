@@ -32,7 +32,7 @@ public class PointsUIManager : MonoBehaviour
         DisplayedScoreText.text = "0";
         DisplayedScoreText.color = ScoreTextColor;
         LevelCfg = pLevelCfg;
-        MaxBarFill = LevelCfg.StarConfig.PointsForGold * 1.5f;
+        MaxBarFill = LevelCfg.StarConfig.PointsForGold * 1.1f;
         FillUnit = BarFill.rectTransform.rect.width / MaxBarFill;
         BarFill.fillAmount = 0;
         PlaceStars();

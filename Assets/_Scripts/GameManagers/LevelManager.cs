@@ -52,10 +52,14 @@ public class LevelManager : MonoBehaviour
         UICanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
         var timerUI = Instantiate(ClockUIPrefab, UICanvas.transform);
         timerUI.GetComponent<TimerUIManager>().Initialize(this, LevelConfig.LevelTimeSecs);
-        var goalUI = UISpawner.SpawnUIWithNoPos(GoalUIPrefab, UIHierarchy.StaticUI);
-        PointsUIManager = goalUI.GetComponent<PointsUIManager>();
-        PointsUIManager.Initialize(LevelConfig);
-        PointsUIManager.UpdateUI(PatientsHealed, Vector3.zero);
+
+        if (GoalUIPrefab != null)
+        {
+            var goalUI = UISpawner.SpawnUIWithNoPos(GoalUIPrefab, UIHierarchy.StaticUI);
+            PointsUIManager = goalUI.GetComponent<PointsUIManager>();
+        }
+        PointsUIManager?.Initialize(LevelConfig);
+        PointsUIManager?.UpdateUI(PatientsHealed, Vector3.zero);
         StartTime = LevelConfig.LevelTimeSecs;
         TimerClampMax = StartTime;
         Timer = StartTime;
@@ -98,14 +102,17 @@ public class LevelManager : MonoBehaviour
         {
             Points = 0;
         }
-        StartCoroutine(PointsUIManager.UpdateUI(pPoints, pPosition));
+        if (PointsUIManager != null)
+        {
+            StartCoroutine(PointsUIManager.UpdateUI(pPoints, pPosition));
+        }
     }
 
     public void AddHealed()
     {
         PatientsHealed++;
 
-        PointsUIManager.UpdateUI(PatientsHealed, Vector3.zero);
+        PointsUIManager?.UpdateUI(PatientsHealed, Vector3.zero);
 
         //if (PatientsHealed == LevelConfig.PatientsToHeal)
         //{
