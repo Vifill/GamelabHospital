@@ -16,9 +16,11 @@ public class Collectable : MonoBehaviour
 
     private bool isActive;
     private bool isPaused;
+    private MouseCursorController MouseCursorController;
 
 	void Start ()
 	{
+        MouseCursorController = FindObjectOfType<MouseCursorController>();
 	    //CollectableModel.Level = FindObjectOfType<LevelManager>().LevelConfig.LevelNumber;
 	    if (PlayerPrefs.HasKey(PlayerDataController.CollectableKey))
 	    {
@@ -66,12 +68,14 @@ public class Collectable : MonoBehaviour
     {
         SetHighlight();
         isActive = true;
+        MouseCursorController.SetCursorToSpyglass();
     }
 
     void OnMouseExit()
     {
         RemoveHighlight();
         isActive = false;
+        MouseCursorController.SetCursorToIdle();
     }
 
     void SetHighlight()
