@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114942371486322736}
   - component: {fileID: 65717921993337010}
   m_Layer: 0
-  m_Name: KeepCalmPainting
+  m_Name: KeepCalmPainting 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +167,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1203092781771108}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.02, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4150887508547604}
@@ -193,7 +193,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1160503076250890}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 11.675, y: 2.2267952, z: 5.542169}
+  m_LocalPosition: {x: 7.75, y: 2.177023, z: 5.6266084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4131041600491026}
@@ -520,8 +520,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcd5cfaf1851794a9c2e6da31984795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollectableModel:
+    ID: 1
+    Level: 1
+    Texture2D: {fileID: 2800000, guid: 9c2d36bcd93793f4b826605e658c7b75, type: 3}
+    IsFound: 0
   InfoscreenPopupPrefab: {fileID: 1719337558047464, guid: d03df645aea83cd40a63c0f27cdb8484,
     type: 2}
   HighlightShader: {fileID: 4800000, guid: 9330b0c20a48fb24dbea1203a59f8df2, type: 3}
-  isFound: 0
-  index: 0

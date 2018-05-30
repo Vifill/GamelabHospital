@@ -256,8 +256,18 @@ public class LevelManager : MonoBehaviour
     private void LevelPassed()
     {
         var endscreen = Instantiate(EndScreenPrefab, UICanvas.transform);
-        var collectables = FindObjectsOfType<HoverOverInfoscreens>().OrderBy(a => a.index).Select(a => a.isFound).ToList();
-        PlayerDataController.SaveLevelData(new LevelModel(LevelConfig.LevelNumber, Points, collectables));
+        var collectablesInScene = FindObjectsOfType<Collectable>().Select(a => a.CollectableModel).ToList();
+        var collectableModels = PlayerDataController.GetCollectableModels();
+        var changedModels = collectableModels.Where(a => collectablesInScene.Contains(a)).ToList();
+
+        collectablesInScene.ForEach(a=> changedModels.FirstOrDefault(b=> b.Equals(a)).IsFound = a.IsFound);
+
+        //for (int i = 0; i < changedModels.Count; i++)
+        //{
+        //   changedModels.First(a => a.Equals(collectablesInScene))
+        //}
+
+        PlayerDataController.SaveLevelData(new LevelModel(LevelConfig.LevelNumber, Points, collectablesInScene));
         Time.timeScale = 0;
         endscreen.GetComponent<EndScreenUIManager>().InitializeUI(LevelConfig.StarConfig, PatientsHealed, Points, PatientDeaths, true);
         InEndScreen = true;
