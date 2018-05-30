@@ -35,13 +35,14 @@ public class HydrationUIManager : MonoBehaviour
 
         HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
         HealthMeterUI.fillAmount = HealthController.Health / 100;
-
+        
         var thresholdLineXpos = HealthController.HydrationHealingConfig.ListOfThresholds.LastOrDefault().ThresholdOfActivation;
         HydrationThresholdLine = HydrationMeterUI.transform.GetChild(0).GetComponent<RectTransform>();
         HydrationThresholdLine.anchoredPosition = new Vector2(thresholdLineXpos - 1, HydrationThresholdLine.anchoredPosition.y);
         // UI position
         transform.position = Camera.main.WorldToScreenPoint(HealthController.transform.position + new Vector3(0, UIOffset, UIOffset));
         HealthMeterUI?.GetComponentInChildren<BarFillFalloff>()?.Initialize();
+        HydrationMeterUI.GetComponent<BarFillFalloff>().Initialize();
     }
 
     private void LateUpdate()
