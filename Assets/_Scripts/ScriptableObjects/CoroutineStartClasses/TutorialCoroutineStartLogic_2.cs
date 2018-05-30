@@ -14,5 +14,6 @@ public class TutorialCoroutineStartLogic_2 : TutorialCoroutineStartLogic
 
         TutorialUtility.SetBedSanitationFreeze(false);
         TutorialUtility.SetSpawnFreeze(true);
+        TutorialUtility.SetBucketTableActive(false);
     }
 }
