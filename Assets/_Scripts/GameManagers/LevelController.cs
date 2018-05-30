@@ -21,7 +21,7 @@ public class LevelController
 
     public void GoToLevelSelection()
     {
-        SceneLoader.LoadScene("LevelSelection");
+        SceneLoader.LoadScene(Constants.LevelSelect);
     }
 
     public void GoToMainMenu()
