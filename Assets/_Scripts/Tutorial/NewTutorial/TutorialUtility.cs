@@ -276,4 +276,9 @@ public class TutorialUtility : MonoBehaviour
     {
         FindObjectsOfType<BedStation>().ToList().ForEach(a => a.DirtyBarInstance.SetActive(pState));
     }
+
+    public static void SetBucketTableActive(bool pState)
+    {
+        FindObjectsOfType<TableStation>().ToList().FirstOrDefault(a => a.StartingTableObjectPrefab != null).IsActionActive = pState;
+    }
 }
