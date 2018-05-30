@@ -23,6 +23,7 @@ public class PointsUIManager : MonoBehaviour
     private float FillUnit;
     private LevelConfig LevelCfg;
     private List<Tuple<StarPlacementManager, float>> Stars = new List<Tuple<StarPlacementManager, float>>();
+    private Coroutine CurrentLerpToTotalPointsCoroutine;
 
     public void Initialize(LevelConfig pLevelCfg)
     {
@@ -114,8 +115,12 @@ public class PointsUIManager : MonoBehaviour
             yield return null;
         }
         DisplayedScore += pPoints;
-        //DisplayedScoreText.text = DisplayedScore.ToString();
-        StartCoroutine(LerpToNewTotalPoints());
+        
+        if (CurrentLerpToTotalPointsCoroutine == null)
+        {
+            CurrentLerpToTotalPointsCoroutine = StartCoroutine(LerpToNewTotalPoints());
+        }
+       
         ScoreAnimator.SetBool(Constants.AnimationParameters.GivingPoints, false);
         Destroy(pText.gameObject);
         if (pGO?.GetComponent<ParticleSystem>() != null)
@@ -147,6 +152,7 @@ public class PointsUIManager : MonoBehaviour
 
             yield return null;
         }
+        CurrentLerpToTotalPointsCoroutine = null;
     }
 
     List<Vector3> GetBezierApproximation(Vector3[] controlPoints, int outputSegmentCount)
