@@ -50,7 +50,7 @@ public class LevelManager : MonoBehaviour
         Player = FindObjectOfType<PlayerActionController>()?.gameObject;
         Time.timeScale = 1;
         UICanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
-        var timerUI = Instantiate(ClockUIPrefab, UICanvas.transform);
+        var timerUI = UISpawner.SpawnUIWithNoPos(ClockUIPrefab, UIHierarchy.StaticUI);
         timerUI.GetComponent<TimerUIManager>().Initialize(this, LevelConfig.LevelTimeSecs);
 
         if (GoalUIPrefab != null)
