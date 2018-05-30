@@ -13,7 +13,6 @@ public class FloorTextureResize : MonoBehaviour
     {
         Debug.Log("Start");
         GetComponent<Renderer>().material.mainTextureScale = new Vector2(transform.localScale.x * scaleFactor, transform.localScale.z * scaleFactor);
-        //GetComponent<Renderer>().sharedMaterial.mainTextureScale = new Vector2(transform.localScale.x * scaleFactor, transform.localScale.z * scaleFactor);
     }
 
     // Update is called once per frame
@@ -24,7 +23,6 @@ public class FloorTextureResize : MonoBehaviour
         {
             Debug.Log("The transform has changed!");
             GetComponent<Renderer>().material.mainTextureScale = new Vector2(transform.localScale.x * scaleFactor, transform.localScale.z * scaleFactor);
-            //GetComponent<Renderer>().sharedMaterial.mainTextureScale = new Vector2(transform.localScale.x * scaleFactor, transform.localScale.z * scaleFactor);
             transform.hasChanged = false;
         }
 

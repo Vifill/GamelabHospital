@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     
-    private PointsUIManager UIManager;
+    private PointsUIManager PointsUIManager;
     private Canvas UICanvas;
     private Animator DayNightCycle;
     [HideInInspector]
@@ -52,10 +52,10 @@ public class LevelManager : MonoBehaviour
         UICanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
         var timerUI = Instantiate(ClockUIPrefab, UICanvas.transform);
         timerUI.GetComponent<TimerUIManager>().Initialize(this, LevelConfig.LevelTimeSecs);
-        var goalUI = Instantiate(GoalUIPrefab, UICanvas.transform);
-        UIManager = goalUI.GetComponent<PointsUIManager>();
-        UIManager.Initialize();
-        UIManager.UpdateUI(PatientsHealed, Vector3.zero);
+        var goalUI = UISpawner.SpawnUIWithNoPos(GoalUIPrefab, UIHierarchy.StaticUI);
+        PointsUIManager = goalUI.GetComponent<PointsUIManager>();
+        PointsUIManager.Initialize(LevelConfig);
+        PointsUIManager.UpdateUI(PatientsHealed, Vector3.zero);
         StartTime = LevelConfig.LevelTimeSecs;
         TimerClampMax = StartTime;
         Timer = StartTime;
@@ -98,14 +98,14 @@ public class LevelManager : MonoBehaviour
         {
             Points = 0;
         }
-        StartCoroutine(UIManager.UpdateUI(pPoints, pPosition));
+        StartCoroutine(PointsUIManager.UpdateUI(pPoints, pPosition));
     }
 
     public void AddHealed()
     {
         PatientsHealed++;
 
-        UIManager.UpdateUI(PatientsHealed, Vector3.zero);
+        PointsUIManager.UpdateUI(PatientsHealed, Vector3.zero);
 
         //if (PatientsHealed == LevelConfig.PatientsToHeal)
         //{
