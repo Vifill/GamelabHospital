@@ -104,5 +104,6 @@ public enum UIHierarchy
     ProgressBars,
     PatientUI,
     UIScreens,
-    StaticUI
+    StaticUI,
+    LerpingPoints
 }
