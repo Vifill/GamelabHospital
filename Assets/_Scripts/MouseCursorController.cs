@@ -18,7 +18,8 @@ public class MouseCursorController : MonoBehaviour
 	private void Start () 
 	{
         var orderly = FindObjectOfType<OrderlyController>();
-        IsEnabledInLevel = orderly != null;
+	    var player = FindObjectOfType<MovementController>();
+        IsEnabledInLevel = orderly != null || orderly == null && player == null;
 
         if (GameController.InMenuScreen || IsEnabledInLevel)
         {

@@ -41,7 +41,7 @@ public class GetActionablesUtility: ScriptableObject
 
         if (actioner.IsActioning)
         {
-            Debug.Log("is actioning highlight");
+            //Debug.Log("is actioning highlight");
             return actioner.CurrentAction;
         }
         else
