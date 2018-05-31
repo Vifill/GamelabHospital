@@ -245,13 +245,11 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
 
-
-
-
         yield return new WaitForSeconds(0.5f);
         Destroy(UIGO);
-        LevelPassed();
+        CheckIfPassed();
     }
+
 
     private void LevelPassed()
     {
@@ -262,12 +260,7 @@ public class LevelManager : MonoBehaviour
 
         collectablesInScene.ForEach(a=> changedModels.FirstOrDefault(b=> b.Equals(a)).IsFound = a.IsFound);
 
-        //for (int i = 0; i < changedModels.Count; i++)
-        //{
-        //   changedModels.First(a => a.Equals(collectablesInScene))
-        //}
-
-        PlayerDataController.SaveLevelData(new LevelModel(LevelConfig.LevelNumber, Points, collectablesInScene));
+        PlayerDataController.SaveLevelData(new LevelModel(LevelConfig.LevelNumber, Points, collectableModels));
         Time.timeScale = 0;
         endscreen.GetComponent<EndScreenUIManager>().InitializeUI(LevelConfig.StarConfig, PatientsHealed, Points, PatientDeaths, true);
         InEndScreen = true;
