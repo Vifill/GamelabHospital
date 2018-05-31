@@ -823,7 +823,7 @@ GameObject:
   - component: {fileID: 114812692558543652}
   m_Layer: 0
   m_Name: Patroller
-  m_TagString: Player
+  m_TagString: Patient
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2506,6 +2506,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   ChangeSkinOnRepath: 0
+  BeRandom: 0
 --- !u!136 &136700197680250518
 CapsuleCollider:
   m_ObjectHideFlags: 1

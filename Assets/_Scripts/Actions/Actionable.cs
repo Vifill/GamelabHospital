@@ -28,7 +28,7 @@ public abstract class Actionable : MonoBehaviour
     public AudioClip ActionFinishedSoundEvent;
     public string AnimatorParameter;
     public bool IsPickupable;
-    public bool IsActionActive;
+    public bool IsActionActive = true;
     public bool DirtiesTool;
     public bool NeedsSanitizedTool;
     public bool ConsumesTool;
@@ -66,7 +66,6 @@ public abstract class Actionable : MonoBehaviour
     {
         MouseCursorController = FindObjectOfType<MouseCursorController>();
         Physics.queriesHitTriggers = false;
-        IsActionActive = true;
         Initialize();
     }
 

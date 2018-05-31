@@ -10,6 +10,7 @@ public class PatrollingAI : MonoBehaviour
     public List<GameObject> Models;
     public List<Transform> WayPoints;
     public bool ChangeSkinOnRepath;
+    public bool BeRandom;
 
     private NavMeshAgent Agent;
     private Animator Animator;
@@ -35,6 +36,11 @@ public class PatrollingAI : MonoBehaviour
 	            WaypointIndex = 0;
 	        }
 
+	        if (BeRandom)
+	        {
+	            WaypointIndex = Random.Range(0, WayPoints.Count);
+	        }
+
 	        StartCoroutine(DelayedPathRecalculate());
 	    }
 	}
@@ -50,7 +56,11 @@ public class PatrollingAI : MonoBehaviour
                 ModelIndex = 0;
             }
             Destroy(transform.GetChild(0).gameObject);
-            GameObject GO = (GameObject)Instantiate(Models[ModelIndex], transform);
+            if (BeRandom)
+            {
+                ModelIndex = Random.Range(0, Models.Count);
+            }
+            GameObject GO = Instantiate(Models[ModelIndex], transform);
             GO.transform.localPosition = -Vector3.up;
             Animator = GO.GetComponentInChildren<Animator>();
         }
