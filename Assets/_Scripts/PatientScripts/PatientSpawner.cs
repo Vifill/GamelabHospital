@@ -72,6 +72,7 @@ public class PatientSpawner : MonoBehaviour
         //Pick random patient in the list to spawn.
         //int index = UnityEngine.Random.Range(0, (PatientsToSpawn.Count - 1));
         GameObject patient = (GameObject)Instantiate(SpawnConfig.PatientPrefab, SpawnPoint.position, SpawnPoint.rotation);
+        patient.GetComponents<Actionable>().ToList().ForEach(a => a.IsActionActive = false);
 
         StartCoroutine(InitializeWhenInBed(patient));
         //var healthController = patient.GetComponent<HealthController>();

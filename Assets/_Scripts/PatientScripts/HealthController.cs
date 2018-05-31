@@ -88,6 +88,7 @@ public class HealthController : MonoBehaviour
         bed.GetComponent<BedStation>().LerpDirtyBarUIWhenPatientEntersBed(HydrationUI);
         StartSickCoroutine();
         StartCoroutine(BedSanitationCheckCoroutine());
+        GetComponents<Actionable>().ToList().ForEach(a => a.IsActionActive = true);
         IsInitialized = true;
     }
 
