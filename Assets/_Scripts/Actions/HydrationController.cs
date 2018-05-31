@@ -67,6 +67,11 @@ public class HydrationController : Actionable
 
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
+        if (!IsActionActive)
+        {
+            return;
+        }
+
         base.OnFinishedAction(pObjectActioning);
 
         if (CurrentHydrations.ContainsKey(CurrentHydrationModel))
@@ -129,14 +134,14 @@ public class HydrationController : Actionable
 
     public void StopAllHydrations()
     {
-        foreach (var hydration in CurrentHydrations)
-        {
-            StopCoroutine(hydration.Value);
-        }
-
         if (DisplayedObject != null)
         {
             Destroy(DisplayedObject);
+        }
+
+        foreach (var hydration in CurrentHydrations)
+        {
+            StopCoroutine(hydration.Value);
         }
     }
 }
