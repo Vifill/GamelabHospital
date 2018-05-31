@@ -48,7 +48,7 @@ public class Collectable : MonoBehaviour
 	        PlayerPrefs.DeleteAll();
         }
 
-	    if (isActive && Input.GetMouseButtonDown(0) && !isPaused)
+	    if (isActive && Input.GetMouseButtonDown(0) && !isPaused && Time.timeScale != 0)
 	    {
 	        if (!CollectableModel.IsFound)
 	        {
@@ -66,9 +66,12 @@ public class Collectable : MonoBehaviour
 
     void OnMouseEnter()
     {
-        SetHighlight();
-        isActive = true;
-        MouseCursorController.SetCursorToSpyglass();
+        if (Time.timeScale == 1)
+        {
+            SetHighlight();
+            isActive = true;
+            MouseCursorController.SetCursorToSpyglass();
+        }
     }
 
     void OnMouseExit()

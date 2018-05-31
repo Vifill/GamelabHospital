@@ -3845,8 +3845,8 @@ MonoBehaviour:
     type: 2}
   QueueUIPrefab: {fileID: 0}
   YUIOffset: 0
-  MaxVisibleIcons: 4
   SelectionParticleEffect: {fileID: 0}
+  MaxItemsInQueue: 10
 --- !u!136 &136004490979327872
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -5053,7 +5053,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1313231252481954}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.6
+  m_Radius: 0.1
   m_Speed: 6
   m_Acceleration: 60
   avoidancePriority: 50

@@ -1,29 +1,26 @@
 fileFormatVersion: 2
-guid: 5f9b50e4f129efd4d8057b6b06cb9f07
-timeCreated: 1527689184
-licenseType: Free
+guid: ed0583f7066c3954e9546bfb0cc74c59
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Pin_Plastic_mat
-    2100002: Pin_Metal_mat
+    2100000: Pin_v2_Plastic_mat
+    2100002: Pin_v2_Metal_mat
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Pin
-    9500000: //RootNode
+    4300000: Pin_v2
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Pin_Metal_mat
-    second: {fileID: 2100000, guid: 5895fe1e20868e240858c42a87fa0064, type: 2}
+      name: Pin_v2_Metal_mat
+    second: {fileID: 2100000, guid: 110f227e5d8e2004ca185225f4803af0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Pin_Plastic_mat
-    second: {fileID: 2100000, guid: 5020d686e1d61dd4384990c7bf36b21d, type: 2}
+      name: Pin_v2_Plastic_mat
+    second: {fileID: 2100000, guid: f0cd853dbe8efb241ba68431549ad353, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -97,7 +94,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
