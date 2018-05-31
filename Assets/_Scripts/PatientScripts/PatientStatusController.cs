@@ -26,7 +26,9 @@ public class PatientStatusController : MonoBehaviour
             }
             if (mIsHealed)
             {
-                HydrationController.StopAllHydrations();
+                var hydrationController = GetComponent<HydrationController>();
+                hydrationController.IsActionActive = false;
+                hydrationController.StopAllHydrations();
             }
         }
     }
