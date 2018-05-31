@@ -69,28 +69,10 @@ public class PatientSpawner : MonoBehaviour
 
     private void SpawnPatient()
     {
-        //Pick random patient in the list to spawn.
-        //int index = UnityEngine.Random.Range(0, (PatientsToSpawn.Count - 1));
         GameObject patient = (GameObject)Instantiate(SpawnConfig.PatientPrefab, SpawnPoint.position, SpawnPoint.rotation);
         patient.GetComponents<Actionable>().ToList().ForEach(a => a.IsActionActive = false);
 
         StartCoroutine(InitializeWhenInBed(patient));
-        //var healthController = patient.GetComponent<HealthController>();
-        //var patientModel = PatientsToSpawn[index];
-        //healthController.HydrationHealingConfig = patientModel.HydrationHealingConfig;
-        //healthController.ThresholdOddsConfig = patientModel.ThresholdOddsConfig;
-        
-        //healthController.Health = UnityEngine.Random.Range(SpawnConfig.CholeraSeverityRange.x, SpawnConfig.CholeraSeverityRange.y);
-        //healthController.Initialize();
-        ////healthController.HydrationMeter = UnityEngine.Random.Range(SpawnConfig.HydrationRange.x, SpawnConfig.HydrationRange.y);
-        //healthController.SetHydration(UnityEngine.Random.Range(SpawnConfig.HydrationRange.x, SpawnConfig.HydrationRange.y));
-        //healthController.HydrationConfig = patientModel.HydrationConfig;
-        //healthController.CholeraConfig = patientModel.CholeraConfig;
-        ////healthController.BedSanitationConfig = patientModel.BedSanitationThresholdConfig;
-        //healthController.DoctorSanitationThresholdConfig = patientModel.DoctorSanitationThresholdConfig;
-
-        ////Remove that patient
-        //PatientsToSpawn.RemoveAt(index);
     }
 
     private IEnumerator InitializeWhenInBed(GameObject pPatient)
