@@ -74,23 +74,22 @@ public class TutorialUtility : MonoBehaviour
     private IEnumerator FreezeExcretion(bool pState)
     {
         yield return new WaitForSeconds(0.1f);
-        var patientsInScene = FindObjectsOfType<HealthController>();
+        var patientsInScene = FindObjectsOfType<HealthController>().ToList().Where(a => a.GetComponent<HydrationController>().IsActionActive);
         if (pState)
         {
             foreach (var patient in patientsInScene)
             {
-                var coroutine = patient.GetSickCoroutine();
-                if(coroutine != null)
-                {
-                    patient.StopCoroutine(patient.GetSickCoroutine());
-                }
+                patient?.StopSickCoroutine();
             }
         }
         else
         {
             foreach (var patient in patientsInScene)
             {
-                patient.StartSickCoroutine();
+                if (patient.IsInitialized)
+                {
+                    patient?.StartSickCoroutine();
+                }
             }
         }
     }

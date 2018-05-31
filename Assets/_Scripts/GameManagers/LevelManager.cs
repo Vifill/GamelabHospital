@@ -158,7 +158,7 @@ public class LevelManager : MonoBehaviour
     {
         GameObject UIGO = (GameObject)Instantiate(ShiftOverCanvas, FindObjectOfType<Canvas>().transform);
         Transform exit = GameObject.Find("Exit").transform;
-        var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>()).Where(a => a.GetComponent<PatientStatusController>().IsHealed).ToList();
+        var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>()).Where(a => a.IsActionActive).ToList();
         Time.timeScale = 1.5f;
 
         //Orderly
