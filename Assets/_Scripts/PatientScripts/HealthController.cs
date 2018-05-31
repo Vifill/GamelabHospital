@@ -146,7 +146,19 @@ public class HealthController : MonoBehaviour
 
     public void StartSickCoroutine()
     {
-        CurrentCoroutineSick = StartCoroutine(SickCoroutine());
+        if (CurrentCoroutineSick == null)
+        {
+            CurrentCoroutineSick = StartCoroutine(SickCoroutine());
+        }
+    }
+
+    public void StopSickCoroutine()
+    {
+        if (CurrentCoroutineSick != null)
+        {
+            StopCoroutine(CurrentCoroutineSick);
+            CurrentCoroutineSick = null;
+        }
     }
 
     private IEnumerator BedSanitationCheckCoroutine()
