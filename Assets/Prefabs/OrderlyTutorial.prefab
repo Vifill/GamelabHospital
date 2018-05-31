@@ -2773,8 +2773,8 @@ MonoBehaviour:
   QueueUIPrefab: {fileID: 1542787366011764, guid: 74e6fb4e424ee024c9b2e8e230b43a59,
     type: 2}
   YUIOffset: 20
-  MaxVisibleIcons: 4
   SelectionParticleEffect: {fileID: 1715003655678386}
+  MaxItemsInQueue: 10
 --- !u!114 &114857498444510666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2796,7 +2796,8 @@ MonoBehaviour:
   DropSound: {fileID: 8300000, guid: b485a0e6493cbab4c9eab812cff35989, type: 3}
   InvalidActionSound: {fileID: 8300000, guid: 57cb2086193889347bcc337d239a129d, type: 3}
   Animator: {fileID: 95047926547528988}
-  ParticlePrefab: {fileID: 0}
+  ParticlePrefab: {fileID: 1613000892555342, guid: 02eb0f3db6b0c9648bd6a1434290a0c9,
+    type: 2}
 --- !u!114 &114960269775320796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2947,7 +2948,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1001276820246188}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.6
+  m_Radius: 0.1
   m_Speed: 6
   m_Acceleration: 60
   avoidancePriority: 50
