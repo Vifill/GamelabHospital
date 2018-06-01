@@ -263,7 +263,7 @@ public class HealthController : MonoBehaviour
     public void SetHydration (float pValue)
     {
         var prevHydration = HydrationMeter;
-        var hydrationUIManager = HydrationUI.GetComponent<HydrationUIManager>();
+        var hydrationUIManager = HydrationUI?.GetComponent<HydrationUIManager>();
 
         HydrationMeter = Mathf.Clamp(pValue, HydrationClampMin, HydrationClampMax);
 
