@@ -29,10 +29,10 @@ public class LevelSelectionController : MonoBehaviour
         {
             foreach (var node in LevelNodes)
             {
-                if (node.LevelNo <= DataCtrl.GetLevelsCompleted())
+                if (node.LevelConfig.LevelNumber <= DataCtrl.GetLevelsCompleted())
                 {                    
                     node.Initialize(DataCtrl.GetLevelData(node.LevelConfig.LevelNumber));
-                    if (node.LevelNo == DataCtrl.GetLevelsCompleted())
+                    if (node.LevelConfig.LevelNumber == DataCtrl.GetLevelsCompleted())
                     {
                         node.ActivateArrowParticleEffect();
                     }
@@ -41,7 +41,7 @@ public class LevelSelectionController : MonoBehaviour
         }
         else
         {
-            var firstNode = LevelNodes.FirstOrDefault(a => a.LevelNo == 1);
+            var firstNode = LevelNodes.FirstOrDefault(a => a.LevelConfig.LevelNumber == 1);
             firstNode.Initialize(null);
             firstNode.ActivateArrowParticleEffect();
         }
@@ -76,6 +76,7 @@ public class LevelSelectionController : MonoBehaviour
             PlayerPrefs.DeleteAll();
         }
     }
+
 
     void UpdateCollectables()
     {
