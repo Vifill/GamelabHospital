@@ -373,16 +373,16 @@ public class ActionableActioner : MonoBehaviour
         yield return new WaitForSeconds(pDelay);
 
         GameObject ParticleInstance = Instantiate(ParticlePrefab, Canvas.transform);
-        ParticleInstance.GetComponent<Image>().color = pColor;
+       //ParticleInstance.GetComponent<Image>().color = pColor;
         if (pTargetIsUI)
         {
             ParticleSystem.MainModule main = ParticleInstance.GetComponentInChildren<ParticleSystem>().main;
-            main.startColor = pColor;
+            //main.startColor = pColor;
         }
         else
         {
             ParticleSystem.MainModule main = ParticleInstance.GetComponentInChildren<ParticleSystem>().main;
-            main.startColor = pColor;
+            //main.startColor = pColor;
         }
         List<Vector3> BezierCurve = GetBezierApproximation(CalculateControlPoints(pTargetTrans, pTargetIsUI, pStartTrans, pStartIsUI), 5);
         ParticleInstance.transform.position = BezierCurve[0];
