@@ -24,7 +24,6 @@ public class IVPickupStationController : PickupStationController
         base.OnFinishedAction(pObjectActioning);
 
         PickUpIVBags();
-        base.OnFinishedAction(pObjectActioning);
     }
 
     protected override void Initialize()
