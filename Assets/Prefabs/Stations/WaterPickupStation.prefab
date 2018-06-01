@@ -334,8 +334,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1135410968667960}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 8.81, y: 0, z: 1.1099997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4202297489095724}
@@ -343,7 +343,7 @@ Transform:
   - {fileID: 4276813828072042}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!23 &23015835192203684
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -683,7 +683,7 @@ MonoBehaviour:
   ActionTime: 0.75
   ActionParticles: {fileID: 0}
   ActionSuccessParticles: {fileID: 0}
-  ActionSoundEvent: {fileID: 0}
+  ActionSoundEvent: {fileID: 8300000, guid: ff17fb2fc59c4434d8c6bcd053a51ffc, type: 3}
   ActionFinishedSoundEvent: {fileID: 8300000, guid: 44726c85aeca0594397c7e80e6387e70,
     type: 3}
   AnimatorParameter: 
