@@ -1,35 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab68c388fb66d4f4a8094f299b0c086f, type: 3}
-  m_Name: Test1ThresholdOddsConfigReversed
-  m_EditorClassIdentifier: 
-  TestCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  RandomRangeOffset: 1.5
-  ListOfThresholds:
-  - ThresholdOfActivation: 0
-    TimeToExcrete: 8
-  - ThresholdOfActivation: 5
-    TimeToExcrete: 9
-  - ThresholdOfActivation: 10
-    TimeToExcrete: 10
-  - ThresholdOfActivation: 20
-    TimeToExcrete: 11
-  - ThresholdOfActivation: 40
-    TimeToExcrete: 12
-  - ThresholdOfActivation: 60
-    TimeToExcrete: 13
-  - ThresholdOfActivation: 80
-    TimeToExcrete: 14
+version https://git-lfs.github.com/spec/v1
+oid sha256:5bb1659e6faea55d8b4e7bc1b3cf3938d44878595ff8ae785c2517e5e15a23fd
+size 791
