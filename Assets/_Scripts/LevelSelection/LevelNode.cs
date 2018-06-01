@@ -9,7 +9,6 @@ public class LevelNode : MonoBehaviour
 {
     public LevelConfig LevelConfig;
     public GameObject LevelSelectionUIPrefab;
-    public int LevelNo;
     public Shader HighlightShader;
     public bool IsActive = false;
     public Vector3 UIOffset = new Vector3();
@@ -61,7 +60,7 @@ public class LevelNode : MonoBehaviour
 
 	    PopUpUI = Instantiate(LevelSelectionUIPrefab, MainCanvas);
 	    PopUpUI.transform.position = UIPos;
-	    PopUpUI.GetComponent<LevelSelectionUI>().Initialize(LevelConfig, LevelNo, LevelMdl);
+	    PopUpUI.GetComponent<LevelSelectionUI>().Initialize(LevelConfig, LevelConfig.LevelNumber, LevelMdl);
     }
 
     private void SetParticleParent()
@@ -86,7 +85,7 @@ public class LevelNode : MonoBehaviour
     {
         if(StartLoad)
         {
-            SceneLoader.LoadScene("Level" + LevelNo);
+            SceneLoader.LoadScene("Level" + LevelConfig.LevelNumber);
             StartLoad = false;
         }
     }
@@ -122,7 +121,7 @@ public class LevelNode : MonoBehaviour
         if (IsActive)
         {
             CursorCtrl.OnClickDown();
-            if (LevelNo != 0)
+            if (LevelConfig.LevelNumber != 0)
             {
                 //StartLoad = true;
                 //print(SceneManager.GetSceneAt());
