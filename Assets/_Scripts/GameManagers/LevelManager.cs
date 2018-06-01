@@ -158,7 +158,7 @@ public class LevelManager : MonoBehaviour
     {
         GameObject UIGO = (GameObject)Instantiate(ShiftOverCanvas, FindObjectOfType<Canvas>().transform);
         Transform exit = GameObject.Find("Exit").transform;
-        var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>()).Where(a => a.IsActionActive).ToList();
+        var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>().ToList().Where(a => a.GetComponent<PatientStatusController>().IsHealed));
         Time.timeScale = 1.5f;
 
         //Orderly
@@ -258,7 +258,7 @@ public class LevelManager : MonoBehaviour
         var collectableModels = PlayerDataController.GetCollectableModels();
         var changedModels = collectableModels.Where(a => collectablesInScene.Contains(a)).ToList();
 
-        collectablesInScene.ForEach(a=> changedModels.FirstOrDefault(b=> b.Equals(a)).IsFound = a.IsFound);
+        collectablesInScene?.ForEach(a=> changedModels.FirstOrDefault(b=> b.Equals(a)).IsFound = a.IsFound);
 
         PlayerDataController.SaveLevelData(new LevelModel(LevelConfig.LevelNumber, Points, collectableModels));
         Time.timeScale = 0;
