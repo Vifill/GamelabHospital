@@ -268,6 +268,7 @@ public class TutorialController : MonoBehaviour
                     TutorialUtility.SetHydrationFreeze(true);
                     TutorialUtility.SetHealthFreeze(true);
                     TutorialUtility.SetFreezeExcretion(true);
+                    FindObjectOfType<HealthController>().GetComponents<Actionable>().ToList().ForEach(a => a.IsActionActive = false);
 
                     StartCoroutine(PatientDeathSequence());
                 }

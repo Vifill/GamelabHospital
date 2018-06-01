@@ -232,7 +232,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968860176664478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.031916, z: 0}
+  m_LocalPosition: {x: -0, y: 1.03, z: 0}
   m_LocalScale: {x: 0.8807081, y: 0.8807081, z: 0.8807081}
   m_Children: []
   m_Father: {fileID: 4641180938951184}
@@ -396,8 +396,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1135410968667960}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 11, y: -0.01, z: 7.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4202297489095724}
@@ -814,7 +814,7 @@ MonoBehaviour:
   ActionTime: 0.75
   ActionParticles: {fileID: 0}
   ActionSuccessParticles: {fileID: 0}
-  ActionSoundEvent: {fileID: 0}
+  ActionSoundEvent: {fileID: 8300000, guid: ff17fb2fc59c4434d8c6bcd053a51ffc, type: 3}
   ActionFinishedSoundEvent: {fileID: 8300000, guid: 44726c85aeca0594397c7e80e6387e70,
     type: 3}
   AnimatorParameter: 
