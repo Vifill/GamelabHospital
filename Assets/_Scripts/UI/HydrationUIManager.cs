@@ -15,6 +15,7 @@ public class HydrationUIManager : MonoBehaviour
     public Image HealthMeterUI;
     public PatientStatusColorConfig StatusColorConfig; // Use same color config as for the patient status
     public float UIOffset = 1;
+    public GameObject ComboParticle;
 
     public float WarningThreshold;
 
@@ -31,6 +32,7 @@ public class HydrationUIManager : MonoBehaviour
 
     public void InitializeHydrationUI(HealthController pHealthController)
     {
+        ComboParticle?.SetActive(false);
         HealthController = pHealthController;
 
         HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
@@ -110,5 +112,10 @@ public class HydrationUIManager : MonoBehaviour
         {
             HealthMeterUI.color = StatusColorConfig.StatusYellow;
         }
+    }
+
+    public void SetComboParticle(bool pState)
+    {
+        ComboParticle?.SetActive(pState);
     }
 }
