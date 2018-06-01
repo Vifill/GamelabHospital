@@ -188,7 +188,7 @@ public class TutorialUtility : MonoBehaviour
 
     public static void SetPatientHydration(float pHydrationAmount)
     {
-        var patients = FindObjectsOfType<HealthController>();
+        var patients = FindObjectsOfType<HealthController>().Where(a => !a.GetComponent<PatientStatusController>().IsHealed);
 
         foreach (var patient in patients)
         {
