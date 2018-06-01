@@ -15,6 +15,7 @@ public class HydrationUIManager : MonoBehaviour
     public Image HealthMeterUI;
     public PatientStatusColorConfig StatusColorConfig; // Use same color config as for the patient status
     public float UIOffset = 1;
+    public GameObject ComboParticle = null;
 
     public float WarningThreshold;
 
@@ -35,14 +36,14 @@ public class HydrationUIManager : MonoBehaviour
 
         HydrationMeterUI.fillAmount = HealthController.HydrationMeter / 100;
         HealthMeterUI.fillAmount = HealthController.Health / 100;
-        
+        ComboParticle?.SetActive(false);
         var thresholdLineXpos = HealthController.HydrationHealingConfig.ListOfThresholds.LastOrDefault().ThresholdOfActivation;
         HydrationThresholdLine = HydrationMeterUI.transform.GetChild(0).GetComponent<RectTransform>();
         HydrationThresholdLine.anchoredPosition = new Vector2(thresholdLineXpos - 1, HydrationThresholdLine.anchoredPosition.y);
         // UI position
         transform.position = Camera.main.WorldToScreenPoint(HealthController.transform.position + new Vector3(0, UIOffset, UIOffset));
         HealthMeterUI?.GetComponentInChildren<BarFillFalloff>()?.Initialize();
-        HydrationMeterUI.GetComponent<BarFillFalloff>().Initialize();
+        HydrationMeterUI?.GetComponent<BarFillFalloff>().Initialize();
     }
 
     private void LateUpdate()
@@ -110,5 +111,10 @@ public class HydrationUIManager : MonoBehaviour
         {
             HealthMeterUI.color = StatusColorConfig.StatusYellow;
         }
+    }
+
+    public void SetComboParticle(bool pState)
+    {
+        ComboParticle?.SetActive(pState);
     }
 }

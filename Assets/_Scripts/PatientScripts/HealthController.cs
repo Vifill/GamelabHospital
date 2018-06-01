@@ -263,6 +263,7 @@ public class HealthController : MonoBehaviour
     public void SetHydration (float pValue)
     {
         var prevHydration = HydrationMeter;
+        var hydrationUIManager = HydrationUI?.GetComponent<HydrationUIManager>();
 
         HydrationMeter = Mathf.Clamp(pValue, HydrationClampMin, HydrationClampMax);
 
@@ -271,10 +272,19 @@ public class HealthController : MonoBehaviour
         if (prevHydration >= threshold && HydrationMeter < threshold)
         {
             //StartCoroutine(ComboRedemptionCheck());
+            if (hydrationUIManager.ComboParticle.activeSelf)
+            {
+                hydrationUIManager.SetComboParticle(false);
+            }
+            
             StartCoroutine(ComboBonusSetter(ComboRedemptionTime, -ComboBonusAmount));
         }
         else if (prevHydration < threshold && HydrationMeter >= threshold)
         {
+            if (!hydrationUIManager.ComboParticle.activeSelf)
+            {
+                hydrationUIManager.SetComboParticle(true);
+            }
             HealthIncrease = HydrationHealingConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= HydrationMeter)?.HealthIncreasePerSecond ?? 0;
             StartCoroutine(ComboBonusSetter(ComboBonusTime, ComboBonusAmount));
         }
