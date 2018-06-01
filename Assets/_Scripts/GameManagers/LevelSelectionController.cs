@@ -29,7 +29,7 @@ public class LevelSelectionController : MonoBehaviour
         {
             foreach (var node in LevelNodes)
             {
-                if (node.LevelConfig.LevelNumber <= DataCtrl.GetLevelsCompleted())
+                if (node.LevelConfig.LevelNumber <= DataCtrl.GetLevelsCompleted() + 1)
                 {                    
                     node.Initialize(DataCtrl.GetLevelData(node.LevelConfig.LevelNumber));
                     if (node.LevelConfig.LevelNumber == DataCtrl.GetLevelsCompleted())

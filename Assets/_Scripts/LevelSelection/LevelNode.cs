@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelNode : MonoBehaviour 
+public class LevelNode : MonoBehaviour
 {
+    public ParticleSystem HoverOverParticleSystem;
+    public Transform UiTransform;
     public LevelConfig LevelConfig;
     public GameObject LevelSelectionUIPrefab;
     public Shader HighlightShader;
@@ -24,6 +26,7 @@ public class LevelNode : MonoBehaviour
     private GameObject ArrowParticleEffect;
     private GameObject SparkParticleEffect;
     private SceneLoader SceneLoader;
+    private float EmissionPerSecond;
     private bool StartLoad;
 
     private void Awake()
@@ -36,6 +39,13 @@ public class LevelNode : MonoBehaviour
     // Use this for initialization
     public void Initialize (LevelModel pLvlModel) 
 	{
+	    if (HoverOverParticleSystem != null)
+	    {
+	        ParticleSystem.EmissionModule emission = HoverOverParticleSystem.emission;
+	        emission.enabled = false;
+        }
+	   
+
         if (pLvlModel != null)
         {
             LevelMdl = pLvlModel;
@@ -43,7 +53,7 @@ public class LevelNode : MonoBehaviour
 
         IsActive = true;
 	    MainCanvas = FindObjectOfType<Canvas>().transform;
-        UIPos = Camera.main.WorldToScreenPoint(transform.position);
+        UIPos = Camera.main.WorldToScreenPoint(UiTransform.position);
         StandardShader = Shader.Find("Standard");
         ActivateSparkParticleEffect();
         
@@ -61,6 +71,18 @@ public class LevelNode : MonoBehaviour
 	    PopUpUI = Instantiate(LevelSelectionUIPrefab, MainCanvas);
 	    PopUpUI.transform.position = UIPos;
 	    PopUpUI.GetComponent<LevelSelectionUI>().Initialize(LevelConfig, LevelConfig.LevelNumber, LevelMdl);
+    }
+
+    private void StartParticleEmission()
+    {
+        ParticleSystem.EmissionModule emission = HoverOverParticleSystem.emission;
+        emission.enabled = true;
+    }
+
+    private void StopParticleEmission()
+    {
+        ParticleSystem.EmissionModule emission = HoverOverParticleSystem.emission;
+        emission.enabled = false;
     }
 
     private void SetParticleParent()
@@ -99,8 +121,12 @@ public class LevelNode : MonoBehaviour
                 mat.shader = HighlightShader;
             }
 
-           
+            if (HoverOverParticleSystem != null)
+            {
+                StartParticleEmission();
+            }
             CursorCtrl.SetCursorToClickable();
+
         }
     }
 
@@ -112,6 +138,12 @@ public class LevelNode : MonoBehaviour
             {
                 mat.shader = StandardShader;
             }
+
+            if (HoverOverParticleSystem != null)
+            {
+                StopParticleEmission();
+            }
+
             CursorCtrl.SetCursorToIdle();
         }
     }
