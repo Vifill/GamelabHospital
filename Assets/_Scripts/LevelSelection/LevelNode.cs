@@ -35,15 +35,11 @@ public class LevelNode : MonoBehaviour
         SceneLoader = FindObjectOfType<SceneLoader>(); 
         SetParticleParent();
         CursorCtrl = FindObjectOfType<MouseCursorController>();
-    }
 
-    // Use this for initialization
-    public void Initialize (LevelModel pLvlModel) 
-	{
-	    if (HoverOverParticleSystem != null)
-	    {
-	        ParticleSystem.EmissionModule emission = HoverOverParticleSystem.emission;
-	        emission.enabled = false;
+        if (HoverOverParticleSystem != null)
+        {
+            ParticleSystem.EmissionModule emission = HoverOverParticleSystem.emission;
+            emission.enabled = false;
         }
 
         if (HoverOverParticleSystem2 != null)
@@ -51,8 +47,11 @@ public class LevelNode : MonoBehaviour
             ParticleSystem.EmissionModule emission = HoverOverParticleSystem2.emission;
             emission.enabled = false;
         }
+    }
 
-
+    // Use this for initialization
+    public void Initialize (LevelModel pLvlModel) 
+	{
         if (pLvlModel != null)
         {
             LevelMdl = pLvlModel;
