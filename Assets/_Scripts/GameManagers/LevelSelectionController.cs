@@ -87,12 +87,11 @@ public class LevelSelectionController : MonoBehaviour
             collectables.CollectableList = collectables.CollectableList.Where(a => CollectablesPrefabs.Select(b=> b.CollectableModel).Contains(a)).ToList();
             var newItems = CollectablesPrefabs.Where(a => !collectables.CollectableList.Contains(a.CollectableModel)).Select(a=> a.CollectableModel);// .Contains() collectables.CollectableList.First(b => b.ID == a.CollectableModel.ID && b.Level == a.CollectableModel.Level) == null).Select(a => a.CollectableModel).ToList();
             collectables.CollectableList.AddRange(newItems);
-            collectables.CollectableList.OrderByDescending(a => a.Level);
+            collectables.CollectableList.OrderBy(a => a.Level).ToList();
+            collectables.CollectableList.ForEach(a => a.Texture2D = CollectablesPrefabs.FirstOrDefault(b => a.Equals(b.CollectableModel)).CollectableModel.Texture2D);
             for (int i = 0; i < collectables.CollectableList.Count; i++)
             {
-                print("Level: " + collectables.CollectableList[i].Level + ", ID: " + collectables.CollectableList[i].ID);
-                print("is found? " + collectables.CollectableList[i].IsFound);
-                print("Image: " + collectables.CollectableList[i].Texture2D);
+                print("Level: " + collectables.CollectableList[i].Level + ", ID: " + collectables.CollectableList[i].ID + ", found? " + collectables.CollectableList[i].IsFound + ", Image: " + collectables.CollectableList[i].Texture2D);
             }
             PlayerPrefs.SetString(PlayerDataController.CollectableKey, JsonUtility.ToJson(collectables));
             print("SavedShit");
