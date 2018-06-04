@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class LevelNode : MonoBehaviour
 {
     public ParticleSystem HoverOverParticleSystem;
+    public ParticleSystem HoverOverParticleSystem2;
     public Transform UiTransform;
     public LevelConfig LevelConfig;
     public GameObject LevelSelectionUIPrefab;
@@ -44,7 +45,13 @@ public class LevelNode : MonoBehaviour
 	        ParticleSystem.EmissionModule emission = HoverOverParticleSystem.emission;
 	        emission.enabled = false;
         }
-	   
+
+        if (HoverOverParticleSystem2 != null)
+        {
+            ParticleSystem.EmissionModule emission = HoverOverParticleSystem2.emission;
+            emission.enabled = false;
+        }
+
 
         if (pLvlModel != null)
         {
@@ -77,12 +84,18 @@ public class LevelNode : MonoBehaviour
     {
         ParticleSystem.EmissionModule emission = HoverOverParticleSystem.emission;
         emission.enabled = true;
+
+        ParticleSystem.EmissionModule emission2 = HoverOverParticleSystem2.emission;
+        emission2.enabled = true;
     }
 
     private void StopParticleEmission()
     {
         ParticleSystem.EmissionModule emission = HoverOverParticleSystem.emission;
         emission.enabled = false;
+
+        ParticleSystem.EmissionModule emission2 = HoverOverParticleSystem2.emission;
+        emission2.enabled = false;
     }
 
     private void SetParticleParent()
