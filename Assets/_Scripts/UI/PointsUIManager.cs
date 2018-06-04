@@ -9,7 +9,8 @@ using Assets._Scripts.Utilities;
 public class PointsUIManager : MonoBehaviour 
 {
     public GameObject ScoreParticleSystemPrefab;
-    public GameObject PopupScoreTextPrefab;
+    public GameObject PopupScoreTextPrefabGreen;
+    public GameObject PopupScoreTextPrefabRed;    
     public GameObject StarPlacementPrefab;
     public Color ScoreTextColor;
     public Text DisplayedScoreText;
@@ -64,8 +65,7 @@ public class PointsUIManager : MonoBehaviour
        
     public IEnumerator UpdateUI(int pPoints, Vector3 pPosition)
     {
-        GameObject GO = UISpawner.SpawnUIFromWorldPosition(PopupScoreTextPrefab, pPosition, UIHierarchy.LerpingPoints);
-        //GameObject GO = (GameObject)Instantiate(PopupScoreTextPrefab, DisplayedScoreText.transform.parent.parent);
+        GameObject GO = UISpawner.SpawnUIFromWorldPosition(pPoints > 0 ? PopupScoreTextPrefabGreen : PopupScoreTextPrefabRed, pPosition, UIHierarchy.LerpingPoints);
         RectTransform GORect = GO.GetComponent<RectTransform>();
         Text tempText = GO.GetComponentInChildren<Text>();
         GORect.anchoredPosition = WorldToCanvas(pPosition);
@@ -73,15 +73,15 @@ public class PointsUIManager : MonoBehaviour
         int TempScore = 0;
 
         Score += pPoints;
-        float t = 1 + pPoints/50;
+        float t = 0;
         if (Score < 0)
         {
             Score = 0;
         }
         while (TempScore != pPoints)
         {
-            TempScore = (int)Mathf.MoveTowards(TempScore, pPoints, t);
-            t += Time.unscaledDeltaTime;
+            TempScore = (int)Mathf.Lerp(0, pPoints, t);
+            t += Time.unscaledDeltaTime/0.5f;
             tempText.text = TempScore.ToString();
             yield return null;
         }
@@ -115,6 +115,10 @@ public class PointsUIManager : MonoBehaviour
             yield return null;
         }
         DisplayedScore += pPoints;
+        if(DisplayedScore < 0)
+        {
+            DisplayedScore = 0;
+        }
         
         if (CurrentLerpToTotalPointsCoroutine == null)
         {
@@ -145,6 +149,10 @@ public class PointsUIManager : MonoBehaviour
         while (tempPoints != DisplayedScore)
         {
             tempPoints = Mathf.Lerp(tempPoints, DisplayedScore, Time.deltaTime * PointsLerpSpeed);
+            if(tempPoints < 0)
+            {
+                tempPoints = 0;
+            }
             DisplayedScoreText.text = tempPoints.ToString("F0");
             BarFill.fillAmount = 1 / MaxBarFill * tempPoints;
 

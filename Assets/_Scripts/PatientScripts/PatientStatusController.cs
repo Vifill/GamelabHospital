@@ -69,7 +69,7 @@ public class PatientStatusController : MonoBehaviour
     {
         PlayDeathParticles();
         IsDead = true;
-        LevelManager?.AddDeath();
+        LevelManager?.AddDeath(transform.position);
         HealthConrtoller.DestroyHydrationUI();
         //LevelManager?.AddPoints(-(ailmentConfig.PointsWhenHealed));
         //AilmentUIController.CreateScorePopUpText(-(ailmentConfig.PointsWhenHealed));
