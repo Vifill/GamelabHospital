@@ -33,7 +33,14 @@ public class CharacterInputs : MonoBehaviour
                 //error sound
                 if (GetCurrentTool() == ToolName.Bucket && action is BedStation)
                 {
-                    ActionableActioner.SpawnFloatingText("The bed is not dirty");
+                    if (ToolController.GetToolBase().IsDirty)
+                    {
+                        ActionableActioner.SpawnFloatingText("I need a clean bucket for that");
+                    }
+                    else
+                    {
+                        ActionableActioner.SpawnFloatingText("The bed is not dirty");
+                    }
                 }
                 else if (GetCurrentTool() != ToolName.NoTool && action is PickupStationController)
                 {

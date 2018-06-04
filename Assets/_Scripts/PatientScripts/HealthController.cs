@@ -184,11 +184,13 @@ public class HealthController : MonoBehaviour
         while (true)
         {
             float targetTime = ThresholdOddsConfig.ListOfThresholds.LastOrDefault(a => a.ThresholdOfActivation <= Health)?.TimeToExcrete ?? 0.0f;
+            print(targetTime);
             targetTime += ExcreteTimeOffset;
             timeCounter += Time.deltaTime;
             if(timeCounter >= targetTime && !PatientStatusController.IsDead && !PatientStatusController.IsHealed)
             {
                 StartFeelingSick();
+                CurrentCoroutineSick = null;
                 break;
             }
             yield return null;
@@ -223,8 +225,8 @@ public class HealthController : MonoBehaviour
             // puke animation trigger
             PatientAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
             PatientPrefabAnimator.SetTrigger(Constants.AnimationParameters.PatientPuke);
-            //Debug.Log($"I'M PUKING!");
         }
+
         StartSickCoroutine();
     }
 
