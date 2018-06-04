@@ -30,6 +30,7 @@ public class EndScreenUIManager : MonoBehaviour
 
     public void InitializeUI(StarConfig pStarConfig, int pSaved, int pScore, int pDead, bool pPassed)
     {
+        print("INIT");
         GameController.InMenuScreen = true;
         SceneLoader = FindObjectOfType<SceneLoader>();
         LvlCtrl = new LevelController(SceneLoader);
@@ -62,31 +63,52 @@ public class EndScreenUIManager : MonoBehaviour
 
     private IEnumerator ProgressBarFill(StarConfig pStarConfig, int pScore)
     {
-        ProgressBar.fillAmount = CurrFillPoint;
+        print("Start");
+        //ProgressBar.fillAmount = CurrFillPoint;
         MaxLevelScore = (int)(pStarConfig.PointsForGold * 1.1f);
+        float StarTimer = 0;
+        float CurrentScore = 0;
+        int targetStars = 0;
+        if (pScore >= pStarConfig.PointsForBronze)
+        {
+            targetStars = 1;
+        }
+        if (pScore >= pStarConfig.PointsForSilver)
+        {
+            targetStars = 2;
+        }
+        if (pScore >= pStarConfig.PointsForGold)
+        {
+            targetStars = 3;
+        }
+        StarCount = 0;
+        print(targetStars+ " Stars");
         while (true)
         {
-            CurrFillPoint = ProgressBar.fillAmount * MaxLevelScore;
-            ProgressBar.fillAmount += FillSpeed * Time.unscaledDeltaTime;
-            ScoreText.text = CurrFillPoint.ToString("0");
-
-            if (CurrFillPoint >= pStarConfig.PointsForBronze && StarCount == 0)
+            //CurrFillPoint = ProgressBar.fillAmount * MaxLevelScore;
+            //ProgressBar.fillAmount += FillSpeed * Time.unscaledDeltaTime;
+            CurrentScore = Mathf.MoveTowards(CurrentScore, pScore, Time.unscaledDeltaTime * Mathf.Clamp(MaxLevelScore/1.5f, 50, float.MaxValue));
+            ScoreText.text = CurrentScore.ToString("0000");
+            StarTimer += Time.unscaledDeltaTime;
+            if (StarTimer > .5f && StarCount == 0 && pScore >= pStarConfig.PointsForBronze)
             {
                 GiveOneStar();
                 StarCount += 1;
+                StarTimer = 0;
             }
-            if (CurrFillPoint >= pStarConfig.PointsForSilver && StarCount == 1)
+            if (pScore >= pStarConfig.PointsForSilver && StarCount == 1 && StarTimer > .5f)
             {
+                StarTimer = 0;
                 GiveTwoStars();
                 StarCount += 1;
             }
-            if (CurrFillPoint >= pStarConfig.PointsForGold && StarCount == 2)
+            if (pScore >= pStarConfig.PointsForGold && StarCount == 2 && StarTimer > .5f)
             {
                 GiveThreeStars();
                 StarCount += 1;
             }
 
-            if (CurrFillPoint >= MaxLevelScore || CurrFillPoint >= pScore)
+            if (CurrentScore >= pScore && targetStars == StarCount)
             {
                 ScoreText.text = pScore.ToString();
                 break;
