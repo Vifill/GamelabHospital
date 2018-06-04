@@ -63,10 +63,10 @@ public class LevelNode : MonoBehaviour
             HighlightMaterials.AddRange(renderer.materials);
         }
 
-        foreach (Material mat in HighlightMaterials)
-        {
-            mat.color = Color.green;
-        }
+        //foreach (Material mat in HighlightMaterials)
+        //{
+        //    mat.color = Color.green;
+        //}
 
 	    PopUpUI = Instantiate(LevelSelectionUIPrefab, MainCanvas);
 	    PopUpUI.transform.position = UIPos;
