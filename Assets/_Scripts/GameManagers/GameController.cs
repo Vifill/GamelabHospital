@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour 
 {
@@ -28,6 +29,11 @@ public class GameController : MonoBehaviour
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         BedManager.InitializeBeds();
         PauseGameButton = GameObject.FindGameObjectWithTag("PauseButton");
+        if (PauseGameButton != null)
+        {
+            PauseGameButton.GetComponent<Button>().onClick.AddListener(PauseGame);
+        }
+
         if (FindObjectOfType<OrderlyController>() != null)
         {
             OrderlyInScene = true;
