@@ -345,7 +345,7 @@ public class ActionableActioner : MonoBehaviour
             int transferAmount = /*(int)UnityEngine.Random.Range(5, 10)*/ 1;
             Image hydrationMeter = CurrentAction.GetComponent<HealthController>().HydrationUI.GetComponent<HydrationUIManager>().HydrationMeterUI;
             Vector3 target = hydrationMeter.transform.position;
-            Color color = hydrationMeter.color;
+            Color color = Constants.Colors.GetColor("#00D5FFFF");
             for (int i = 0; i < transferAmount; i++)
             {
                 StartCoroutine(TransferItemCoroutine(i / 10.0f, hydrationMeter.transform, true, transform, false, color));
@@ -356,7 +356,7 @@ public class ActionableActioner : MonoBehaviour
             int transferAmount = /*(int)UnityEngine.Random.Range(5, 10)*/ 1;
             Image dirtyMeter = CurrentAction.GetComponent<BedStation>().BarFill;
             Vector3 start = dirtyMeter.transform.position;
-            Color color = dirtyMeter.color;
+            Color color = Constants.Colors.GetColor("#6D5300FF");
             for (int i = 0; i < transferAmount; i++)
             {
                 StartCoroutine(TransferItemCoroutine(i / 10.0f, transform, false, dirtyMeter.transform, true, color));
@@ -373,16 +373,16 @@ public class ActionableActioner : MonoBehaviour
         yield return new WaitForSeconds(pDelay);
 
         GameObject ParticleInstance = Instantiate(ParticlePrefab, Canvas.transform);
-       //ParticleInstance.GetComponent<Image>().color = pColor;
+        ParticleInstance.GetComponent<Image>().color = pColor;
         if (pTargetIsUI)
         {
             ParticleSystem.MainModule main = ParticleInstance.GetComponentInChildren<ParticleSystem>().main;
-            //main.startColor = pColor;
+            main.startColor = pColor;
         }
         else
         {
             ParticleSystem.MainModule main = ParticleInstance.GetComponentInChildren<ParticleSystem>().main;
-            //main.startColor = pColor;
+            main.startColor = pColor;
         }
         List<Vector3> BezierCurve = GetBezierApproximation(CalculateControlPoints(pTargetTrans, pTargetIsUI, pStartTrans, pStartIsUI), 5);
         ParticleInstance.transform.position = BezierCurve[0];
