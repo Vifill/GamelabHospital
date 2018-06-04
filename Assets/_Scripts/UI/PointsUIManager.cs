@@ -148,7 +148,7 @@ public class PointsUIManager : MonoBehaviour
             DisplayedScoreText.text = tempPoints.ToString("F0");
             BarFill.fillAmount = 1 / MaxBarFill * tempPoints;
 
-            Stars.FirstOrDefault(a => tempPoints >= a.Item2 && !a.Item1.Filled)?.Item1.FillStar();
+            Stars.FirstOrDefault(a => Mathf.RoundToInt(tempPoints) >= a.Item2 && !a.Item1.Filled)?.Item1.FillStar();
 
             yield return null;
         }
