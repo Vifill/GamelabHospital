@@ -121,7 +121,6 @@ GameObject:
   - component: {fileID: 114026077944407102}
   - component: {fileID: 65970343702481926}
   - component: {fileID: 82821356601660714}
-  - component: {fileID: 95126193919023530}
   m_Layer: 0
   m_Name: IVPickupStation
   m_TagString: Untagged
@@ -678,23 +677,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &95126193919023530
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1616651532390392}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 01d317dadd1bad54fa0aefb917f2f6b8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95702094519612934
 Animator:
   serializedVersion: 3
@@ -724,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RadiusOfActivation: 2
-  ActionTime: 0.5
+  ActionTime: 0.75
   ActionParticles: {fileID: 0}
   ActionSuccessParticles: {fileID: 0}
   ActionSoundEvent: {fileID: 8300000, guid: ce7aa0c745db0cb499751599ad05a93c, type: 3}
