@@ -99,10 +99,10 @@ public class PatientMovementController : MonoBehaviour
         //TargetBed.GetComponent<BedStation>().LerpDirtyBarUIWhenPatientEntersBed(gameObject.GetComponent<HealthController>().HydrationUI);
     }
 
-    public void GetOutOfBed()
+    public void GetOutOfBed(bool pIsHealed)
     {
         print("patient animator found: " + PatientAnimator.gameObject);
-        PatientAnimator?.SetBool(Constants.AnimationParameters.CharacterIsWalking, true);
+        PatientAnimator?.SetBool(Constants.AnimationParameters.CharacterIsWalking, pIsHealed);
         NavMeshAgent.enabled = true;
         PatientStatus.IsInBed = false;
 

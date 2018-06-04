@@ -57,7 +57,7 @@ public class PatientStatusController : MonoBehaviour
     public void CheckOut()
     {
         LevelManager.AddHealed();
-        MovementController.GetOutOfBed();
+        MovementController.GetOutOfBed(IsHealed);
         HealthConrtoller.DestroyHydrationUI();
         if (LevelManager.TimeOver)
         {
@@ -80,7 +80,7 @@ public class PatientStatusController : MonoBehaviour
         }
         HydrationController.StopAllHydrations();
         PlayDeathClothSound();
-        MovementController.GetOutOfBed();
+        MovementController.GetOutOfBed(IsHealed);
         StretchersController.IsDead = true;
         StretchersController.OnStretchers = true;
 
