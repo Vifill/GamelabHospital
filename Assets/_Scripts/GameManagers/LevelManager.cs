@@ -120,8 +120,9 @@ public class LevelManager : MonoBehaviour
         //}
     }
 
-    public void AddDeath ()
+    public void AddDeath(Vector3 pPosition)
     {
+        AddPoints(-500, pPosition);
         PatientDeaths++;
     }
 
