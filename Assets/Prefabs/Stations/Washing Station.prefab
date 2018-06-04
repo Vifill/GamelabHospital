@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 82596198332511574}
   - component: {fileID: 114146872924099162}
   - component: {fileID: 114647848302655996}
+  - component: {fileID: 95508968146705380}
   m_Layer: 0
   m_Name: Washing Station
   m_TagString: Untagged
@@ -268,7 +269,7 @@ Transform:
   m_GameObject: {fileID: 1874351949620268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4893099595907920}
   - {fileID: 4148396094424056}
@@ -312,7 +313,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1194696074187054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4823950850723354}
@@ -328,8 +329,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839529715147726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.72, z: 0}
-  m_LocalScale: {x: 0.11, y: 0.09, z: 0.09}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.17, y: 1, z: 0.14}
   m_Children: []
   m_Father: {fileID: 4114976186246406}
   m_RootOrder: 4
@@ -696,6 +697,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!95 &95508968146705380
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194696074187054}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f4f755feca947d4cba09b87dcfc8cf9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95573069627713058
 Animator:
   serializedVersion: 3
@@ -845,7 +863,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1654037221
+  randomSeed: 46934639
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4206,7 +4224,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 279076414
+  randomSeed: 1957809355
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7567,7 +7585,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 279076414
+  randomSeed: -581604399
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10928,7 +10946,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1654037221
+  randomSeed: -194760964
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -17696,7 +17714,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 53196e1b61484f24d9e34b95047e3d52, type: 2}
-  - {fileID: 2100000, guid: 53196e1b61484f24d9e34b95047e3d52, type: 2}
+  - {fileID: 2100000, guid: 89c4dacbb6f45be44be6f07f232cabeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17750,7 +17768,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: c8e245b59ca896c47be695248e93ced5, type: 2}
-  - {fileID: 2100000, guid: 53196e1b61484f24d9e34b95047e3d52, type: 2}
+  - {fileID: 2100000, guid: 89c4dacbb6f45be44be6f07f232cabeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17803,8 +17821,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 53196e1b61484f24d9e34b95047e3d52, type: 2}
-  - {fileID: 2100000, guid: 53196e1b61484f24d9e34b95047e3d52, type: 2}
+  - {fileID: 2100000, guid: 89c4dacbb6f45be44be6f07f232cabeb, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17857,7 +17875,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: c8e245b59ca896c47be695248e93ced5, type: 2}
+  - {fileID: 2100000, guid: 110a89dc8e2578e4b8bd58e2f407c0ab, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
