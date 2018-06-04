@@ -8,7 +8,8 @@ using Assets._Scripts.Utilities;
 
 public class PointsUIManager : MonoBehaviour 
 {
-    public GameObject ScoreParticleSystemPrefab;
+    public GameObject ScoreParticleSystemPrefabGold;
+    public GameObject ScoreParticleSystemPrefabRed;    
     public GameObject PopupScoreTextPrefabGreen;
     public GameObject PopupScoreTextPrefabRed;    
     public GameObject StarPlacementPrefab;
@@ -134,9 +135,9 @@ public class PointsUIManager : MonoBehaviour
             Destroy(pGO, 2);
         }
 
-        if (ScoreParticleSystemPrefab != null)
+        if (ScoreParticleSystemPrefabGold != null)
         {
-            GameObject GO = Instantiate(ScoreParticleSystemPrefab, Vector3.zero, Quaternion.identity, DisplayedScoreText.transform);
+            GameObject GO = Instantiate(pPoints > 0 ? ScoreParticleSystemPrefabGold : ScoreParticleSystemPrefabRed, Vector3.zero, Quaternion.identity, DisplayedScoreText.transform);
             Destroy(GO, 5);
         }
         
