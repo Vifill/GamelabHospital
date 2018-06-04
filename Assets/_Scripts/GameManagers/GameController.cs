@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour
         InMenuScreen = false;
         if (PauseGameButton != null)
         {
-            PauseGameButton.SetActive(false);
+            PauseGameButton.SetActive(true);
         }
     }
 
