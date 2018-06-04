@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     static public List<OrderlyController> GetOrderliesInScene { get; private set; }
     public BedManager BedManager;
     public GameObject PauseMenuPrefab;
+    public GameObject PauseGameButton;
     private Transform MainCanvas;
     private GameObject CurrentUIScreen;
 
@@ -26,7 +27,7 @@ public class GameController : MonoBehaviour
         dl.Initialize();
         MainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
         BedManager.InitializeBeds();
-
+        PauseGameButton = GameObject.FindGameObjectWithTag("PauseButton");
         if (FindObjectOfType<OrderlyController>() != null)
         {
             OrderlyInScene = true;
@@ -48,8 +49,17 @@ public class GameController : MonoBehaviour
         return DoctorSanitationConfig.SanitationModels.Any(a => a.ToolName == ToolName.Water && a.DesanitationAmount > 0);
     }
 
+    public void PauseGame()
+    {
+        PauseGame(PauseMenuPrefab);
+    }
+
     public void PauseGame(GameObject pUIScreen)
     {
+        if (PauseGameButton != null)
+        {
+            PauseGameButton.SetActive(false);
+        }
         if(pUIScreen == null)
         {
             return;
@@ -74,6 +84,10 @@ public class GameController : MonoBehaviour
         Destroy(CurrentUIScreen);
         InPauseMenu = false;
         InMenuScreen = false;
+        if (PauseGameButton != null)
+        {
+            PauseGameButton.SetActive(false);
+        }
     }
 
     public void QuitGame()
