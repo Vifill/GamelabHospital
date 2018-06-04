@@ -15,7 +15,9 @@ public class OrderlyController : MonoBehaviour
     public GameObject MovementParticle;
     public GameObject QueueUIPrefab;
     public float YUIOffset;
-    public GameObject SelectionParticleEffect;
+    public GameObject SelectedParticle;
+    public GameObject BlueWalkParticlePrefab;
+    public GameObject GreenWalkParticlePrefab;
     public int MaxItemsInQueue = 10;
 
     private bool HasParticleSystem;
@@ -26,6 +28,7 @@ public class OrderlyController : MonoBehaviour
     private Transform QueueWorldPos;
     private float UIWidth;
     private Vector3 UIPos = new Vector3();
+    private GameObject CurrentDestinationParticle;
 
     private ActionableActioner Actioner;
 
@@ -38,12 +41,36 @@ public class OrderlyController : MonoBehaviour
     public void StartAction(OrderlyAction pAction)
     {
         CurrentAction = pAction;
+        CreateMovementParticle();
         CurrentAction?.StartAction(gameObject);
+    }
+
+    private void CreateMovementParticle()
+    {
+        if (CurrentAction is OrderlyMoveAction)
+        {
+            if (CurrentOrder.IsMoveAction())
+            {
+                var pos = (CurrentAction as OrderlyMoveAction).PositionToMoveTo;
+                CurrentDestinationParticle = Instantiate(GreenWalkParticlePrefab, pos, Quaternion.identity);
+            }
+            else
+            {
+                var pos = (CurrentAction as OrderlyMoveAction).Target.GetComponent<Actionable>().GetTargetPoint(transform);
+                CurrentDestinationParticle = Instantiate(BlueWalkParticlePrefab, pos, Quaternion.identity);
+            }
+        }
+    }
+
+    private void ClearDestinationParticle()
+    {
+        Destroy(CurrentDestinationParticle);
+        CurrentDestinationParticle = null;
     }
 
     internal void CancelOrder()
     {
-        //CurrentAction.CancelOrder();
+        ClearDestinationParticle();
         CurrentAction = null;
         CurrentOrder = null;
         ClearQueue();
@@ -57,6 +84,7 @@ public class OrderlyController : MonoBehaviour
 
     internal void ActionFinished()
     {
+        ClearDestinationParticle();
         var prevAction = CurrentAction;
         var nextAction = CurrentOrder?.GetNextAction();
         if(nextAction == null)
