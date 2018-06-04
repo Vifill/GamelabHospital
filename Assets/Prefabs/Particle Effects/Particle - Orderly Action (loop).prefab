@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198774630648329062}
   - component: {fileID: 199570337598033784}
   m_Layer: 0
-  m_Name: Orderly Movement - Circle
+  m_Name: Orderly Action - Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 198654416113361562}
   - component: {fileID: 199467098372469372}
   m_Layer: 0
-  m_Name: Orderly Movement - Arrows
+  m_Name: Orderly Action - Arrows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 198806437522735068}
   - component: {fileID: 199468577534883910}
   m_Layer: 0
-  m_Name: Orderly Movement - Beam
+  m_Name: Orderly Action - Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1966528802281496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4356790243324622}
@@ -192,7 +192,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 461919058
+  randomSeed: 701031994
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3598,7 +3598,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 266277434
+  randomSeed: -101501373
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7004,7 +7004,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 461919058
+  randomSeed: 1120308377
   InitialModule:
     serializedVersion: 3
     enabled: 1
