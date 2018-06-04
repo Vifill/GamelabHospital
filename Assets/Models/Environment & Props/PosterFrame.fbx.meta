@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b4802b857db07ac4183bc2074fd5189c
-timeCreated: 1527860607
+guid: 19a1a0f0370a6f44f8aebbd26c250b79
+timeCreated: 1528104102
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -12,17 +12,12 @@ ModelImporter:
     3300000: //RootNode
     4300000: PosterFrame
     9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: PosterFrame_mat
-    second: {fileID: 2100000, guid: f4c33eca831f4c54bb4bc1217cbca171, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -47,7 +42,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.53
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -66,10 +61,10 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 20
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
