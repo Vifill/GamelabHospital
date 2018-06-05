@@ -52,12 +52,18 @@ public class OrderlyController : MonoBehaviour
             if (CurrentOrder.IsMoveAction())
             {
                 var pos = (CurrentAction as OrderlyMoveAction).PositionToMoveTo;
-                CurrentDestinationParticle = Instantiate(GreenWalkParticlePrefab, pos, Quaternion.identity);
+                if (GreenWalkParticlePrefab != null)
+                {
+                    CurrentDestinationParticle = Instantiate(GreenWalkParticlePrefab, pos, Quaternion.identity);
+                }
             }
             else
             {
                 var pos = (CurrentAction as OrderlyMoveAction).Target.GetComponent<Actionable>().GetTargetPoint(transform);
-                CurrentDestinationParticle = Instantiate(BlueWalkParticlePrefab, pos, Quaternion.identity);
+                if (BlueWalkParticlePrefab != null)
+                {
+                    CurrentDestinationParticle = Instantiate(BlueWalkParticlePrefab, pos, Quaternion.identity);
+                }
             }
         }
     }
