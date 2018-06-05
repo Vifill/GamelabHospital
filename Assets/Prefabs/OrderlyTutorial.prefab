@@ -2213,7 +2213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1001276820246188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 1.43, z: 2}
+  m_LocalPosition: {x: 30.696869, y: 157.13245, z: -130.72575}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4265989777396070}
@@ -2773,7 +2773,11 @@ MonoBehaviour:
   QueueUIPrefab: {fileID: 1542787366011764, guid: 74e6fb4e424ee024c9b2e8e230b43a59,
     type: 2}
   YUIOffset: 20
-  SelectionParticleEffect: {fileID: 1715003655678386}
+  SelectedParticle: {fileID: 1715003655678386}
+  BlueWalkParticlePrefab: {fileID: 1326558922484564, guid: 02486302d77972643b2327b615242fd4,
+    type: 2}
+  GreenWalkParticlePrefab: {fileID: 1652969038953384, guid: 0fd2586c1c3570f4c977ce6fb95095c3,
+    type: 2}
   MaxItemsInQueue: 10
 --- !u!114 &114857498444510666
 MonoBehaviour:
