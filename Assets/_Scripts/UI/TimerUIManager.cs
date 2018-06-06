@@ -13,7 +13,7 @@ public class TimerUIManager : MonoBehaviour
     private LevelManager LvlManager;
     private LevelConfig LvlConfig;
     private float ClockHandAngle;
-    private float TimeToPulsate;
+    public float TimeToPulsate = 10;
 
     public void Initialize(LevelManager pManager, float pStartTime)
     {
@@ -21,7 +21,6 @@ public class TimerUIManager : MonoBehaviour
         LvlConfig = LvlManager.LevelConfig;
         ClockHand = transform.GetChild(0).GetComponent<Image>();
         ClockHandAngle = 360 / pStartTime;
-        TimeToPulsate = LvlConfig.LevelTimeSecs * 0.25f;
     }
 
     // Update is called once per frame
