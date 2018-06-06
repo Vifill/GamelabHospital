@@ -32,8 +32,7 @@ public class WashingStation : Actionable
     public override void OnStartAction(GameObject pObjectActioning)
     {
         var toolController = pObjectActioning.GetComponent<ToolController>();
-        //ActionTime += pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel / 100;
-        //ObjectActioning = pObjectActioning;
+
         if (toolController.GetCurrentToolName() == ToolName.Bucket)
         {
             pObjectActioning.GetComponentInChildren<Animator>().SetBool(Constants.AnimationParameters.CharacterCleanBucket, true);
