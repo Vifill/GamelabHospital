@@ -162,6 +162,7 @@ public class LevelManager : MonoBehaviour
         var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>().ToList().Where(a => a.GetComponent<PatientStatusController>().IsHealed && a.IsActionActive));
         Time.timeScale = 1.5f;
 
+        GameController.InShiftOver = true;
         //Orderly
         OrderlyController orderlyController = FindObjectOfType<OrderlyController>();
         orderlyController?.CancelOrder();
