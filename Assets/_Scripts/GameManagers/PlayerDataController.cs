@@ -16,6 +16,7 @@ public class PlayerDataController
     {
         if (!PlayerPrefs.HasKey(VersionKey) || PlayerPrefs.GetInt(VersionKey) != pVersion)
         {
+            Debug.Log("Clearing playerprefs!");
             PlayerPrefs.DeleteAll();
             PlayerPrefs.SetInt(VersionKey, pVersion);
         }
