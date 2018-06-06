@@ -33,7 +33,7 @@ public class TutorialUtility : MonoBehaviour
 
     public static void SetHydrationFreeze(bool pState)
     {
-        var healthControllers = FindObjectsOfType<HealthController>();
+        var healthControllers = FindObjectsOfType<HealthController>().ToList().Where(a => a.IsInitialized);
 
         foreach (var controller in healthControllers)
         {

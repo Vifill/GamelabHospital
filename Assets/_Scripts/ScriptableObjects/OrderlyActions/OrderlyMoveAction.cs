@@ -6,10 +6,11 @@ using UnityEngine.AI;
 
 public class OrderlyMoveAction : OrderlyAction
 {
-    private Vector3 PositionToMoveTo;
-    private Transform Target;
+    public Vector3 PositionToMoveTo;
+    public Transform Target;
     private float DistanceToStop;
     private float DistanceWhenCloseEnough;
+    private GameObject CurrentWalkParticle;
 
     private PatientStatusController PatientStatusController;
     private bool IsGoingToPatient;
@@ -80,8 +81,15 @@ public class OrderlyMoveAction : OrderlyAction
         NavAgent.SetDestination(PositionToMoveTo);
         NavAgent.stoppingDistance = DistanceToStop;
 
-        Vector3 particlePos = PositionToMoveTo;
-        SetDestinationParticle(particlePos, false);
+        //Vector3 particlePos = PositionToMoveTo;
+        //if (Target == null)
+        //{
+        //    SetDestinationParticle(particlePos, false);
+        //}
+        //else
+        //{
+        //    SetDestinationParticle(particlePos, false);
+        //}
     }
 
     protected override void OnStopAction()
@@ -96,29 +104,8 @@ public class OrderlyMoveAction : OrderlyAction
 
         OrderlyObject.GetComponent<OrderlyController>().DisableMovementParticle();
 
-        Vector3 particlePos = OrderlyObject.transform.position;
-        SetDestinationParticle(particlePos, true);
-    }
-
-    private void SetDestinationParticle(Vector3 pPosition, bool pSetParent)
-    {
-        var particle = OrderlyObject.GetComponent<OrderlyController>().SelectionParticleEffect;
-
-        if (particle == null)
-        {
-            return;
-        }
-
-        if (!pSetParent)
-        {
-            particle.transform.parent = null;
-        }
-        else
-        {
-            particle.transform.SetParent(OrderlyObject.transform);
-        }
-
-        var pos = pPosition - new Vector3(0, pPosition.y, 0) + new Vector3(0, 0.1f, 0);
-        particle.transform.position = pos;
+        //Vector3 particlePos = OrderlyObject.transform.position;
+        //SetDestinationParticle(particlePos, true);
+        
     }
 }

@@ -80,8 +80,8 @@ public class MouseInputController : MonoBehaviour
 
     private void SelectOrderly(OrderlyController pOrderlyController)
     {
-        CurrentOrderly?.SelectionParticleEffect.SetActive(false);
+        CurrentOrderly?.SelectedParticle.SetActive(false);
         CurrentOrderly = pOrderlyController;
-        pOrderlyController.SelectionParticleEffect.SetActive(true);
+        pOrderlyController.SelectedParticle.SetActive(true);
     }
 }
