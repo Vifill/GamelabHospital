@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
         if (PauseGameButton != null)
         {
             PauseGameButton.GetComponent<Button>().onClick.AddListener(PauseGame);
+            StartCoroutine(DelayedSpawnButton());
         }
 
         if (FindObjectOfType<OrderlyController>() != null)
@@ -44,6 +45,15 @@ public class GameController : MonoBehaviour
             OrderlyInScene = false;
         }
 	}
+
+    private IEnumerator DelayedSpawnButton()
+    {
+        yield return new WaitForSeconds(.1f);
+        if (PauseGameButton != null)
+        {
+            PauseGameButton.SetActive(true);
+        }
+    }
 
     public bool ShouldSpawnBucketUI()
     {
