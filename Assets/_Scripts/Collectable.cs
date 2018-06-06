@@ -42,12 +42,6 @@ public class Collectable : MonoBehaviour
 	}
 	
 	void Update () {
-	    if (Input.GetKeyDown(KeyCode.F))
-	    {
-            print("PlayerPrefs deleted");
-	        PlayerPrefs.DeleteAll();
-        }
-
 	    if (isActive && Input.GetMouseButtonDown(0) && !isPaused && Time.timeScale != 0)
 	    {
 	        if (!CollectableModel.IsFound)
