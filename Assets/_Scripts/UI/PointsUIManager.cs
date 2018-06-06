@@ -69,7 +69,7 @@ public class PointsUIManager : MonoBehaviour
         GameObject GO = UISpawner.SpawnUIFromWorldPosition(pPoints > 0 ? PopupScoreTextPrefabGreen : PopupScoreTextPrefabRed, pPosition, UIHierarchy.LerpingPoints);
         RectTransform GORect = GO.GetComponent<RectTransform>();
         Text tempText = GO.GetComponentInChildren<Text>();
-        GORect.anchoredPosition = WorldToCanvas(pPosition);
+        //GORect.anchoredPosition = WorldToCanvas(pPosition);
         Destroy(GO, 10);
         int TempScore = 0;
 
