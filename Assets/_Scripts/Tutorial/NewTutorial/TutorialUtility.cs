@@ -33,20 +33,17 @@ public class TutorialUtility : MonoBehaviour
 
     public static void SetHydrationFreeze(bool pState)
     {
-        var patients = FindObjectsOfType<PatientStatusController>().ToList().Where(a => !a.IsDead && !a.IsHealed);
-
-        foreach (var patient in patients)
+        foreach (var patient in GetAvailablePatients())
         {
-            var controller = patient.GetComponent<HealthController>();
             if (pState)
             {
-                controller.HydrationClampMin = controller.HydrationMeter;
-                controller.HydrationClampMax = controller.HydrationMeter;
+                patient.HydrationClampMin = patient.HydrationMeter;
+                patient.HydrationClampMax = patient.HydrationMeter;
             }
             else
             {
-                controller.HydrationClampMin = controller.MinHydration;
-                controller.HydrationClampMax = controller.MaxHydration;
+                patient.HydrationClampMin = patient.MinHydration;
+                patient.HydrationClampMax = patient.MaxHydration;
             }
         }
     }
@@ -97,19 +94,17 @@ public class TutorialUtility : MonoBehaviour
     
     public static void SetHealthFreeze(bool pState)
     {
-        var healthControllers = FindObjectsOfType<HealthController>();
-
-        foreach (var controller in healthControllers)
+        foreach (var patient in GetAvailablePatients())
         {
             if (pState)
             {
-                controller.HealthClampMin = controller.Health;
-                controller.HealthClampMax = controller.Health;
+                patient.HealthClampMin = patient.Health;
+                patient.HealthClampMax = patient.Health;
             }
             else
             {
-                controller.HealthClampMin = controller.MinHealth;
-                controller.HealthClampMax = controller.MaxHealth;
+                patient.HealthClampMin = patient.MinHealth;
+                patient.HealthClampMax = patient.MaxHealth;
             }
         }
     }
@@ -189,21 +184,15 @@ public class TutorialUtility : MonoBehaviour
 
     public static void SetPatientHydration(float pHydrationAmount)
     {
-        var patients = FindObjectsOfType<PatientStatusController>().Where(a => !a.IsHealed && !a.IsDead);
-
-        foreach (var patient in patients)
+        foreach (var patient in GetAvailablePatients())
         {
-            var controller = patient.GetComponent<HealthController>();
-            //patient.HydrationMeter = pHydrationAmount;
-            controller.SetHydration(pHydrationAmount);
+            patient.SetHydration(pHydrationAmount);
         }
     }
 
     public static void SetPatientHealth(float pHealthAmount)
     {
-        var patients = FindObjectsOfType<HealthController>();
-
-        foreach (var patient in patients)
+        foreach (var patient in GetAvailablePatients())
         {
             patient.Health = pHealthAmount;
         }
@@ -281,5 +270,11 @@ public class TutorialUtility : MonoBehaviour
     public static void SetBucketTableActive(bool pState)
     {
         FindObjectsOfType<TableStation>().ToList().FirstOrDefault(a => a.StartingTableObjectPrefab != null).IsActionActive = pState;
+    }
+
+    private static List<HealthController> GetAvailablePatients()
+    {
+        var patients = FindObjectsOfType<PatientStatusController>().Where(a => !a.IsHealed && !a.IsDead && a.GetComponent<HealthController>().IsInitialized);
+        return patients.Select(a => a.GetComponent<HealthController>()).ToList();
     }
 }
