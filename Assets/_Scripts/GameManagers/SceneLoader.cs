@@ -36,7 +36,7 @@ public class SceneLoader : MonoBehaviour
 
         while (!async.isDone)
         {
-            Debug.Log(async.progress);
+            //Debug.Log(async.progress);
             if(async.progress >= 0.89 && LoadingScreenReady)
             {
                 Fader.BeginFade(1, 0.15f);
