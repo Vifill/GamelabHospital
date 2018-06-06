@@ -42,7 +42,7 @@ public class MouseInputController : MonoBehaviour
             SelectOrderly(Orderlies[1]);
         }
 
-        if (Input.GetMouseButtonDown(1) && !GameController.InMenuScreen)
+        if (Input.GetMouseButtonDown(1) && !GameController.InMenuScreen && !GameController.InShiftOver)
         {
             CancelOrder();
         }
