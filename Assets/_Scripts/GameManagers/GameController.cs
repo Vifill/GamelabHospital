@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     static public bool InMenuScreen;
     static public bool InPauseMenu;
     static public bool InOptionMenu;
+    static public bool InShiftOver;
     static public bool OrderlyInScene { get; private set; }
     static public List<OrderlyController> GetOrderliesInScene { get; private set; }
     public BedManager BedManager;
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	private void Start () 
 	{
+        InShiftOver = false;
         InMenuScreen = false;
         InPauseMenu = false;
         Datalogic dl = new Datalogic();

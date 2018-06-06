@@ -162,6 +162,7 @@ public class LevelManager : MonoBehaviour
         var checkouts = new List<PatientCheckoutController>(FindObjectsOfType<PatientCheckoutController>().ToList().Where(a => a.GetComponent<PatientStatusController>().IsHealed && a.IsActionActive));
         Time.timeScale = 1.5f;
 
+        GameController.InShiftOver = true;
         //Orderly
         OrderlyController orderlyController = FindObjectOfType<OrderlyController>();
         orderlyController?.CancelOrder();
@@ -170,8 +171,10 @@ public class LevelManager : MonoBehaviour
             orderlyController.GetComponent<ActionableActioner>().StopAction();
             orderlyController.CurrentAction?.CancelOrder();
             OrderlyOrder orderlyOrder = new OrderlyOrder(exit.position);
-            orderlyOrder.AddAction(new OrderlyMoveAction(exit));
-            orderlyController.StartOrder(orderlyOrder);
+            orderlyOrder.AddAction(new OrderlyMoveAction(null, exit.position));
+            orderlyController.ClearQueue();
+            orderlyController.AddQueue(orderlyOrder);
+            //orderlyController.StartOrder(orderlyOrder);
         }
         else if (orderlyController != null && Player == null)
         {

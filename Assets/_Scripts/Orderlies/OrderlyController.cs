@@ -82,7 +82,7 @@ public class OrderlyController : MonoBehaviour
         ClearQueue();
     }
 
-    private void ClearQueue()
+    public void ClearQueue()
     {
         OrderQueue.Clear();
         InitializeQueueUI();
