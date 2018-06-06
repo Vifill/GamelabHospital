@@ -94,10 +94,15 @@ public class BedStation : Actionable
         }
     }
 
+    public override void OnStartAction(GameObject pObjectActioning)
+    {
+        pObjectActioning.GetComponentInChildren<Animator>().SetBool(Constants.AnimationParameters.CharacterCleanBed, true);
+    }
+
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
         base.OnFinishedAction(pObjectActioning);
-
+        pObjectActioning.GetComponentInChildren<Animator>().SetBool(Constants.AnimationParameters.CharacterCleanBed, false);
         SetClean();
         LevelManager.AddPoints(50, transform.position);
     }

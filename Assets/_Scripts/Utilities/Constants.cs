@@ -35,6 +35,7 @@ namespace Assets._Scripts.Utilities
             public const string PatientPukeWarning = "PatientPukeWarning";
             public const string CharacterDash = "IsDashing";
             public const string CharacterCleanBucket = "CleaningBucket";
+            public const string CharacterCleanBed = "CleaningBed";
 
             // UI
             public const string IsPulsatingUI = "IsPulsatingUI";
