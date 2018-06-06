@@ -26,27 +26,13 @@ public class CharacterInputs : MonoBehaviour
             if (action != null && action.CanBeActioned(GetCurrentTool(), gameObject))
             {
                 ActionableActioner.AttemptAction(action, GetComponent<MovementController>());
+                SuccessWarnings(action);              
             }
             
             else if (action != null && !action.CanBeActioned(GetCurrentTool(), gameObject))
             {
-                //error sound
-                if (GetCurrentTool() == ToolName.Bucket && action is BedStation)
-                {
-                    if (ToolController.GetToolBase().IsDirty)
-                    {
-                        ActionableActioner.SpawnFloatingText("I need a clean bucket for that");
-                    }
-                    else
-                    {
-                        ActionableActioner.SpawnFloatingText("The bed is not dirty");
-                    }
-                }
-                else if (GetCurrentTool() != ToolName.NoTool && action is PickupStationController)
-                {
-                    ActionableActioner.SpawnFloatingText();
-                }
 
+                FailedActionMessages(action);
                 ActionController.Asource.PlayOneShot(ActionController.InvalidActionSound);
             }
         }
@@ -82,6 +68,50 @@ public class CharacterInputs : MonoBehaviour
             {
                 DropTool(ToolController.CurrentTool);
             }
+        }
+    }
+
+    private void SuccessWarnings(Actionable action)
+    {
+        if ((GetCurrentTool() == ToolName.Water || GetCurrentTool() == ToolName.IVBag) && ActionableActioner.IsDirty)
+        {
+            ActionableActioner.SpawnFloatingText("I should clean myself!");
+        }
+    }
+
+    private void FailedActionMessages(Actionable action)
+    {
+        //error sound
+        if (GetCurrentTool() == ToolName.NoTool)
+        {
+            if (action is BedStation)
+            {
+                ActionableActioner.SpawnFloatingText("I need a bucket to do this");
+            }
+            if (action is HydrationController)
+            {
+                ActionableActioner.SpawnFloatingText("I need water for the patient");
+            }
+            if (action is TableStation)
+            {
+                ActionableActioner.SpawnFloatingText("I can't do that right now");
+            }
+        }
+
+        if (GetCurrentTool() == ToolName.Bucket && action is BedStation)
+        {
+            if (ToolController.GetToolBase().IsDirty)
+            {
+                ActionableActioner.SpawnFloatingText("I need a clean bucket for that");
+            }
+            else
+            {
+                ActionableActioner.SpawnFloatingText("The bed is not dirty");
+            }
+        }
+        else if (GetCurrentTool() != ToolName.NoTool && action is PickupStationController)
+        {
+            ActionableActioner.SpawnFloatingText();
         }
     }
 
