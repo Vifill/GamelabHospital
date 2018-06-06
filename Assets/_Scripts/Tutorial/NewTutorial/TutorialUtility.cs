@@ -33,10 +33,11 @@ public class TutorialUtility : MonoBehaviour
 
     public static void SetHydrationFreeze(bool pState)
     {
-        var healthControllers = FindObjectsOfType<HealthController>().ToList().Where(a => a.IsInitialized);
+        var patients = FindObjectsOfType<PatientStatusController>().ToList().Where(a => !a.IsDead && !a.IsHealed);
 
-        foreach (var controller in healthControllers)
+        foreach (var patient in patients)
         {
+            var controller = patient.GetComponent<HealthController>();
             if (pState)
             {
                 controller.HydrationClampMin = controller.HydrationMeter;
@@ -188,12 +189,13 @@ public class TutorialUtility : MonoBehaviour
 
     public static void SetPatientHydration(float pHydrationAmount)
     {
-        var patients = FindObjectsOfType<HealthController>().Where(a => !a.GetComponent<PatientStatusController>().IsHealed);
+        var patients = FindObjectsOfType<PatientStatusController>().Where(a => !a.IsHealed && !a.IsDead);
 
         foreach (var patient in patients)
         {
+            var controller = patient.GetComponent<HealthController>();
             //patient.HydrationMeter = pHydrationAmount;
-            patient.SetHydration(pHydrationAmount);
+            controller.SetHydration(pHydrationAmount);
         }
     }
 

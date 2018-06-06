@@ -33,7 +33,7 @@ public class PatientStatusController : MonoBehaviour
         }
     }
     public bool IsInBed = false;
-    public bool IsDead = false;
+    public bool IsDead { get; private set; }
 
     private HydrationController HydrationController;
     private PatientMovementController MovementController;
@@ -44,6 +44,7 @@ public class PatientStatusController : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        IsDead = false;
         IsHealed = false;
         HydrationController = GetComponent<HydrationController>();
         MovementController = GetComponent<PatientMovementController>();

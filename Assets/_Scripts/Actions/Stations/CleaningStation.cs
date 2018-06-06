@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets._Scripts.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,10 +21,21 @@ public class CleaningStation : Actionable
         }
     }
 
+    public override void OnStartAction(GameObject pObjectActioning)
+    {
+        var toolController = pObjectActioning.GetComponent<ToolController>();
+
+        if (toolController.GetCurrentToolName() == ToolName.Bucket)
+        {
+            pObjectActioning.GetComponentInChildren<Animator>().SetBool(Constants.AnimationParameters.CharacterCleanBucket, true);
+        }
+    }
+
     public override void OnFinishedAction(GameObject pObjectActioning)
     {
         base.OnFinishedAction(pObjectActioning);
 
+        pObjectActioning.GetComponentInChildren<Animator>().SetBool(Constants.AnimationParameters.CharacterCleanBucket, false);
         pObjectActioning.GetComponent<ToolController>().GetToolBase().CleanTool();
     }
 
