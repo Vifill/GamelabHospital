@@ -7,11 +7,13 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour 
 {
     private SceneLoader SceneLoader;
+    public int CurrentVersion;
 
     private void Start()
     {
         Time.timeScale = 1;
         SceneLoader = FindObjectOfType<SceneLoader>();
+        PlayerDataController.CheckForVersion(CurrentVersion);
     }
 
     public void Play()

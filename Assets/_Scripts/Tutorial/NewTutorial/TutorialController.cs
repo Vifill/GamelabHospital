@@ -5,12 +5,14 @@ using System.Linq;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Events;
+using TMPro;
 
 public class TutorialController : MonoBehaviour
 {
     public List<Objective> Objectives;
     public GameObject ArrowPrefab;
-    public Text ObjectiveTextUIObject;
+    //public Text ObjectiveTextUIObject;
+    public TextMeshProUGUI ObjectiveTextUIObject;
     public TutorialCoroutineStartLogic StartLogic;
 
     public Objective CurrentObjective { private set; get; }

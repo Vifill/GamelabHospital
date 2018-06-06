@@ -29,6 +29,7 @@ public class SanitationController : MonoBehaviour
     [HideInInspector]
     public SanitationThresholdConfig DoctorSanitationConfig;
     private GameController GC;
+    public bool IsDirty;
 
 	// Use this for initialization
 	private void Start() 
@@ -73,9 +74,11 @@ public class SanitationController : MonoBehaviour
             if (Sanitation >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
             {
                 DirtyParticles85Percent.SetActive(true);
+                IsDirty = true;
             }
             else if (Sanitation >= DoctorSanitationConfig.ListOfThresholds.FirstOrDefault().ThresholdOfActivation)
             {
+                IsDirty = true;
                 DirtyParticles50Percent.SetActive(true);
                 if(Tutorial2ScreenController != null)
                 {
@@ -91,7 +94,7 @@ public class SanitationController : MonoBehaviour
         {
             Sanitation = 0;
             SanitationUI.UpdateSanitationUI();
-
+            IsDirty = false;
             if (DirtyParticles50Percent.activeInHierarchy)
             {
                 DirtyParticles50Percent.SetActive(false);

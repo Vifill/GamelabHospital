@@ -267,7 +267,7 @@ Prefab:
         type: 2}
       propertyPath: ObjectiveTextUIObject
       value: 
-      objectReference: {fileID: 1093929974}
+      objectReference: {fileID: 1008204258}
     - target: {fileID: 114551058550544286, guid: 08dc7095f218bdf48bd81a2bdc75cfaa,
         type: 2}
       propertyPath: StartLogic
@@ -1781,17 +1781,17 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee5d545326b20ce4c9bd96025698691f, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1008204258 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114906798564012984, guid: ee5d545326b20ce4c9bd96025698691f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1008204257}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
 --- !u!4 &1055986599 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4742347879460734, guid: df84c631f07c13e40b25d36d1879e142,
     type: 2}
   m_PrefabInternal: {fileID: 1963902512}
---- !u!114 &1093929974 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114788823842980588, guid: ee5d545326b20ce4c9bd96025698691f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1008204257}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1102727164
 Prefab:
   m_ObjectHideFlags: 0
