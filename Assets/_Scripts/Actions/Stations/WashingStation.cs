@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets._Scripts.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,8 +31,13 @@ public class WashingStation : Actionable
 
     public override void OnStartAction(GameObject pObjectActioning)
     {
+        var toolController = pObjectActioning.GetComponent<ToolController>();
         //ActionTime += pObjectActioning.GetComponent<SanitationController>().CurrentSanitationLevel / 100;
         //ObjectActioning = pObjectActioning;
+        if (toolController.GetCurrentToolName() == ToolName.Bucket)
+        {
+            pObjectActioning.GetComponentInChildren<Animator>().SetBool(Constants.AnimationParameters.CharacterCleanBucket, true);
+        }
     }
 
     public override void OnStopAction()
@@ -43,6 +49,7 @@ public class WashingStation : Actionable
     {
         base.OnFinishedAction(pObjectActioning);
 
+        pObjectActioning.GetComponentInChildren<Animator>().SetBool(Constants.AnimationParameters.CharacterCleanBucket, false);
         pObjectActioning.GetComponent<SanitationController>().ClearSanitation();
         Instantiate(DocWashedParticlePrefab, pObjectActioning.transform.position, Quaternion.identity, pObjectActioning.transform);
         ActionTime = OriginalStartingTime;
