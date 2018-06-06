@@ -39,13 +39,10 @@ public class LevelSelectionUI : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        Destroy(CollectableOne.gameObject);
+                        Destroy(CollectableOne.gameObject.transform.parent.gameObject);
                         continue;
                     case 1:
-                        Destroy(CollectableTwo.gameObject);
-                        continue;
-                    case 2:
-                        Destroy(CollectableThree.gameObject);
+                        Destroy(CollectableTwo.gameObject.transform.parent.gameObject);
                         continue;
                 }
                 continue;
