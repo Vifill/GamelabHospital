@@ -12,7 +12,7 @@ public class PlayerDataController
     public const string PlayerIDKey = "PlayerIDKey";
     public const string VersionKey = "Version";
     
-    public void CheckForVersion(int pVersion)
+    public static void CheckForVersion(int pVersion)
     {
         if (!PlayerPrefs.HasKey(VersionKey) || PlayerPrefs.GetInt(VersionKey) != pVersion)
         {

@@ -37,6 +37,21 @@ public class ActionableActioner : MonoBehaviour
     private ToolController ToolController;
     private List<Actionable> HighlightedActions;
 
+    public bool IsDirty
+    {
+        get
+        {
+            if (SanitationController != null)
+            {
+                return SanitationController.IsDirty;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
     // Use this for initialization
     private void Start () 
 	{
