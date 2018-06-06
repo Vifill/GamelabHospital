@@ -156,8 +156,7 @@ public class TutorialController : MonoBehaviour
 
     private void OnPatientDeath()
     {
-        TutorialUtility.SetSpawnFreeze(false);
-        CanEndLevel = true;
+        StartCoroutine(SpawnPatient());
     }
 
     private IEnumerator EndLevelCoroutine(float pDelay)
@@ -251,7 +250,7 @@ public class TutorialController : MonoBehaviour
         InitializedPatients++;
         switch (InitializedPatients)
         {
-            case 1:
+            case 2:
                 { 
                     TutorialUtility.SetPatientHydration(100);
                     TutorialUtility.SetPatientHealth(80);
@@ -261,7 +260,7 @@ public class TutorialController : MonoBehaviour
                     TutorialUtility.ForcePatientSickness();
                 }
                 break;
-            case 2:
+            case 1:
                 {
                     TutorialUtility.SetPatientHydration(5);
                     TutorialUtility.SetPatientHealth(10);
@@ -279,7 +278,8 @@ public class TutorialController : MonoBehaviour
 
     private void OnCheckOutDoneEvent()
     {
-        StartCoroutine(SpawnPatient());
+        TutorialUtility.SetSpawnFreeze(false);
+        CanEndLevel = true;
     }
 
     private IEnumerator PatientDeathSequence()
